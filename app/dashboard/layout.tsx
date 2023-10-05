@@ -32,11 +32,11 @@ export default function DashboardLayout({
 	};
 	useEffect(() => {
 		(async () => {
-			const { user, error } = await getUser();
-			if (error) {
-				push('/');
-				return;
-			}
+			// const { user, error } = await getUser();
+			// if (error) {
+			// 	push('/');
+			// 	return;
+			// }
 			setIsSuccess(true);
 		})();
 	}, [push]);
