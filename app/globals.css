@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* font import */
+
+@font-face {
+  font-family: "Manrope-Bold";
+  font-style: normal;
+  font-weight: 200;
+  src: url("./../assets/fonts/Manrope-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Manrope-Regular";
+  font-style: normal;
+  font-weight: 200;
+  src: url("./../assets/fonts/Manrope-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Manrope-SemiBold";
+  font-style: normal;
+  font-weight: 200;
+  src: url("./../assets/fonts/Manrope-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Manrope-Medium";
+  font-style: normal;
+  font-weight: 200;
+  src: url("./../assets/fonts/Manrope-Medium.ttf") format("truetype");
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  /* color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
+  font-family: 'Manrope-Regular' !important;
+}
+
+@media screen and (min-width: 1224px) {
+  .side-section {
+    width: 100% !important
+  }
+}
