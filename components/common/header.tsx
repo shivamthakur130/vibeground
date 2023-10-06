@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import NoticeImg from 'assets/images/nitice1.png';
 import DownArrow from 'assets/images/svg/down-arrow.svg';
-import IconLogo from 'assets/images/svg/icon_logo.svg';
+import Logo from 'assets/images/svg/logo.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import user from '@/redux/slice/user';
@@ -24,20 +24,15 @@ const Header = ({ userData }: any) => {
 	};
 
 	return (
-		<div className="flex p-4 md:px-32 shadow-[0px_4px_20px_0px_rgba(0,_0,_0,_0.25)] bg-[#8974f6] justify-between ">
+		<div className="flex justify-between items-center">
 			<Link href="/dashboard">
 				<div className="flex items-center">
-					{/* <img
-						src="https://file.rendit.io/n/Nzqn4Au9zVsInEb9ek85.svg"
-						className="w-8 shrink-0"
-						id="Vuesaxbulksetting"
-					/> */}
-					<Image src={IconLogo} className="w-8 shrink-0" alt={''} />
-					<div className="text-xl font-bold text-[#f5f5f5] ml-2">Marvel Soft</div>
+					<Image src={Logo} className="shrink-0" alt={''} />
 				</div>
 			</Link>
-			<div className="flex flex-row gap-3 items-center">
-				{/* <div className="relative">
+			<div className='btn py-3 px-6 bg-2f2f2f rounded text-white cursor-pointer'>Login</div>
+			{/* <div className="flex flex-row gap-3 items-center"> */}
+			{/* <div className="relative">
 					<img
 						onClick={_toggleBell}
 						src="https://file.rendit.io/n/ciuTk52PEX5jXAPHDTRH.svg"
@@ -92,30 +87,29 @@ const Header = ({ userData }: any) => {
 						''
 					)}
 				</div> */}
-				<div
+			{/* <div
 					onClick={_toggleUser}
-					className="relative flex  justify-center items-center space-x-2 cursor-pointer">
-					<img
-						src={`${
-							userData?.details?.photo == ''
-								? 'https://file.rendit.io/n/fvUpDZTFTicAhzG5Kmog.png'
-								: userData?.details?.photo
-						}`}
+					className="relative flex  justify-center items-center space-x-2 cursor-pointer"> */}
+			{/* <img
+						src={`${userData?.details?.photo == ''
+							? 'https://file.rendit.io/n/fvUpDZTFTicAhzG5Kmog.png'
+							: userData?.details?.photo
+							}`}
 						className="self-start w-12 shrink-0 rounded-full border-2 border-gray-500 shadow-sm"
 						id="UnsplashNohBFJSY"
 					/>
 
 					<div className="text-lg font-manropeRegular font-bold text-white mr-1 hidden sm:flex">
-						{/* <div>
+						<div>
 							{userData?.details?.first_name + ' ' + userData?.details?.last_name}
-						</div> */}
+						</div>
 						{userData?.username}
-					</div>
-					{/* <img
+					</div> */}
+			{/* <img
 						src="https://file.rendit.io/n/2F5YzKkq4xYFqYhO0QZz.svg"
 						className="w-3 shrink-0 cursor-pointer"
 					/> */}
-					<Image src={DownArrow} className="w-8 shrink-0 cursor-pointer" alt={''} />
+			{/* <Image src={DownArrow} className="w-8 shrink-0 cursor-pointer" alt={''} />
 					{toggleUser ? (
 						<div className="absolute right-0 top-10 z-20">
 							<div className="bg-white rounded-lg min-w-[130px] manropeSemiBold shadow-md ">
@@ -136,9 +130,9 @@ const Header = ({ userData }: any) => {
 						</div>
 					) : (
 						''
-					)}
-				</div>
-			</div>
+					)} */}
+			{/* </div>
+			</div> */}
 		</div>
 	);
 };

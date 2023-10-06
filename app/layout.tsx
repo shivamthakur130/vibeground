@@ -5,8 +5,8 @@ import React from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export const metadata: Metadata = {
-	title: 'Marvel Soft Employee',
-	description: 'Marvel Soft Employee',
+	title: 'Vibeground',
+	description: 'Vibeground',
 };
 
 export default function RootLayout({

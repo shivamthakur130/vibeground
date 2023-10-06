@@ -5,33 +5,50 @@
 
 /* font import */
 
+
 @font-face {
-  font-family: "Manrope-Bold";
+  font-family: "Poppins-Regular";
   font-style: normal;
-  font-weight: 200;
-  src: url("./../assets/fonts/Manrope-Bold.ttf") format("truetype");
+
+  src: url("./../assets/fonts/Poppins-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Manrope-Regular";
+  font-family: "Poppins-Medium";
   font-style: normal;
-  font-weight: 200;
-  src: url("./../assets/fonts/Manrope-Regular.ttf") format("truetype");
+
+  src: url("./../assets/fonts/Poppins-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Manrope-SemiBold";
+  font-family: "Poppins-SemiBold";
   font-style: normal;
-  font-weight: 200;
-  src: url("./../assets/fonts/Manrope-SemiBold.ttf") format("truetype");
+
+  src: url("./../assets/fonts/Poppins-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Manrope-Medium";
+  font-family: "Poppins-Bold";
   font-style: normal;
-  font-weight: 200;
-  src: url("./../assets/fonts/Manrope-Medium.ttf") format("truetype");
+
+  src: url("./../assets/fonts/Poppins-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Poppins-ExtraBold";
+  font-style: normal;
+
+  src: url("./../assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins-Black";
+  font-style: normal;
+
+  src: url("./../assets/fonts/Poppins-Black.ttf") format("truetype");
+}
+
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -52,7 +69,11 @@ body {
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
-  font-family: 'Manrope-Regular' !important;
+  font-family: 'Poppins-Regular';
+}
+
+.home-screen {
+  background: url(../assets/images/mainbg.jpg);
 }
 
 @media screen and (min-width: 1224px) {

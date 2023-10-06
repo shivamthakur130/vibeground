@@ -1,24 +1,48 @@
+'use client';
 import Image from 'next/image';
-import LoginImg from 'assets/images/login.svg';
-import Bg1 from 'assets/images/bg1.svg';
-import Bg2 from 'assets/images/bg2.svg';
-import LoginForm from '@/components/login/loginForm';
-import IconLogo from 'assets/images/svg/icon_logo.svg';
-import LoginLine from 'assets/images/svg/login_line.svg';
-
+import Header from '@/components/common/header';
+import Footer from '@/components/common/footer';
+import Start from '@/components/common/start';
+import { useState } from 'react';
+import Registration from './registration';
+import AreYou from './are-you';
+import Email from './email';
+import Userdetail from './userDetai';
+import Password from './password';
+import DOB from './dob';
+import Gender from './gender';
+import Selection from './select';
+import Welcome from './welcome';
+import OTP from './otp';
+import Plan from './plan';
 export default function Home() {
+
+
 	return (
-		<div
-			className="overflow-hidden bg-[#edf1fa] flex flex-col justify-between  w-full"
-			id="LoginRoot">
-			<div className="flex items-center justify-center bg-[#8974f6] shadow-[0px_4px_20px_0px_rgba(0,_0,_0,_0.25)]  py-8  ">
-				<Image src={IconLogo} className="w-8 shrink-0" alt={''} />
-				<div className="text-xl font-manropeRegular font-bold text-[#f5f5f5] self-start ml-2">
-					Demo
+		// <div id="LoginRoot" className='min-h-screen'>
+		<div id="LoginRoot" className='home-screen min-h-screen'>
+			<div className='max-w-7xl mx-auto pt-12 '>
+				<Header />
+			</div>
+			<div className='max-w-7xl mx-auto'>
+				<Start />
+				{/* <Registration />
+				<AreYou />
+				<Email />
+				<Userdetail />
+				<Password />
+				<DOB />
+				<Gender />
+				<Selection />
+				<Welcome />
+				<OTP />
+				<Plan /> */}
+			</div>
+			<div className='w-full bg-[#151515]'>
+				<div className='max-w-7xl mx-auto py-20'>
+					<Footer />
 				</div>
 			</div>
-			<div className="md:mt-10 mt-16  lg:-mb-14 max-w-6xl w-auto lg:w-[1187px] flex flex-col lg:flex-row items-center bg-white justify-around lg:mx-auto mx-3 py-16 px-12 rounded-3xl z-10"></div>
-			<div className="flex items-end relative"></div>
 		</div>
 	);
 }

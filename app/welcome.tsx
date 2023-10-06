@@ -1,0 +1,17 @@
+import React from 'react';
+import Image from 'next/image';
+import Hand from '../assets/images/hand.png'
+const Welcome = () => {
+
+	return (
+		<div className="Welcome max-w-6xl mx-auto mt-40 mb-40">
+			<h2 className='text-5xl font-PoppinsBold text-111 flex items-center'>Welcome <Image className='ml-8' src={Hand} alt="#" /></h2>
+			<p className='text-xl text-[#455154] mt-9 mb-6'>Enter your E-mail Address, and we’ll send an “OTP” so you can continue</p>
+			<p className='text-xl text-3d3d3d mt-3 mb-8'>Your E-mail Address</p>
+			<input type="email" id="email" className="border border-[#C1C1C1] text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-5 " placeholder="Email" required />
+			<button className='btn btn-default px-24 py-6 mt-10 text-xl bg-2f2f2f text-white rounded-lg'>Sign In</button>
+		</div>
+	);
+};
+
+export default Welcome;
