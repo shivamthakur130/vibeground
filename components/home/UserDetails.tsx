@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const UserDetails = () => {
 	return (
-		<div className="Email text-center max-w-4xl mx-auto mt-40 mb-40">
+		<div className="Email text-center max-w-4xl mx-auto mt-24 mb-40">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
 				Enter your Username Details
@@ -41,7 +41,7 @@ const UserDetails = () => {
 				placeholder="About You"></textarea>
 
 			<Link href="/account/password">
-				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515">
+				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
 					Continue
 				</button>
 			</Link>

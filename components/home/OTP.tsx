@@ -1,7 +1,7 @@
 import React from 'react';
 const OTP = () => {
 	return (
-		<div className="Welcome max-w-6xl mx-auto mt-40 mb-40">
+		<div className="Welcome max-w-6xl mx-auto mt-24 mb-40">
 			<h2 className="text-5xl font-PoppinsBold text-111">OTP Verification </h2>
 			<p className="text-xl text-[#455154] mt-9 mb-6">
 				We have sent a Verification Code toDominik@applaunch.io
@@ -28,7 +28,7 @@ const OTP = () => {
 					maxLength={1}
 				/>
 			</div>
-			<button className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515">
+			<button className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515  transition-all duration-300 active:bg-303030 ">
 				Sign In
 			</button>
 		</div>

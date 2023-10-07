@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Welcome = () => {
 	return (
-		<div className="Welcome max-w-6xl mx-auto mt-40 mb-40">
+		<div className="Welcome max-w-3xl mx-auto mt-24 mb-40">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center">
 				Welcome <Image className="ml-8" src={Hand} alt="#" />
 			</h2>

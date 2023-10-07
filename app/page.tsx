@@ -5,9 +5,7 @@ import Start from '@/components/home/Start';
 export default function Home() {
 	return (
 		<div id="LoginRoot" className="home-screen min-h-screen">
-			<div className="max-w-7xl mx-auto pt-12 ">
-				<Header />
-			</div>
+			<Header />
 			<div className="max-w-7xl mx-auto">
 				<Start />
 			</div>

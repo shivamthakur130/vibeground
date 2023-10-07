@@ -53,9 +53,7 @@ export default function DashboardLayout({
 
 	return (
 		<div id="LoginRoot" className="min-h-screen">
-			<div className="max-w-7xl mx-auto pt-12 ">
-				<Header />
-			</div>
+			<Header />
 			{children}
 			<div className="w-full bg-[#151515]">
 				<div className="max-w-7xl mx-auto py-20">
