@@ -2,10 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProfileImg from '@/assets/images/profile_img.png';
-import Post2 from '@/assets/images/p02.png';
-import Post3 from '@/assets/images/p03.png';
-import Croun from '@/assets/images/svg/croun2.svg';
-import Heart from '@/assets/images/heart.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
 const Profile = () => {
 	return (
@@ -24,6 +20,30 @@ const Profile = () => {
 				</div>
 
 			</div>
+
+
+
+			<div className='mt-20 space-y-14'>
+				<h2 className='flex justify-between text-2xl'>
+					Interest<span><Image src={Arrow} alt='#' width={7} /></span>
+				</h2>
+				<h2 className='flex justify-between text-2xl'>
+					Browse Profile<span><Image src={Arrow} alt='#' width={7} /></span>
+				</h2>
+				<h2 className='flex justify-between text-2xl'>
+					Terms & Conditions<span><Image src={Arrow} alt='#' width={7} /></span>
+				</h2>
+				<h2 className='flex justify-between text-2xl'>
+					Invoice<span><Image src={Arrow} alt='#' width={7} /></span>
+				</h2>
+
+
+
+			</div>
+
+
+
+
 		</div>
 	);
 };

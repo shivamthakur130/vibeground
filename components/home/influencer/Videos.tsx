@@ -11,7 +11,7 @@ const Videos = () => {
 			</h2>
 			<div className="grid grid-cols-4 gap-6 my-6">
 				<div className='w-full min-w-full'>
-					<label htmlFor="dropzone-file2" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9]">
+					<label htmlFor="dropzone-file2" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9] hover:bg-gray-100">
 						<div className="flex flex-col items-center justify-center pt-5 pb-6">
 							<Image src={Upload} alt='#' />
 						</div>
@@ -19,7 +19,7 @@ const Videos = () => {
 					</label>
 				</div>
 				<div className='w-full min-w-full'>
-					<label htmlFor="dropzone-file3" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9]">
+					<label htmlFor="dropzone-file3" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9] hover:bg-gray-100">
 						<div className="flex flex-col items-center justify-center pt-5 pb-6">
 							<Image src={Upload} alt='#' />
 						</div>
@@ -27,7 +27,7 @@ const Videos = () => {
 					</label>
 				</div>
 				<div className='w-full min-w-full'>
-					<label htmlFor="dropzone-file4" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9]">
+					<label htmlFor="dropzone-file4" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9] hover:bg-gray-100">
 						<div className="flex flex-col items-center justify-center pt-5 pb-6">
 							<Image src={Upload} alt='#' />
 						</div>
@@ -35,7 +35,7 @@ const Videos = () => {
 					</label>
 				</div>
 				<div className='w-full min-w-full'>
-					<label htmlFor="dropzone-file5" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9]">
+					<label htmlFor="dropzone-file5" className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-[#f9f9f9] hover:bg-gray-100">
 						<div className="flex flex-col items-center justify-center pt-5 pb-6">
 							<Image src={Upload} alt='#' />
 						</div>
@@ -45,7 +45,7 @@ const Videos = () => {
 			</div>
 
 			<div className="flex items-center justify-center w-full">
-				<label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-32 rounded-xl cursor-pointer bg-[#f9f9f9]">
+				<label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-32 rounded-xl cursor-pointer bg-[#f9f9f9] hover:bg-gray-100">
 					<div className="flex flex-col items-center justify-center pt-5 pb-6">
 						<Image src={Upload} alt='#' />
 					</div>
