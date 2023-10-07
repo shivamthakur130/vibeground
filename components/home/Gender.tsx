@@ -21,7 +21,7 @@ const Gender = () => {
 					className="w-7 h-7 "
 				/>
 			</div>
-			<div className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4">
+			<div className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4 mb-4">
 				<label htmlFor="default-radio-2" className="ml-2 text-xl text-9e9e9e">
 					Female
 				</label>
@@ -34,9 +34,20 @@ const Gender = () => {
 					className="w-7 h-7 "
 				/>
 			</div>
-
+			<div className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4 ">
+				<label htmlFor="default-radio-1" className="ml-2 text-xl text-9e9e9e">
+					Other
+				</label>
+				<input
+					id="default-radio-1"
+					type="radio"
+					value=""
+					name="default-radio"
+					className="w-7 h-7 "
+				/>
+			</div>
 			<Link href="/account/selection">
-				<button className="btn btn-default px-24 py-6 mt-20 text-xl bg-2f2f2f text-white rounded-lg">
+				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515">
 					Continue
 				</button>
 			</Link>

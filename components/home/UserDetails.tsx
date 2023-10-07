@@ -41,7 +41,7 @@ const UserDetails = () => {
 				placeholder="About You"></textarea>
 
 			<Link href="/account/password">
-				<button className="btn btn-default px-24 py-6 mt-20 text-xl bg-2f2f2f text-white rounded-lg">
+				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515">
 					Continue
 				</button>
 			</Link>

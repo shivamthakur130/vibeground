@@ -2,7 +2,7 @@ import React from 'react';
 import { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import get from '@/lib/requests';
-import Loading from '@/components/common/loading';
+import Loading from '@/components/common/Loading';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 interface AnnouncementResponse {

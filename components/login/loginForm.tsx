@@ -15,7 +15,7 @@ import {
 	LoadingMgs,
 	SuccessMessage,
 	ErrorMessage,
-} from '@/components/common/toastify';
+} from '@/components/common/Toastify';
 
 interface LoginProps {
 	token: string | null;

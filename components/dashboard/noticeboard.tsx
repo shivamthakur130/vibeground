@@ -5,7 +5,7 @@ import axios, { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import get from '@/lib/requests';
-import Loading from '@/components/common/loading';
+import Loading from '@/components/common/Loading';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 

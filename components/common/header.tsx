@@ -25,12 +25,16 @@ const Header = ({ userData }: any) => {
 
 	return (
 		<div className="flex justify-between items-center">
-			<Link href="/dashboard">
+			<Link href="/">
 				<div className="flex items-center">
 					<Image src={Logo} className="shrink-0" alt={''} />
 				</div>
 			</Link>
-			<div className='btn py-3 px-6 bg-2f2f2f rounded text-white cursor-pointer'>Login</div>
+			<Link href="/account/welcome">
+				<div className="btn py-3 px-6 bg-2f2f2f  text-white cursor-pointer rounded-[8px] hover:bg-151515">
+					Login
+				</div>
+			</Link>
 			{/* <div className="flex flex-row gap-3 items-center"> */}
 			{/* <div className="relative">
 					<img

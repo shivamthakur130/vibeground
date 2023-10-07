@@ -6,7 +6,7 @@ import EventImg from 'assets/images/event.png';
 import { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import get from '@/lib/requests';
-import Loading from '@/components/common/loading';
+import Loading from '@/components/common/Loading';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 

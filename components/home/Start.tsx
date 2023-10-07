@@ -11,10 +11,10 @@ const Start = () => {
 				The Best app for content creators out there that provide a single platform
 				to connect with your audience
 			</p>
-			<Link
-				href="account"
-				className="btn btn-default px-11 py-6 text-xl bg-303030 text-white rounded-lg">
-				Create account
+			<Link href="account">
+				<button className="btn btn-default px-11 py-5 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515">
+					Create account
+				</button>
 			</Link>
 		</div>
 	);

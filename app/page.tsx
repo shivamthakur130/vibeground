@@ -1,8 +1,7 @@
-'use client';
-import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import Start from '@/components/common/Start';
+import Start from '@/components/home/Start';
+
 export default function Home() {
 	return (
 		<div id="LoginRoot" className="home-screen min-h-screen">

@@ -4,7 +4,7 @@ import NoticeImg from 'assets/images/nitice1.png';
 import axios, { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import get from '@/lib/requests';
-import Loading from '@/components/common/loading';
+import Loading from '@/components/common/Loading';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 interface TimeTableResponse {
