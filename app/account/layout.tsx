@@ -4,12 +4,11 @@ import { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
 import Loading from '@/components/common/loading';
 import { useSelector } from 'react-redux';
 import get from '@/lib/requests';
-import Announcement from '@/components/dashboard/announcement';
-import Noticeboard from '@/components/dashboard/noticeboard';
-import Events from '@/components/dashboard/events';
+
 import { usePathname } from 'next/navigation';
 interface UserResponse {
 	user: string | null;
@@ -53,11 +52,14 @@ export default function DashboardLayout({
 	}
 
 	return (
-		<div className="flex flex-col w-full" id="NewRootRoot">
-			<div className="overflow-hidden bg-white flex flex-col gap-8 " id="Desktop">
-				<Header userData={userData} />
-				<div className="max-w-[1380px] lg:grid grid-cols-3 w-full mx-auto flex flex-col lg:flex-row gap-8 items-start mb-5 ">
-					Hello
+		<div id="LoginRoot" className="min-h-screen">
+			<div className="max-w-7xl mx-auto pt-12 ">
+				<Header />
+			</div>
+			{children}
+			<div className="w-full bg-[#151515]">
+				<div className="max-w-7xl mx-auto py-20">
+					<Footer />
 				</div>
 			</div>
 		</div>
