@@ -1,82 +1,53 @@
 import React from 'react';
 import Image from 'next/image';
-import Croun from '@/assets/images/croun.png';
-import Star from '@/assets/images/star.png';
-import Tic from '@/assets/images/tic.png';
+import Card from '@/assets/images/card.png';
+import PayPal from '@/assets/images/paypal.png';
+import Lock from '@/assets/images/lock.png';
 import Link from 'next/link';
 
 const Billing = () => {
 	return (
-		<div className="Billing max-w-[680px] mx-auto mt-20 mb-40">
-			<p className="text-xl text-888 mb-5 text-center">
-				Let’s Complete your Profile
-			</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16 text-center">
-				Choose you plan
-			</h2>
-			<div className="mx-auto grid grid-flow-col gap-4">
-				<div className="px-5 pt-8 pb-5 rounded-xl relative shadow-lg min-w-[230px]">
-					<div className="h-9 w-9 rounded bg-[#DFE9DF] flex items-center justify-center">
-						<Image src={Star} alt="#" />
+		<div className="Billing max-w-5xl mx-auto mt-40 mb-40">
+
+			<div className='mx-auto grid grid-cols-6 grid-flow-col gap-4'>
+				<div>
+					<div className='h-28 w-32 rounded-[20px] bg-[#282626] flex items-center justify-center mb-3.5'>
+						<Image src={Card} alt='#' />
+
 					</div>
-					<h2 className="font-bold text-15px mt-1.5">
-						Premium <span className="text-[10px]"> (3 Months)</span>{' '}
-					</h2>
-					<h2 className="font-bold text-2xl text-2f2f2f">
-						30
-						<span className="text-sm font-medium text-[#B5B5B5]"> CHF/3 Months</span>
-					</h2>
-					<div className="font-medium py-3">(8 CHF/month)</div>
-					<ul className="space-y-4">
-						<li className="flex justify-between">
-							Videos <span>--</span>
-						</li>
-						<li className="flex justify-between">
-							Images <span>--</span>
-						</li>
-						<li className="flex justify-between">
-							Swipe Models <span className="text-[#558F71]">Limited</span>
-						</li>
-					</ul>
-				</div>
-				<div className="px-5 pt-8 pb-5 rounded-xl relative shadow-lg min-w-[230px]">
-					<div className="h-9 w-9 rounded bg-[#FEFAEC] flex items-center justify-center">
-						<Image src={Croun} alt="#" />
+					<div className='h-28 w-32 rounded-[20px] bg-[#DBDBDB] flex items-center justify-center'>
+						<Image src={PayPal} alt='#' />
 					</div>
-					<h2 className="font-bold text-15px mt-1.5">
-						Premium <span className="text-[10px]"> (1 Year) </span>{' '}
-					</h2>
-					<h2 className="font-bold text-2xl text-2f2f2f">
-						120<span className="text-sm font-medium text-[#B5B5B5]"> CHF/Year</span>
-					</h2>
-					<div className="font-medium py-3">(8 CHF/month)</div>
-					<ul className="space-y-4">
-						<li className="flex justify-between">
-							Videos{' '}
-							<span>
-								<Image src={Tic} alt="#" />
-							</span>
-						</li>
-						<li className="flex justify-between">
-							Images{' '}
-							<span>
-								<Image src={Tic} alt="#" />
-							</span>
-						</li>
-						<li className="flex justify-between">
-							Swipe Models{' '}
-							<span>
-								<Image src={Tic} alt="#" />
-							</span>
-						</li>
-					</ul>
 				</div>
+
+				<div className="col-span-5">
+					<h2 className='text-4xl font-PoppinsBold text-111 mb-8'>Enter Your Billing information</h2>
+					<input className='rounded-3xl bg-black/25 w-full px-5 py-4 text-xs text-[#3f3f3f] placeholder:text-[#3f3f3f]' type='text' placeholder='Card Number' />
+					<div className='grid grid-flow-col grid-cols-8 gap-6 my-6'>
+						<div className='col-span-3'>
+							<input className='rounded-3xl bg-black/25 w-full px-5 py-4 text-xs text-[#3f3f3f] placeholder:text-[#3f3f3f]' type='text' placeholder='Expiry Date' />
+
+						</div>
+						<div className='col-span-5'>
+
+							<input className='rounded-3xl bg-black/25 w-full px-5 py-4 text-xs text-[#3f3f3f] placeholder:text-[#3f3f3f]' type='text' placeholder='CVC/CVV' />
+						</div>
+					</div>
+					<input className='rounded-3xl bg-black/25 w-full px-5 py-4 text-xs text-[#3f3f3f] placeholder:text-[#3f3f3f]' type='text' placeholder='Name of Card' />
+					<div className='mt-6'>
+						<div className='flex justify-between'><h3 className='font-PoppinsBold'>25 Boosts</h3><span className='text-111'>$300/each</span></div>
+						<div className='flex justify-between mt-2'><h3 className='font-PoppinsBold'>Charged as</h3><span className='text-111'>$300</span></div>
+						<div className='flex justify-between mt-10'>
+							<button className='btn btn-default px-7 py-3 bg-2f2f2f text-white rounded-lg self-center'>Confirm Purchase</button>
+							<span className='text-111 flex items-center font-PoppinsMedium text-sm'><Image className='mr-1.5' src={Lock} alt='#' /> Secure</span>
+						</div>
+					</div>
+
+				</div>
+
+
+
 			</div>
-			<Link href="/account/welcome">
-				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515">
-					Continue
-				</button>
-			</Link>
 		</div>
 	);
 };

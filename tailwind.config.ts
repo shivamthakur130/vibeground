@@ -36,6 +36,10 @@ const config: Config = {
 				'888': '#888',
 				'656565': '#656565',
 				'9e9e9e': '#9e9e9e',
+				'd9d9d9': '#d9d9d9',
+			},
+			boxShadow: {
+				'shado': '0px 10px 23px 0px rgba(0, 0, 0, 0.20);'
 			}
 		},
 	},
