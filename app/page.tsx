@@ -1,4 +1,4 @@
-import Header from '@/components/common/header';
+// import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
 import Start from '@/components/home/Start';
 import Landing from '@/components/home/Landing';
@@ -9,10 +9,7 @@ export default function Home() {
 		// <div id="LoginRoot" className="home-screen min-h-screen">
 		<div id="LoginRoot" className="min-h-screen relative ">
 			<HeaderLanding />
-			<div className="max-w-7xl mx-auto">
-				{/* <Start /> */}
-
-			</div>
+			<div className="max-w-full mx-auto">{/* <Start /> */}</div>
 			<Landing />
 			<div className="w-full bg-[#151515]">
 				<div className="max-w-7xl mx-auto py-20">
