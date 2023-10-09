@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation';
 
 const Footer = () => {
 	return (
-		<div className="footer text-white text-[15px]">
-			<div className="grid grid-flow-col">
+		<div className="footer text-white text-[15px] px-4">
+			<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
 				<div>
 					<h3 className="text-22px font-bold">Vibeground.</h3>
 					<p className="text-13px my-2.5">All Rights are Reserved 2023</p>
