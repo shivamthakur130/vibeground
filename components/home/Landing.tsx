@@ -10,18 +10,23 @@ import Ico2 from '@/assets/images/ico2.png';
 import Ico3 from '@/assets/images/ico3.png';
 import Ico4 from '@/assets/images/ico4.png';
 import CenterLogo from '@/assets/images/logo/logo_white.png';
+
 const Landing = () => {
 	return (
 		<div className="Landing text-center mb-28">
 			<div className="max-w-full mx-auto ">
-				<div className="relative bg-111">
-					<Image src={MainBanner} alt="#" className="opacity-0" />
-					<div className="absolute h-full top-0 left-0 right-0 flex items-center justify-center">
-						<div className="max-w-4xl mx-auto text-white ">
-							{/* <h1 className='text-75px font-PoppinsBlack leading-[78px]'>Spice your  time  with Best Creators</h1>
-							<p className='text-21px max-w-2xl mx-auto py-4'>The Best app for content creators out there that provide single platform to connect with your audience</p> */}
-							<p className=" mx-auto max-w-xl">
-								<Image src={CenterLogo} alt="#" />
+				<div className=" bg-black h-fit py-36">
+					<div className="flex items-center justify-center py-16">
+						<div className="max-w-2xl mx-auto text-white my-20">
+							{/* <h1 className="text-75px font-PoppinsBlack leading-[78px]">
+								Spice your time with Best Creators
+							</h1>
+							<p className="text-21px max-w-2xl mx-auto py-4">
+								The Best app for content creators out there that provide single platform
+								to connect with your audience
+							</p> */}
+							<p className="mx-auto px-10 ">
+								<Image src={CenterLogo} alt="#" className="" />
 							</p>
 							<Link href="account">
 								<button

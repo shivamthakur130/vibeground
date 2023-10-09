@@ -26,37 +26,25 @@ const Header = ({ userData }: any) => {
 		push('/');
 	};
 
-	// console.log(pathName, 'usePathname');
 	return (
 		<div className=" bg-black">
-			<div className="max-w-7xl mx-auto py-10">
-				<div className="flex justify-between items-center">
-					<>
+			<div className="max-w-7xl mx-auto py-10 px-10">
+				<div
+					className={`flex ${pathName == '/' ? 'justify-end' : 'justify-between'} `}>
+					{pathName !== '/' && (
 						<Link href="/">
 							<div className="flex items-center">
 								<Image src={CenterLogo} className="shrink-0" height={60} alt={''} />
 							</div>
 						</Link>
-						<Link href="/account/welcome">
-							<div
-								className="
+					)}
+					<Link href="/login">
+						<div
+							className="
 				rounded-[8px]  btn  py-3 px-14 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50">
-								Login
-							</div>
-						</Link>
-					</>
-					{/* // <>
-				// 	<Link href="/">
-				// 		<div className="flex items-center">
-				// 			<Image src={Logo} className="shrink-0" alt={''} />
-				// 		</div>
-				// 	</Link>
-				// 	<Link href="/account/welcome">
-				// 		<div className="btn py-3 px-6 bg-2f2f2f  text-white cursor-pointer rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030">
-				// 			Login
-				// 		</div>
-				// 	</Link>
-				// </> */}
+							Login
+						</div>
+					</Link>
 				</div>
 			</div>
 		</div>
