@@ -274,14 +274,12 @@ const Plan = () => {
 					</div>
 				)}
 				<div className="w-full text-center">
-					{/* <Link href="/account/billing"> */}
 					<button
 						className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 self-center transition-all duration-300 active:bg-303030 "
 						type="submit"
 						disabled={loading}>
 						Continue
 					</button>
-					{/* </Link> */}
 				</div>
 			</form>
 		</div>

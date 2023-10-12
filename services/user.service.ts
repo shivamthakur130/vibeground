@@ -178,24 +178,6 @@ export const modelAbout = async (dataReq: any): Promise<ReturnResponse> => {
 	}
 };
 
-// model/dob
-export const modelDob = async (dataReq: any): Promise<ReturnResponse> => {
-	try {
-		const { data } = await post(`model/dob`, dataReq, true);
-		return {
-			data: data,
-			error: null,
-		};
-	} catch (e) {
-		const error = e as AxiosError;
-		await checkIfAuthorized(error);
-		return {
-			data: null,
-			error,
-		};
-	}
-};
-
 //model/passport
 export const modelPassport = async (
 	dataReq: FormData
@@ -219,7 +201,62 @@ export const modelPassport = async (
 //model/photos
 export const modelPhotos = async (dataReq: any): Promise<ReturnResponse> => {
 	try {
-		const { data } = await post(`model/photos`, dataReq, true);
+		const { data } = await postFormData(`model/photos`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+		await checkIfAuthorized(error);
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
+//model/videos
+export const modelVideos = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await postFormData(`model/videos`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+		await checkIfAuthorized(error);
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+//model/links
+export const modelLinks = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`model/links`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		await checkIfAuthorized(error);
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+//model/categories
+export const modelCategories = async (
+	dataReq: any
+): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`model/categories`, dataReq, true);
 		return {
 			data: data,
 			error: null,

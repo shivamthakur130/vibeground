@@ -29,6 +29,7 @@ const defaultUser = {
 	subscriptionId: '',
 	expiry_date: null,
 	purchase_date: null,
+	photos: [],
 };
 
 type UserState = {

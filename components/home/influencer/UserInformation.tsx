@@ -80,7 +80,8 @@ const UserInformation = () => {
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
 				const userId = data.data._id;
-				dispatch(updateUser({ ...user, ...prepareData, userId: userId }));
+				const token = data.data.token;
+				dispatch(updateUser({ ...user, ...prepareData, userId: userId, token }));
 				SuccessMessage('Model Registration', 'Details saved successfully');
 				push('/account/about');
 			} else {

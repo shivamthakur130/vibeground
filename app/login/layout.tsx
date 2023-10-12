@@ -31,11 +31,6 @@ export default function DashboardLayout({
 	};
 	useEffect(() => {
 		(async () => {
-			// const { user, error } = await getUser();
-			// if (error) {
-			// 	push('/');
-			// 	return;
-			// }
 			setIsSuccess(true);
 		})();
 	}, [push]);
@@ -62,21 +57,4 @@ export default function DashboardLayout({
 			</div>
 		</div>
 	);
-}
-
-async function getUser(): Promise<UserResponse> {
-	try {
-		const { data } = await get('/me', true);
-		return {
-			user: data,
-			error: null,
-		};
-	} catch (e) {
-		const error = e as AxiosError;
-
-		return {
-			user: null,
-			error,
-		};
-	}
 }
