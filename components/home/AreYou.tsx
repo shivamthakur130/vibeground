@@ -1,54 +1,117 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import Fan from 'assets/images/fan.png';
 import Modal from 'assets/images/model.png';
-import Link from 'next/link';
+import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { updateUser } from '@/redux/slice/user';
+import { useAppDispatch } from '@/redux/hooks';
+import { useSelector } from 'react-redux';
 
 const AreYou = () => {
+	const [loading, setLoading] = useState(false);
+	const dispatch = useAppDispatch();
+	const user = useSelector((state: any) => state.userReducer.user);
+	const { push } = useRouter();
+
+	// form validation rules
+	const validationSchema = Yup.object().shape({
+		type: Yup.string().required('Type is required'),
+	});
+
+	const formOptions = { resolver: yupResolver(validationSchema) };
+	// get functions to build form with useForm() hook
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		setError,
+		clearErrors,
+		reset,
+		formState,
+	} = useForm(formOptions);
+	const { errors } = formState;
+
+	async function onSubmit(formField: any) {
+		dispatch(updateUser({ ...user, type: formField.type }));
+		if (formField.type === 'fan') {
+			push('/account/email');
+			return;
+		}
+		push('/account/user-information');
+	}
+
 	return (
-		<div className="AreYou text-center max-w-[430px] mx-auto mt-24 mb-40">
-			<h2 className="text-5xl font-PoppinsBold text-111">Are you</h2>
-			<p className="text-xl text-888 mt-3 mb-16">
+		<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative">
+			<h2 className="text-5xl font-PoppinsBold text-111">Are you?</h2>
+			<p className="text-xl text-888 mt-3 mb-10">
 				Choose who you are going to be{' '}
 			</p>
-			<div className="mx-auto grid grid-flow-col gap-4">
-				<div className="flex items-center  rounded-xl h-52 w-52 relative">
-					<Image src={Fan} alt="#" />
-					<input
-						id="bordered-radio-1"
-						type="radio"
-						value=""
-						name="bordered-radio"
-						className="w-8 h-8 absolute top-5 left-5  bg-white border-0 ring-0 focus:ring-0  "
-					/>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className="transition delay-150 duration-300 ease-in-out">
+				<div className="mx-auto grid grid-flow-col gap-4">
 					<label
-						htmlFor="bordered-radio-1"
-						className="absolute bottom-4 left-0 right-0 text-white text-2xl">
-						Fan
+						className="flex items-center  rounded-xl h-52 w-52 relative"
+						htmlFor="fanRadio">
+						<Image src={Fan} alt="Fan" />
+						<input
+							id="fanRadio"
+							type="radio"
+							value="fan"
+							{...register('type', {
+								onChange: (e) => {
+									setValue('type', e.target.value);
+									clearErrors('type');
+								},
+							})}
+							name="type"
+							className="w-8 h-8 absolute top-5 left-5  bg-white border-0 ring-0 focus:ring-0  "
+						/>
+						<label
+							htmlFor="fanRadio"
+							className="absolute bottom-4 left-0 right-0 text-white text-2xl">
+							Fan
+						</label>
+					</label>
+					<label
+						className="flex items-center  rounded-xl h-52 w-52 relative "
+						htmlFor="modalRadio">
+						<Image src={Modal} alt="Modal" />
+						<input
+							id="modalRadio"
+							type="radio"
+							value="model"
+							{...register('type', {
+								onChange: (e) => {
+									setValue('type', e.target.value);
+									clearErrors('type');
+								},
+							})}
+							name="type"
+							className="w-8 h-8 absolute top-5 left-5  bg-white border-0 ring-0 focus:ring-0  "
+						/>
+						<label
+							htmlFor="modalRadio"
+							className="absolute bottom-4 left-0 right-0 text-white text-2xl">
+							Model
+						</label>
 					</label>
 				</div>
-				<div className="flex items-center  rounded-xl h-52 w-52 relative">
-					<Image src={Modal} alt="#" />
-					<input
-						checked
-						id="bordered-radio-2"
-						type="radio"
-						value=""
-						name="bordered-radio"
-						className="w-8 h-8 absolute top-5 left-5  bg-white border-0 ring-0 focus:ring-0  "
-					/>
-					<label
-						htmlFor="bordered-radio-2"
-						className="absolute bottom-4 left-0 right-0 text-white text-2xl">
-						Model
-					</label>
+				<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+					{errors.type?.message && errors.type?.message}
 				</div>
-			</div>
-			<Link href="/account/email">
-				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
+				<button
+					className="btn w-full px-24 py-4 mt-12 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+					type="submit">
 					Continue
 				</button>
-			</Link>
+			</form>
 		</div>
 	);
 };

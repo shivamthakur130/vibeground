@@ -7,7 +7,7 @@ import IconError from '../../assets/images/svg/error_icon.svg';
 export const ErrorMessage = (
 	title: string,
 	message: string | string[],
-	autoClose: Number = 0,
+	autoClose: Number = 2000,
 	position = 'top-right',
 	type = 'message'
 ) => {

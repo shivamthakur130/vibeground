@@ -1,5 +1,5 @@
 // import Header from '@/components/common/header';
-import Footer from '@/components/common/footer';
+import Footer from '@/components/common/Footer';
 import Start from '@/components/home/Start';
 import Landing from '@/components/home/Landing';
 // import HeaderLanding from '@/components/common/headerLanding';

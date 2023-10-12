@@ -1,6 +1,6 @@
 export const setUserData = (user: any) => {
 	try {
-		console.log(user, 'user');
+		// console.log(user, 'user');
 		localStorage.setItem('user', JSON.stringify(user));
 	} catch (err) {}
 };

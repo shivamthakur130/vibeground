@@ -3,25 +3,38 @@ import {
 	removeUserData,
 	getUser,
 } from '@/lib/useLocalStorageUser';
+import { User } from '@/types/User';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+const defaultUser = {
+	_id: '',
+	data: '',
+	userId: '',
+	planId: '',
+	email: '',
+	type: '',
+	firstName: '',
+	lastName: '',
+	userName: '',
+	date_of_birth: null,
+	gender: '',
+	city: '',
+	country: '',
+	status: '',
+	password: '',
+	passport_back: '',
+	passport_front: '',
+	token: '',
+	isEmailVerified: false,
+	subscriptionId: '',
+};
+
 type UserState = {
-	user: null | {
-		id: string;
-		name: string;
-		email: string;
-		main_group: string;
-		org_id: string;
-		sub_group: string;
-		token: string;
-		updated_at: string;
-		username: string;
-		usn: string;
-	};
+	user: null | User;
 };
 
 const initialState = {
-	user: getUser() || null,
+	user: getUser() || defaultUser,
 } as UserState;
 
 export const user = createSlice({
@@ -33,8 +46,9 @@ export const user = createSlice({
 			state.user = action.payload.user;
 			setUserData(action.payload.user);
 		},
-		updateUser: (state, action: PayloadAction<UserState>) => {
-			state.user = action.payload.user;
+		updateUser: (state, action: PayloadAction<User>) => {
+			state.user = action.payload;
+			setUserData(state.user);
 		},
 		// setToken: (state, action: PayloadAction<any>) => {
 		// 	state.token = action.payload.token;
@@ -42,9 +56,9 @@ export const user = createSlice({
 		// removeToken: (state, action: PayloadAction<UserState>) => {
 		// 	state.token = null;
 		// },
-		removeUser: (state, action: PayloadAction<UserState>) => {
+		removeUser: (state) => {
 			removeUserData();
-			state.user = null;
+			state.user = defaultUser;
 		},
 	},
 });

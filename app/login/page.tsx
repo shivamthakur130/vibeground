@@ -1,5 +1,4 @@
-import Login from '@/components/home/Login';
-
+import Login from '@/components/login/Login';
 
 export default function WelcomePage() {
 	return (

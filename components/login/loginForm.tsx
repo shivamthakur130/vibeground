@@ -31,7 +31,7 @@ const LoginForm = ({ token }: LoginProps) => {
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
-		username: Yup.string().required('Email is required'),
+		userName: Yup.string().required('Email is required'),
 		password: Yup.string().required('Password is required'),
 		type: Yup.string().required('Type is required'),
 
@@ -122,13 +122,13 @@ const LoginForm = ({ token }: LoginProps) => {
 			<form
 				className=" lg:w-[400px] min-w-[325px]"
 				onSubmit={handleSubmit(onSubmit)}>
-				<label className="relative block mt-5">Username</label>
+				<label className="relative block mt-5">userName</label>
 				<label className="relative block mt-2">
 					<input
 						className="border-solid border-[#dddddd] bg-white  w-full p-3 items-center px-5 border rounded-2xl placeholder:text-[#DDDDDD]"
-						placeholder="username"
+						placeholder="userName"
 						// value={'jane_smith'}
-						{...register('username', {
+						{...register('userName', {
 							onChange: (e) => {},
 						})}
 					/>
@@ -139,9 +139,9 @@ const LoginForm = ({ token }: LoginProps) => {
 						width={15}
 						alt="#"></Image>
 				</label>
-				{errors.username?.message && (
+				{errors.userName?.message && (
 					<div className="text-red-600 text-xs ml-3 my-1">
-						{errors.username?.message}
+						{errors.userName?.message}
 					</div>
 				)}
 				<input
