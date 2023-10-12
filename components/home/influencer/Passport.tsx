@@ -81,7 +81,6 @@ const Passport = () => {
 		formData.append('userId', user.userId);
 		try {
 			const { data, error } = await modelPassport(formData);
-			console.log(error, data, 'error');
 			if (error) {
 				setLoading(false);
 				handleError(error);

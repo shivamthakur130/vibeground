@@ -46,8 +46,6 @@ const Selection = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
-		dispatch(updateUser({ ...user, email: formField.email }));
-
 		try {
 			const response = await fanLocation({
 				userId: user.userId,
@@ -56,8 +54,9 @@ const Selection = () => {
 			});
 			if (response.status === 201) {
 				reset();
-				const userId = response.data.data._id;
-				dispatch(updateUser({ ...user, userId: userId }));
+				dispatch(
+					updateUser({ ...user, city: formField.city, country: formField.country })
+				);
 				SuccessMessage(messageTitle, 'Gender changes saved successfully');
 				if (user.type === 'fan') {
 					push('/account/choose-plan');

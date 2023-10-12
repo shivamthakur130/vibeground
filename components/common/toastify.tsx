@@ -85,7 +85,7 @@ export const SuccessMessage = (title: string, message: string) => {
 	toast.dismiss();
 	toast(<Msg />, {
 		position: 'top-right',
-		autoClose: 1000,
+		autoClose: 2000,
 		hideProgressBar: true,
 		closeOnClick: true,
 		pauseOnHover: true,

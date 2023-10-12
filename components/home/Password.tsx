@@ -62,11 +62,7 @@ const Password = () => {
 			});
 			if (response.status === 201) {
 				reset();
-				// console.log(response.data.data);
-				const userId = response.data.data._id;
-				dispatch(
-					updateUser({ ...user, userId: userId, token: response.data.data.token })
-				);
+				dispatch(updateUser({ ...user, token: response.data.data.token }));
 				SuccessMessage('User Registration', 'Password changes saved successfully');
 				push('/account/dob');
 			} else {

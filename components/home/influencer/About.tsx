@@ -47,7 +47,6 @@ const UserInformation = () => {
 		dispatch(updateUser({ ...user, ...prepareData }));
 		try {
 			const { data, error } = await modelAbout(prepareData);
-			console.log(error, data, 'error');
 			if (error) {
 				setLoading(false);
 				handleError(error);

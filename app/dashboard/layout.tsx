@@ -30,7 +30,6 @@ export default function DashboardLayout({
 	useEffect(() => {
 		(async () => {
 			const { data, error } = await getUser();
-			console.log(data, 'data');
 			setIsSuccess(true);
 			if (error) {
 				// push('/');

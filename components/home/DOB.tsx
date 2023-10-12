@@ -78,10 +78,7 @@ const DOB = () => {
 			});
 			if (response.status === 201) {
 				reset();
-				const userId = response.data.data._id;
-				dispatch(
-					updateUser({ ...user, date_of_birth: dateOfBirth, userId: userId })
-				);
+				dispatch(updateUser({ ...user, date_of_birth: dateOfBirth }));
 				SuccessMessage(messageTitle, 'Date of birth saved successfully.');
 				push('/account/gender');
 			} else {

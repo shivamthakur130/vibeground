@@ -49,7 +49,6 @@ const Email = () => {
 			});
 			if (response.status === 201) {
 				const userId = response.data.data._id;
-				console.log(response.data.data, 'response.data');
 				dispatch(updateUser({ ...user, userId: userId }));
 				SuccessMessage('User Registration', 'Email changes saved successfully');
 				push('/account/user-details');

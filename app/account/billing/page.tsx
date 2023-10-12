@@ -10,12 +10,16 @@ import { removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { ErrorMessage } from '@/components/common/Toastify';
 import Loading from '@/components/common/Loading';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function BillingPage() {
 	const { push } = useRouter();
 	const dispatch = useAppDispatch();
 	const [stripeKey, setStripeKey] = useState('');
 	const [loading, setLoading] = useState(false);
+	const userData = useAppSelector((state: any) => state.userReducer.user);
+	const messageTitle =
+		userData.type === 'fan' ? 'User Registration' : 'Model Registration';
 	useEffect(() => {
 		(async () => {
 			setLoading(true);
@@ -33,21 +37,25 @@ export default function BillingPage() {
 		})();
 	}, []);
 	const handleError = (error: any) => {
-		if (error.response?.status === 401) {
+		if (
+			error.response?.status === 401 ||
+			error?.response?.data?.message === 'Unauthorized'
+		) {
 			dispatch(removeUser());
 			push('/login');
 		}
 		if (error.response) {
-			let message = error.response.data.message;
-			ErrorMessage('User Registration', message);
+			console.log(error.response.data);
+			const message = error.response.data.message;
+			ErrorMessage(messageTitle, message);
 		} else if (error.request) {
 			ErrorMessage(
-				'User Registration',
+				messageTitle,
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
 			ErrorMessage(
-				'User Registration',
+				messageTitle,
 				'An unexpected error occurred. Please try again later.'
 			);
 		}

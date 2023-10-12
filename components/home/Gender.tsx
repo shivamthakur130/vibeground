@@ -42,7 +42,6 @@ const Gender = () => {
 	async function onSubmit(formField: any) {
 		setLoading(true);
 		dispatch(updateUser({ ...user, gender: formField.gender }));
-
 		try {
 			const response = await fanGender({
 				userId: user.userId,

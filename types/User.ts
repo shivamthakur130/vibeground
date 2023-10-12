@@ -18,4 +18,6 @@ export interface User {
 	isEmailVerified: boolean;
 	token: string;
 	subscriptionId: string;
+	expiry_date: Date | null;
+	purchase_date: Date | null;
 }

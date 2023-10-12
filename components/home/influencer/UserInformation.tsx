@@ -71,7 +71,6 @@ const UserInformation = () => {
 
 		try {
 			const { data, error } = await modelDetails(prepareData);
-			console.log(data, 'data');
 			if (error) {
 				setLoading(false);
 				handleError(error);

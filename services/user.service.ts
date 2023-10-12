@@ -70,6 +70,23 @@ export const getPlans = async (type: string): Promise<ReturnResponse> => {
 	}
 };
 
+// getPlan
+export const getPlanDetails = async (id: string): Promise<ReturnResponse> => {
+	try {
+		const { data } = await get(`/plans/get-details/${id}`, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
 export const updateUser = async (data: User): Promise<AxiosResponse<User>> => {
 	return await put('/user', data);
 };

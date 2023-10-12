@@ -45,15 +45,15 @@ const UserDetails = () => {
 		dispatch(updateUser({ ...user, email: formField.email }));
 
 		try {
-			const response = await fanDetails({
+			const prepareData = {
 				userId: user.userId,
 				firstName: formField.firstName,
 				lastName: formField.lastName,
 				userName: formField.userName,
-			});
+			};
+			const response = await fanDetails(prepareData);
 			if (response.status === 201) {
-				const userId = response.data.data._id;
-				dispatch(updateUser({ ...user, userId: userId }));
+				dispatch(updateUser({ ...user, ...prepareData }));
 				SuccessMessage('User Registration', 'Details changes saved successfully');
 				push('/account/password');
 			} else {
@@ -83,8 +83,6 @@ const UserDetails = () => {
 			);
 		}
 	};
-	console.log(errors, 'errors');
-
 	return (
 		<div className="Email max-w-2xl text-center mx-auto mt-16 mb-40 relative">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>

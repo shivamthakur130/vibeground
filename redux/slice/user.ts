@@ -27,6 +27,8 @@ const defaultUser = {
 	token: '',
 	isEmailVerified: false,
 	subscriptionId: '',
+	expiry_date: null,
+	purchase_date: null,
 };
 
 type UserState = {

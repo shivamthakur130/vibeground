@@ -36,7 +36,7 @@ const getHeader = async (
 	header = {
 		headers: {
 			'Content-Type': formData ? contentType.form : contentType.json,
-			// Authorization: '',
+			Authorization: user ? `Bearer ${user.token}` : '',
 		},
 		cancelToken: ourRequestToken ? ourRequestToken : source.token,
 	};

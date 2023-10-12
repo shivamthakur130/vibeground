@@ -57,7 +57,7 @@ const AreYou = () => {
 				className="transition delay-150 duration-300 ease-in-out">
 				<div className="mx-auto grid grid-flow-col gap-4">
 					<label
-						className="flex items-center  rounded-xl h-52 w-52 relative"
+						className="flex items-center cursor-pointer rounded-xl h-52 w-52 relative"
 						htmlFor="fanRadio">
 						<Image src={Fan} alt="Fan" />
 						<input
@@ -80,7 +80,7 @@ const AreYou = () => {
 						</label>
 					</label>
 					<label
-						className="flex items-center  rounded-xl h-52 w-52 relative "
+						className="flex items-center cursor-pointer rounded-xl h-52 w-52 relative "
 						htmlFor="modalRadio">
 						<Image src={Modal} alt="Modal" />
 						<input
