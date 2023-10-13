@@ -6,9 +6,6 @@ import CenterLogo from '@/assets/images/center-logo.png';
 const Start = () => {
 	return (
 		<div className="start text-center mt-60 mb-80">
-			{/* <h1 className="text-75px font-black font-PoppinsBold">
-				Start Something Epic
-			</h1> */}
 			<p className="text-21px max-w-2xl mx-auto mt-7 mb-10">
 				<Image src={CenterLogo} alt="#" />
 			</p>

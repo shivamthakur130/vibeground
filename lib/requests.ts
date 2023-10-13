@@ -30,25 +30,15 @@ const getHeader = async (
 	formData = true
 ): Promise<Headers> => {
 	const user: User | null = await getUser();
-
 	const source: CancelTokenSource = axios.CancelToken.source();
 	let header: Headers;
 	header = {
 		headers: {
 			'Content-Type': formData ? contentType.form : contentType.json,
-			Authorization: user ? `Bearer ${user.token}` : '',
+			Authorization: user?.token ? `Bearer ${user.token}` : '',
 		},
 		cancelToken: ourRequestToken ? ourRequestToken : source.token,
 	};
-	// else {
-	// 	header = {
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Authorization: '',
-	// 		},
-	// 		cancelToken: ourRequestToken ? ourRequestToken : source.token,
-	// 	};
-	// }
 	return header;
 };
 
@@ -58,11 +48,9 @@ export default async function get(
 	ourRequestToken: CancelToken | null = null
 ): Promise<AxiosResponse> {
 	const header: Headers = await getHeader(ourRequestToken, false);
-	// type ? header : { cancelToken: ourRequestToken ? ourRequestToken : undefined }
 	const prepareData = {
 		...header,
 	};
-	// console.log(prepareData, 'prepareData');
 	return await axiosPrepare.get(url, prepareData);
 }
 

@@ -1,4 +1,4 @@
-import Plan from '@/components/home/Plan';
+import Plan from '@/components/account/Plan';
 export default function PlanPage() {
 	return (
 		<div className="max-w-7xl mx-auto">

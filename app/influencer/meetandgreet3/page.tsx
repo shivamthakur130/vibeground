@@ -1,4 +1,4 @@
-import MeetAndGreet3 from '@/components/home/influencer/MeetAndGreet3';
+import MeetAndGreet3 from '@/components/influencer/MeetAndGreet3';
 export default function MeetAndGreet3Page() {
 	return (
 		<div className="max-w-7xl mx-auto">

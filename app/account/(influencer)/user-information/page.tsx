@@ -1,4 +1,4 @@
-import UserInformation from '@/components/home/influencer/UserInformation';
+import UserInformation from '@/components/influencer/UserInformation';
 
 export default function UserInformationPage() {
 	return (

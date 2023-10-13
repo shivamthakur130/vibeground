@@ -1,4 +1,4 @@
-import About from '@/components/home/influencer/About';
+import About from '@/components/influencer/About';
 
 export default function AboutPage() {
 	return (

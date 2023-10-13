@@ -1,5 +1,5 @@
 'use client';
-import Billing from '@/components/home/Billing';
+import Billing from '@/components/account/Billing';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { getStripeApiKey } from '@/services/payment.service';

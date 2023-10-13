@@ -45,9 +45,8 @@ export default function DashboardLayout({
 			/>
 		);
 	}
-
 	return (
-		<div id="LoginRoot" className="min-h-screen">
+		<div className="min-h-screen">
 			<Header />
 			{children}
 			<div className="w-full bg-[#151515]">

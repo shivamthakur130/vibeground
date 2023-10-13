@@ -1,4 +1,4 @@
-import Experience from '@/components/experience/Experience';
+import Experience from '@/components/experience/dashboard';
 
 export default function WelcomePage() {
 	return (

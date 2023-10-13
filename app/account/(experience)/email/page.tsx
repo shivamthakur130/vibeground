@@ -1,4 +1,4 @@
-import Email from '@/components/home/Email';
+import Email from '@/components/account/Email';
 
 export default function EmailPage() {
 	return (

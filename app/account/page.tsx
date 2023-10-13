@@ -1,4 +1,4 @@
-import Registration from '@/components/home/Registration';
+import Registration from '@/components/account/Registration';
 
 export default function Home() {
 	return (

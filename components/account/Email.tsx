@@ -41,7 +41,6 @@ const Email = () => {
 	async function onSubmit(formField: any) {
 		setLoading(true);
 		dispatch(updateUser({ ...user, email: formField.email }));
-
 		try {
 			const response = await fanEmail({
 				email: formField.email,
@@ -49,7 +48,7 @@ const Email = () => {
 			});
 			if (response.status === 201) {
 				const userId = response.data.data._id;
-				dispatch(updateUser({ ...user, userId: userId }));
+				dispatch(updateUser({ ...user, email: formField.email, userId: userId }));
 				SuccessMessage('User Registration', 'Email changes saved successfully');
 				push('/account/user-details');
 			} else {

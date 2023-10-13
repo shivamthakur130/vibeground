@@ -1,4 +1,4 @@
-import Gender from '@/components/home/Gender';
+import Gender from '@/components/account/Gender';
 
 export default function GenderPage() {
 	return (

@@ -1,13 +1,11 @@
-// import Header from '@/components/common/header';
 import Footer from '@/components/common/Footer';
 import Start from '@/components/home/Start';
 import Landing from '@/components/home/Landing';
-// import HeaderLanding from '@/components/common/headerLanding';
 import Header from '@/components/common/Header';
 
 export default function Home() {
 	return (
-		<div id="LoginRoot" className="min-h-screen relative ">
+		<div className="min-h-screen relative ">
 			<Header />
 			<div className="max-w-full mx-auto">{/* <Start /> */}</div>
 			<Landing />

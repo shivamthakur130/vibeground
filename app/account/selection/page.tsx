@@ -1,4 +1,4 @@
-import Selection from '@/components/home/Selection';
+import Selection from '@/components/account/Selection';
 
 export default function SelectionPage() {
 	return (

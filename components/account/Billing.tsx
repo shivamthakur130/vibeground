@@ -136,7 +136,7 @@ const Billing = () => {
 			handleError(error);
 			return;
 		}
-		console.log(data, 'data');
+
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			SuccessMessage(messageTitle, 'Subscription successfully activated');
 			const planId = data.data.planId;
@@ -165,7 +165,6 @@ const Billing = () => {
 
 	const stripeConfirmPayment = async (client_secret: string) => {
 		if (!stripe || !elements || !client_secret) {
-			console.log('Stripe or Elements not available.');
 			ErrorMessage(messageTitle, 'Stripe or Elements not available.');
 			return;
 		}
@@ -200,8 +199,8 @@ const Billing = () => {
 
 					SuccessMessage(messageTitle, 'Payment successfully completed!');
 					const prepareStripeResponse = {
-						paymentIntentId: result.paymentIntent.id,
-						status: result.paymentIntent.status,
+						paymentIntentId: result?.paymentIntent?.id,
+						status: result?.paymentIntent?.status,
 						response: result,
 					};
 					await makeSubscriptionUpdate(prepareStripeResponse);
@@ -209,6 +208,12 @@ const Billing = () => {
 				} else {
 					ErrorMessage(messageTitle, 'Payment was not successful');
 					console.log('Payment was not successful:', result.paymentIntent);
+					const prepareStripeResponse = {
+						paymentIntentId: result?.paymentIntent?.id,
+						status: result?.paymentIntent?.status,
+						response: result,
+					};
+					await makeSubscriptionUpdate(prepareStripeResponse);
 					setIsProcessingPayment(false);
 				}
 			})
@@ -218,7 +223,7 @@ const Billing = () => {
 				console.log('Error occurred during payment:', error);
 			});
 	};
-	// console.log(userData);
+
 	const handlePayment = async () => {
 		if (isFormValid && !isProcessingPayment) {
 			setIsProcessingPayment(true);
@@ -250,6 +255,7 @@ const Billing = () => {
 			}
 		}
 	};
+
 	const handleError = (error: any) => {
 		if (error.response?.status === 401) {
 			dispatch(removeUser());
@@ -270,16 +276,17 @@ const Billing = () => {
 			);
 		}
 	};
+
 	return (
-		<div className="Billing max-w-4xl mx-auto mt-24 mb-40 relative">
+		<div className="Billing max-w-4xl mx-auto mt-24 mb-20 relative">
 			<div className="mx-auto grid grid-cols-6 grid-flow-col gap-4">
 				<div>
-					<div className="h-28 w-32 rounded-[20px] bg-[#282626] flex items-center justify-center mb-3.5">
+					<div className="h-24 w-24 rounded-[20px] bg-[#282626] flex items-center justify-center mb-3.5">
 						<Image src={Card} alt="#" />
 					</div>
-					<div className="h-28 w-32 rounded-[20px] bg-[#DBDBDB] flex items-center justify-center">
+					{/* <div className="h-24 w-24 rounded-[20px] bg-[#DBDBDB] flex items-center justify-center">
 						<Image src={PayPal} alt="#" />
-					</div>
+					</div> */}
 				</div>
 				{isProcessingPayment && (
 					<Loading
