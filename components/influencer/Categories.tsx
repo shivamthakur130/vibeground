@@ -145,7 +145,7 @@ const Categories = () => {
 						links: data.data.links,
 					})
 				);
-				push('/influencer/experience');
+				push('/influencer');
 			} else {
 				ErrorMessage('Model Registration', 'Something went wrong');
 			}

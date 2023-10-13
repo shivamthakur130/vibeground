@@ -90,7 +90,7 @@ const Selection = () => {
 		}
 	};
 	return (
-		<div className="Email text-center max-w-2xl mx-auto mt-24 mb-40 relative">
+		<div className="Email text-center max-w-2xl mx-auto mt-14 mb-24 relative">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
 				Choose Country and City

@@ -115,7 +115,7 @@ const Plan = () => {
 	};
 
 	return (
-		<div className="Plan max-w-[900px] mx-auto mt-24 mb-40 text-center relative">
+		<div className="Plan max-w-[900px] mx-auto mt-14 mb-24 text-center relative">
 			<p className="text-xl text-888 mb-5 text-center">
 				Let’s Complete your Profile
 			</p>

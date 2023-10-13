@@ -50,14 +50,14 @@ const Videos = () => {
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getUser();
-			console.log(data, 'data');
+			// console.log(data, 'data');
 			if (error) {
 				setLoading(false);
 				handleError(error);
 				return;
 			}
 			if (typeof data === 'object' && data !== null && 'data' in data) {
-				const videosList = data?.data?.videos;
+				const videosList = data?.data?.videos ? data?.data?.videos : [];
 				dispatch(
 					updateUser({
 						...user,
@@ -74,11 +74,16 @@ const Videos = () => {
 	}, []);
 
 	useEffect(() => {
+		console.log(user?.videos, 'user?.videos');
 		const previews = selectedVideos.map((video, index) => {
 			if (video) {
 				return URL.createObjectURL(video);
 			}
-			return user?.videos[index] ? user?.videos[index] : null;
+			if (user?.videos) {
+				return user?.videos[index] ? user?.videos[index] : null;
+			}
+			// return user?.videos[index] ? user?.videos[index] :
+			return null;
 		});
 		if (!firstLoad) {
 			setVideosPreviews(previews);
@@ -251,9 +256,9 @@ const Videos = () => {
 				className={`${loading ? 'opacity-25' : ''}`}
 				encType="multipart/form-data">
 				<div className="grid grid-cols-5 gap-6 my-6">
-					{selectedVideos.map((_, index) => (
+					{selectedVideos.map((item, index) => (
 						<div key={index}>
-							{!videosPreviews[index] ? (
+							{videosPreviews[index] == null && !item ? (
 								<div className="w-full min-w-full">
 									<label
 										htmlFor={`dropzone-file${index}`}

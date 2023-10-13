@@ -109,7 +109,7 @@ const DOB = () => {
 	};
 
 	return (
-		<div className="Email text-center max-w-xl mx-auto mt-24 mb-40 relative">
+		<div className="Email text-center max-w-xl mx-auto mt-24 mb-24 relative">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
 				Enter Your Date of Birth
