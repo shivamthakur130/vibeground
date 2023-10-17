@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
-// import { ErrorMessage } from '@/components/common/Toastify';
-// import Loading from '@/components/common/Loading';
+import { ErrorMessage } from '@/components/common/Toastify';
+import Loading from '@/components/common/Loading';
 import { useAppSelector } from '@/redux/hooks';
 
 export default function BillingPage() {
@@ -47,30 +47,30 @@ export default function BillingPage() {
 		if (error.response) {
 			console.log(error.response.data);
 			const message = error.response.data.message;
-			// ErrorMessage(messageTitle, message);
+			ErrorMessage(messageTitle, message);
 		} else if (error.request) {
-			// ErrorMessage(
-			// 	messageTitle,
-			// 	'Network Error. Please check your internet connection.'
-			// );
+			ErrorMessage(
+				messageTitle,
+				'Network Error. Please check your internet connection.'
+			);
 		} else {
-			// ErrorMessage(
-			// 	messageTitle,
-			// 	'An unexpected error occurred. Please try again later.'
-			// );
+			ErrorMessage(
+				messageTitle,
+				'An unexpected error occurred. Please try again later.'
+			);
 		}
 	};
 
-	// if (loading) {
-	// 	return (
-	// 		<Loading
-	// 			width={50}
-	// 			height={50}
-	// 			className="flex absolute justify-center w-96
-	// 			z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
-	// 		/>
-	// 	);
-	// }
+	if (loading) {
+		return (
+			<Loading
+				width={50}
+				height={50}
+				className="flex absolute justify-center w-96
+				z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+			/>
+		);
+	}
 	return (
 		<div className="max-w-7xl mx-auto">
 			{stripeKey !== '' && (
