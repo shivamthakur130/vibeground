@@ -3,9 +3,9 @@
 import { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
-import Loading from '@/components/common/Loading';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import Loading from '@/components/layout/Loading';
 import { useSelector } from 'react-redux';
 import get from '@/lib/requests';
 

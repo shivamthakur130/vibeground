@@ -16,9 +16,12 @@ import { removeUser, updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { makeSubscription } from '@/services/user.service';
-import Loading from '@/components/common/Loading';
+import Loading from '@/components/layout/Loading';
 import { Plan } from '@/types/Plan';
-import { SuccessMessage, ErrorMessage } from '@/components/common/Toastify';
+import {
+	SuccessMessage,
+	ErrorMessage,
+} from '@/components/layout/ToastifyMessages';
 
 const Plan = () => {
 	const [loading, setLoading] = useState(false);

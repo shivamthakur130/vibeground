@@ -9,8 +9,11 @@ import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { modelDetails } from '@/services/user.service';
-import Loading from '@/components/common/Loading';
-import { SuccessMessage, ErrorMessage } from '@/components/common/Toastify';
+import Loading from '@/components/layout/Loading';
+import {
+	SuccessMessage,
+	ErrorMessage,
+} from '@/components/layout/ToastifyMessages';
 
 const UserInformation = () => {
 	const [loading, setLoading] = useState(false);

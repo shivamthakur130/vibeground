@@ -1,14 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Footer from '@/components/common/Footer';
-import Loading from '@/components/common/Loading';
+import Footer from '@/components/layout/Footer';
+import Loading from '@/components/layout/Loading';
 import { useSelector } from 'react-redux';
-import Header from '@/components/common/Header';
+import Header from '@/components/layout/Header';
 import { getUser } from '@/services/user.service';
 import { removeUser, updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
-import { ErrorMessage } from '@/components/common/Toastify';
+import { ErrorMessage } from '@/components/layout/ToastifyMessages';
 
 export default function AuthVerification({
 	children,

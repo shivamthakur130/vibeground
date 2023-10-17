@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
-import { ErrorMessage } from '@/components/common/Toastify';
-import Loading from '@/components/common/Loading';
+import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import Loading from '@/components/layout/Loading';
 import { useAppSelector } from '@/redux/hooks';
 
 export default function BillingPage() {

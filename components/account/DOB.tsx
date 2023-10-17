@@ -10,9 +10,12 @@ import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { fanDob } from '@/services/user.service';
-import Loading from '@/components/common/Loading';
+import Loading from '@/components/layout/Loading';
 
-import { SuccessMessage, ErrorMessage } from '@/components/common/Toastify';
+import {
+	SuccessMessage,
+	ErrorMessage,
+} from '@/components/layout/ToastifyMessages';
 
 const DOB = () => {
 	const [selectedDay, setSelectedDay] = useState<string>('');

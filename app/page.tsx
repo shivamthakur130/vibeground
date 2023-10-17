@@ -1,7 +1,7 @@
-import Footer from '@/components/common/Footer';
+import Footer from '@/components/layout/Footer';
 import Start from '@/components/home/Start';
 import Landing from '@/components/home/Landing';
-import Header from '@/components/common/Header';
+import Header from '@/components/layout/Header';
 
 export default function Home() {
 	return (

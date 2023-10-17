@@ -23,8 +23,11 @@ import { processPayment } from '@/services/payment.service';
 import user, { removeUser } from '@/redux/slice/user';
 import { useRouter } from 'next/navigation';
 import paymentIntents from '@stripe/stripe-js';
-import { SuccessMessage, ErrorMessage } from '@/components/common/Toastify';
-import Loading from '@/components/common/Loading';
+import {
+	SuccessMessage,
+	ErrorMessage,
+} from '@/components/layout/ToastifyMessages';
+import Loading from '@/components/layout/Loading';
 import { makeSubscription, getPlanDetails } from '@/services/user.service';
 import { updateUser } from '@/redux/slice/user';
 
