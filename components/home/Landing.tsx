@@ -9,7 +9,7 @@ import Ico1 from '@/assets/images/ico1.png';
 import Ico2 from '@/assets/images/ico2.png';
 import Ico3 from '@/assets/images/ico3.png';
 import Ico4 from '@/assets/images/ico4.png';
-import CenterLogo from '@/assets/images/logo/logo_white.png';
+import CenterLogo from '@/assets/images/logo/l_white.png';
 
 const Landing = () => {
 	return (
