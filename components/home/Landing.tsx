@@ -1,5 +1,6 @@
+'use client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import MainBanner from '@/assets/images/main_banner.jpg';
 import banner2 from '@/assets/images/banner2.png';
@@ -10,10 +11,39 @@ import Ico2 from '@/assets/images/ico2.png';
 import Ico3 from '@/assets/images/ico3.png';
 import Ico4 from '@/assets/images/ico4.png';
 import CenterLogo from '@/assets/images/logo/l_white.png';
+import Modal from 'react-modal';
 
-const Landing = () => {
+Modal.setAppElement('#root');
+
+const customStyles = {
+	overlay: {
+		backgroundColor: 'rgba(0, 0, 0, 0.8)',
+		zIndex: 1000,
+	},
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		width: '50%',
+		height: '50%',
+		marginRight: '-50%',
+		background: '#0d0d0d',
+		transform: 'translate(-50%, -50%)',
+	},
+};
+
+const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
+	const openModal = () => {
+		setModalIsOpen(true);
+	};
+
+	const closeModal = () => {
+		setModalIsOpen(false);
+	};
 	return (
-		<div className="Landing text-center mb-28">
+		<div className="Landing text-center ">
+			<div id="root"></div>
 			<div className="max-w-full mx-auto ">
 				<div className=" bg-black h-fit py-36">
 					<div className="flex items-center justify-center py-16">
@@ -28,17 +58,18 @@ const Landing = () => {
 							<p className="mx-auto px-10 ">
 								<Image src={CenterLogo} alt="#" className="" />
 							</p>
-							<Link href="account">
-								<button
-									className="mt-10 
+							{/* <Link href="account"> */}
+							<button
+								onClick={openModal}
+								className="mt-10 
 				rounded-[8px]  btn btn-default  py-4 px-16 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
-									Join Today!
-								</button>
-							</Link>
+								Join Today!
+							</button>
+							{/* </Link> */}
 						</div>
 					</div>
 				</div>
-				<div className="flex items-center justify-center mt-20">
+				{/* <div className="flex items-center justify-center mt-20">
 					<div className="max-w-4xl mx-auto ">
 						<h2 className="text-[54px] font-PoppinsBold leading-[65px]">
 							Encounters are not always easy, but trust us, it{"'"}s worth it.
@@ -69,9 +100,9 @@ const Landing = () => {
 							<Image src={banner3} width={623} alt="#" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
-			<div className="flex items-center justify-center bg-black p-20">
+			{/* <div className="flex items-center justify-center bg-black p-20">
 				<div className="max-w-4xl mx-auto text-white">
 					<h1 className="text-[54px] font-PoppinsBold leading-[65px]">
 						Find the Creators you{'’'}ve been looking for
@@ -236,7 +267,29 @@ const Landing = () => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
+			{modalIsOpen && (
+				<Modal
+					isOpen={modalIsOpen}
+					// onAfterOpen={afterOpenModal}
+					// overlayClassName={'bg-black bg-opacity-50'}
+					onRequestClose={closeModal}
+					style={customStyles}
+					contentLabel="Example Modal">
+					<div className=" rounded-lg text-white">
+						<div className="flex justify-between ">
+							<h1></h1>
+							<button onClick={closeModal}>X</button>
+						</div>
+						<div className="w-full flex flex-col justify-center items-center  space-y-4 pt-20">
+							<h1 className="text-6xl text-center">Coming Soon</h1>
+							<p className=" text-center text-3xl">Stay tuned for our big launch .</p>
+							<div className="flex justify-center space-x-4"></div>
+						</div>
+					</div>
+					<div className="flex justify-center items-center flex-col"></div>
+				</Modal>
+			)}
 		</div>
 	);
 };

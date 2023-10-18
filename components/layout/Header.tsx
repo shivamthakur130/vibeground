@@ -61,7 +61,7 @@ const Header = () => {
 							</div>
 						</Link>
 					)}
-					{(userDetails?.token == '' || !userDetails) && pathName === '/' && (
+					{/* {(userDetails?.token == '' || !userDetails) && pathName === '/' && (
 						<Link href="/login">
 							<div
 								className="
@@ -69,7 +69,7 @@ const Header = () => {
 								Login
 							</div>
 						</Link>
-					)}
+					)} */}
 					{userDetails && userDetails?.token !== '' && (
 						<div className="flex">
 							<div className="flex items-center">
