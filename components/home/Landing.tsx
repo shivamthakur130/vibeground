@@ -295,13 +295,13 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 							</div>
 						</div>
 					</div>
-					<div className="mt-10 md:px-8 pb-2 px-1">
+					<div className="md:mt-10 md:px-8 pb-4 px-1 pt-2">
 						<video
 							controls
 							// width="600"
 							// height="400"
 							muted
-							className="w-full h-1/6 min-h-[200px] min-w-[200px]"
+							className="w-full h-1/6 min-h-[60px] min-w-[200px]"
 							poster="/video/thumbnail.png">
 							<source src="/video/intro.mp4" type="video/mp4" />
 						</video>
