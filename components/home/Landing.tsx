@@ -284,7 +284,7 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 						<div className="w-full flex flex-col justify-center items-center  space-y-2 mt-4">
 							<h1 className="text-4xl text-center">We are launching soon!</h1>
 							<p className=" text-center text-2xl">Stay excited.</p>
-							<div className="flex justify-center space-x-4">
+							<div className="md:flex justify-center space-x-4 text-center">
 								For more information contact{'  '}
 								<a
 									href="mailto:info@vibeground.com"
@@ -294,7 +294,7 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 							</div>
 						</div>
 					</div>
-					<div className="mt-10 px-8">
+					<div className="mt-10 px-8 pb-2">
 						<video
 							controls
 							width="600"
