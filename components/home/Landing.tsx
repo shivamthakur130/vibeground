@@ -26,6 +26,7 @@ const customStyles = {
 		right: 'auto',
 		bottom: 'auto',
 		width: '60%',
+		padding: '0px',
 		height: 'auto',
 		marginRight: '-50%',
 		background: '#0d0d0d',
@@ -277,7 +278,7 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 					style={customStyles}
 					contentLabel="Example Modal">
 					<div className=" rounded-lg text-white">
-						<div className="flex justify-between ">
+						<div className="flex justify-between pr-3 pt-2">
 							<h1></h1>
 							<button onClick={closeModal}>X</button>
 						</div>
@@ -294,13 +295,13 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 							</div>
 						</div>
 					</div>
-					<div className="mt-10 px-8 pb-2">
+					<div className="mt-10 md:px-8 pb-2 px-1">
 						<video
 							controls
-							width="600"
-							height="400"
+							// width="600"
+							// height="400"
 							muted
-							className="w-full h-1/6"
+							className="w-full h-1/6 min-h-[200px] min-w-[200px]"
 							poster="/video/thumbnail.png">
 							<source src="/video/intro.mp4" type="video/mp4" />
 						</video>
