@@ -25,8 +25,8 @@ const customStyles = {
 		left: '50%',
 		right: 'auto',
 		bottom: 'auto',
-		width: '50%',
-		height: '50%',
+		width: '60%',
+		height: '90%',
 		marginRight: '-50%',
 		background: '#0d0d0d',
 		transform: 'translate(-50%, -50%)',
@@ -281,13 +281,30 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 							<h1></h1>
 							<button onClick={closeModal}>X</button>
 						</div>
-						<div className="w-full flex flex-col justify-center items-center  space-y-4 pt-20">
-							<h1 className="text-6xl text-center">Coming Soon</h1>
-							<p className=" text-center text-3xl">Stay tuned for our big launch .</p>
-							<div className="flex justify-center space-x-4"></div>
+						<div className="w-full flex flex-col justify-center items-center  space-y-2 mt-4">
+							<h1 className="text-4xl text-center">We are launching soon!</h1>
+							<p className=" text-center text-2xl">Stay excited.</p>
+							<div className="flex justify-center space-x-4">
+								For more information contact{'  '}
+								<a
+									href="mailto:info@vibeground.com"
+									className="px-2 cursor-pointer text-blue-500 underline">
+									info@vibeground.com
+								</a>
+							</div>
 						</div>
 					</div>
-					<div className="flex justify-center items-center flex-col"></div>
+					<div className="mt-10">
+						<video
+							controls
+							width="600"
+							height="400"
+							muted
+							className="w-full h-1/6"
+							poster="/video/thumbnail.png">
+							<source src="/video/intro.mp4" type="video/mp4" />
+						</video>
+					</div>
 				</Modal>
 			)}
 		</div>
