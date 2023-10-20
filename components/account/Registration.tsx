@@ -16,12 +16,12 @@ const Registration = () => {
 				<li className="flex border border-black hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
 					Continue with Google <Image src={Google} alt="#" />
 				</li>
-				<li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
+				{/* <li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
 					Continue with Facebook <Image src={FaceBook} alt="#" />
 				</li>
 				<li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
 					Continue with Phone number <Image src={Phone} alt="#" />
-				</li>
+				</li> */}
 			</ul>
 			<Link href="/account/are-you">
 				<button className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">

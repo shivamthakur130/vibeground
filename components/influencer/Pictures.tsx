@@ -80,13 +80,29 @@ const Pictures = () => {
 			if (image) {
 				return URL.createObjectURL(image);
 			}
-			return user?.photos[index] ? user?.photos[index] : null;
+			if (user?.photos) {
+				return user?.photos[index] ? user?.photos[index] : null;
+			}
+
+			return null;
 		});
 		if (!firstLoad) {
 			setPicturesPreviews(previews);
 			handleValidation();
 		}
-	}, [selectedPictures]);
+	}, []);
+
+	const updatePreview = (updatedImages: any) => {
+		const previews = updatedImages.map(
+			(image: Blob | MediaSource, index: string | number) => {
+				if (image) {
+					return URL.createObjectURL(image);
+				}
+				return user?.photos[index] ? user?.photos[index] : null;
+			}
+		);
+		setPicturesPreviews(previews);
+	};
 
 	useEffect(() => {
 		if (!firstLoad) {
@@ -103,6 +119,7 @@ const Pictures = () => {
 		updatedImages[index] = files[0];
 		setSelectedPictures(updatedImages);
 		setFirstLoad(false);
+		updatePreview(updatedImages);
 	};
 
 	const handleValidation = async () => {
@@ -142,13 +159,21 @@ const Pictures = () => {
 	const removeSelectedPicture = async (index: number) => {
 		const updatedImages = [...selectedPictures];
 		const updatedPreviews = [...picturesPreviews];
-		if (updatedImages[index] == null) {
+		if (updatedImages[index] != null) {
+			updatedImages[index] = null;
 			updatedPreviews[index] = null;
+			setSelectedPictures(updatedImages);
 			setPicturesPreviews(updatedPreviews);
 		} else {
-			updatedImages[index] = null;
-			setSelectedPictures(updatedImages);
+			if (updatedImages[index] == null) {
+				updatedPreviews[index] = null;
+				setPicturesPreviews(updatedPreviews);
+			} else {
+				updatedImages[index] = null;
+				setSelectedPictures(updatedImages);
+			}
 		}
+		setValue(`photos.${index}`, undefined);
 	};
 
 	async function onSubmit(formField: any) {
@@ -204,7 +229,6 @@ const Pictures = () => {
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
 				SuccessMessage('Model Registration', 'Pictures saved successfully');
-				console.log(data.data, 'data.data');
 				dispatch(
 					updateUser({
 						...user,

@@ -74,7 +74,7 @@ const Login = () => {
 			if (typeLogin === 'fan') {
 				push('/experience');
 			} else {
-				push('/dashboard');
+				push('/influencer');
 			}
 		} else {
 			ErrorMessage('Login Operation', 'Something went wrong');
@@ -163,7 +163,7 @@ const Login = () => {
 							type="button"
 							onClick={changeLoginType}
 							className="btn btn-default px-10 hover:bg-151515 hover:text-white py-3 text-xl text-303030 border rounded-[8px] transition-all duration-300 active:bg-303030 border-black">
-							Are You {typeLogin}?
+							Are You {typeLogin == 'fan' ? 'model' : 'fan'}?
 						</button>
 					</div>
 				</div>

@@ -68,9 +68,9 @@ const AddLinks = () => {
 	}, []);
 	const addLink = () => {
 		setLinks([...links, '']);
+		clearErrors();
 	};
 	async function onSubmit(formField: any) {
-		console.log(formField, 'formField');
 		setLoading(true);
 		formField.userId = user.userId;
 		try {
@@ -104,6 +104,7 @@ const AddLinks = () => {
 		const updatedLinks = [...links];
 		updatedLinks.splice(index, 1);
 		setLinks(updatedLinks);
+		reset();
 	};
 	const handleError = (error: any) => {
 		if (error.response) {
@@ -122,6 +123,7 @@ const AddLinks = () => {
 			);
 		}
 	};
+
 	return (
 		<div className="Email max-w-2xl mx-auto mt-10 mb-20 text-center">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>

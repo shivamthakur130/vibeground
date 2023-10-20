@@ -77,7 +77,6 @@ const Videos = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log(user?.videos, 'user?.videos');
 		const previews = selectedVideos.map((video, index) => {
 			if (video) {
 				return URL.createObjectURL(video);
@@ -153,6 +152,7 @@ const Videos = () => {
 			updatedVideos[index] = null;
 			setSelectedVideos(updatedVideos);
 		}
+		setValue(`videos.${index}`, undefined);
 	};
 
 	async function onSubmit(formField: any) {
@@ -204,7 +204,6 @@ const Videos = () => {
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
 				SuccessMessage('Model Registration', 'Videos saved successfully');
-				console.log(data.data, 'data.data');
 				dispatch(
 					updateUser({
 						...user,

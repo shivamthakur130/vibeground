@@ -19,6 +19,7 @@ export default function RootLayout({
 			<body className="font-manropeRegular">
 				<Providers>
 					<React.Fragment>
+						<div id="dialog"></div>
 						<ToastContainer
 							position="top-right"
 							autoClose={5000}

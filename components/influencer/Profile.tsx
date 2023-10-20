@@ -1,51 +1,67 @@
+'use client';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
-import Link from 'next/link';
 import ProfileImg from '@/assets/images/profile_img.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
-const Profile = () => {
+
+const UserProfile = () => {
+	const user = useSelector((state: any) => state.userReducer.user);
+
 	return (
 		<div className="Profile max-w-7xl px-5 mx-auto mt-32 mb-32">
 			<div className="flex items-center">
-				<div className="flex-shrink-0 mr-10">
-					<Image className="w-40 h-40" src={ProfileImg} alt="Neil image" />
+				<div className="flex-shrink-0 mr-10 ">
+					{user?.photos?.length > 0 ? (
+						<img
+							className="w-40 h-40 shadow-sm rounded-md"
+							src={user?.photos[0]}
+							alt="Neil image"
+						/>
+					) : (
+						<Image
+							className="w-40 h-40 shadow-sm rounded-md"
+							src={ProfileImg}
+							alt="Neil image"
+						/>
+					)}
 				</div>
 				<div className="flex-1 min-w-0">
 					<p className="text-5xl font-PoppinsMedium text-[#444]">
-						Kesmine
+						{user?.firstName} {user?.lastName}
 					</p>
-					<p className="text-2xl text-[#444]">
-						dominik@applaunch.ch
-					</p>
+					<p className="text-2xl text-[#444]">{user?.email}</p>
 				</div>
-
 			</div>
 
-
-
-			<div className='mt-20 space-y-14'>
-				<h2 className='flex justify-between text-2xl'>
-					Interest<span><Image src={Arrow} alt='#' width={7} /></span>
+			<div className="mt-20 space-y-14">
+				<h2 className="flex justify-between text-2xl">
+					Interest
+					<span>
+						<Image src={Arrow} alt="#" width={7} />
+					</span>
 				</h2>
-				<h2 className='flex justify-between text-2xl'>
-					Browse Profile<span><Image src={Arrow} alt='#' width={7} /></span>
+				<h2 className="flex justify-between text-2xl">
+					Browse Profile
+					<span>
+						<Image src={Arrow} alt="#" width={7} />
+					</span>
 				</h2>
-				<h2 className='flex justify-between text-2xl'>
-					Terms & Conditions<span><Image src={Arrow} alt='#' width={7} /></span>
+				<h2 className="flex justify-between text-2xl">
+					Terms & Conditions
+					<span>
+						<Image src={Arrow} alt="#" width={7} />
+					</span>
 				</h2>
-				<h2 className='flex justify-between text-2xl'>
-					Invoice<span><Image src={Arrow} alt='#' width={7} /></span>
+				<h2 className="flex justify-between text-2xl">
+					Invoice
+					<span>
+						<Image src={Arrow} alt="#" width={7} />
+					</span>
 				</h2>
-
-
-
 			</div>
-
-
-
-
 		</div>
 	);
 };
 
-export default Profile;
+export default UserProfile;

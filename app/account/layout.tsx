@@ -7,7 +7,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Loading from '@/components/layout/Loading';
 import { useSelector } from 'react-redux';
-import get from '@/lib/requests';
 
 import { usePathname } from 'next/navigation';
 interface UserResponse {

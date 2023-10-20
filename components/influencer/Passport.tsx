@@ -92,7 +92,7 @@ const Passport = () => {
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
 				SuccessMessage('Model Registration', 'Passport saved successfully');
-				console.log(data.data.passport_back, 'data.data.passport_back');
+
 				dispatch(
 					updateUser({
 						...user,
@@ -158,7 +158,7 @@ const Passport = () => {
 					<div>
 						<label className="">
 							{passportFront ? (
-								<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative">
+								<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative ">
 									<button
 										onClick={removeSelectedImage}
 										className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-md absolute bg-[#f9f9f9] cursor-pointer hover:bg-[#ffffff] active:bg-[#f9f9f9]">
@@ -171,9 +171,7 @@ const Passport = () => {
 									/>
 								</div>
 							) : (
-								<div
-									//
-									className="flex flex-col items-center justify-center max-w-[283px] h-52 rounded-xl bg-[#f9f9f9]  hover:bg-[#dedddd] active:bg-[#f9f9f9] transition-all duration-300">
+								<div className="flex flex-col items-center justify-center max-w-[283px] h-52 rounded-xl bg-[#f9f9f9]  hover:bg-[#dedddd] active:bg-[#f9f9f9] transition-all duration-300 cursor-pointer">
 									<label
 										className="flex flex-col items-center justify-center pt-5 pb-6 cursor-pointer"
 										htmlFor="passport_front">
@@ -184,6 +182,7 @@ const Passport = () => {
 							<input
 								id="passport_front"
 								type="file"
+								accept="image/*"
 								className="hidden"
 								{...register('passport_front', {
 									onChange: (e) => {
@@ -203,7 +202,7 @@ const Passport = () => {
 					<div>
 						<label className="">
 							{passportBack ? (
-								<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative">
+								<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative ">
 									<button
 										onClick={removeSelectedImageBack}
 										className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-md absolute bg-[#f9f9f9] cursor-pointer hover:bg-[#ffffff] active:bg-[#f9f9f9]">
@@ -218,7 +217,7 @@ const Passport = () => {
 							) : (
 								<div
 									//
-									className="flex flex-col items-center justify-center max-w-[283px] h-52 rounded-xl bg-[#f9f9f9]  hover:bg-[#dedddd] active:bg-[#f9f9f9] transition-all duration-300">
+									className="flex flex-col items-center justify-center max-w-[283px] h-52 rounded-xl bg-[#f9f9f9]  hover:bg-[#dedddd] active:bg-[#f9f9f9] transition-all duration-300 cursor-pointer">
 									<label
 										className="flex flex-col items-center justify-center pt-5 pb-6 cursor-pointer"
 										htmlFor="passport_back">
@@ -229,6 +228,7 @@ const Passport = () => {
 							<input
 								id="passport_back"
 								type="file"
+								accept="image/*"
 								className="hidden"
 								{...register('passport_back', {
 									onChange: (e) => {

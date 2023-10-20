@@ -25,6 +25,7 @@ const Header = () => {
 	const logOut = async () => {
 		push('/');
 		dispatch(removeUser());
+		setToggleUser(false);
 	};
 	const redirectDashboard = () => {
 		const userType = userDetails?.type;
@@ -37,18 +38,21 @@ const Header = () => {
 	};
 	const redirectProfile = () => {
 		const userType = userDetails?.type;
+		console.log(userType);
 		if (userType === 'fan') {
 			push('/experience/profile');
 		}
 		if (userType === 'model') {
 			push('/influencer/profile');
 		}
+		setToggleUser(false);
 	};
 	useEffect(() => {
 		setUserDetails(user);
 	}, [user]);
 
 	if (!user) return null;
+
 	return (
 		<div className=" bg-black">
 			<div className="max-w-7xl mx-auto py-10 px-10">

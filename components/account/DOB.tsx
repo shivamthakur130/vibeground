@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -16,12 +16,14 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import AgeVerificationDialog from './AgeVerificationDialog';
 
 const DOB = () => {
 	const [selectedDay, setSelectedDay] = useState<string>('');
 	const [selectedMonth, setSelectedMonth] = useState<string>('');
 	const [selectedYear, setSelectedYear] = useState<string>('');
-
+	const [showAgeVerificationDialog, setShowAgeVerificationDialog] =
+		useState<boolean>(false);
 	// Define arrays for days, months, and years
 	const days = Array.from({ length: 31 }, (_, i) => i + 1);
 	const months = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -38,6 +40,7 @@ const DOB = () => {
 		dd: Yup.string().required('Day is required'),
 		mm: Yup.string().required('Month is required'),
 		yyyy: Yup.string().required('Year is required'),
+		checkAgeVerified: Yup.string(),
 	});
 	const messageTitle =
 		user.type === 'fan' ? 'User Registration' : 'Model Registration';
@@ -64,13 +67,42 @@ const DOB = () => {
 		);
 	};
 
+	const checkAgeIsValid = (
+		day: string,
+		month: string,
+		year: string
+	): boolean => {
+		const date = new Date(`${year}-${month}-${day}`);
+		const today = new Date();
+		const age = today.getFullYear() - date.getFullYear();
+		const monthDiff = today.getMonth() - date.getMonth();
+		if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < date.getDate())) {
+			return age - 1 >= 18;
+		}
+		return age >= 18;
+	};
+
+	const buttonRef = useRef<HTMLButtonElement>(null);
+
+	const onClickSubmit = () => {
+		if (buttonRef.current) {
+			buttonRef.current.click();
+		}
+	};
+
 	async function onSubmit(formField: any) {
 		setLoading(true);
-
 		if (!isDateValid(formField.dd, formField.mm, formField.yyyy)) {
 			ErrorMessage(messageTitle, 'Invalid Date of Birth');
 			setLoading(false);
 			return;
+		}
+		if (formField.checkAgeVerified === 'false') {
+			// if (!checkAgeIsValid(formField.dd, formField.mm, formField.yyyy)) {
+			setShowAgeVerificationDialog(true);
+			setLoading(false);
+			return;
+			// }
 		}
 
 		try {
@@ -126,8 +158,10 @@ const DOB = () => {
 				/>
 			)}
 			<form
+				id="DOBForm"
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${loading ? 'opacity-25' : ''}`}>
+				<input type="hidden" {...register('checkAgeVerified')} value={'false'} />
 				<div className="grid   grid-cols-3 gap-6 my-6 ">
 					<div>
 						<select
@@ -203,12 +237,22 @@ const DOB = () => {
 					</div>
 				</div>
 				<button
+					ref={buttonRef}
 					className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+					id="birthdayForm"
 					type="submit"
 					disabled={loading}>
 					Continue
 				</button>
 			</form>
+			{showAgeVerificationDialog && (
+				<AgeVerificationDialog
+					setValue={setValue}
+					onClickSubmit={onClickSubmit}
+					showAgeVerificationDialog={showAgeVerificationDialog}
+					setShowAgeVerificationDialog={setShowAgeVerificationDialog}
+				/>
+			)}
 		</div>
 	);
 };

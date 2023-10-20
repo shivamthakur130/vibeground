@@ -33,17 +33,17 @@ export default function AuthVerification({
 			}
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				const responseData = data?.data;
-				if (userType === responseData?.type) {
-					dispatch(updateUser({ ...userData, ...responseData }));
-				} else {
-					logout();
-				}
+				// if (userType === responseData?.type) {
+				dispatch(updateUser({ ...userData, ...responseData }));
+				// } else {
+				// 	// logout();
+				// }
 				setIsSuccess(true);
 				return;
 			}
 			logout();
 		})();
-	}, [push]);
+	}, []);
 
 	const logout = () => {
 		setIsSuccess(true);
