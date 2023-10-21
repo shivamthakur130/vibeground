@@ -131,7 +131,7 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 								Sign up for our exclusive waiting list and we will contact you.
 								<br />
 							</div>
-							<div className="space-x-4 w-full  pt-8">
+							<div className="space-x-4 w-full pt-8">
 								<form
 									onSubmit={handleSubmit(onSubmit)}
 									className="flex justify-center items-center w-full">
