@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
-import { fanEmail } from '@/services/user.service';
+import { queryUser } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
 
 import {
@@ -72,14 +72,20 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 	async function onSubmit(formField: any) {
 		setLoading(true);
 		try {
-			const response = await fanEmail({
+			const { data, error } = await queryUser({
 				email: formField.email,
 			});
-			if (response.status === 201) {
-				const userId = response.data.data._id;
-				SuccessMessage('User Registration', 'Email changes saved successfully');
+
+			if (error) {
+				setLoading(false);
+				handleError(error);
+				return;
+			}
+			if (typeof data === 'object' && data !== null && 'data' in data) {
+				reset();
+				SuccessMessage('User subscribe', 'User subscribed successfully');
 			} else {
-				ErrorMessage('User Registration', 'Something went wrong');
+				ErrorMessage('User subscribe', 'Something went wrong');
 			}
 		} catch (error) {
 			console.log(error, 'error');
@@ -91,16 +97,16 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;
-			ErrorMessage('User Registration', message);
+			ErrorMessage('User subscribe', message);
 		} else if (error.request) {
 			ErrorMessage(
-				'User Registration',
+				'User subscribe',
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
 			// Something else happened while setting up the request
 			ErrorMessage(
-				'User Registration',
+				'User subscribe',
 				'An unexpected error occurred. Please try again later.'
 			);
 		}
@@ -151,21 +157,39 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 										info@vibeground.com
 									</a> */}
 								</div>
-								<div className="space-x-4 w-full flex justify-center pt-8">
-									<div className="w-1/2">
+								<div className="space-x-4 w-full  pt-8">
+									<form
+										onSubmit={handleSubmit(onSubmit)}
+										className="flex justify-center items-center w-full">
+										{/* <div className="w-1/2">
+											<input
+												type="email"
+												className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-2 px-4 w-full"
+												placeholder="Enter your email"
+											/>
+										</div>
+										<div>
+											<button
+												className="
+				rounded-[8px]  btn btn-default  py-2 px-10 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
+												Sign up
+											</button>
+										</div> */}
 										<input
 											type="email"
-											className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-2 px-4 w-full"
 											placeholder="Enter your email"
+											className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+											{...register('email')}
 										/>
-									</div>
-									<div>
 										<button
-											className="
-				rounded-[8px]  btn btn-default  py-2 px-10 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
-											Sign up
+											type="submit"
+											className="px-8 rounded-r-lg bg-gray-400  text-gray-800 font-bold p-4 uppercase border-gray-500 border-t border-b border-r">
+											Subscribe
 										</button>
-									</div>
+									</form>
+									{errors.email && (
+										<p className="text-red-500 text-sm py-3 ">{errors.email.message}</p>
+									)}
 								</div>
 							</div>
 							<div className="md:mt-10 md:px-8 pb-4 px-1 pt-2 mt-5">

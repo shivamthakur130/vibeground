@@ -316,3 +316,22 @@ export const checkIfAuthorized = async (error: AxiosError) => {
 		}
 	}
 };
+
+//query user
+
+export const queryUser = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`query`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		return {
+			data: null,
+			error,
+		};
+	}
+};
