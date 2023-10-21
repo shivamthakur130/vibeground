@@ -53,14 +53,16 @@ const Header = () => {
 		<div className=" bg-black">
 			<div className="max-w-7xl mx-auto py-10 px-10">
 				<div
-					className={`flex ${pathName == '/' ? 'justify-end' : 'justify-between'} `}>
-					{pathName !== '/' && (
-						<Link href="/">
-							<div className="flex items-center">
-								<Image src={CenterLogo} className="shrink-0" height={60} alt={''} />
-							</div>
-						</Link>
-					)}
+					className={`flex ${
+						pathName == '/' ? 'justify-start' : 'justify-between'
+					} `}>
+					{/* {pathName !== '/' && ( */}
+					<Link href="/">
+						<div className="flex ">
+							<Image src={CenterLogo} className="shrink-0" height={60} alt={''} />
+						</div>
+					</Link>
+					{/* )} */}
 					{/* {(userDetails?.token == '' || !userDetails) && pathName === '/' && (
 						<Link href="/login">
 							<div

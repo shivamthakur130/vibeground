@@ -11,6 +11,20 @@ import Ico2 from '@/assets/images/ico2.png';
 import Ico3 from '@/assets/images/ico3.png';
 import Ico4 from '@/assets/images/ico4.png';
 import CenterLogo from '@/assets/images/logo/l_white.png';
+import * as Yup from 'yup';
+import { set, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/navigation';
+import { updateUser } from '@/redux/slice/user';
+import { useAppDispatch } from '@/redux/hooks';
+import { useSelector } from 'react-redux';
+import { fanEmail } from '@/services/user.service';
+import Loading from '@/components/layout/Loading';
+
+import {
+	SuccessMessage,
+	ErrorMessage,
+} from '@/components/layout/ToastifyMessages';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
@@ -35,6 +49,63 @@ const customStyles = {
 };
 
 const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
+	const [loading, setLoading] = useState(false);
+
+	// form validation rules
+	const validationSchema = Yup.object().shape({
+		email: Yup.string().email().required('Email is required'),
+	});
+
+	const formOptions = { resolver: yupResolver(validationSchema) };
+	// get functions to build form with useForm() hook
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		setError,
+		clearErrors,
+		reset,
+		formState,
+	} = useForm(formOptions);
+	const { errors } = formState;
+
+	async function onSubmit(formField: any) {
+		setLoading(true);
+		try {
+			const response = await fanEmail({
+				email: formField.email,
+			});
+			if (response.status === 201) {
+				const userId = response.data.data._id;
+				SuccessMessage('User Registration', 'Email changes saved successfully');
+			} else {
+				ErrorMessage('User Registration', 'Something went wrong');
+			}
+		} catch (error) {
+			console.log(error, 'error');
+			handleError(error);
+		}
+		setLoading(false);
+	}
+
+	const handleError = (error: any) => {
+		if (error.response) {
+			let message = error.response.data.message;
+			ErrorMessage('User Registration', message);
+		} else if (error.request) {
+			ErrorMessage(
+				'User Registration',
+				'Network Error. Please check your internet connection.'
+			);
+		} else {
+			// Something else happened while setting up the request
+			ErrorMessage(
+				'User Registration',
+				'An unexpected error occurred. Please try again later.'
+			);
+		}
+	};
+
 	const openModal = () => {
 		setModalIsOpen(true);
 	};
@@ -46,9 +117,9 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 		<div className="Landing text-center ">
 			<div id="root"></div>
 			<div className="max-w-full mx-auto ">
-				<div className=" bg-black h-fit py-36">
-					<div className="flex items-center justify-center py-16">
-						<div className="max-w-2xl mx-auto text-white my-20">
+				<div className=" bg-black h-fit py-1">
+					<div className="flex items-center justify-center py-1">
+						<div className="max-w-2xl mx-auto text-white my-20 px-2">
 							{/* <h1 className="text-75px font-PoppinsBlack leading-[78px]">
 								Spice your time with Best Creators
 							</h1>
@@ -56,17 +127,55 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 								The Best app for content creators out there that provide single platform
 								to connect with your audience
 							</p> */}
-							<p className="mx-auto px-10 ">
+							{/* <p className="mx-auto px-10 ">
 								<Image src={CenterLogo} alt="#" className="" />
-							</p>
+							</p> */}
 							{/* <Link href="account"> */}
-							<button
+							{/* <button
 								onClick={openModal}
 								className="mt-10 
 				rounded-[8px]  btn btn-default  py-4 px-16 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
 								Join Today!
-							</button>
+							</button> */}
 							{/* </Link> */}
+
+							<div className="w-full flex flex-col justify-center items-center  space-y-2">
+								<h1 className="text-5xl text-center">We are launching soon!</h1>
+								{/* <p className=" text-center text-2xl">Stay excited.</p>*/}
+								<div className="justify-center space-x-4 text-center">
+									Sign up for our exclusive waiting list and we will contact you.
+									<br />
+									{/* <a
+										href="mailto:info@vibeground.com"
+										className="px-2 cursor-pointer text-blue-500 underline">
+										info@vibeground.com
+									</a> */}
+								</div>
+								<div className="space-x-4 w-full flex justify-center pt-8">
+									<div className="w-1/2">
+										<input
+											type="email"
+											className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-2 px-4 w-full"
+											placeholder="Enter your email"
+										/>
+									</div>
+									<div>
+										<button
+											className="
+				rounded-[8px]  btn btn-default  py-2 px-10 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
+											Sign up
+										</button>
+									</div>
+								</div>
+							</div>
+							<div className="md:mt-10 md:px-8 pb-4 px-1 pt-2 mt-5">
+								<video
+									controls
+									className="w-full h-1/6 min-h-[60px] min-w-[200px]"
+									poster="/video/thumbnail.png">
+									<source src="/video/intro.mp4" type="video/mp4" />
+								</video>
+							</div>
 						</div>
 					</div>
 				</div>
