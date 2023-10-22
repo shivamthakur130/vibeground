@@ -13,7 +13,7 @@ import CenterLogo from '@/assets/images/logo/l_white.png';
 
 const Landing = () => {
 	return (
-		<div className="Landing text-center mb-28">
+		<div className="Landing text-center pb-28 bg-black">
 			<div className="max-w-full mx-auto ">
 				<div className=" bg-black h-fit py-36">
 					<div className="flex items-center justify-center py-16">
@@ -38,7 +38,7 @@ const Landing = () => {
 						</div>
 					</div>
 				</div>
-				<div className="flex items-center justify-center mt-20">
+				{/* <div className="flex items-center justify-center mt-20">
 					<div className="max-w-4xl mx-auto ">
 						<h2 className="text-[54px] font-PoppinsBold leading-[65px]">
 							Encounters are not always easy, but trust us, it{"'"}s worth it.
@@ -69,9 +69,9 @@ const Landing = () => {
 							<Image src={banner3} width={623} alt="#" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
-			<div className="flex items-center justify-center bg-black p-20">
+			{/* <div className="flex items-center justify-center bg-black p-20">
 				<div className="max-w-4xl mx-auto text-white">
 					<h1 className="text-[54px] font-PoppinsBold leading-[65px]">
 						Find the Creators you{'’'}ve been looking for
@@ -236,7 +236,7 @@ const Landing = () => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

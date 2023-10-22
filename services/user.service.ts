@@ -37,6 +37,22 @@ export const loginUser = async (dataReq: any): Promise<ReturnResponse> => {
 		};
 	}
 };
+export const googleLogin = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`/google/login`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		return {
+			data: null,
+			error,
+		};
+	}
+};
 //logout
 export const logoutUser = async (): Promise<ReturnResponse> => {
 	try {
