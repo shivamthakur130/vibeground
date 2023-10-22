@@ -127,25 +127,29 @@ const Landing = ({ modalIsOpen, setModalIsOpen }: any) => {
 					<div className="max-w-2xl mx-auto text-white my-20 px-2">
 						<div className="w-full">
 							<h1 className="text-5xl">We are launching soon!</h1>
-							<div className="space-x-4 text-center">
+							<div className="space-x-4 text-center pt-4">
 								Sign up for our exclusive waiting list and we will contact you.
 								<br />
 							</div>
 							<div className="space-x-4 w-full pt-8">
 								<form
 									onSubmit={handleSubmit(onSubmit)}
-									className="flex justify-center items-center w-full">
-									<input
-										type="email"
-										placeholder="Enter your email"
-										className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
-										{...register('email')}
-									/>
-									<button
-										type="submit"
-										className="px-8 rounded-r-lg bg-gray-400  text-gray-800 font-bold p-4 uppercase border-gray-500 border-t border-b border-r">
-										Subscribe
-									</button>
+									className="sm:flex justify-center items-center w-full ">
+									<div className="mt-3 sm:mt-0">
+										<input
+											type="email"
+											placeholder="Enter your email"
+											className=" p-4  mr-0 border-b  text-gray-800 border-gray-200 bg-white"
+											{...register('email')}
+										/>
+									</div>
+									<div className="mt-3 sm:mt-0">
+										<button
+											type="submit"
+											className="px-8  bg-gray-400  text-gray-800 font-bold  p-4 uppercase border-gray-500 border-t border-b border-r">
+											Subscribe
+										</button>
+									</div>
 								</form>
 								{errors.email && (
 									<p className="text-red-500 text-sm py-3 ">{errors.email.message}</p>
