@@ -21,12 +21,12 @@ const Footer = () => {
 							</a>
 						</li>
 						<li>
-							<a>
+							<a href="https://www.instagram.com/vibegroundofficial/" target="_blank">
 								<Image src={Ig} alt="instagram" />
 							</a>
 						</li>
 						<li>
-							<a>
+							<a href="https://twitter.com/vibegroundoffic" target="_blank">
 								<Image src={Tw} alt="twitter" />
 							</a>
 						</li>
