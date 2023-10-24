@@ -17,7 +17,7 @@ const AreYou = () => {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { replace } = useRouter();
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -40,10 +40,22 @@ const AreYou = () => {
 	async function onSubmit(formField: any) {
 		dispatch(updateUser({ ...user, type: formField.type }));
 		if (formField.type === 'fan') {
-			push('/account/email');
+			if (
+				user?.email === undefined ||
+				user?.email === null ||
+				user?.email === ''
+			) {
+				replace('/account/email');
+			} else {
+				replace('/account/user-details');
+			}
 			return;
 		}
-		push('/account/user-information');
+		if (user?.email === undefined || user?.email === null || user?.email === '') {
+			replace('/account/user-information');
+		} else {
+			replace('/account/about');
+		}
 	}
 
 	return (

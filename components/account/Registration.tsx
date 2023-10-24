@@ -2,18 +2,15 @@
 
 import React from 'react';
 import Image from 'next/image';
-import FaceBook from 'assets/images/fb.png';
-import Google from 'assets/images/google.png';
-import Phone from 'assets/images/phone.png';
+import Google from '@/assets/images/google.png';
 import Link from 'next/link';
-import { useGoogleLogin, GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { googleLogin, getUser } from '@/services/user.service';
-import Loading from '@/components/layout/Loading';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
 	SuccessMessage,
 	ErrorMessage,

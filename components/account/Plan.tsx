@@ -81,6 +81,7 @@ const Plan = () => {
 			reset();
 			const planId = data.data.planId;
 			const subscriptionId = data.data._id;
+
 			dispatch(
 				updateUser({ ...user, planId: planId, subscriptionId: subscriptionId })
 			);
@@ -167,20 +168,51 @@ const Plan = () => {
 							</div>
 							<h2 className="font-PoppinsBold text-15px mt-1.5">
 								{plan.name}
-								<span className="text-[10px]"> ({plan.duration} Months)</span>
+								{plan.planType !== 'free' && (
+									<span className="text-[10px]"> ({plan.duration} Months)</span>
+								)}
 							</h2>
-							<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
-								{plan.price}
-								<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
-									CHF/{plan.duration} Months
-								</span>
-							</h2>
-							<div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
-								({(parseInt(plan.price) / parseInt(plan.duration)).toFixed(2)}
-								{'  '}
-								CHF/month)
-							</div>
+							{plan.planType !== 'free' && (
+								<>
+									<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
+										{plan.price}
+										<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
+											CHF/{plan.duration} Months
+										</span>
+									</h2>
+
+									<div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
+										({(parseInt(plan.price) / parseInt(plan.duration)).toFixed(2)}
+										{'  '}
+										CHF/month)
+									</div>
+								</>
+							)}
 							<ul className="space-y-4 text-sm">
+								{plan.type == 'model' && (
+									<>
+										<li className="flex justify-between">
+											Maximum Pictures Upload
+											<span className="border-2 border-green-700 rounded-full px-2  font-PoppinsSemiBold">
+												{plan.max_pics}
+											</span>
+										</li>
+										<li className="flex justify-between">
+											Maximum Videos Upload
+											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
+												{' '}
+												{plan.max_videos}{' '}
+											</span>
+										</li>
+										<li className="flex justify-between">
+											Maximum Links Add
+											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
+												{' '}
+												{plan.max_links}{' '}
+											</span>
+										</li>
+									</>
+								)}
 								<li className="flex justify-between">
 									Videos
 									{plan.features.video == 'full' ? (
@@ -229,47 +261,6 @@ const Plan = () => {
 							/>
 						</div>
 					))}
-					{/* <div className="px-5 pt-12 pb-5 rounded-xl relative shadow-shado w-[300px]  border-2 border-[#F4BE55]">
-						<div className="absolute -top-4 left-0 right-0 flex items-center">
-							<span className="px-5 py-2 bg-[#F4BE55] rounded text-xs mx-auto text-center text-white">
-								Recommended
-							</span>{' '}
-						</div>
-						<div className="h-9 w-9 rounded bg-[#FEFAEC] flex items-center justify-center">
-							<Image src={Croun} alt="#" />
-						</div>
-						<h2 className="font-PoppinsBold text-15px mt-1.5">
-							Premium <span className="text-[10px]"> (1 Year) </span>{' '}
-						</h2>
-						<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
-							120
-							<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
-								{' '}
-								CHF/Year
-							</span>
-						</h2>
-						<div className="font-PoppinsMedium py-3">(8 CHF/month)</div>
-						<ul className="space-y-4 text-sm">
-							<li className="flex justify-between">
-								Videos{' '}
-								<span>
-									<Image src={Tic} alt="#" />
-								</span>
-							</li>
-							<li className="flex justify-between">
-								Images{' '}
-								<span>
-									<Image src={Tic} alt="#" />
-								</span>
-							</li>
-							<li className="flex justify-between">
-								Swipe Models{' '}
-								<span>
-									<Image src={Tic} alt="#" />
-								</span>
-							</li>
-						</ul>
-					</div> */}
 				</div>
 				{errors.plan?.message && (
 					<div className="text-red-600 text-center h-5 mt-5 text-lg font-PoppinsRegular ml-3  transition delay-150 transform duration-300 ease-in-out">

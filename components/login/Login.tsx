@@ -1,5 +1,5 @@
 'use client';
-import { post } from '../../lib/requests';
+import Google from '@/assets/images/google.png';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import Hand from '@/assets/images/hand.png';
@@ -10,8 +10,10 @@ import { useRouter } from 'next/navigation';
 import { setUser, updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
-import { loginUser } from '@/services/user.service';
+import { loginUser, googleLogin } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 import {
 	LoadingMgs,
 	SuccessMessage,
@@ -23,7 +25,7 @@ const Login = () => {
 	const [typeLogin, setTypeLogin] = useState('fan');
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { replace } = useRouter();
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -50,16 +52,18 @@ const Login = () => {
 	const { errors } = formState;
 
 	async function onSubmit(formField: any) {
-		login(formField);
-	}
-	const login = async (formField: any) => {
-		LoadingMgs('Login Operation', 'Login...');
-		setLoading(true);
-		const { data, error } = await loginUser({
+		const prepareRequest = {
 			email: formField.email,
 			password: formField.password,
 			type: typeLogin,
-		});
+		};
+		login(prepareRequest);
+	}
+
+	const login = async (prepareRequest: any) => {
+		LoadingMgs('Login Operation', 'Login...');
+		setLoading(true);
+		const { data, error } = await loginUser({ ...prepareRequest });
 
 		if (error) {
 			setLoading(false);
@@ -72,15 +76,16 @@ const Login = () => {
 			dispatch(updateUser({ ...user, userId: userId, ...data.data }));
 			SuccessMessage('Login Operation', 'Login success');
 			if (typeLogin === 'fan') {
-				push('/experience');
+				replace('/experience');
 			} else {
-				push('/influencer');
+				replace('/influencer');
 			}
 		} else {
 			ErrorMessage('Login Operation', 'Something went wrong');
 		}
 		setLoading(false);
 	};
+
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response?.data.message;
@@ -98,6 +103,58 @@ const Login = () => {
 			);
 		}
 	};
+
+	const loginGoogle = useGoogleLogin({
+		onSuccess: async (tokenResponse) => {
+			const { data } = await axios.get(
+				'https://www.googleapis.com/oauth2/v1/userinfo',
+				{
+					headers: {
+						Authorization: `Bearer ${tokenResponse.access_token}`,
+					},
+				}
+			);
+			const prepareRequest = {
+				firstName: data.given_name,
+				lastName: data.family_name,
+				email: data.email,
+				picture: data.picture,
+				provider: 'google',
+				providerId: data.id,
+				access_token: tokenResponse.access_token,
+			};
+			loginGoogle_(prepareRequest);
+		},
+	});
+	const loginGoogle_ = async (formField: any) => {
+		const { data, error } = await googleLogin(formField);
+		if (error) {
+			// setLoading(false);
+			handleError(error);
+			return;
+		}
+		console.log(data, 'data');
+		if (typeof data === 'object' && data !== null && 'data' in data) {
+			SuccessMessage('Google Login', 'Login Successfully');
+			if (data.data.status) {
+				dispatch(
+					updateUser({
+						...user,
+						userId: data.data._id,
+						...data.data,
+					})
+				);
+			}
+			if (typeLogin === 'fan') {
+				replace('/experience');
+			} else {
+				replace('/influencer');
+			}
+		} else {
+			ErrorMessage('Google Login', 'Something went wrong');
+		}
+	};
+
 	return (
 		<div className="Login max-w-3xl mx-auto mt-24 mb-40 px-10 relative">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center justify-center">
@@ -156,6 +213,15 @@ const Login = () => {
 							type="submit"
 							disabled={loading}>
 							Login
+						</button>
+					</div>
+					<div>
+						<button
+							type="button"
+							className="w-full px-8 flex justify-between mt-5 py-4 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030"
+							onClick={() => loginGoogle()}>
+							<div>Continue with Google </div>
+							<Image src={Google} alt="#" />
 						</button>
 					</div>
 					<div className="pt-3 mt-4">

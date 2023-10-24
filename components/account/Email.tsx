@@ -48,6 +48,7 @@ const Email = () => {
 			const response = await fanEmail({
 				email: formField.email,
 				type: user.type,
+				userId: user?.userId ?? '',
 			});
 			if (response.status === 201) {
 				const userId = response.data.data._id;
