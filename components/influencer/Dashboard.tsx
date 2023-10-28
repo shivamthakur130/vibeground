@@ -49,7 +49,6 @@ const Dashboard = () => {
 						</h3>
 					</div>
 				</div>
-				d
 			</div>
 		</div>
 	);

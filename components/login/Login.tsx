@@ -19,6 +19,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import Link from 'next/link';
 
 const Login = () => {
 	const [loading, setLoading] = useState(false);
@@ -205,6 +206,12 @@ const Login = () => {
 							{errors.password?.message}
 						</div>
 					)}
+
+					<div className="text-303030 text-sm font-PoppinsRegular ml-3 text-right transition delay-150 transform duration-300 ease-in-out hover:underline">
+						<Link href="/login/forgot-password" className="">
+							Forgot Password?
+						</Link>
+					</div>
 				</div>
 				<div className="text-center">
 					<div>

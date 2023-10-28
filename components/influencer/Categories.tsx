@@ -16,51 +16,64 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 
+//  convert above list into const attribute list
 const categoryList = [
-	{
-		id: 1,
-		name: 'Fun',
-	},
-	{
-		id: 2,
-		name: 'Muscular',
-	},
-	{
-		id: 3,
-		name: 'Smart',
-	},
-	{
-		id: 4,
-		name: 'Beautiful',
-	},
-	{
-		id: 5,
-		name: 'Cute',
-	},
-	{
-		id: 6,
-		name: 'Skinny',
-	},
-	{
-		id: 7,
-		name: 'Lipstick',
-	},
-	{
-		id: 8,
-		name: 'Glasses',
-	},
-	{
-		id: 9,
-		name: 'Shine',
-	},
-	{
-		id: 10,
-		name: 'Entertainment',
-	},
-	{
-		id: 11,
-		name: 'Trends',
-	},
+	'All natural',
+	'Anal',
+	'Asian',
+	'ASMR',
+	'BBW',
+	'BDSM',
+	'Behind The Scences',
+	'Big tits',
+	'Big Booty',
+	'Bisexual',
+	'Black',
+	'Blonde',
+	'Blowjob',
+	'Bondage',
+	'Boy/Girl',
+	'Brunette',
+	'Cosplay',
+	'Creampie',
+	'Cuckolding',
+	'Cumshot',
+	'Curvy',
+	'Deepthroat',
+	'Dickrating',
+	'Ebony',
+	'Facial',
+	'Fart',
+	'Feet',
+	'Fetish',
+	'Gangbang',
+	'Gay',
+	'German',
+	'Girl/Girl',
+	'Hairy',
+	'Hardcore',
+	'Hentai',
+	'Latex',
+	'Latina',
+	'Massage',
+	'Masturbating',
+	'Milf',
+	'Pool',
+	'POV',
+	'Public',
+	'Redhead',
+	'Rough Sex',
+	'Russian',
+	'Sex',
+	'Squirting',
+	'Student',
+	'Tattoo',
+	'Thai',
+	'Threesome',
+	'Toy',
+	'TS',
+	'Twerking',
+	'Videocall',
 ];
 
 const Categories = () => {
@@ -169,7 +182,6 @@ const Categories = () => {
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
-			// Something else happened while setting up the request
 			ErrorMessage(
 				'Model Registration',
 				'An unexpected error occurred. Please try again later.'
@@ -181,7 +193,7 @@ const Categories = () => {
 		<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Select your categories
+				Choose what suits you
 			</h2>
 			{loading && (
 				<Loading
@@ -196,12 +208,12 @@ const Categories = () => {
 				className={`${loading ? 'opacity-25' : ''}`}>
 				<ul className="flex gap-4 flex-wrap">
 					{categoryList.map((category, index) => (
-						<li key={category.id}>
+						<li key={index}>
 							<input
 								type="checkbox"
-								checked={selectedCategories.includes(category.name)}
-								id={`opt${category.id}`}
-								value={category.name}
+								checked={selectedCategories.includes(category)}
+								id={`opt${index}`}
+								value={category}
 								className="hidden peer"
 								{...register(`categories.${index}`, {
 									onChange: (e) => {
@@ -210,157 +222,19 @@ const Categories = () => {
 								})}
 							/>
 							<label
-								htmlFor={`opt${category.id}`}
+								htmlFor={`opt${index}`}
 								className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-4 px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
 								<div className="w-full text-15px  peer-checked:text-white">
-									{category.name}
+									{category}
 								</div>
 							</label>
 						</li>
 					))}
-					<div>
-						{/*<li>
-					<input type="checkbox" id="op3" value="" className="hidden peer" />
-					<label
-						htmlFor="op3"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">
-							Entertainment
-						</div>
-					</label>
-				</li>
-				<li>
-					<input
-						type="checkbox"
-						id="opt4"
-						value=""
-						className="hidden peer"
-						required
-					/>
-					<label
-						htmlFor="opt4"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Fun</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt5" value="" className="hidden peer" />
-					<label
-						htmlFor="opt5"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">
-							Entertainment
-						</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt6" value="" className="hidden peer" />
-					<label
-						htmlFor="opt6"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Fun</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt7" value="" className="hidden peer" />
-					<label
-						htmlFor="opt7"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">
-							Entertainment
-						</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt8" value="" className="hidden peer" />
-					<label
-						htmlFor="opt8"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">
-							Entertainment
-						</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt9" value="" className="hidden peer" />
-					<label
-						htmlFor="opt9"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Fun</div>
-					</label>
-				</li>
-				<li>
-					<input
-						type="checkbox"
-						id="opt10"
-						value=""
-						className="hidden peer"
-						required
-					/>
-					<label
-						htmlFor="opt10"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Fun</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt11" value="" className="hidden peer" />
-					<label
-						htmlFor="opt11"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Trends</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt12" value="" className="hidden peer" />
-					<label
-						htmlFor="opt12"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">
-							Entertainment
-						</div>
-					</label>
-				</li>
-				<li>
-					<input
-						type="checkbox"
-						id="opt13"
-						value=""
-						className="hidden peer"
-						required
-					/>
-					<label
-						htmlFor="opt13"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Fun</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt14" value="" className="hidden peer" />
-					<label
-						htmlFor="opt14"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">Trends</div>
-					</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opt15" value="" className="hidden peer" />
-					<label
-						htmlFor="opt15"
-						className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-5 px-16 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-						<div className="w-full text-15px  peer-checked:text-white">
-							Entertainment
-						</div>
-					</label>
-				</li> */}
-					</div>
 				</ul>
-				{/* <Link href="/influencer/categories"> */}
 				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
 					Continue
 				</button>
 			</form>
-			{/* </Link> */}
 		</div>
 	);
 };

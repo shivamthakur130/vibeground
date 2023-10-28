@@ -1,5 +1,4 @@
 import Footer from '@/components/layout/Footer';
-import Start from '@/components/home/Start';
 import Landing from '@/components/home/Landing';
 import Header from '@/components/layout/Header';
 

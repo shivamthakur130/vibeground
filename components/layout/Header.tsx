@@ -9,8 +9,9 @@ import { usePathname } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import UserIcon from '@/assets/images/svg/user.svg';
 import { memo } from 'react';
+import { getUser } from '@/services/user.service';
 import { useAppDispatch } from '@/redux/hooks';
-import { removeUser } from '@/redux/slice/user';
+import { removeUser, updateUser } from '@/redux/slice/user';
 
 const Header = () => {
 	const [toggleUser, setToggleUser] = useState(false);
@@ -22,11 +23,13 @@ const Header = () => {
 	function _toggleUser() {
 		setToggleUser(!toggleUser);
 	}
+
 	const logOut = async () => {
 		push('/');
 		dispatch(removeUser());
 		setToggleUser(false);
 	};
+
 	const redirectDashboard = () => {
 		const userType = userDetails?.type;
 		if (userType === 'fan') {
@@ -36,9 +39,10 @@ const Header = () => {
 			push('/influencer');
 		}
 	};
+
 	const redirectProfile = () => {
 		const userType = userDetails?.type;
-		console.log(userType);
+
 		if (userType === 'fan') {
 			push('/experience/profile');
 		}
@@ -47,11 +51,59 @@ const Header = () => {
 		}
 		setToggleUser(false);
 	};
+
+	const checkUser = async () => {
+		if (user?.token !== '' && user?.token !== null) {
+			const { data, error } = await getUser();
+			if (error) {
+				handleError(error);
+				logout();
+				return;
+			}
+			if (typeof data === 'object' && data !== null && 'data' in data) {
+				const responseData = data?.data;
+				dispatch(updateUser({ ...user, ...responseData }));
+				return;
+			}
+			logout();
+		}
+	};
+
+	useEffect(() => {
+		checkUser();
+	}, []);
+
 	useEffect(() => {
 		setUserDetails(user);
 	}, [user]);
 
-	if (!user) return null;
+	const handleError = (error: any) => {
+		if (
+			error?.response?.status === 401 ||
+			error?.response?.data?.message === 'Unauthorized'
+		) {
+			dispatch(removeUser());
+			// push('/login');
+		}
+		if (error.response) {
+			const message = error.response.data.message;
+			// ErrorMessage(messageTitle, message);
+		} else if (error.request) {
+			// ErrorMessage(
+			// 	messageTitle,
+			// 	'Network Error. Please check your internet connection.'
+			// );
+		} else {
+			// ErrorMessage(
+			// 	messageTitle,
+			// 	'An unexpected error occurred. Please try again later.'
+			// );
+		}
+	};
+
+	const logout = () => {
+		dispatch(removeUser());
+	};
 
 	return (
 		<div className=" bg-black">

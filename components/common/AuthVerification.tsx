@@ -33,11 +33,7 @@ export default function AuthVerification({
 			}
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				const responseData = data?.data;
-				// if (userType === responseData?.type) {
 				dispatch(updateUser({ ...userData, ...responseData }));
-				// } else {
-				// 	// logout();
-				// }
 				setIsSuccess(true);
 				return;
 			}
@@ -56,6 +52,7 @@ export default function AuthVerification({
 			error.response?.status === 401 ||
 			error?.response?.data?.message === 'Unauthorized'
 		) {
+			console.log(error.response?.status, 'error');
 			dispatch(removeUser());
 			push('/login');
 		}

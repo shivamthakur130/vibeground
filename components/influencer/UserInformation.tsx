@@ -72,7 +72,6 @@ const UserInformation = () => {
 			type: 'model',
 			userId: user?.userId,
 		};
-		console.log(prepareData, 'prepareData');
 
 		try {
 			const { data, error } = await modelDetails(prepareData);
@@ -99,7 +98,7 @@ const UserInformation = () => {
 			handleError(error);
 		}
 	}
-	console.log(user);
+
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;

@@ -24,7 +24,6 @@ export default function BillingPage() {
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getStripeApiKey();
-			// console.log(data, error);
 			if (error) {
 				setLoading(false);
 				handleError(error);

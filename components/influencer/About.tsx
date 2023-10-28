@@ -25,6 +25,7 @@ const UserInformation = () => {
 	const validationSchema = Yup.object().shape({
 		about: Yup.string()
 			.required('About is required')
+			.min(80, 'About must be at least 80 characters')
 			.max(1024, 'About must not exceed 1024 characters'),
 	});
 
@@ -91,7 +92,10 @@ const UserInformation = () => {
 	return (
 		<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative ">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-14">Enter About You</h2>
+			<h2 className="text-5xl font-PoppinsBold text-111 mb-14">
+				{' '}
+				Tell your fans more about you!
+			</h2>
 			{loading && (
 				<Loading
 					width={50}

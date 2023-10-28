@@ -1,7 +1,5 @@
 'use client';
-
 import AuthVerification from '@/components/common/AuthVerification';
-
 export default function ExperienceLayout({
 	children,
 }: {

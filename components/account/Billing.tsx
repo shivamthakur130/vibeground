@@ -141,6 +141,11 @@ const Billing = () => {
 		}
 
 		if (typeof data === 'object' && data !== null && 'data' in data) {
+			if (!data.status) {
+				ErrorMessage(messageTitle, data.message);
+				setIsProcessingPayment(false);
+				return;
+			}
 			SuccessMessage(messageTitle, 'Subscription successfully activated');
 			const planId = data.data.planId;
 			const subscriptionId = data.data._id;
@@ -198,7 +203,6 @@ const Billing = () => {
 						'paymentIntent',
 						JSON.stringify(result?.paymentIntent)
 					);
-					console.log(result, 'result');
 
 					SuccessMessage(messageTitle, 'Payment successfully completed!');
 					const prepareStripeResponse = {

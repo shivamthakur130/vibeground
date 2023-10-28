@@ -3,7 +3,18 @@ import get, { post, delete_, put, postFormData } from '@/lib/requests';
 import { AxiosResponse, AxiosError } from 'axios';
 import { removeUserData } from '@/lib/useLocalStorageUser';
 interface ReturnResponse {
-	data: { data: any } | string | null | Array<any> | object | undefined | any[];
+	data:
+		| {
+				message: string | string[];
+				status: any;
+				data: any;
+		  }
+		| string
+		| null
+		| Array<any>
+		| object
+		| undefined
+		| any[];
 	error: AxiosError | null;
 }
 export const getUser = async (): Promise<ReturnResponse> => {
@@ -37,6 +48,40 @@ export const loginUser = async (dataReq: any): Promise<ReturnResponse> => {
 		};
 	}
 };
+export const forgotPassword = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`/forgot-password`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
+export const resetPassword = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`/reset-password`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
 export const googleLogin = async (dataReq: any): Promise<ReturnResponse> => {
 	try {
 		const { data } = await post(`/google/login`, dataReq, true);

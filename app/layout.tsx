@@ -6,8 +6,8 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
-	title: 'Vibeground',
-	description: 'Vibeground',
+	title: 'Vibe ground',
+	description: 'Vibe ground',
 };
 
 export default function RootLayout({
