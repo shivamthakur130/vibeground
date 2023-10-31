@@ -52,7 +52,6 @@ export default function AuthVerification({
 			error.response?.status === 401 ||
 			error?.response?.data?.message === 'Unauthorized'
 		) {
-			console.log(error.response?.status, 'error');
 			dispatch(removeUser());
 			push('/login');
 		}

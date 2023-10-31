@@ -19,21 +19,26 @@ import {
 
 const Videos = () => {
 	const [loading, setLoading] = useState(false);
-	const [selectedVideos, setSelectedVideos] = useState(Array(5).fill(null));
-	const [videosPreviews, setVideosPreviews] = useState(Array(5).fill(null));
+	const [selectedVideos, setSelectedVideos] = useState(Array(1).fill(null));
+	const [videosPreviews, setVideosPreviews] = useState(Array(1).fill(null));
 	const [firstLoad, setFirstLoad] = useState(true);
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { push } = useRouter();
+	const [subscription, setSubscription] = useState<any>(null);
+	const [planDetails, setPlanDetails] = useState<any>(null);
+	//Video size idea can try put 25 mb size
+	const MAX_FILE_SIZE = 25000000; //25000000KB
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
-		videos: Yup.array()
-			.of(Yup.mixed())
-			.required('Video is required')
-			.test('at-least-three-videos', 'Select at least 3 videos', (value) => {
-				return value.filter((video) => video !== null).length >= 3;
-			}),
+		videos: Yup.array().of(Yup.mixed()),
+		// video size validation
+		// .test('fileSize', 'File Size is too large', (value: any) => {
+		// 	if (!value || value.length == 0) return true;
+		// 	if (value[0] == null) return true;
+		// 	return value && value[0].size <= MAX_FILE_SIZE;
+		// }),
 	});
 
 	const formOptions = { resolver: yupResolver(validationSchema) };
@@ -53,7 +58,6 @@ const Videos = () => {
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getUser();
-			// console.log(data, 'data');
 			if (error) {
 				setLoading(false);
 				handleError(error);
@@ -104,6 +108,15 @@ const Videos = () => {
 		index: number
 	) => {
 		const files = event.target.files;
+		// validate file size should be max 25 mb
+		if (files[0].size > MAX_FILE_SIZE) {
+			setError('videos', {
+				type: 'file-size',
+				message: 'File Size is too large (Max 25 MB)',
+			});
+			setValue(`videos.${index}`, undefined);
+			return;
+		}
 		const updatedVideos = [...selectedVideos];
 		updatedVideos[index] = files[0];
 		setSelectedVideos(updatedVideos);
@@ -113,16 +126,16 @@ const Videos = () => {
 	const handleValidation = async () => {
 		const selectedCount = videosPreviews.filter((video) => video !== null).length;
 
-		if (selectedCount < 3) {
+		if (selectedCount < planDetails.min_videos) {
 			setError('videos', {
 				type: 'at-least-three-videos',
-				message: 'Select at least 3 videos',
+				message: `Select at least ${planDetails.min_videos} videos to continue`,
 			});
 			return true;
-		} else if (selectedCount > 5) {
+		} else if (selectedCount > planDetails.max_videos) {
 			setError('videos', {
 				type: 'too-many-videos',
-				message: 'Select a maximum of 5 videos',
+				message: `Select at most ${planDetails.max_videos} videos to continue`,
 			});
 			return true;
 		} else {
@@ -134,7 +147,7 @@ const Videos = () => {
 			if (videosPreviews[i] === null && i < selectedCount) {
 				setError('videos', {
 					type: 'missing-videos',
-					message: 'Videos must be selected from 1 to 5',
+					message: `Videos must be selected from 1 to ${planDetails.max_videos}`,
 				});
 				return true;
 				break;
@@ -142,7 +155,18 @@ const Videos = () => {
 		}
 	};
 
-	const removeSelectedPicture = async (index: number) => {
+	useEffect(() => {
+		if (user) {
+			setSubscription(user?.subscription);
+			setPlanDetails(user?.subscription?.planId);
+		}
+		if (planDetails && planDetails?.max_videos) {
+			setSelectedVideos(Array(planDetails?.max_videos).fill(null));
+			setVideosPreviews(Array(planDetails?.max_videos).fill(null));
+		}
+	}, [user]);
+
+	const removeSelectedVideo = async (index: number) => {
 		const updatedVideos = [...selectedVideos];
 		const updatedPreviews = [...videosPreviews];
 		if (updatedVideos[index] == null) {
@@ -154,16 +178,15 @@ const Videos = () => {
 		}
 		setValue(`videos.${index}`, undefined);
 	};
-
 	async function onSubmit(formField: any) {
 		// validate the selectedVideos have any video file if not than return and give message
-		let isAnyVideo = false;
-		selectedVideos.forEach((video) => {
+		let countMin = false;
+		videosPreviews.forEach((video) => {
 			if (video != null) {
-				isAnyVideo = true;
+				countMin = true;
 			}
 		});
-		if (!isAnyVideo) {
+		if (countMin >= planDetails?.min_videos) {
 			push('/account/add-links');
 			return;
 		}
@@ -239,6 +262,7 @@ const Videos = () => {
 			);
 		}
 	};
+
 	return (
 		<div className="Email text-center  max-w-7xl  mx-auto  mt-20 mb-20 relative ">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
@@ -275,7 +299,7 @@ const Videos = () => {
 									<div className="flex flex-col items-end justify-center bg-gray-100 max-w-[283px] h-52 rounded-xl relative">
 										<button
 											onClick={() => {
-												removeSelectedPicture(index);
+												removeSelectedVideo(index);
 											}}
 											type="button"
 											className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-lg absolute z-50 bg-[#f9f9f9] cursor-pointer hover:bg-[#e1e1e1] active:bg-[#f9f9f9]">

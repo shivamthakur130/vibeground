@@ -44,7 +44,6 @@ export default function BillingPage() {
 			push('/login');
 		}
 		if (error.response) {
-			console.log(error.response.data);
 			const message = error.response.data.message;
 			ErrorMessage(messageTitle, message);
 		} else if (error.request) {

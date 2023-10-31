@@ -70,12 +70,10 @@ const Selection = () => {
 				ErrorMessage(messageTitle, 'Something went wrong');
 			}
 		} catch (error) {
-			console.log(error, 'error');
 			handleError(error);
 		}
 		setLoading(false);
 	}
-	// console.log(Country.getAllCountries(), 'countries');
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;

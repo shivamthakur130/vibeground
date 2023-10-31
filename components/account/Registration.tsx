@@ -44,6 +44,9 @@ const Registration = () => {
 			loginGoogle(prepareRequest);
 		},
 	});
+	if (user.token !== '') {
+		replace('/account/dob');
+	}
 	const loginGoogle = async (formField: any) => {
 		const { data, error } = await googleLogin(formField);
 		if (error) {
@@ -51,7 +54,6 @@ const Registration = () => {
 			handleError(error);
 			return;
 		}
-		console.log(data, 'data');
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			SuccessMessage('Google Login', 'Login Successfully');
 			if (data.data.status) {

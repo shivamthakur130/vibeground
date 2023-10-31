@@ -72,7 +72,6 @@ const Password = () => {
 				ErrorMessage('User Registration', 'Something went wrong');
 			}
 		} catch (error) {
-			console.log(error, 'error');
 			handleError(error);
 		}
 		setLoading(false);

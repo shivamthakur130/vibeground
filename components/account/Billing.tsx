@@ -65,9 +65,7 @@ const Billing = () => {
 				);
 			}
 			setIsProcessingPayment(false);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	};
 	useEffect(() => {
 		if (userData.planId) {
@@ -161,9 +159,11 @@ const Billing = () => {
 			);
 			if (userData.type === 'fan') {
 				push('/experience');
+				return;
 			}
 			if (userData.type === 'model') {
 				push('/account/pictures');
+				return;
 			}
 		} else {
 			ErrorMessage(messageTitle, 'Something went wrong');
@@ -349,14 +349,14 @@ const Billing = () => {
 						/>
 					</div>
 					<div className="mt-6">
-						<div className="flex justify-between">
+						{/* <div className="flex justify-between">
 							<h3 className="font-PoppinsBold">25 Boosts</h3>
 							<span className="text-111">${selectedPlan?.price}/each</span>
-						</div>
-						<div className="flex justify-between mt-2">
+						</div> */}
+						{/* <div className="flex justify-between mt-2">
 							<h3 className="font-PoppinsBold">Charged as</h3>
-							<span className="text-111">${selectedPlan?.price}</span>
-						</div>
+							<span className="text-111">€{selectedPlan?.price}</span>
+						</div> */}
 						<div className="flex justify-between mt-10">
 							<button
 								className={`btn btn-default px-7 py-3 bg-2f2f2f text-white rounded-lg self-center transition-all duration-300 active:bg-303030 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3f3f3f] ${

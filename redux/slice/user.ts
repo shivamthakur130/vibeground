@@ -30,6 +30,7 @@ const defaultUser = {
 	expiry_date: null,
 	purchase_date: null,
 	photos: [],
+	subscription: null,
 };
 
 type UserState = {
@@ -45,7 +46,6 @@ export const user = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, action: PayloadAction<UserState>) => {
-			console.log('action.payload.user', action.payload);
 			state.user = action.payload.user;
 			setUserData(action.payload.user);
 		},
@@ -53,12 +53,6 @@ export const user = createSlice({
 			state.user = action.payload;
 			setUserData(state.user);
 		},
-		// setToken: (state, action: PayloadAction<any>) => {
-		// 	state.token = action.payload.token;
-		// },
-		// removeToken: (state, action: PayloadAction<UserState>) => {
-		// 	state.token = null;
-		// },
 		removeUser: (state) => {
 			removeUserData();
 			state.user = defaultUser;

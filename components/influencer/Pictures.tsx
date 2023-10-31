@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Upload from '@/assets/images/svg/upload.svg';
 import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -19,8 +19,10 @@ import {
 
 const Pictures = () => {
 	const [loading, setLoading] = useState(false);
-	const [selectedPictures, setSelectedPictures] = useState(Array(5).fill(null));
-	const [picturesPreviews, setPicturesPreviews] = useState(Array(5).fill(null));
+	const [selectedPictures, setSelectedPictures] = useState(Array(1).fill(null));
+	const [picturesPreviews, setPicturesPreviews] = useState(Array(1).fill(null));
+	const [subscription, setSubscription] = useState<any>(null);
+	const [planDetails, setPlanDetails] = useState<any>(null);
 	const [firstLoad, setFirstLoad] = useState(true);
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
@@ -35,9 +37,18 @@ const Pictures = () => {
 				return value.filter((image) => image !== null).length >= 3;
 			}),
 	});
+	useEffect(() => {
+		if (user) {
+			setSubscription(user?.subscription);
+			setPlanDetails(user?.subscription?.planId);
+			if (user?.subscription?.planId?.max_pics) {
+				setSelectedPictures(Array(user?.subscription?.planId?.max_pics).fill(null));
+				setPicturesPreviews(Array(user?.subscription?.planId?.max_pics).fill(null));
+			}
+		}
+	}, [user]);
 
 	const formOptions = { resolver: yupResolver(validationSchema) };
-	// get functions to build form with useForm() hook
 	const {
 		register,
 		handleSubmit,
@@ -63,7 +74,7 @@ const Pictures = () => {
 				dispatch(
 					updateUser({
 						...user,
-						photos: photosList,
+						...data?.data,
 					})
 				);
 				if (photosList) {
@@ -127,31 +138,29 @@ const Pictures = () => {
 			(image) => image !== null
 		).length;
 
-		if (selectedCount < 3) {
+		if (selectedCount < planDetails?.min_pics) {
 			setError('photos', {
 				type: 'at-least-three-images',
-				message: 'Select at least 3 images',
+				message: `Select at least ${planDetails?.min_pics} images`,
 			});
 			return true;
-		} else if (selectedCount > 5) {
+		} else if (selectedCount > planDetails?.max_pics) {
 			setError('photos', {
 				type: 'too-many-images',
-				message: 'Select a maximum of 5 images',
+				message: `Select at most ${planDetails?.max_pics} images`,
 			});
 			return true;
 		} else {
 			clearErrors('photos');
 		}
-
 		// Check if images are selected from 1 to 5
 		for (let i = 0; i < picturesPreviews.length; i++) {
 			if (picturesPreviews[i] === null && i < selectedCount) {
 				setError('photos', {
 					type: 'missing-images',
-					message: 'Images must be selected from 1 to 5',
+					message: `Images must be selected from 1 to ${planDetails?.max_pics}`,
 				});
 				return true;
-				break;
 			}
 		}
 	};
@@ -178,16 +187,17 @@ const Pictures = () => {
 
 	async function onSubmit(formField: any) {
 		// validate the selectedPictures have any image file if not than return and give message
-		let isAnyImage = false;
-		selectedPictures.forEach((image) => {
+		let countMin = 0;
+		picturesPreviews.forEach((image) => {
 			if (image != null) {
-				isAnyImage = true;
+				countMin++;
 			}
 		});
-		if (!isAnyImage) {
+		if (countMin >= planDetails?.min_pics) {
 			push('/account/videos');
 			return;
 		}
+
 		const validation = await handleValidation();
 		if (validation) return;
 
@@ -283,7 +293,7 @@ const Pictures = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${loading ? 'opacity-25' : ''}`}
 				encType="multipart/form-data">
-				<div className="grid grid-cols-5 gap-6 my-6">
+				<div className="grid grid-cols-5 gap-6 my-6 mx-auto">
 					{selectedPictures.map((_, index) => (
 						<div key={index}>
 							{!picturesPreviews[index] ? (

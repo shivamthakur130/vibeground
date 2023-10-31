@@ -22,6 +22,8 @@ const AddLinks = () => {
 	const user = useSelector((state: any) => state.userReducer.user);
 	const [links, setLinks] = useState(['']);
 	const { push } = useRouter();
+	const [subscription, setSubscription] = useState<any>(null);
+	const [planDetails, setPlanDetails] = useState<any>(null);
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -66,10 +68,21 @@ const AddLinks = () => {
 			setLoading(false);
 		})();
 	}, []);
+
 	const addLink = () => {
 		setLinks([...links, '']);
 		clearErrors();
 	};
+	useEffect(() => {
+		if (user) {
+			setSubscription(user?.subscription);
+			setPlanDetails(user?.subscription?.planId);
+			if (user?.min_links > 0) {
+				setLinks(new Array(user?.min_links).fill(''));
+			}
+		}
+	}, [user]);
+
 	async function onSubmit(formField: any) {
 		setLoading(true);
 		formField.userId = user.userId;
@@ -96,16 +109,17 @@ const AddLinks = () => {
 			setLoading(false);
 		} catch (error) {
 			setLoading(false);
-			console.log(error, 'error');
 			handleError(error);
 		}
 	}
+
 	const removeLink = (index: number) => {
 		const updatedLinks = [...links];
 		updatedLinks.splice(index, 1);
 		setLinks(updatedLinks);
 		reset();
 	};
+
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;
@@ -123,7 +137,6 @@ const AddLinks = () => {
 			);
 		}
 	};
-
 	return (
 		<div className="Email max-w-2xl mx-auto mt-10 mb-20 text-center">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
@@ -140,7 +153,7 @@ const AddLinks = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${loading ? 'opacity-25' : ''}`}>
 				<div>
-					{links.length < 5 && (
+					{links.length < planDetails?.max_links && (
 						<div className="flex justify-end mx-auto max-w-lg ">
 							<button
 								type="button"

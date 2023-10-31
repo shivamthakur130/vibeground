@@ -97,6 +97,12 @@ const DOB = () => {
 			setLoading(false);
 			return;
 		}
+		// check if age is valid
+		if (!checkAgeIsValid(formField.dd, formField.mm, formField.yyyy)) {
+			ErrorMessage(messageTitle, 'You must be 18 years or older to join');
+			setLoading(false);
+			return;
+		}
 		if (formField.checkAgeVerified === 'false') {
 			// if (!checkAgeIsValid(formField.dd, formField.mm, formField.yyyy)) {
 			setShowAgeVerificationDialog(true);
@@ -120,7 +126,6 @@ const DOB = () => {
 				ErrorMessage(messageTitle, 'Something went wrong');
 			}
 		} catch (error) {
-			console.log(error, 'error');
 			handleError(error);
 		}
 		setLoading(false);

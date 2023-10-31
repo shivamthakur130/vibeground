@@ -59,7 +59,6 @@ const Passport = () => {
 
 	const onChange = (e: any, passportType: String) => {
 		const file = e.target.files[0];
-		// console.log(file, 'file', passportType);
 		if (passportType === 'passport_front') {
 			setPassportFront(file);
 		}
@@ -140,7 +139,7 @@ const Passport = () => {
 		<div className="Email text-center max-w-4xl mx-auto mt-28 mb-24 relative">
 			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Upload Your Passport or ID Verify
+				Upload your Passport or ID to verify
 			</h2>
 			{loading && (
 				<Loading
@@ -279,23 +278,3 @@ const Passport = () => {
 };
 
 export default Passport;
-// const validFileExtensions: { [key: string]: string[] } = {
-// 	image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'],
-// };
-
-// function isValidFileType(
-// 	fileName: string | undefined,
-// 	fileType: string
-// ): boolean {
-// 	if (fileName) {
-// 		console.log(
-// 			validFileExtensions[fileType].indexOf(fileName.split('.').pop() || '')
-// 		);
-// 	}
-// 	console.log(fileName, fileType, 'fileName');
-
-// 	return (
-// 		fileName !== undefined &&
-// 		validFileExtensions[fileType].indexOf(fileName.split('.').pop() || '') > -1
-// 	);
-// }

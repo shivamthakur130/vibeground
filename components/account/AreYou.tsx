@@ -60,10 +60,8 @@ const AreYou = () => {
 
 	return (
 		<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative">
-			<h2 className="text-5xl font-PoppinsBold text-111">Are you?</h2>
-			<p className="text-xl text-888 mt-3 mb-10">
-				Choose who you are going to be{' '}
-			</p>
+			<h2 className="text-5xl font-PoppinsBold text-111">Who are you?</h2>
+			<p className="text-xl text-888 mt-3 mb-10">Choose who you are going to be</p>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="transition delay-150 duration-300 ease-in-out">

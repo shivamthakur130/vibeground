@@ -140,6 +140,10 @@ const Categories = () => {
 			ErrorMessage('Model Registration', 'Please select at least 5 categories');
 			return;
 		}
+		if (selectedCategories.length > 20) {
+			ErrorMessage('Model Registration', 'Please select at most 20 categories');
+			return;
+		}
 
 		setLoading(true);
 

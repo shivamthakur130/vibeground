@@ -77,16 +77,32 @@ const Plan = () => {
 			handleError(error);
 			return;
 		}
-		if (typeof data === 'object' && data !== null && 'data' in data) {
-			reset();
-			const planId = data.data.planId;
-			const subscriptionId = data.data._id;
 
-			dispatch(
-				updateUser({ ...user, planId: planId, subscriptionId: subscriptionId })
-			);
-			SuccessMessage(messageTitle, 'Plan changes saved successfully');
-			push('/account/billing');
+		if (typeof data === 'object' && data !== null && 'data' in data) {
+			const response = data.data;
+			if (response.status) {
+				reset();
+				const planId = response.planId;
+				const subscriptionId = response._id;
+
+				dispatch(
+					updateUser({ ...user, planId: planId, subscriptionId: subscriptionId })
+				);
+				SuccessMessage(messageTitle, 'Plan saved successfully');
+				if (response.planDetails && response.planDetails.planType !== 'free') {
+					push('/account/billing');
+				} else {
+					if (user.type === 'model') {
+						push('/account/pictures');
+						return;
+					} else if (user.type === 'fan') {
+						push('/experience');
+						return;
+					}
+				}
+			} else {
+				ErrorMessage(messageTitle, 'Something went wrong');
+			}
 		} else {
 			ErrorMessage(messageTitle, 'Something went wrong');
 		}
@@ -177,15 +193,16 @@ const Plan = () => {
 									<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
 										{plan.price}
 										<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
-											CHF/{plan.duration} Months
+											€/{'  '}
+											{plan.duration} Months
 										</span>
 									</h2>
 
-									<div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
+									{/* <div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
 										({(parseInt(plan.price) / parseInt(plan.duration)).toFixed(2)}
 										{'  '}
-										CHF/month)
-									</div>
+										€/month)
+									</div> */}
 								</>
 							)}
 							<ul className="space-y-4 text-sm">
@@ -239,8 +256,8 @@ const Plan = () => {
 										<span>
 											<Image src={Tic} alt="#" />
 										</span>
-									) : plan.features.swipeModel == 'limited' ? (
-										<span className="text-[#558F71]">Limited</span>
+									) : plan.features.swipeModel !== '' ? (
+										<span className="text-[#558F71]">{plan.features.swipeModel}</span>
 									) : (
 										<span>--</span>
 									)}

@@ -51,7 +51,6 @@ const ForgotPassword = () => {
 		}
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			reset();
-			console.log('data', data);
 			if (data.status) {
 				SuccessMessage(
 					'Forgot password Operation',

@@ -134,7 +134,6 @@ const Login = () => {
 			handleError(error);
 			return;
 		}
-		console.log(data, 'data');
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			SuccessMessage('Google Login', 'Login Successfully');
 			if (data.data.status) {

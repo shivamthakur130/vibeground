@@ -1,5 +1,6 @@
+'use client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import MainBanner from '@/assets/images/main_banner.jpg';
 import banner2 from '@/assets/images/banner2.png';
@@ -10,8 +11,14 @@ import Ico2 from '@/assets/images/ico2.png';
 import Ico3 from '@/assets/images/ico3.png';
 import Ico4 from '@/assets/images/ico4.png';
 import CenterLogo from '@/assets/images/logo/l_white.png';
+import { useSelector } from 'react-redux';
 
 const Landing = () => {
+	const userData = useSelector((state: any) => state.userReducer.user);
+	const [userDetails, setUserDetails] = useState<any>(null);
+	useEffect(() => {
+		setUserDetails(userData);
+	}, [userData]);
 	return (
 		<div className="Landing text-center pb-28 bg-black">
 			<div className="max-w-full mx-auto ">
@@ -28,13 +35,15 @@ const Landing = () => {
 							<p className="mx-auto px-10 ">
 								<Image src={CenterLogo} alt="#" className="" />
 							</p>
-							<Link href="account">
-								<button
-									className="mt-10 
+							{(userDetails?.token == '' || userDetails == null) && (
+								<Link href="account">
+									<button
+										className="mt-10 
 				rounded-[8px]  btn btn-default  py-4 px-16 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
-									Join Today!
-								</button>
-							</Link>
+										Join Today!
+									</button>
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>

@@ -52,13 +52,12 @@ const Gender = () => {
 			});
 			if (response.status === 201) {
 				reset();
-				SuccessMessage(messageTitle, 'Gender changes saved successfully');
+				SuccessMessage(messageTitle, 'Gender saved successfully');
 				push('/account/selection');
 			} else {
 				ErrorMessage(messageTitle, 'Something went wrong');
 			}
 		} catch (error) {
-			console.log(error, 'error');
 			handleError(error);
 		}
 		setLoading(false);
