@@ -21,5 +21,6 @@ export interface User {
 	expiry_date: Date | null;
 	purchase_date: Date | null;
 	photos: string[] | null;
+	videos: string[] | null;
 	subscription: any;
 }

@@ -247,7 +247,7 @@ const ManageImages = ({ user }: any) => {
 	};
 
 	return (
-		<div className=" max-w-7xl px-5 mx-auto mt-10 mb-10 relative border-b border-gray-200">
+		<div className=" max-w-7xl px-5 mx-auto mt-10 mb-10 relative border-b border-gray-200 pb-4">
 			<div className="flex justify-between">
 				<h2 className="text-2xl font-PoppinsSemiBold text-111 mb-10">
 					Manage My Images

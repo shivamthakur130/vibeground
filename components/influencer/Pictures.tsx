@@ -104,7 +104,7 @@ const Pictures = () => {
 			}
 		}
 	}, [user]);
-
+	console.log('user', user);
 	const updatePreview = (updatedImages: any) => {
 		const previews = updatedImages.map(
 			(image: Blob | MediaSource, index: string | number) => {

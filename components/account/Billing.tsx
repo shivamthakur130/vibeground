@@ -144,15 +144,14 @@ const Billing = () => {
 				setIsProcessingPayment(false);
 				return;
 			}
+			console.log('data', data);
 			SuccessMessage(messageTitle, 'Subscription successfully activated');
-			const planId = data.data.planId;
-			const subscriptionId = data.data._id;
+			const subscriptionDetails = data.data.subscriptionDetails;
 			dispatch(
 				updateUser({
 					...userData,
 					status: data.data.status,
-					subscriptionId,
-					planId,
+					subscription: subscriptionDetails,
 					expiry_date: data.data.expiry_date,
 					purchase_date: data.data.purchase_date,
 				})

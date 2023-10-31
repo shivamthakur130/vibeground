@@ -106,16 +106,16 @@ const ManageVideos = ({ user }: any) => {
 	const handleValidation = async () => {
 		const selectedCount = videosPreviews.filter((video) => video !== null).length;
 
-		if (selectedCount < planDetails.min_videos) {
+		if (selectedCount < planDetails?.min_videos) {
 			setError('videos', {
 				type: 'at-least-three-videos',
-				message: `Select at least ${planDetails.min_videos} videos to continue`,
+				message: `Select at least ${planDetails?.min_videos} videos to continue`,
 			});
 			return true;
-		} else if (selectedCount > planDetails.max_videos) {
+		} else if (selectedCount > planDetails?.max_videos) {
 			setError('videos', {
 				type: 'too-many-videos',
-				message: `Select at most ${planDetails.max_videos} videos to continue`,
+				message: `Select at most ${planDetails?.max_videos} videos to continue`,
 			});
 			return true;
 		} else {
@@ -127,7 +127,7 @@ const ManageVideos = ({ user }: any) => {
 			if (videosPreviews[i] === null && i < selectedCount) {
 				setError('videos', {
 					type: 'missing-videos',
-					message: `Videos must be selected from 1 to ${planDetails.max_videos}`,
+					message: `Videos must be selected from 1 to ${planDetails?.max_videos}`,
 				});
 				return true;
 				break;

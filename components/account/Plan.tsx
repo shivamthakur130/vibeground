@@ -80,6 +80,7 @@ const Plan = () => {
 
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			const response = data.data;
+			console.log('response', response);
 			if (response.status) {
 				reset();
 				const planId = response.planId;

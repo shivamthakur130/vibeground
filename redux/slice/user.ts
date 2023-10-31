@@ -30,6 +30,7 @@ const defaultUser = {
 	expiry_date: null,
 	purchase_date: null,
 	photos: [],
+	videos: [],
 	subscription: null,
 };
 
