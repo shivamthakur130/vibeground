@@ -4,23 +4,20 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
-import { useSelector } from 'react-redux';
 import { modelAbout } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
 import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 
-const AboutInfo = () => {
+const ManageAbout = ({ user }: any) => {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
-	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
-
+	const [showHideSection, setShowHideSection] = useState(false);
 	// form validation rules
 	const validationSchema = Yup.object().shape({
 		about: Yup.string()
@@ -59,14 +56,12 @@ const AboutInfo = () => {
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
 				SuccessMessage('Model Registration', 'About details saved successfully');
-				push('/account/dob');
 			} else {
 				ErrorMessage('Model Registration', 'Something went wrong');
 			}
 			setLoading(false);
 		} catch (error) {
 			setLoading(false);
-			console.log(error, 'error');
 			handleError(error);
 		}
 	}
@@ -90,12 +85,35 @@ const AboutInfo = () => {
 	};
 
 	return (
-		<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative ">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-14">
-				{' '}
-				Tell your fans more about you!
-			</h2>
+		<div className=" max-w-7xl px-5 mx-auto mt-16 mb-10 relative border-b border-gray-200 pb-5">
+			<div className="flex justify-between">
+				<h2 className="text-2xl font-PoppinsSemiBold text-111 mb-10">About Me</h2>
+				<div className="flex space-x-2">
+					<div>
+						<button
+							className="btn btn-default px-4 py-1 mt-0 text-lg border border-black text-151515 bg-transparent rounded-md hover:border-gray-800 hover:text-gray-200 hover:bg-gray-800 transition-all duration-300 active:border-black flex"
+							type="submit"
+							form="AboutForm"
+							disabled={loading}>
+							{loading && <Loading width={50} height={50} className="w-6" />}
+							Save
+						</button>
+					</div>
+					<div>
+						<button
+							className="btn btn-default px-4 py-2 mt-0 text-lg border border-black text-151515 bg-transparent rounded-md hover:border-151515 hover:text-gray-200 hover:bg-151515 transition-all duration-300 active:border-black flex"
+							onClick={() => {
+								setShowHideSection(!showHideSection);
+							}}>
+							{showHideSection ? (
+								<AiOutlineDown className="text-lg hover:text-gray-50 " />
+							) : (
+								<AiOutlineUp className="text-lg hover:text-gray-50 font-PoppinsBold" />
+							)}
+						</button>
+					</div>
+				</div>
+			</div>
 			{loading && (
 				<Loading
 					width={50}
@@ -104,37 +122,41 @@ const AboutInfo = () => {
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 				/>
 			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-25' : ''}`}>
-				<div className="">
-					<textarea
-						className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
-						placeholder="About"
-						rows={7}
-						{...register('about', {
-							value: user.about,
-							onChange: (e) => {
-								setValue('about', e.target.value);
-								clearErrors('about');
-							},
-						})}
-					/>
-					{errors.about?.message && (
-						<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-							{errors.about?.message}
-						</div>
-					)}
-				</div>
-				<button
-					className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
-					type="submit"
-					disabled={loading}>
-					Continue
-				</button>
-			</form>
+			<div
+				className={`max-w-2xl ${
+					showHideSection
+						? 'hidden transition-all duration-300'
+						: 'transition-all duration-300'
+				}`}>
+				<form
+					id="AboutForm"
+					name="AboutForm"
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-25' : ''}`}>
+					<div className="">
+						<textarea
+							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
+							placeholder="About"
+							rows={7}
+							cols={80}
+							{...register('about', {
+								value: user.about,
+								onChange: (e) => {
+									setValue('about', e.target.value);
+									clearErrors('about');
+								},
+							})}
+						/>
+						{errors.about?.message && (
+							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+								{errors.about?.message}
+							</div>
+						)}
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };
 
-export default AboutInfo;
+export default ManageAbout;

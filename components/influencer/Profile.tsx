@@ -8,7 +8,6 @@ import Link from 'next/link';
 
 const UserProfile = () => {
 	const user = useSelector((state: any) => state.userReducer.user);
-	console.log(user, 'user');
 	return (
 		<div className="Profile max-w-7xl px-5 mx-auto mt-32 mb-32">
 			<div className="flex items-center">
@@ -35,14 +34,14 @@ const UserProfile = () => {
 				</div>
 			</div>
 
-			<div className="mt-20 space-y-14">
+			<div className="mt-20 space-y-10">
 				{/* <h2 className="flex justify-between text-2xl">
 					Interest
 					<span>
 						<Image src={Arrow} alt="#" width={7} />
 					</span>
 				</h2> */}
-				<h2 className="flex justify-between text-2xl ">
+				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
 					<Link href="/influencer/manage-profile">
 						<span className="cursor-pointer">Manage Profile</span>
 					</Link>
@@ -52,13 +51,13 @@ const UserProfile = () => {
 						</span>
 					</Link>
 				</h2>
-				<h2 className="flex justify-between text-2xl">
+				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
 					<span className="cursor-pointer">Terms & Conditions</span>
 					<span className="cursor-pointer">
 						<Image src={Arrow} alt="#" width={10} />
 					</span>
 				</h2>
-				<h2 className="flex justify-between text-2xl">
+				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
 					<span className="cursor-pointer">Invoice</span>
 					<span className="cursor-pointer">
 						<Image src={Arrow} alt="#" width={10} />
