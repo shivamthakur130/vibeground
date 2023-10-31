@@ -20,11 +20,11 @@ const Footer = () => {
 					<h3 className="text-22px font-bold">Vibeground.</h3>
 					<p className="text-13px my-2.5">All Rights are Reserved 2023</p>
 					<ul className="flex space-x-2">
-						<li>
+						{/* <li>
 							<a>
 								<Image src={Fb} alt="Facebook" />
 							</a>
-						</li>
+						</li> */}
 						<li>
 							<a href="https://www.instagram.com/vibegroundofficial/" target="_blank">
 								<Image src={Ig} alt="instagram" />

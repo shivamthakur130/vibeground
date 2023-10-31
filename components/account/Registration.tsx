@@ -44,7 +44,10 @@ const Registration = () => {
 			loginGoogle(prepareRequest);
 		},
 	});
-	if (user.token !== '') {
+	if (user.token !== '' && user.type === 'model') {
+		replace('/account/about');
+	}
+	if (user.token !== '' && user.type === 'fan') {
 		replace('/account/dob');
 	}
 	const loginGoogle = async (formField: any) => {

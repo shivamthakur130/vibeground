@@ -11,15 +11,16 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { modelLinks, getUser } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
+import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 
-const AddLinks = () => {
+const ManageLinks = ({ user }: any) => {
 	const [loading, setLoading] = useState(false);
+	const [showHideSection, setShowHideSection] = useState(false);
 	const dispatch = useAppDispatch();
-	const user = useSelector((state: any) => state.userReducer.user);
 	const [links, setLinks] = useState(['']);
 	const { push } = useRouter();
 	const [subscription, setSubscription] = useState<any>(null);
@@ -102,7 +103,6 @@ const AddLinks = () => {
 						links: data.data.links,
 					})
 				);
-				push('/account/categories');
 			} else {
 				ErrorMessage('Model Registration', 'Something went wrong');
 			}
@@ -137,11 +137,38 @@ const AddLinks = () => {
 			);
 		}
 	};
-
 	return (
-		<div className="Email max-w-2xl mx-auto mt-10 mb-20 text-center">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-7">Add my links</h2>
+		<div className=" max-w-7xl px-5 mx-auto mt-16 mb-10 relative border-b border-gray-400 pb-5">
+			<div className="flex justify-between">
+				<h2 className="text-2xl font-PoppinsSemiBold text-111 mb-10">
+					Manage My Links
+				</h2>
+				<div className="flex space-x-2">
+					<div>
+						<button
+							className="btn btn-default px-4 py-1 mt-0 text-lg border border-black text-151515 bg-transparent rounded-md hover:border-gray-800 hover:text-gray-200 hover:bg-gray-800 transition-all duration-300 active:border-black flex"
+							type="submit"
+							form="LinksForm"
+							disabled={loading}>
+							{loading && <Loading width={50} height={50} className="w-6" />}
+							Save
+						</button>
+					</div>
+					<div>
+						<button
+							className="btn btn-default px-4 py-2 mt-0 text-lg border border-black text-151515 bg-transparent rounded-md hover:border-151515 hover:text-gray-200 hover:bg-151515 transition-all duration-300 active:border-black flex"
+							onClick={() => {
+								setShowHideSection(!showHideSection);
+							}}>
+							{showHideSection ? (
+								<AiOutlineDown className="text-lg hover:text-gray-50 " />
+							) : (
+								<AiOutlineUp className="text-lg hover:text-gray-50 font-PoppinsBold" />
+							)}
+						</button>
+					</div>
+				</div>
+			</div>
 			{loading && (
 				<Loading
 					width={50}
@@ -150,12 +177,19 @@ const AddLinks = () => {
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 				/>
 			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-25' : ''}`}>
-				<div>
+			<div
+				className={`max-w-lg ${
+					showHideSection
+						? 'hidden transition-all duration-300'
+						: 'transition-all duration-300'
+				}`}>
+				<form
+					name="LinksForm"
+					id="LinksForm"
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-25' : ''}`}>
 					{links.length < planDetails?.max_links && (
-						<div className="flex justify-end mx-auto max-w-lg ">
+						<div className="flex justify-end mx-auto  ">
 							<button
 								type="button"
 								className="btn btn-default px-2 hover:bg-151515 hover:text-white py-2 text-sm text-white border rounded-[8px] transition-all duration-300 active:bg-303030 border-black bg-303030"
@@ -164,12 +198,11 @@ const AddLinks = () => {
 							</button>
 						</div>
 					)}
-
 					<div className="">
 						{links.map((link, index) => (
 							<div
 								key={index}
-								className="flex space-x-3 my-2 transition-all duration-300 p-2 py-4 rounded-md mx-auto max-w-lg bg-gray-100 m-2 px-4 text-center">
+								className="flex space-x-3 my-2 transition-all duration-300 p-2 py-4 rounded-md mx-auto  bg-gray-100 m-2 px-4 text-center">
 								<div>
 									<button className="btn btn-default px-4 mt-1 text-black py-2 text-sm border rounded-[19px] transition-all duration-300  border-black">
 										{index + 1}
@@ -211,18 +244,19 @@ const AddLinks = () => {
 							</div>
 						))}
 					</div>
-				</div>
-				{/* <Link href="/influencer/categories"> */}
-				<button
-					className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
-					type="submit"
-					disabled={loading}>
-					Continue
-				</button>
-				{/* </Link> */}
-			</form>
+				</form>
+				{/* <ul className="text-xl text-[#2799F6] space-y-7">
+					{user?.links?.map((link: any, index: number) => (
+						<li key={index}>
+							<a href={link} target="_blank" rel="noreferrer">
+								{link}
+							</a>
+						</li>
+					))}
+				</ul> */}
+			</div>
 		</div>
 	);
 };
 
-export default AddLinks;
+export default ManageLinks;

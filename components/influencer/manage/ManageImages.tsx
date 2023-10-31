@@ -11,21 +11,22 @@ import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { modelPhotos, getUser } from '@/services/user.service';
+import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import Loading from '@/components/layout/Loading';
 import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 
-const Pictures = () => {
+const ManageImages = ({ user }: any) => {
 	const [loading, setLoading] = useState(false);
+	const [showHideSection, setShowHideSection] = useState(false);
 	const [selectedPictures, setSelectedPictures] = useState(Array(1).fill(null));
 	const [picturesPreviews, setPicturesPreviews] = useState(Array(1).fill(null));
 	const [subscription, setSubscription] = useState<any>(null);
 	const [planDetails, setPlanDetails] = useState<any>(null);
 	const [firstLoad, setFirstLoad] = useState(true);
 	const dispatch = useAppDispatch();
-	const user = useSelector((state: any) => state.userReducer.user);
 	const { push } = useRouter();
 
 	// form validation rules
@@ -47,47 +48,6 @@ const Pictures = () => {
 		formState,
 	} = useForm(formOptions);
 	const { errors } = formState;
-
-	// const userPhotoAssign = async (user: any) => {
-	// 	setLoading(true);
-	// 	const { data, error } = await getUser();
-	// 	if (error) {
-	// 		setLoading(false);
-	// 		handleError(error);
-	// 		return;
-	// 	}
-	// 	if (typeof data === 'object' && data !== null && 'data' in data) {
-	// 	const photosList = user.photos;
-	// 	dispatch(
-	// 		updateUser({
-	// 			...user,
-	// 			...data?.data,
-	// 		})
-	// 	);
-	// 	if (photosList) {
-	// 		const previews = photosList.map((image: any) => (image ? image : null));
-	// 		setPicturesPreviews(previews);
-	// 	}
-	// 	}
-	// 	setLoading(false);
-	// };
-
-	// useEffect(() => {
-	// userPhotoAssign(user);
-	// const previews = selectedPictures.map((image, index) => {
-	// 	if (image) {
-	// 		return URL.createObjectURL(image);
-	// 	}
-	// 	if (user?.photos) {
-	// 		return user?.photos[index] ? user?.photos[index] : null;
-	// 	}
-	// 	return null;
-	// });
-	// if (!firstLoad) {
-	// 	setPicturesPreviews(previews);
-	// 	handleValidation();
-	// }
-	// }, []);
 
 	useEffect(() => {
 		if (user) {
@@ -206,7 +166,7 @@ const Pictures = () => {
 			!flag &&
 			user?.photos?.length == countMin
 		) {
-			push('/account/videos');
+			SuccessMessage('Model Registration', 'Pictures saved successfully');
 			return;
 		}
 
@@ -257,7 +217,7 @@ const Pictures = () => {
 						photos: data.data.photos,
 					})
 				);
-				push('/account/videos');
+				// push('/account/videos');
 			} else {
 				ErrorMessage('Model Registration', 'Something went wrong');
 			}
@@ -288,11 +248,37 @@ const Pictures = () => {
 	};
 
 	return (
-		<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Upload Your Pictures
-			</h2>
+		<div className=" max-w-7xl px-5 mx-auto mt-10 mb-10 relative border-b border-gray-400">
+			<div className="flex justify-between">
+				<h2 className="text-2xl font-PoppinsSemiBold text-111 mb-10">
+					Manage My Images
+				</h2>
+				<div className="flex space-x-2">
+					<div>
+						<button
+							className="btn btn-default px-4 py-1 mt-0 text-lg border border-black text-151515 bg-transparent rounded-md hover:border-151515 hover:text-gray-200 hover:bg-151515 transition-all duration-300 active:border-black flex"
+							type="submit"
+							form="ImageForm"
+							disabled={loading}>
+							{loading && <Loading width={50} height={50} className="w-6" />}
+							Save
+						</button>
+					</div>
+					<div>
+						<button
+							className="btn btn-default px-4 py-2 mt-0 text-lg border border-black text-151515 bg-transparent rounded-md hover:border-151515 hover:text-gray-200 hover:bg-151515 transition-all duration-300 active:border-black flex"
+							onClick={() => {
+								setShowHideSection(!showHideSection);
+							}}>
+							{showHideSection ? (
+								<AiOutlineDown className="text-lg hover:text-gray-50 " />
+							) : (
+								<AiOutlineUp className="text-lg hover:text-gray-50 font-PoppinsBold" />
+							)}
+						</button>
+					</div>
+				</div>
+			</div>
 			{loading && (
 				<Loading
 					width={50}
@@ -301,76 +287,88 @@ const Pictures = () => {
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 				/>
 			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-25' : ''}`}
-				encType="multipart/form-data">
-				<div className="grid grid-cols-5 gap-6 my-6 mx-auto">
-					{selectedPictures.map((_, index) => (
-						<div key={index}>
-							{!picturesPreviews[index] ? (
-								<div className="w-full min-w-full">
-									<label
-										htmlFor={`dropzone-file${index}`}
-										className="flex flex-col items-center justify-center w-full h-52 rounded-xl bg-[#f9f9f9] cursor-pointer hover:bg-[#eaeaea] active:bg-[#f9f9f9]">
-										<div className="flex flex-col items-center justify-center pt-5 pb-6">
-											<Image src={Upload} alt="#" />
-										</div>
-									</label>
-								</div>
-							) : (
-								picturesPreviews[index] && (
-									<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative">
-										<button
-											onClick={() => {
-												removeSelectedPicture(index);
-											}}
-											type="button"
-											className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-md absolute bg-[#f9f9f9] cursor-pointer hover:bg-[#e1e1e1] active:bg-[#f9f9f9]">
-											X
-										</button>
-										<img
-											className="rounded-md h-full w-full object-cover"
-											src={picturesPreviews[index]}
-											alt={`Preview ${index}`}
-											onError={(e) => {
-												e.currentTarget.src = '/upload.svg';
-												e.currentTarget.style.padding = '2rem';
-											}}
-										/>
+			<div
+				className={`flex items-center space-x-7  ${
+					showHideSection
+						? 'hidden transition-all duration-300'
+						: 'transition-all duration-300'
+				}`}>
+				<form
+					id="ImageForm"
+					name="ImageForm"
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-25' : ''}`}
+					encType="multipart/form-data">
+					<div className="grid grid-cols-5 gap-6 my-6 mx-auto">
+						{selectedPictures.map((_, index) => (
+							<div key={index}>
+								{!picturesPreviews[index] ? (
+									<div className="w-full min-w-full">
+										<label
+											htmlFor={`ImageDropzone-file${index}`}
+											className="flex flex-col items-center justify-center rounded-xl bg-[#f9f9f9] cursor-pointer hover:bg-[#eaeaea] active:bg-[#f9f9f9]  w-40 h-40">
+											<div className="flex flex-col items-center justify-center pt-5 pb-6">
+												<Image src={Upload} alt="#" />
+											</div>
+										</label>
 									</div>
-								)
-							)}
-							<input
-								id={`dropzone-file${index}`}
-								accept="image/*"
-								type="file"
-								className="hidden"
-								{...register(`photos.${index}`, {
-									onChange: (e) => {
-										handleFileChange(e, index);
-									},
-								})}
-							/>
-						</div>
-					))}
-				</div>
-
-				{errors.photos?.message && (
-					<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-						{errors.photos?.message}
+								) : (
+									picturesPreviews[index] && (
+										<div className="flex flex-col items-end justify-center max-w-[283px] rounded-xl relative w-40 h-40">
+											<button
+												onClick={() => {
+													removeSelectedPicture(index);
+												}}
+												type="button"
+												className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-md absolute bg-[#f9f9f9] cursor-pointer hover:bg-[#e1e1e1] active:bg-[#f9f9f9] ">
+												X
+											</button>
+											<img
+												className="rounded-md h-full w-full object-cover"
+												src={picturesPreviews[index]}
+												alt={`Preview ${index}`}
+												onError={(e) => {
+													e.currentTarget.src = '/upload.svg';
+													e.currentTarget.style.padding = '2rem';
+												}}
+											/>
+										</div>
+									)
+								)}
+								<input
+									id={`ImageDropzone-file${index}`}
+									accept="image/*"
+									type="file"
+									className="hidden"
+									{...register(`photos.${index}`, {
+										onChange: (e) => {
+											handleFileChange(e, index);
+										},
+									})}
+								/>
+							</div>
+						))}
 					</div>
-				)}
 
-				<button
-					className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
-					type="submit"
-					disabled={loading}>
-					Continue
-				</button>
-			</form>
+					{errors.photos?.message && (
+						<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+							{errors.photos?.message}
+						</div>
+					)}
+				</form>
+				{/* <div className="flex items-center justify-center">
+					<label
+						htmlFor="dropzone-file"
+						className="flex flex-col items-center justify-center w-40 h-40 rounded-xl cursor-pointer bg-[#f9f9f9] hover:bg-gray-100">
+						<div className="flex flex-col items-center justify-center pt-5 pb-6">
+							<Image src={Upload} alt="#" />
+						</div>
+						<input id="dropzone-file" type="file" className="hidden" />
+					</label>
+				</div> */}
+			</div>
 		</div>
 	);
 };
 
-export default Pictures;
+export default ManageImages;

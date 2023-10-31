@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import ProfileImg from '@/assets/images/profile_img.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
+import Link from 'next/link';
 
 const UserProfile = () => {
 	const user = useSelector((state: any) => state.userReducer.user);
-
+	console.log(user, 'user');
 	return (
 		<div className="Profile max-w-7xl px-5 mx-auto mt-32 mb-32">
 			<div className="flex items-center">
@@ -35,28 +36,32 @@ const UserProfile = () => {
 			</div>
 
 			<div className="mt-20 space-y-14">
-				<h2 className="flex justify-between text-2xl">
+				{/* <h2 className="flex justify-between text-2xl">
 					Interest
 					<span>
 						<Image src={Arrow} alt="#" width={7} />
 					</span>
+				</h2> */}
+				<h2 className="flex justify-between text-2xl ">
+					<Link href="/influencer/manage-profile">
+						<span className="cursor-pointer">Manage Profile</span>
+					</Link>
+					<Link href="/influencer/manage-profile">
+						<span className="cursor-pointer">
+							<Image src={Arrow} alt="#" width={10} />
+						</span>
+					</Link>
 				</h2>
 				<h2 className="flex justify-between text-2xl">
-					Browse Profile
-					<span>
-						<Image src={Arrow} alt="#" width={7} />
+					<span className="cursor-pointer">Terms & Conditions</span>
+					<span className="cursor-pointer">
+						<Image src={Arrow} alt="#" width={10} />
 					</span>
 				</h2>
 				<h2 className="flex justify-between text-2xl">
-					Terms & Conditions
-					<span>
-						<Image src={Arrow} alt="#" width={7} />
-					</span>
-				</h2>
-				<h2 className="flex justify-between text-2xl">
-					Invoice
-					<span>
-						<Image src={Arrow} alt="#" width={7} />
+					<span className="cursor-pointer">Invoice</span>
+					<span className="cursor-pointer">
+						<Image src={Arrow} alt="#" width={10} />
 					</span>
 				</h2>
 			</div>
