@@ -1,14 +1,11 @@
 'use client';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ManageImages from '@/components/influencer/manage/ManageImages';
-import ManageVideos from '@/components/influencer/manage/ManageVideos';
-import ManageLinks from '@/components/influencer/manage/ManageLinks';
-import ManageAbout from '@/components/influencer/manage/ManageAbout';
+
 import { useRouter } from 'next/navigation';
 import { IoChevronBackOutline } from 'react-icons/io5';
-import ManageOtherInfo from '@/components/influencer/ManageOtherInfo';
-import ChangePassword from '@/components/influencer/ChangePassword';
+import ManageOtherInfo from '../influencer/ManageOtherInfo';
+import ChangePassword from '../influencer/ChangePassword';
 
 const ManageProfile = () => {
 	const { replace } = useRouter();
@@ -21,15 +18,11 @@ const ManageProfile = () => {
 				<div
 					className="cursor-pointer pr-5 btn btn-default px-3 py-2 mt-0 text-lg text-white bg-303030 rounded-md hover:bg-151515 transition-all duration-300 active:bg-303030 flex items-center space-x-1"
 					onClick={() => {
-						replace('/influencer/profile');
+						replace('/experience/profile');
 					}}>
 					<IoChevronBackOutline className="text-xl" /> <span>Back</span>
 				</div>
 			</div>
-			<ManageImages user={user} />
-			<ManageVideos user={user} />
-			<ManageLinks user={user} />
-			<ManageAbout user={user} />
 			<ManageOtherInfo user={user} />
 			<ChangePassword user={user} />
 		</div>

@@ -186,7 +186,7 @@ const Plan = () => {
 							<h2 className="font-PoppinsBold text-15px mt-1.5">
 								{plan.name}
 								{plan.planType !== 'free' && (
-									<span className="text-[10px]"> ({plan.duration} Months)</span>
+									<span className="text-[10px]"> ({plan.duration} Month)</span>
 								)}
 							</h2>
 							{plan.planType !== 'free' && (
@@ -195,7 +195,7 @@ const Plan = () => {
 										{plan.price}
 										<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
 											€/{'  '}
-											{plan.duration} Months
+											{plan.duration} Month
 										</span>
 									</h2>
 
@@ -210,20 +210,20 @@ const Plan = () => {
 								{plan.type == 'model' && (
 									<>
 										<li className="flex justify-between">
-											Maximum Pictures Upload
+											Maximum Picture Upload
 											<span className="border-2 border-green-700 rounded-full px-2  font-PoppinsSemiBold">
 												{plan.max_pics}
 											</span>
 										</li>
 										<li className="flex justify-between">
-											Maximum Videos Upload
+											Maximum Video Upload
 											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
 												{' '}
 												{plan.max_videos}{' '}
 											</span>
 										</li>
 										<li className="flex justify-between">
-											Maximum Links Add
+											Maximum Link Add
 											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
 												{' '}
 												{plan.max_links}{' '}
@@ -251,18 +251,36 @@ const Plan = () => {
 										<span>--</span>
 									)}
 								</li>
-								<li className="flex justify-between">
-									Swipe Models
-									{plan.features.swipeModel == 'full' ? (
-										<span>
-											<Image src={Tic} alt="#" />
-										</span>
-									) : plan.features.swipeModel !== '' ? (
-										<span className="text-[#558F71]">{plan.features.swipeModel}</span>
-									) : (
-										<span>--</span>
-									)}
-								</li>
+								{plan.type == 'fan' && (
+									<li className="flex justify-between">
+										Swipe Models
+										{plan.features.swipeModel == 'full' ? (
+											<span>
+												<Image src={Tic} alt="#" />
+											</span>
+										) : plan.features.swipeModel !== '' ? (
+											<span className="text-[#558F71]">{plan.features.swipeModel}</span>
+										) : (
+											<span>--</span>
+										)}
+									</li>
+								)}
+								{plan.type == 'model' && (
+									<li className="flex justify-between">
+										Newcomer of the week
+										{plan.features.newComerOfWeek == 'full' ? (
+											<span>
+												<Image src={Tic} alt="#" />
+											</span>
+										) : plan.features.newComerOfWeek !== '' ? (
+											<span className="text-[#558F71]">
+												{plan.features.newComerOfWeek}
+											</span>
+										) : (
+											<span>--</span>
+										)}
+									</li>
+								)}
 							</ul>
 
 							<input

@@ -130,9 +130,7 @@ const Selection = () => {
 							{errors.country?.message}
 						</div>
 					)}
-					{/* <option value="" selected>
-							Select City
-						</option> */}
+
 					<select
 						id="city"
 						className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4 mb-4"

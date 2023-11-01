@@ -112,7 +112,7 @@ const DOB = () => {
 		}
 
 		try {
-			const dateOfBirth = `${formField.yyyy}-${formField.mm}-${formField.dd}`;
+			const dateOfBirth = `${formField.dd}-${formField.mm}-${formField.yyyy}`;
 			const response = await fanDob({
 				userId: user.userId,
 				dob: dateOfBirth,

@@ -85,6 +85,14 @@ export async function put(
 	props: any,
 	type: boolean = false
 ): Promise<AxiosResponse> {
-	const header: Headers = await getHeader();
+	const header: Headers = await getHeader(undefined, false);
+	return await axiosPrepare.put(url, props, type ? header : {});
+}
+export async function putFormData(
+	url: string,
+	props: any,
+	type: boolean = false
+): Promise<AxiosResponse> {
+	const header: Headers = await getHeader(undefined, true);
 	return await axiosPrepare.put(url, props, type ? header : {});
 }

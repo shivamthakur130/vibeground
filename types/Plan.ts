@@ -14,6 +14,7 @@ export interface Plan {
 		video: string;
 		image: string;
 		swipeModel: string;
+		newComerOfWeek: string;
 	};
 	name: string;
 	price: string;

@@ -1,5 +1,11 @@
 import { User } from '@/types/User';
-import get, { post, delete_, put, postFormData } from '@/lib/requests';
+import get, {
+	post,
+	delete_,
+	put,
+	putFormData,
+	postFormData,
+} from '@/lib/requests';
 import { AxiosResponse, AxiosError } from 'axios';
 import { removeUserData } from '@/lib/useLocalStorageUser';
 interface ReturnResponse {
@@ -213,6 +219,43 @@ export const modelDetails = async (dataReq: any): Promise<ReturnResponse> => {
 		};
 	} catch (e) {
 		const error = e as AxiosError;
+		await checkIfAuthorized(error);
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
+//user/update
+export const userUpdate = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await put(`user/update`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		await checkIfAuthorized(error);
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+//change-password
+export const changePassword = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await put(`change-password`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
 		await checkIfAuthorized(error);
 		return {
 			data: null,
