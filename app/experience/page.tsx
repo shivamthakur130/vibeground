@@ -1,4 +1,4 @@
-import Dashboard from '@/components/experience/Dashboard';
+import Dashboard from '@/components/experience/dashboard';
 
 export default function ExperiencePage() {
 	return (

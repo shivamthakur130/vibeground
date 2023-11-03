@@ -7,9 +7,9 @@ import Post3 from '@/assets/images/p03.png';
 import Croun from '@/assets/images/svg/croun2.svg';
 import Heart from '@/assets/images/heart.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
-const Dashboard = () => {
+const Experience = () => {
 	return (
-		<div className=" max-w-7xl px-5 mx-auto mt-24 mb-24">
+		<div className="Experience max-w-7xl px-5 mx-auto mt-24 mb-24">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center mb-10">
 				Experience
 			</h2>
@@ -54,4 +54,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default Experience;
