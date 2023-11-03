@@ -1,9 +1,9 @@
-import Experience from '@/components/experience/Dashboard';
+import Dashboard from '@/components/experience/Dashboard';
 
-export default function WelcomePage() {
+export default function ExperiencePage() {
 	return (
 		<div className="max-w-7xl mx-auto">
-			<Experience />
+			<Dashboard />
 		</div>
 	);
 }
