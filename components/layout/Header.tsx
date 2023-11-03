@@ -126,50 +126,52 @@ const Header = () => {
 							</div>
 						</Link>
 					)}
-					{userDetails && userDetails?.token !== '' && (
-						<div className="flex">
-							<div className="flex items-center">
-								<div className="flex items-center ">
-									<span className="mr-3 font-PoppinsRegular text-22px text-white">
-										{userDetails?.firstName} {userDetails?.lastName}
-									</span>
-									<div
-										className="cursor-pointer hover:bg-gray-700 p-2 rounded-md active:bg-gray-900 relative"
-										onClick={redirectDashboard}>
-										<Image src={UserIcon} className="shrink-0" alt={'user icon'} />
-									</div>
-									<span className="relative">
-										<Image
-											src={DownArrow}
-											onClick={_toggleUser}
-											className="cursor-pointer hover:bg-gray-700 rounded-md transition-all duration-300 active:bg-gray-900 p-2 relative"
-											alt={'down-arrow'}
-										/>
-										{toggleUser ? (
-											<div className="absolute right-1 top-10 z-20">
-												<div className="bg-white rounded-lg min-w-[130px] manropeSemiBold shadow-md ">
-													<ul className="divide-y">
-														<li
-															className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
-															onClick={redirectProfile}>
-															Profile
-														</li>
-														<li
-															className="py-3 px-6 text-sm hover:rounded-lg cursor-pointer hover:bg-slate-100"
-															onClick={logOut}>
-															Logout
-														</li>
-													</ul>
+					{userDetails &&
+						userDetails?.token !== '' &&
+						userDetails?.status !== '' && (
+							<div className="flex">
+								<div className="flex items-center">
+									<div className="flex items-center ">
+										<span className="mr-3 font-PoppinsRegular text-22px text-white">
+											{userDetails?.firstName} {userDetails?.lastName}
+										</span>
+										<div
+											className="cursor-pointer hover:bg-gray-700 p-2 rounded-md active:bg-gray-900 relative"
+											onClick={redirectDashboard}>
+											<Image src={UserIcon} className="shrink-0" alt={'user icon'} />
+										</div>
+										<span className="relative">
+											<Image
+												src={DownArrow}
+												onClick={_toggleUser}
+												className="cursor-pointer hover:bg-gray-700 rounded-md transition-all duration-300 active:bg-gray-900 p-2 relative"
+												alt={'down-arrow'}
+											/>
+											{toggleUser ? (
+												<div className="absolute right-1 top-10 z-20">
+													<div className="bg-white rounded-lg min-w-[130px] manropeSemiBold shadow-md ">
+														<ul className="divide-y">
+															<li
+																className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
+																onClick={redirectProfile}>
+																Profile
+															</li>
+															<li
+																className="py-3 px-6 text-sm hover:rounded-lg cursor-pointer hover:bg-slate-100"
+																onClick={logOut}>
+																Logout
+															</li>
+														</ul>
+													</div>
 												</div>
-											</div>
-										) : (
-											''
-										)}
-									</span>
+											) : (
+												''
+											)}
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					)}
+						)}
 				</div>
 			</div>
 		</div>

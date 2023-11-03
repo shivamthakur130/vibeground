@@ -195,7 +195,7 @@ const Categories = () => {
 
 	return (
 		<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
 				Choose what suits you
 			</h2>

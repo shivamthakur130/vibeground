@@ -10,9 +10,9 @@ const Welcome = () => {
 				Welcome <Image className="ml-8" src={Hand} alt="#" />
 			</h2>
 			<p className="text-xl text-[#455154] mt-9 mb-6">
-				Enter your E-mail Address, and we’ll send an “OTP” so you can continue
+				Enter your email address, and we’ll send an “OTP” so you can continue
 			</p>
-			<p className="text-xl text-3d3d3d mt-3 mb-8">Your E-mail Address</p>
+			<p className="text-xl text-3d3d3d mt-3 mb-8">Your email Address</p>
 			<input
 				type="email"
 				id="email"

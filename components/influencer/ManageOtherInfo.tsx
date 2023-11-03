@@ -100,7 +100,6 @@ const ManageOtherInfo = ({ user }: any) => {
 	};
 
 	async function onSubmit(formField: any) {
-		console.log(formField);
 		if (!isDateValid(formField.dd, formField.mm, formField.yyyy)) {
 			ErrorMessage(messageTitle, 'Invalid Date of Birth');
 			setLoading(false);

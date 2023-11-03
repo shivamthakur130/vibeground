@@ -139,21 +139,22 @@ const Billing = () => {
 		}
 
 		if (typeof data === 'object' && data !== null && 'data' in data) {
+			console.log(data, 'data');
 			if (!data.status) {
 				ErrorMessage(messageTitle, data.message);
 				setIsProcessingPayment(false);
 				return;
 			}
-			console.log('data', data);
 			SuccessMessage(messageTitle, 'Subscription successfully activated');
 			const subscriptionDetails = data.data.subscriptionDetails;
+			console.log(userData, 'userData');
 			dispatch(
 				updateUser({
 					...userData,
-					status: data.data.status,
+					// status: subscriptionDetails.status,
 					subscription: subscriptionDetails,
-					expiry_date: data.data.expiry_date,
-					purchase_date: data.data.purchase_date,
+					expiry_date: subscriptionDetails?.expiry_date,
+					purchase_date: subscriptionDetails?.purchase_date,
 				})
 			);
 			if (userData.type === 'fan') {
@@ -198,10 +199,10 @@ const Billing = () => {
 					return;
 				}
 				if (result?.paymentIntent?.status == 'succeeded') {
-					localStorage.setItem(
-						'paymentIntent',
-						JSON.stringify(result?.paymentIntent)
-					);
+					// localStorage.setItem(
+					// 	'paymentIntent',
+					// 	JSON.stringify(result?.paymentIntent)
+					// );
 
 					SuccessMessage(messageTitle, 'Payment successfully completed!');
 					const prepareStripeResponse = {
@@ -304,7 +305,7 @@ const Billing = () => {
 				)}
 				<div className={`col-span-5 ${isProcessingPayment ? 'opacity-25' : ''}`}>
 					<h2 className="text-4xl font-PoppinsBold text-111 mb-8">
-						Enter Your Billing information
+						Enter your billing information
 					</h2>
 
 					<CardNumberElement

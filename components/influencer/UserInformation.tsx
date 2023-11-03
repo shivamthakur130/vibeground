@@ -37,7 +37,7 @@ const UserInformation = () => {
 			.min(8, 'Password must be at least 8 characters')
 			.max(20, 'Password must not exceed 20 characters')
 			.matches(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#$%^&*])(?=.{8,})/,
 				'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number'
 			)
 			.required('Password is required'),
@@ -119,9 +119,9 @@ const UserInformation = () => {
 
 	return (
 		<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Enter Your Details
+				Enter your personal details
 			</h2>
 			{loading && (
 				<Loading

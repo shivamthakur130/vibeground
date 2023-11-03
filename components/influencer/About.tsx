@@ -91,7 +91,7 @@ const AboutInfo = () => {
 
 	return (
 		<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative ">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-14">
 				{' '}
 				Tell your fans more about you!

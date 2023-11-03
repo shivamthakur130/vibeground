@@ -81,9 +81,9 @@ const Gender = () => {
 	};
 	return (
 		<div className="Email text-center max-w-xl mx-auto mt-14 mb-24 relative">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Select Your Gender
+				Select your gender
 			</h2>
 			{loading && (
 				<Loading

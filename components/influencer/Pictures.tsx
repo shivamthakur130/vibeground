@@ -104,7 +104,7 @@ const Pictures = () => {
 			}
 		}
 	}, [user]);
-	console.log('user', user);
+
 	const updatePreview = (updatedImages: any) => {
 		const previews = updatedImages.map(
 			(image: Blob | MediaSource, index: string | number) => {
@@ -289,9 +289,9 @@ const Pictures = () => {
 
 	return (
 		<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Upload Your Pictures
+				Upload your pictures
 			</h2>
 			{loading && (
 				<Loading

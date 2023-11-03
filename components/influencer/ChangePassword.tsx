@@ -27,7 +27,7 @@ const ChangePassword = ({ user }: any) => {
 			.min(8, 'Password must be at least 8 characters')
 			.max(20, 'Password must not exceed 20 characters')
 			.matches(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#$%^&*])(?=.{8,})/,
 				'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number'
 			)
 			.required('Password is required'),

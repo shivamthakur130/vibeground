@@ -80,7 +80,6 @@ const Plan = () => {
 
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			const response = data.data;
-			console.log('response', response);
 			if (response.status) {
 				reset();
 				const planId = response.planId;
@@ -138,10 +137,10 @@ const Plan = () => {
 	return (
 		<div className="Plan max-w-[900px] mx-auto mt-14 mb-24 text-center relative">
 			<p className="text-xl text-888 mb-5 text-center">
-				Let’s Complete your Profile
+				Let`s complete your profile
 			</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16 text-center">
-				Choose Your Plan
+				Choose your plan
 			</h2>
 			{loading && (
 				<Loading

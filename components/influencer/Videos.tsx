@@ -48,60 +48,16 @@ const Videos = () => {
 	} = useForm(formOptions);
 	const { errors } = formState;
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		setLoading(true);
-	// 		const { data, error } = await getUser();
-	// 		if (error) {
-	// 			setLoading(false);
-	// 			handleError(error);
-	// 			return;
-	// 		}
-	// 		if (typeof data === 'object' && data !== null && 'data' in data) {
-	// 			const videosList = data?.data?.videos ? data?.data?.videos : [];
-	// 			dispatch(
-	// 				updateUser({
-	// 					...user,
-	// 					videos: videosList,
-	// 				})
-	// 			);
-	// 			if (videosList) {
-	// 				const previews = videosList.map((video: any) => (video ? video : null));
-	// 				setVideosPreviews(previews);
-	// 			}
-	// 		}
-	// 		setLoading(false);
-	// 	})();
-	// }, []);
-
-	// useEffect(() => {
-	// 	const previews = selectedVideos.map((video, index) => {
-	// 		if (video) {
-	// 			return URL.createObjectURL(video);
-	// 		}
-	// 		if (user?.videos) {
-	// 			return user?.videos[index] ? user?.videos[index] : null;
-	// 		}
-	// 		return null;
-	// 	});
-	// 	if (!firstLoad) {
-	// 		setVideosPreviews(previews);
-	// 		handleValidation();
-	// 	}
-	// }, [selectedVideos]);
-
 	useEffect(() => {
 		if (user) {
 			setSubscription(user?.subscription);
 			setPlanDetails(user?.subscription?.planId);
 			if (user?.subscription?.planId?.max_videos) {
-				console.log(user?.subscription?.planId?.max_videos);
 				setSelectedVideos(Array(user?.subscription?.planId?.max_videos).fill(null));
 				setVideosPreviews(Array(user?.subscription?.planId?.max_videos).fill(null));
 			}
 			const videosList = user?.videos;
 			if (videosList) {
-				console.log('videosList', videosList);
 				const previews = videosList.map((video: any) => (video ? video : null));
 				setVideosPreviews(previews);
 			}
@@ -299,9 +255,9 @@ const Videos = () => {
 
 	return (
 		<div className="Email text-center  max-w-7xl  mx-auto  mt-20 mb-20 relative ">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
-				Upload Your Videos
+				Upload your videos
 			</h2>
 			{loading && (
 				<Loading

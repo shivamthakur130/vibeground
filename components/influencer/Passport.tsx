@@ -137,7 +137,7 @@ const Passport = () => {
 	};
 	return (
 		<div className="Email text-center max-w-4xl mx-auto mt-28 mb-24 relative">
-			<p className="text-xl text-888 mb-5">Let’s Complete your Profile</p>
+			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
 			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
 				Upload your Passport or ID to verify
 			</h2>
@@ -191,6 +191,7 @@ const Passport = () => {
 								})}
 								name="passport_front"
 							/>
+							<div className="pt-2">(Front side)</div>
 						</label>
 						{errors.passport_front?.message && (
 							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
@@ -237,6 +238,7 @@ const Passport = () => {
 								})}
 								name="passport_back"
 							/>
+							<div className="pt-2">(Back side)</div>
 						</label>
 						{/* <label
 							htmlFor="passport_back"

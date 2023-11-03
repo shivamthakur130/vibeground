@@ -9,9 +9,9 @@ import Heart from '@/assets/images/heart.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
 const Dashboard = () => {
 	return (
-		<div className="Influencer max-w-7xl px-5 mx-auto mt-24 mb-24">
+		<div className=" max-w-7xl px-5 mx-auto mt-24 mb-24">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center mb-10">
-				Influencer
+				Experience
 			</h2>
 			<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 				<div className="relative">
@@ -31,7 +31,7 @@ const Dashboard = () => {
 					<div className="absolute bottom-0 left-0 right-0 p-8">
 						<Image src={Croun} alt="#" />
 						<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-							Newcomer of week{' '}
+							Newcomer of the week{' '}
 							<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
 								<Image src={Arrow} alt="#" />
 							</span>

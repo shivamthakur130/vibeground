@@ -31,7 +31,7 @@ const Experience = () => {
 					<div className="absolute bottom-0 left-0 right-0 p-8">
 						<Image src={Croun} alt="#" />
 						<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-							Newcomer of week{' '}
+							Newcomer of the week{' '}
 							<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
 								<Image src={Arrow} alt="#" />
 							</span>
