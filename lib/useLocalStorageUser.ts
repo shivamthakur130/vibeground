@@ -20,3 +20,20 @@ export const getUser = () => {
 		return null;
 	}
 };
+export const setLoginType = (loginType: string) => {
+	try {
+		localStorage.setItem('loginType', loginType);
+	} catch (err) {}
+};
+export const getLoginType = () => {
+	try {
+		const loginType = localStorage.getItem('loginType');
+
+		if (loginType === null) {
+			return 'fan';
+		}
+		return loginType;
+	} catch (err) {
+		return 'fan';
+	}
+};

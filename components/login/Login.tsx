@@ -3,9 +3,9 @@ import Google from '@/assets/images/google.png';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import Hand from '@/assets/images/hand.png';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { setUser, updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
@@ -20,10 +20,12 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import Link from 'next/link';
+import { getLoginType, setLoginType } from '@/lib/useLocalStorageUser';
 
 const Login = () => {
 	const [loading, setLoading] = useState(false);
 	const [typeLogin, setTypeLogin] = useState('fan');
+
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { replace } = useRouter();
@@ -34,9 +36,24 @@ const Login = () => {
 		password: Yup.string().required('Password is required'),
 		// type: Yup.string().required('Type is required'),
 	});
+	useEffect(() => {
+		if (user?.token !== '' && user?.token !== null) {
+			if (user?.type === 'fan') {
+				replace('/experience');
+			} else if (user?.type === 'model') {
+				replace('/influencer');
+			}
+		}
+		const loginType = getLoginType();
+		if (loginType) {
+			setTypeLogin(loginType);
+		}
+		return () => {};
+	}, []);
 
 	const changeLoginType = () => {
-		setTypeLogin(typeLogin == 'fan' ? 'model' : 'fan');
+		const type = typeLogin == 'fan' ? 'model' : 'fan';
+		setTypeLogin(type);
 	};
 
 	const formOptions = { resolver: yupResolver(validationSchema) };
@@ -76,6 +93,7 @@ const Login = () => {
 			reset();
 			dispatch(updateUser({ ...user, userId: userId, ...data.data }));
 			SuccessMessage('Login Operation', 'Login success');
+			setLoginType(typeLogin);
 			if (typeLogin === 'fan') {
 				replace('/experience');
 			} else {
@@ -158,7 +176,7 @@ const Login = () => {
 	return (
 		<div className="Login max-w-3xl mx-auto mt-24 mb-40 px-10 relative">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center justify-center">
-				Welcome to {typeLogin === 'fan' ? 'User' : 'Influencer'}{' '}
+				Login as {typeLogin === 'fan' ? 'fan' : 'model'}{' '}
 				<Image className="ml-8" src={Hand} alt="#" />
 			</h2>
 			{loading && (

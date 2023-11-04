@@ -27,7 +27,6 @@ const UserProfile = () => {
 			<div className="flex items-center">
 				<div className="flex-shrink-0 mr-10">
 					<AiOutlineUser className="w-40 h-40 shadow-sm rounded-md border" />
-					{/* <Image className="w-40 h-40" src={ProfileImg} alt="Neil image" /> */}
 				</div>
 				<div className="flex-1 min-w-0">
 					<p className="text-5xl font-PoppinsMedium text-[#444]">

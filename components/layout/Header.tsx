@@ -12,7 +12,7 @@ import { memo } from 'react';
 import { getUser } from '@/services/user.service';
 import { useAppDispatch } from '@/redux/hooks';
 import { removeUser, updateUser } from '@/redux/slice/user';
-
+import { AiOutlineDashboard } from 'react-icons/ai';
 const Header = () => {
 	const [toggleUser, setToggleUser] = useState(false);
 	const [userDetails, setUserDetails] = useState<any>(null);
@@ -132,13 +132,16 @@ const Header = () => {
 							<div className="flex">
 								<div className="flex items-center">
 									<div className="flex items-center ">
-										<span className="mr-3 font-PoppinsRegular text-22px text-white">
+										<span
+											className="mr-3 font-PoppinsRegular text-22px text-white cursor-pointer"
+											onClick={redirectProfile}>
 											{userDetails?.firstName} {userDetails?.lastName}
 										</span>
 										<div
 											className="cursor-pointer hover:bg-gray-700 p-2 rounded-md active:bg-gray-900 relative"
 											onClick={redirectDashboard}>
-											<Image src={UserIcon} className="shrink-0" alt={'user icon'} />
+											<AiOutlineDashboard className="text-3xl text-white" />
+											{/* <Image src={UserIcon} className="shrink-0" alt={'user icon'} /> */}
 										</div>
 										<span className="relative">
 											<Image

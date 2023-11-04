@@ -7,6 +7,7 @@ import Arrow from '@/assets/images/svg/arrow-right.svg';
 import Link from 'next/link';
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const UserProfile = () => {
 	const { replace } = useRouter();
@@ -32,11 +33,7 @@ const UserProfile = () => {
 							alt="Neil image"
 						/>
 					) : (
-						<Image
-							className="w-40 h-40 shadow-sm rounded-md"
-							src={ProfileImg}
-							alt="Neil image"
-						/>
+						<AiOutlineUser className="w-40 h-40 shadow-sm rounded-md border" />
 					)}
 				</div>
 				<div className="flex-1 min-w-0">
