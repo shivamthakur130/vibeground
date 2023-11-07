@@ -282,18 +282,17 @@ const ManageVideos = ({ user }: any) => {
 				/>
 			)}
 			<div
-				className={`flex items-center space-x-7  ${
-					showHideSection
+				className={`flex items-center space-x-7  ${showHideSection
 						? 'hidden transition-all duration-300'
 						: 'transition-all duration-300'
-				}`}>
+					}`}>
 				<form
 					id="VideoForm"
 					name="VideoForm"
 					onSubmit={handleSubmit(onSubmit)}
 					className={`${loading ? 'opacity-25' : ''}`}
 					encType="multipart/form-data">
-					<div className="grid grid-cols-5 gap-6 my-6">
+					<div className="grid grid-cols-2 md:grid-cols-5 gap-6 my-6">
 						{selectedVideos.map((item, index) => (
 							<div key={index}>
 								{videosPreviews[index] == null && !item ? (

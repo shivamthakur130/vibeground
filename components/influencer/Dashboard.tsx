@@ -10,7 +10,7 @@ import Arrow from '@/assets/images/svg/arrow-right.svg';
 const Dashboard = () => {
 	return (
 		<div className=" max-w-7xl px-5 mx-auto mt-24 mb-24">
-			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center mb-10">
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 flex items-center mb-10">
 				Experience
 			</h2>
 			<div className="grid md:grid-cols-2 gap-5 md:gap-10">

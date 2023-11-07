@@ -133,7 +133,7 @@ const Header = () => {
 								<div className="flex items-center">
 									<div className="flex items-center ">
 										<span
-											className="mr-3 font-PoppinsRegular text-22px text-white cursor-pointer"
+											className="hidden sm:block mr-3 font-PoppinsRegular text-22px text-white cursor-pointer"
 											onClick={redirectProfile}>
 											{userDetails?.firstName} {userDetails?.lastName}
 										</span>

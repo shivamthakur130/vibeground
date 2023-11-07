@@ -140,11 +140,11 @@ const AddLinks = () => {
 	};
 
 	return (
-		<div className="Email max-w-2xl mx-auto mt-10 mb-20 text-center">
-			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
+		<div className="Email max-w-2xl mx-auto mt-10 mb-20 text-center px-4">
+			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
 			{planDetails && (
 				<>
-					<h2 className="text-5xl font-PoppinsBold text-111 mb-7">
+					<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-7">
 						{planDetails?.name === 'Exclusive' ? 'Add your links' : 'Add your link'}
 					</h2>
 					{loading && (

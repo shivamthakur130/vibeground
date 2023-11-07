@@ -136,9 +136,9 @@ const Passport = () => {
 		setPassportBack(null);
 	};
 	return (
-		<div className="Email text-center max-w-4xl mx-auto mt-28 mb-24 relative">
-			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
+		<div className="Email text-center max-w-4xl mx-auto mt-28 mb-24 relative px-4">
+			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
+			<h2 className="md:text-5xl text-xl font-PoppinsBold text-111 mb-16">
 				Upload your Passport or ID to verify
 			</h2>
 			{loading && (

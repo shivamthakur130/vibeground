@@ -135,11 +135,11 @@ const Plan = () => {
 	};
 
 	return (
-		<div className="Plan max-w-[900px] mx-auto mt-14 mb-24 text-center relative">
-			<p className="text-xl text-888 mb-5 text-center">
+		<div className="Plan max-w-[900px] mx-auto mt-14 mb-24 text-center relative px-4">
+			<p className="md:text-xl text-xs text-888 mb-5">
 				Let`s complete your profile
 			</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16 text-center">
+			<h2 className="hidden md:block  md:text-5xl text-lg font-PoppinsBold text-111 mb-16 md:text-center">
 				Choose your plan
 			</h2>
 			{loading && (
@@ -161,11 +161,10 @@ const Plan = () => {
 				<div className="mx-auto flex justify-center space-x-8">
 					{planList.map((plan, index) => (
 						<div
-							className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${
-								selectedPlan == plan._id
-									? 'border-2 border-[#F4BE55]'
-									: 'border-2 border-[#DFE9DF]'
-							}`}
+							className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${selectedPlan == plan._id
+								? 'border-2 border-[#F4BE55]'
+								: 'border-2 border-[#DFE9DF]'
+								}`}
 							key={index}
 							onClick={() => updatePlan(plan._id)}>
 							{plan.recommended && (
@@ -208,20 +207,20 @@ const Plan = () => {
 							<ul className="space-y-4 text-sm">
 								{plan.type == 'model' && (
 									<>
-										<li className="flex justify-between">
+										<li className="flex justify-between items-start">
 											Maximum Picture Upload
 											<span className="border-2 border-green-700 rounded-full px-2  font-PoppinsSemiBold">
 												{plan.max_pics}
 											</span>
 										</li>
-										<li className="flex justify-between">
+										<li className="flex justify-between items-start">
 											Maximum Video Upload
 											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
 												{' '}
 												{plan.max_videos}{' '}
 											</span>
 										</li>
-										<li className="flex justify-between">
+										<li className="flex justify-between items-start">
 											Maximum Link Add
 											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
 												{' '}

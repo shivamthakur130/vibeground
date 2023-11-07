@@ -287,18 +287,17 @@ const ManageImages = ({ user }: any) => {
 				/>
 			)}
 			<div
-				className={`flex items-center space-x-7  ${
-					showHideSection
+				className={`flex items-center space-x-7  ${showHideSection
 						? 'hidden transition-all duration-300'
 						: 'transition-all duration-300'
-				}`}>
+					}`}>
 				<form
 					id="ImageForm"
 					name="ImageForm"
 					onSubmit={handleSubmit(onSubmit)}
 					className={`${loading ? 'opacity-25' : ''}`}
 					encType="multipart/form-data">
-					<div className="grid grid-cols-5 gap-6 my-6 mx-auto">
+					<div className="grid grid-cols-2 md:grid-cols-5 gap-6 my-6 mx-auto">
 						{selectedPictures.map((_, index) => (
 							<div key={index}>
 								{!picturesPreviews[index] ? (

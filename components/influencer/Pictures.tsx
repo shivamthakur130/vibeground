@@ -288,9 +288,9 @@ const Pictures = () => {
 	};
 
 	return (
-		<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center">
-			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
+		<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center px-4">
+			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
 				Upload your pictures
 			</h2>
 			{loading && (
@@ -305,7 +305,7 @@ const Pictures = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${loading ? 'opacity-25' : ''}`}
 				encType="multipart/form-data">
-				<div className="grid grid-cols-5 gap-6 my-6 mx-auto">
+				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 my-6 mx-auto">
 					{selectedPictures.map((_, index) => (
 						<div key={index}>
 							{!picturesPreviews[index] ? (

@@ -194,9 +194,9 @@ const Categories = () => {
 	};
 
 	return (
-		<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20">
-			<p className="text-xl text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">
+		<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20 px-4">
+			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
 				Choose what suits you
 			</h2>
 			{loading && (

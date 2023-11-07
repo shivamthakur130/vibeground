@@ -204,17 +204,16 @@ const ManageOtherInfo = ({ user }: any) => {
 				/>
 			)}
 			<div
-				className={`max-w-2xl ${
-					showHideSection
-						? 'hidden transition-all duration-300'
-						: 'transition-all duration-300'
-				}`}>
+				className={`max-w-2xl ${showHideSection
+					? 'hidden transition-all duration-300'
+					: 'transition-all duration-300'
+					}`}>
 				<form
 					id="OtherInfo"
 					name="OtherInfo"
 					onSubmit={handleSubmit(onSubmit)}
 					className={`${loading ? 'opacity-25' : ''}`}>
-					<div className="flex justify-between w-full space-x-10">
+					<div className="flex md:flex-row flex-col justify-between w-full md:space-x-10">
 						<div className="w-full">
 							<label className="">
 								First Name <span className="text-red-500">*</span>
@@ -237,7 +236,7 @@ const ManageOtherInfo = ({ user }: any) => {
 								</div>
 							)}
 						</div>
-						<div className="w-full">
+						<div className="w-full pt-4 md:pt-0">
 							<label>
 								Last Name <span className="text-red-500">*</span>
 							</label>
@@ -367,7 +366,7 @@ const ManageOtherInfo = ({ user }: any) => {
 						<label>
 							Gender <span className="text-red-500">*</span>
 						</label>
-						<div className="grid  grid-cols-3 gap-6 mt-2">
+						<div className="grid  md:grid-cols-3 grid-flow-row md:grid-flow-col gap-6 mt-2">
 							<label
 								className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4 mb-4"
 								htmlFor="maleRadio">

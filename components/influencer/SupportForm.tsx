@@ -4,7 +4,7 @@ import Link from 'next/link';
 const SupportForm = () => {
 	return (
 		<div className="Email text-center max-w-xl mx-auto mt-40 mb-40">
-			<h2 className="text-5xl font-PoppinsBold text-111 mb-16">Support Form</h2>
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">Support Form</h2>
 			<div className="space-y-5">
 				<select className="border border-[#C1C1C1] text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-[#C1C1C1]-500 block w-full py-4 px-4 ">
 					<option>Problem with payment</option>

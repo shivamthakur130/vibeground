@@ -25,10 +25,10 @@ const UserProfile = () => {
 				</div>
 			</div>
 			<div className="flex items-center">
-				<div className="flex-shrink-0 mr-10 ">
+				<div className="flex-shrink-0 mr-5 md:mr-10 ">
 					{user?.photos?.length > 0 ? (
 						<img
-							className="w-40 h-40 shadow-sm rounded-md"
+							className="w-20 h-20 md:w-40 md:h-40 shadow-sm rounded-md"
 							src={user?.photos[0]}
 							alt="Neil image"
 						/>
@@ -37,10 +37,10 @@ const UserProfile = () => {
 					)}
 				</div>
 				<div className="flex-1 min-w-0">
-					<p className="text-5xl font-PoppinsMedium text-[#444]">
+					<p className="md:text-5xl text-xl font-PoppinsMedium text-[#444]">
 						{user?.firstName} {user?.lastName}
 					</p>
-					<p className="text-2xl text-[#444]">{user?.email}</p>
+					<p className="md:text-2xl text-base text-[#444]">{user?.email}</p>
 				</div>
 			</div>
 
