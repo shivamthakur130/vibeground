@@ -92,10 +92,15 @@ const Selection = () => {
 	};
 	return (
 		<div className="Email text-center max-w-2xl mx-auto mt-14 mb-24 relative px-4">
-			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
+			<p className="md:text-xl text-xs text-888 mb-5">
+				Let`s complete your profile
+			</p>
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-2">
 				Where are you from?
 			</h2>
+			<div className="mb-14">
+				{user.type !== 'fan' && <>(This is not visible to the fans)</>}
+			</div>
 			{loading && (
 				<Loading
 					width={50}

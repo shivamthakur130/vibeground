@@ -119,10 +119,13 @@ const UserInformation = () => {
 
 	return (
 		<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative">
-			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
+			<p className="md:text-xl text-xs text-888 mb-5">
+				Let`s complete your profile
+			</p>
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-2">
 				Enter your personal details
 			</h2>
+			<div className="mb-16">(Only your username is visible to the fans)</div>
 			{loading && (
 				<Loading
 					width={50}

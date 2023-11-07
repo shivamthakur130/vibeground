@@ -88,10 +88,13 @@ const UserDetails = () => {
 	};
 	return (
 		<div className="Email max-w-2xl text-center mx-auto mt-16 mb-40 relative">
-			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
+			<p className="md:text-xl text-xs text-888 mb-5">
+				Let`s complete your profile
+			</p>
 			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
 				Enter your details
 			</h2>
+
 			{loading && (
 				<Loading
 					width={50}
