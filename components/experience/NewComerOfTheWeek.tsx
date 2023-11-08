@@ -8,8 +8,8 @@ import Like from '@/assets/images/svg/like.svg';
 
 const NewComerWeek = () => {
 	return (
-		<div className="Experience max-w-7xl px-5 mx-auto mt-24 mb-24">
-			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center mb-10">
+		<div className="Experience max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
+			<h2 className="md:text-5xl text-2xl font-PoppinsSemiBold text-111 flex items-center mb-10">
 				NewComer of the Week
 			</h2>
 			<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10">
