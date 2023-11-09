@@ -92,7 +92,8 @@ const DOB = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
-		if (!isDateValid(formField.dd, formField.mm, formField.yyyy)) {
+
+		if (!isDateValid(selectedDay, selectedMonth, selectedYear)) {
 			ErrorMessage(messageTitle, 'Invalid Date of Birth');
 			setLoading(false);
 			return;
@@ -112,7 +113,7 @@ const DOB = () => {
 		}
 
 		try {
-			const dateOfBirth = `${formField.dd}-${formField.mm}-${formField.yyyy}`;
+			const dateOfBirth = `${selectedDay}-${selectedMonth}-${selectedYear}`;
 			const response = await fanDob({
 				userId: user.userId,
 				dob: dateOfBirth,
@@ -180,6 +181,11 @@ const DOB = () => {
 									clearErrors('dd');
 								},
 							})}
+							onKeyDown={(e) => {
+								// setSelectedDay(e.target.value);
+								// setValue('dd', e.target.value);
+								// clearErrors('dd');
+							}}
 							className="text-center border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 ">
 							<option value="">DD</option>
 							{days.map((day) => (
