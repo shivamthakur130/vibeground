@@ -20,9 +20,11 @@ const Dashboard = () => {
 						<Image src={Heart} alt="#" />
 						<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
 							Meet & Greet{' '}
-							<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-								<Image src={Arrow} alt="#" />
-							</span>
+							<Link href="/influencer/meet-&-greet">
+								<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+									<Image src={Arrow} alt="#" />
+								</span>
+							</Link>
 						</h3>
 					</div>
 				</div>

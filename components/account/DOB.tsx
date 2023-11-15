@@ -1,6 +1,5 @@
 'use client';
 import React, { useRef } from 'react';
-import Link from 'next/link';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,35 +10,36 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { fanDob } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
-
 import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import AgeVerificationDialog from './AgeVerificationDialog';
 
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import moment from 'moment';
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 const DOB = () => {
-	const [selectedDay, setSelectedDay] = useState<string>('');
-	const [selectedMonth, setSelectedMonth] = useState<string>('');
-	const [selectedYear, setSelectedYear] = useState<string>('');
+	// start date of birth more than 18 years ago
+	const startDate = new Date();
+	startDate.setFullYear(startDate.getFullYear() - 18);
+	const [selectedDate, setSelectedDate] = useState<Date>(startDate);
+
 	const [showAgeVerificationDialog, setShowAgeVerificationDialog] =
 		useState<boolean>(false);
-	// Define arrays for days, months, and years
-	const days = Array.from({ length: 31 }, (_, i) => i + 1);
-	const months = Array.from({ length: 12 }, (_, i) => i + 1);
-	const years = Array.from({ length: 100 }, (_, i) => i + 1923); // Adjust the starting year as needed
 
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
 
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { push } = useRouter();
-
 	// form validation rules
 	const validationSchema = Yup.object().shape({
-		dd: Yup.string().required('Day is required'),
-		mm: Yup.string().required('Month is required'),
-		yyyy: Yup.string().required('Year is required'),
 		checkAgeVerified: Yup.string(),
 	});
 	const messageTitle =
@@ -57,22 +57,8 @@ const DOB = () => {
 	} = useForm(formOptions);
 	const { errors } = formState;
 
-	const isDateValid = (day: string, month: string, year: string): boolean => {
-		const date = new Date(`${year}-${month}-${day}`);
-		return (
-			!isNaN(date.getTime()) &&
-			date.getDate() === parseInt(day, 10) &&
-			date.getMonth() + 1 === parseInt(month, 10) &&
-			date.getFullYear() === parseInt(year, 10)
-		);
-	};
-
-	const checkAgeIsValid = (
-		day: string,
-		month: string,
-		year: string
-	): boolean => {
-		const date = new Date(`${year}-${month}-${day}`);
+	const checkAgeIsValid = (selected: Date): boolean => {
+		const date = new Date(selected);
 		const today = new Date();
 		const age = today.getFullYear() - date.getFullYear();
 		const monthDiff = today.getMonth() - date.getMonth();
@@ -92,35 +78,33 @@ const DOB = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
-
-		if (!isDateValid(selectedDay, selectedMonth, selectedYear)) {
-			ErrorMessage(messageTitle, 'Invalid Date of Birth');
+		console.log('formField', formField);
+		// check if age is valid
+		if (!selectedDate) {
+			ErrorMessage(messageTitle, 'Please select a date of birth');
 			setLoading(false);
 			return;
 		}
-		// check if age is valid
-		if (!checkAgeIsValid(formField.dd, formField.mm, formField.yyyy)) {
+		if (!checkAgeIsValid(selectedDate)) {
 			ErrorMessage(messageTitle, 'You must be 18 years or older to join');
 			setLoading(false);
 			return;
 		}
 		if (formField.checkAgeVerified === 'false') {
-			// if (!checkAgeIsValid(formField.dd, formField.mm, formField.yyyy)) {
 			setShowAgeVerificationDialog(true);
 			setLoading(false);
 			return;
-			// }
 		}
-
+		const formattedDate = moment(selectedDate).format('DD-MM-YYYY');
+		// const formattedDate = moment(dateStr);
 		try {
-			const dateOfBirth = `${selectedDay}-${selectedMonth}-${selectedYear}`;
 			const response = await fanDob({
 				userId: user.userId,
-				dob: dateOfBirth,
+				dob: formattedDate,
 			});
 			if (response.status === 201) {
 				reset();
-				dispatch(updateUser({ ...user, date_of_birth: dateOfBirth }));
+				dispatch(updateUser({ ...user, date_of_birth: formattedDate }));
 				SuccessMessage(messageTitle, 'Date of birth saved successfully.');
 				push('/account/gender');
 			} else {
@@ -150,12 +134,12 @@ const DOB = () => {
 	};
 
 	return (
-		<div className="Email text-center max-w-2xl mx-auto mt-24 mb-24 relative px-4">
+		<div className="Email text-center max-w-2xl mx-auto mt-28 mb-24 relative px-4">
 			<p className="md:text-xl text-xs text-888 mb-5">
 				Let`s complete your profile
 			</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
-				Enter your date of birth
+			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-10">
+				Choose your date of birth
 			</h2>
 			{loading && (
 				<Loading
@@ -170,7 +154,22 @@ const DOB = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${loading ? 'opacity-25' : ''}`}>
 				<input type="hidden" {...register('checkAgeVerified')} value={'false'} />
-				<div className="grid   grid-cols-3 gap-6 my-6 ">
+				<div className=" flex justify-center">
+					<DatePicker
+						onChange={(date: Value) => {
+							const dateStr = `${date}`;
+							// const formattedDate = moment(dateStr).format('YYYY-MM-DD');
+							const formattedDate = moment(dateStr);
+
+							setSelectedDate(formattedDate.toDate());
+						}}
+						clearIcon={null}
+						value={selectedDate}
+						format="dd-MM-y"
+						className=" text-gray-900 text-tg rounded-lg focus:ring-black-500 focus:border-black-500 block py-4 px-4"
+					/>
+				</div>
+				{/* <div className="grid   grid-cols-3 gap-6 my-6 ">
 					<div>
 						<select
 							id="day"
@@ -248,7 +247,7 @@ const DOB = () => {
 							</div>
 						)}
 					</div>
-				</div>
+				</div> */}
 				<button
 					ref={buttonRef}
 					className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
