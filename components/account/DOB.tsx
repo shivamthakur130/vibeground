@@ -15,11 +15,11 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import AgeVerificationDialog from './AgeVerificationDialog';
-
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
+
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -133,6 +133,13 @@ const DOB = () => {
 		}
 	};
 
+	const onChangeDate = (date: Value) => {
+		const dateStr = `${date}`;
+		// const formattedDate = moment(dateStr).format('YYYY-MM-DD');
+		const formattedDate = moment(dateStr);
+		setSelectedDate(formattedDate.toDate());
+	};
+
 	return (
 		<div className="Email text-center max-w-2xl mx-auto mt-28 mb-24 relative px-4">
 			<p className="md:text-xl text-xs text-888 mb-5">
@@ -156,13 +163,7 @@ const DOB = () => {
 				<input type="hidden" {...register('checkAgeVerified')} value={'false'} />
 				<div className=" flex justify-center">
 					<DatePicker
-						onChange={(date: Value) => {
-							const dateStr = `${date}`;
-							// const formattedDate = moment(dateStr).format('YYYY-MM-DD');
-							const formattedDate = moment(dateStr);
-
-							setSelectedDate(formattedDate.toDate());
-						}}
+						onChange={onChangeDate}
 						clearIcon={null}
 						value={selectedDate}
 						format="dd-MM-y"
