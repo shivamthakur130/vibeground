@@ -94,7 +94,7 @@ const Login = () => {
 			dispatch(updateUser({ ...user, userId: userId, ...data.data }));
 			SuccessMessage('Login Operation', 'Login success');
 			setLoginType(typeLogin);
-			if (typeLogin === 'fan') {
+			if (data.data.type === 'fan') {
 				replace('/experience');
 			} else {
 				replace('/influencer');
@@ -163,7 +163,7 @@ const Login = () => {
 					})
 				);
 			}
-			if (typeLogin === 'fan') {
+			if (data.data.type === 'fan') {
 				replace('/experience');
 			} else {
 				replace('/influencer');
@@ -176,8 +176,9 @@ const Login = () => {
 	return (
 		<div className="Login max-w-3xl mx-auto mt-24 mb-40 px-10 relative">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center justify-center">
-				Login as {typeLogin === 'fan' ? 'fan' : 'model'}{' '}
-				<Image className="ml-8" src={Hand} alt="#" />
+				Login
+				{/*as {typeLogin === 'fan' ? 'fan' : 'model'}{' '} */}
+				{/* <Image className="ml-8" src={Hand} alt="#" /> */}
 			</h2>
 			{loading && (
 				<Loading
@@ -248,14 +249,14 @@ const Login = () => {
 							<Image src={Google} alt="#" />
 						</button>
 					</div>
-					<div className="pt-3 mt-4">
+					{/* <div className="pt-3 mt-4">
 						<button
 							type="button"
 							onClick={changeLoginType}
 							className="btn btn-default px-10 hover:bg-151515 hover:text-white py-3 text-xl text-303030 border rounded-[8px] transition-all duration-300 active:bg-303030 border-black">
 							Are You {typeLogin == 'fan' ? 'model' : 'fan'}?
 						</button>
-					</div>
+					</div> */}
 				</div>
 			</form>
 		</div>

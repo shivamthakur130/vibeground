@@ -32,7 +32,7 @@ const MeetAndGreetDetails = () => {
 			.min(10, 'Phone Number must be at least 10 digits')
 			.max(10, 'Phone Number must not exceed 10 digits'),
 		emailId: Yup.string().required('Email Id is required').email('Invalid Email'),
-		instagramId: Yup.string().required('Instagram Id is required'),
+		instagramId: Yup.string().required('Instagram  is required'),
 	});
 
 	const formOptions = { resolver: yupResolver(validationSchema) };
@@ -168,7 +168,7 @@ const MeetAndGreetDetails = () => {
 						</div>
 						<div className="input-box">
 							<div className="text-[#3D3D3D] text-lg font-PoppinsBold pt-8 pb-1">
-								Instagram Id
+								Instagram
 							</div>
 							<input
 								type="text"
