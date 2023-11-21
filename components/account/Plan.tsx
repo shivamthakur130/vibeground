@@ -161,10 +161,11 @@ const Plan = () => {
 				<div className="mx-auto flex justify-center space-x-8">
 					{planList.map((plan, index) => (
 						<div
-							className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${selectedPlan == plan._id
-								? 'border-2 border-[#F4BE55]'
-								: 'border-2 border-[#DFE9DF]'
-								}`}
+							className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${
+								selectedPlan == plan._id
+									? 'border-2 border-[#F4BE55]'
+									: 'border-2 border-[#DFE9DF]'
+							}`}
 							key={index}
 							onClick={() => updatePlan(plan._id)}>
 							{plan.recommended && (
@@ -265,7 +266,7 @@ const Plan = () => {
 								)}
 								{plan.type == 'model' && (
 									<li className="flex justify-between">
-										Newcomer of the week
+										Newcomer of the month
 										{plan.features.newComerOfWeek == 'full' ? (
 											<span>
 												<Image src={Tic} alt="#" />

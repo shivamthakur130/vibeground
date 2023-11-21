@@ -78,7 +78,6 @@ const DOB = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
-		console.log('formField', formField);
 		// check if age is valid
 		if (!selectedDate) {
 			ErrorMessage(messageTitle, 'Please select a date of birth');
@@ -141,7 +140,7 @@ const DOB = () => {
 	};
 
 	return (
-		<div className="Email text-center max-w-2xl mx-auto mt-28 mb-24 relative px-4">
+		<div className="Email text-center max-w-2xl mx-auto sm:mt-28 sm:mb-24 relative px-4 mt-10">
 			<p className="md:text-xl text-xs text-888 mb-5">
 				Let`s complete your profile
 			</p>

@@ -1,37 +1,197 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import MeetGreet from '@/assets/images/meetandgreet.png';
 import Location from '@/assets/images/svg/mapmarkar.svg';
 import Calendar from '@/assets/images/svg/calendar.svg';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
+import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { removeUser } from '@/redux/slice/user';
+import { useAppDispatch } from '@/redux/hooks';
+import { useSelector } from 'react-redux';
+import { getMeetAndGreetModel, buyTicket } from '@/services/user.service';
+import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { User } from '@/types/User';
+import Loading from '../layout/Loading';
+import moment from 'moment';
 
 const MeetAndGreet = () => {
+	const { replace } = useRouter();
+	const [loading, setLoading] = useState(false);
+	const [modelDetails, setModelDetails] = useState<User | null>(null);
+	const dispatch = useAppDispatch();
+	const user = useSelector((state: any) => state.userReducer.user);
+	const messageTitle = 'Meet & Greet';
+
+	const settings = {
+		dots: true,
+		infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: false,
+		speed: 500,
+		swipeToSlide: true,
+		// appendDots: (dots: any) => (
+		// 	<div
+		// 		style={{
+		// 			bottom: '-35px',
+		// 		}}>
+		// 		<ul style={{ margin: '0px' }}> {dots} </ul>
+		// 	</div>
+		// ),
+		// customPaging: (i: any) => (
+		// 	<div className="p-2 bg-gray-700 m-2 rounded-full"></div>
+		// ),
+		// autoplaySpeed: 2000,
+		// cssEase: 'linear',
+	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		(async () => {
+			setLoading(true);
+			const id = '655a554a09facc7a369559a0';
+			const { data, error } = await getMeetAndGreetModel(id);
+			if (error) {
+				setLoading(false);
+				handleError(error);
+				return;
+			}
+			setModelDetails((data as { data: any })['data']);
+			setLoading(false);
+		})();
+	}, []);
+
+	const handleError = (error: any) => {
+		if (error.response?.status === 401) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+		if (error.response) {
+			let message = error.response.data.message;
+			ErrorMessage(messageTitle, message);
+		} else if (error.request) {
+			ErrorMessage(
+				messageTitle,
+				'Network Error. Please check your internet connection.'
+			);
+		} else {
+			ErrorMessage(
+				messageTitle,
+				'An unexpected error occurred. Please try again later.'
+			);
+		}
+	};
+
+	const getAge = (dateString: Date | null | undefined) => {
+		if (!dateString) return 0;
+		const today = new Date();
+		const birthDate = new Date(dateString);
+		let age = today.getFullYear() - birthDate.getFullYear();
+		const month = today.getMonth() - birthDate.getMonth();
+		if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+			age--;
+		}
+		return age;
+	};
+	const bookedTicket = () => {
+		(async () => {
+			setLoading(true);
+			const request = {
+				id: '655a554a09facc7a369559a0',
+			};
+			const { data, error } = await buyTicket(request);
+			console.log(data, error);
+			if (error) {
+				setLoading(false);
+				handleError(error);
+				return;
+			}
+			if (typeof data === 'object' && data !== null && 'data' in data) {
+				console.log(data);
+				if (data.status) {
+					const modelName = modelDetails?.firstName + ' ' + modelDetails?.lastName;
+					replace(`/experience/thank-you-meet-greet?name=${modelName}`);
+				}
+			}
+			setLoading(false);
+		})();
+	};
+
+	if (loading) {
+		return (
+			<div className="max-w-7xl mx-auto h-96">
+				<Loading
+					width={50}
+					height={50}
+					className="flex absolute justify-center w-96
+				z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+				/>
+			</div>
+		);
+	}
+
 	return (
-		<div className="Experience max-w-7xl px-5 mx-auto mt-24 mb-24">
-			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center mb-10">
-				Meet & Greet
+		<div className="Experience max-w-7xl px-5 mx-auto sm:mt-24 sm:mb-24 mt-10 mb-20">
+			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex items-center mb-10">
+				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
+					<Link href="/experience">
+						<Image src={ArrowLeft} height={32} width={32} alt="#" />
+					</Link>
+				</div>
+				<div className="ml-10">Meet & Greet</div>
 			</h2>
+
 			<div className="flex flex-col md:flex-row">
-				<div className="relative rounded-md overflow-hidden md:mr-16">
-					<Image src={MeetGreet} className="h-[626px] w-[401px]" alt="#" />
+				<div className="relative rounded-3xl  md:mr-16 w-[401px]">
+					<Slider {...settings}>
+						{modelDetails?.photos?.map((picture: any, index: number) => (
+							<Image
+								key={index}
+								src={picture}
+								className="h-[500px] w-[401px] rounded-3xl  shadow-md border"
+								alt="#"
+								width={401}
+								height={500}
+							/>
+						))}
+						{modelDetails?.videos?.map((video: any, index: number) => (
+							<video
+								key={index}
+								className="h-[500px] w-[401px] rounded-3xl  shadow-md border"
+								width={401}
+								height={500}
+								controls>
+								<source src={video} type="video/mp4" />
+							</video>
+						))}
+					</Slider>
 				</div>
 				<div className="space-y-5 md:space-y-10 mt-10">
 					<div className="flex md:block md:flex-col md:space-y-10">
 						<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4">
-							Jessica, 24{' '}
+							{modelDetails?.firstName + ' ' + modelDetails?.lastName},{' '}
+							{getAge(modelDetails?.date_of_birth)}
 						</h3>
-						<button className="md:hidden btn px-6 py-2 bg-[#c5c5c5]/20 text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
-							Asian
+						<button className=" btn px-6 py-2 bg-[#c5c5c5]/20 text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
+							{modelDetails?.country}
 						</button>
 						<button className="hidden btn px-6 py-2 bg-2f2f2f text-white text-base rounded font-PoppinsRegular">
-							Asian
+							{modelDetails?.country}
 						</button>
 					</div>
-					<hr className="md:hidden"></hr>
+					<hr className=""></hr>
 					<div className="flex items-center space-x-6">
 						<Image src={Calendar} className="h-6 w-6 md:h-10 md:w-10" alt="#" />
 						<span className="text-base md:text-[32px] text-656565">
-							20th June 2024 at 8:00 Pm
+							{/* 20th June 2024 at 8:00 Pm */}
+							{moment(modelDetails?.date_of_birth).format('DD MMMM YYYY')}
 						</span>
 					</div>
 					<div className="flex items-center space-x-6">
@@ -41,10 +201,11 @@ const MeetAndGreet = () => {
 							alt="#"
 						/>
 						<span className="text-base md:text-[32px] text-656565">
-							Berlin, Germany
+							{/* Berlin, Germany */}
+							{modelDetails?.city + ', ' + modelDetails?.country}
 						</span>
 					</div>
-					<hr className="md:hidden"></hr>
+					<hr className=""></hr>
 					<div>
 						<h3 className=" mt-6  flex items-center justify-between text-base md:text-xl text-[#090F24] font-PoppinsMedium">
 							Terms & Conditions{' '}
@@ -52,6 +213,18 @@ const MeetAndGreet = () => {
 								<Image src={Arrow} height={14} width={7} alt="#" />
 							</span>
 						</h3>
+					</div>
+					<div className="flex justify-center">
+						{/* <Link href="/experience/thank-you-meet-greet"> */}
+						<button
+							className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+							id="birthdayForm"
+							disabled={loading}
+							onClick={bookedTicket}
+							type="submit">
+							Buy Ticket
+						</button>
+						{/* </Link> */}
 					</div>
 				</div>
 			</div>

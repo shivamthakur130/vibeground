@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
-import { modelPhotos, getUser } from '@/services/user.service';
+import { modelPhotos } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
 import {
 	SuccessMessage,
@@ -127,6 +127,20 @@ const Pictures = () => {
 		event: { target: { files: any } },
 		index: number
 	) => {
+		// check if file size is greater than 25MB
+		if (event.target.files[0].size > 25000000) {
+			// ErrorMessage(
+			// 	'Model Registration',
+			// 	'Each picture should be maximum size 25MB.'
+			// );
+			setError('photos', {
+				type: 'file-size',
+				message: 'Each picture should be maximum size 25MB.',
+			});
+			setValue(`photos.${index}`, undefined);
+			return;
+		}
+
 		const files = event.target.files;
 		const updatedImages = [...selectedPictures];
 		updatedImages[index] = files[0];
@@ -189,6 +203,22 @@ const Pictures = () => {
 	};
 
 	async function onSubmit(formField: any) {
+		//check the selected pictures size max 25MB
+		let flagSize = false;
+		selectedPictures.forEach((image, index) => {
+			if (image != null) {
+				if (image.size > 25000000) {
+					flagSize = true;
+				}
+			}
+		});
+		if (flagSize) {
+			ErrorMessage(
+				'Model Registration',
+				'Each picture should be maximum size 25MB.'
+			);
+			return;
+		}
 		// validate the selectedPictures have any image file if not than return and give message
 		let countMin = 0;
 		let flag = false;
@@ -289,10 +319,15 @@ const Pictures = () => {
 
 	return (
 		<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center px-4">
-			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
-				Upload your pictures
-			</h2>
+			<p className="md:text-xl text-xs text-888 mb-5">
+				Let`s complete your profile
+			</p>
+			<div className="mb-16">
+				<div className="md:text-5xl text-lg font-PoppinsBold text-111 mb-3">
+					Upload your pictures
+				</div>
+				<span className="text-888">Each picture should be maximum size 25MB.</span>
+			</div>
 			{loading && (
 				<Loading
 					width={50}

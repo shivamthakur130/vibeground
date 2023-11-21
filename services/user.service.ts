@@ -137,6 +137,42 @@ export const getPlans = async (type: string): Promise<ReturnResponse> => {
 	}
 };
 
+//meet-and-greet/get-model
+export const getMeetAndGreetModel = async (
+	id: string
+): Promise<ReturnResponse> => {
+	try {
+		const { data } = await get(`/meet-and-greet/get-model/${id}`, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+// meet-and-greet/buy-ticket
+export const buyTicket = async (dataReq: any): Promise<ReturnResponse> => {
+	try {
+		const { data } = await post(`/meet-and-greet/buy-ticket`, dataReq, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
 // getPlan
 export const getPlanDetails = async (id: string): Promise<ReturnResponse> => {
 	try {

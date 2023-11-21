@@ -8,6 +8,9 @@ import { useState } from 'react';
 import { useAppDispatch } from '@/redux/hooks';
 import { signUp } from '@/services/meetAndGreet.service';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
+import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
 import Loading from '@/components/layout/Loading';
 import {
 	SuccessMessage,
@@ -103,9 +106,15 @@ const MeetAndGreetDetails = () => {
 	return (
 		<div className="Email text-left max-w-xl mx-auto mt-0 mb-10 ">
 			<div className="px-4">
-				<div className="text-2xl font-PoppinsBold text-[#2F2F2F] py-2 pt-10">
-					Enter Details
-				</div>
+				{/* <div className="text-2xl font-PoppinsBold text-[#2F2F2F] py-2 pt-10"></div> */}
+				<h2 className="sm:text-3xl text-2xl font-PoppinsBold text-111 flex items-center mb-2 mt-10">
+					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
+						<Link href="/influencer/meet-&-greet">
+							<Image src={ArrowLeft} height={32} width={32} alt="#" />
+						</Link>
+					</div>
+					<div className="ml-10">Enter Details</div>
+				</h2>
 				{loading && (
 					<Loading
 						width={50}

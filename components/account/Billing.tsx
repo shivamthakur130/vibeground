@@ -65,7 +65,7 @@ const Billing = () => {
 				);
 			}
 			setIsProcessingPayment(false);
-		} catch (error) { }
+		} catch (error) {}
 	};
 	useEffect(() => {
 		if (userData.planId) {
@@ -139,7 +139,6 @@ const Billing = () => {
 		}
 
 		if (typeof data === 'object' && data !== null && 'data' in data) {
-			console.log(data, 'data');
 			if (!data.status) {
 				ErrorMessage(messageTitle, data.message);
 				setIsProcessingPayment(false);
@@ -147,7 +146,6 @@ const Billing = () => {
 			}
 			SuccessMessage(messageTitle, 'Subscription successfully activated');
 			const subscriptionDetails = data.data.subscriptionDetails;
-			console.log(userData, 'userData');
 			dispatch(
 				updateUser({
 					...userData,
@@ -287,7 +285,7 @@ const Billing = () => {
 	return (
 		<div className="Billing max-w-4xl mx-auto mt-24 mb-20 relative px-4">
 			<div className="mx-auto grid md:grid-cols-6 grid-flow-row md:grid-flow-col gap-4">
-				<div className='mx-auto'>
+				<div className="mx-auto">
 					<div className="h-24 w-24 rounded-[20px] bg-[#282626] flex items-center justify-center mb-3.5">
 						<Image src={Card} alt="#" />
 					</div>
@@ -303,7 +301,8 @@ const Billing = () => {
 						z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
 					/>
 				)}
-				<div className={`md:col-span-5  ${isProcessingPayment ? 'opacity-25' : ''}`}>
+				<div
+					className={`md:col-span-5  ${isProcessingPayment ? 'opacity-25' : ''}`}>
 					<h2 className="text-xl text-center md:text-left md:text-4xl font-PoppinsBold text-111 mb-8">
 						Enter your billing information
 					</h2>
@@ -359,10 +358,11 @@ const Billing = () => {
 						</div> */}
 						<div className="flex justify-between mt-10">
 							<button
-								className={`btn btn-default px-7 py-3 bg-2f2f2f text-white rounded-lg self-center transition-all duration-300 active:bg-303030 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3f3f3f] ${!isFormValid || isProcessingPayment || !selectedPlan
-									? 'opacity-50 cursor-not-allowed'
-									: ''
-									}}`}
+								className={`btn btn-default px-7 py-3 bg-2f2f2f text-white rounded-lg self-center transition-all duration-300 active:bg-303030 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3f3f3f] ${
+									!isFormValid || isProcessingPayment || !selectedPlan
+										? 'opacity-50 cursor-not-allowed'
+										: ''
+								}}`}
 								type="button"
 								disabled={!isFormValid || isProcessingPayment || !selectedPlan}
 								onClick={handlePayment}>

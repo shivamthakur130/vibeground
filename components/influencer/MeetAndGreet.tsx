@@ -6,6 +6,7 @@ import Post1 from '@/assets/images/p01.png';
 import Image from 'next/image';
 import { getAvailable } from '@/services/meetAndGreet.service';
 import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
 
 const MeetAndGreet = () => {
 	const [loading, setLoading] = useState(false);
@@ -58,13 +59,21 @@ const MeetAndGreet = () => {
 
 	return (
 		<div className="Email text-left max-w-xl mx-auto mt-0 mb-10 ">
-			<div className="bg-gray-950 mx-auto flex items-center justify-center">
+			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex items-center mb-8 mt-10">
+				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
+					<Link href="/influencer">
+						<Image src={ArrowLeft} height={32} width={32} alt="#" />
+					</Link>
+				</div>
+				<div className="ml-10">Meet & Greet</div>
+			</h2>
+			<div className="bg-gray-950 mx-auto flex items-center justify-center rounded-md">
 				<Image src={Post1} width={500} height={500} alt="meet&greet" />
 			</div>
 			<div className="px-4">
-				<div className="text-2xl font-PoppinsSemiBold text-111 py-2 pt-10">
+				{/* <div className="text-2xl font-PoppinsSemiBold text-111 py-2 pt-10">
 					Meet & Greet
-				</div>
+				</div> */}
 				<p className="text-xl py-4 font-PoppinsRegular text-gray-700">
 					Lorem ipsum dolor sit amet. Eos perspiciatis veniam et facere eaque quo
 					aliquid nihil. Et molestiae dolore et quam provident ad

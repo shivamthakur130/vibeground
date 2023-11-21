@@ -28,7 +28,7 @@ const Videos = () => {
 	const [subscription, setSubscription] = useState<any>(null);
 	const [planDetails, setPlanDetails] = useState<any>(null);
 	//Video size idea can try put 25 mb size
-	const MAX_FILE_SIZE = 25000000; //25000000KB
+	const MAX_FILE_SIZE = 100000000; //25000000KB
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -91,7 +91,7 @@ const Videos = () => {
 		if (files[0].size > MAX_FILE_SIZE) {
 			setError('videos', {
 				type: 'file-size',
-				message: 'File Size is too large (Max 25 MB)',
+				message: 'File Size is too large (Max 100 MB)',
 			});
 			setValue(`videos.${index}`, undefined);
 			return;
@@ -255,10 +255,15 @@ const Videos = () => {
 
 	return (
 		<div className="Email text-center  max-w-7xl  mx-auto  mt-20 mb-20 relative px-4">
-			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
-				Upload your videos
-			</h2>
+			<p className="md:text-xl text-xs text-888 mb-5">
+				Let`s complete your profile
+			</p>
+			<div className="mb-16">
+				<div className="md:text-5xl text-lg font-PoppinsBold text-111 mb-3">
+					Upload your videos
+				</div>
+				<span className="text-888">Each videos should be maximum size 100MB.</span>
+			</div>
 			{loading && (
 				<Loading
 					width={50}
