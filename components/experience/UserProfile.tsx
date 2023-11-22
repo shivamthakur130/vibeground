@@ -38,12 +38,6 @@ const UserProfile = () => {
 
 			<div className="mt-20 space-y-14">
 				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
-					<span className="cursor-pointer">Interest</span>
-					<span className="cursor-pointer">
-						<Image src={Arrow} alt="#" width={10} />
-					</span>
-				</h2>
-				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
 					<Link href="/experience/manage-profile">
 						<span className="cursor-pointer">Manage Profile</span>
 					</Link>
@@ -52,6 +46,22 @@ const UserProfile = () => {
 							<Image src={Arrow} alt="#" width={10} />
 						</span>
 					</Link>
+				</h2>
+				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
+					<Link href="/experience/manage-subscription">
+						<span className="cursor-pointer">Manage Subscription</span>
+					</Link>
+					<Link href="/experience/manage-subscription">
+						<span className="cursor-pointer">
+							<Image src={Arrow} alt="#" width={10} />
+						</span>
+					</Link>
+				</h2>
+				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
+					<span className="cursor-pointer">Interest</span>
+					<span className="cursor-pointer">
+						<Image src={Arrow} alt="#" width={10} />
+					</span>
 				</h2>
 				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
 					<span className="cursor-pointer">Terms & Conditions</span>

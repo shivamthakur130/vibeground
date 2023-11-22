@@ -62,6 +62,16 @@ const UserProfile = () => {
 					</Link>
 				</h2>
 				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
+					<Link href="/influencer/manage-subscription">
+						<span className="cursor-pointer">Manage Subscription</span>
+					</Link>
+					<Link href="/influencer/manage-subscription">
+						<span className="cursor-pointer">
+							<Image src={Arrow} alt="#" width={10} />
+						</span>
+					</Link>
+				</h2>
+				<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4">
 					<span className="cursor-pointer">Terms & Conditions</span>
 					<span className="cursor-pointer">
 						<Image src={Arrow} alt="#" width={10} />
