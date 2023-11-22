@@ -107,7 +107,7 @@ const MeetAndGreet = () => {
 				id: '655a554a09facc7a369559a0',
 			};
 			const { data, error } = await buyTicket(request);
-			console.log(data, error);
+
 			if (error) {
 				setLoading(false);
 				handleError(error);

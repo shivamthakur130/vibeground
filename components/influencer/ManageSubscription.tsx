@@ -56,11 +56,12 @@ const ManageSubscription = () => {
 								</li>
 							</ul>
 							{/* if plan is expiry than show this button  */}
-							{user?.subscription?.expiresAt < new Date().toISOString() && (
-								<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
-									<span>Renew Now</span>
-								</div>
-							)}
+							{user?.subscription?.expiry_date &&
+								user?.subscription?.expiry_date < new Date().toISOString() && (
+									<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
+										<span>Renew Now</span>
+									</div>
+								)}
 						</div>
 					</div>
 				</div>

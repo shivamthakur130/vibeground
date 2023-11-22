@@ -17,7 +17,7 @@ const ManageSubscription = () => {
 			<div className="mb-12">
 				<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
 					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-						<Link href="/influencer">
+						<Link href="/experience">
 							<Image src={ArrowLeft} height={32} width={32} alt="#" />
 						</Link>
 					</div>
@@ -31,7 +31,7 @@ const ManageSubscription = () => {
 						Active Subscription
 					</span>
 					<div className="bg-white">
-						<div className="text-left bg-gradient-to-r from-[#FFE1A8]  to-[#FFE1A8]/50 px-5 cursor-pointer pt-5 pb-5 rounded-3xl relative w-full  shadow-shado">
+						<div className="text-left bg-gradient-to-r from-[#FFE1A8]  to-[#FFE1A8]/50 px-5  pt-5 pb-5 rounded-3xl relative w-full  shadow-shado">
 							<div className="flex items-center mb-10">
 								<div className="h-14 w-14 rounded-xl bg-white flex items-center justify-center mr-4">
 									<Image src={Croun} alt="#" width="35" height="35" />
@@ -40,9 +40,12 @@ const ManageSubscription = () => {
 									<span className="font-PoppinsMedium text-xl text-2f2f2f">
 										{user?.subscription?.planId?.name} Member
 									</span>
-									<span className="font-PoppinsRegular text-sm text-2f2f2f">
-										Expires at {moment(user?.subscription?.expiresAt).format('DD/MM/YY')}
-									</span>
+									{user?.subscription?.expiry_date != null && (
+										<span className="font-PoppinsRegular text-sm text-2f2f2f">
+											Expires at{' '}
+											{moment(user?.subscription?.expiry_date).format('DD/MM/YY')}
+										</span>
+									)}
 								</div>
 							</div>
 							<ul className="space-y-5 pl-2 text-xl text-[#455154] mb-14">
@@ -56,15 +59,19 @@ const ManageSubscription = () => {
 								</li>
 							</ul>
 							{/* if plan is expiry than show this button  */}
-							{user?.subscription?.expiresAt < new Date().toISOString() && (
-								<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
-									<span>Renew Now</span>
-								</div>
+							{(user?.subscription?.expiry_date == null ||
+								user?.subscription?.planId?.planType == 'free' ||
+								user?.subscription?.expiry_date < new Date().toISOString()) && (
+								<Link href="/experience/manage-plan">
+									<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
+										<span>Renew Now</span>
+									</div>
+								</Link>
 							)}
 						</div>
 					</div>
 				</div>
-				<div>
+				{/* <div>
 					<span className="text-[#444] text-[20px] font-PoppinsSemiBold mb-8 block">
 						Inactive Subscription
 					</span>
@@ -85,7 +92,7 @@ const ManageSubscription = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
