@@ -11,7 +11,6 @@ import moment from 'moment';
 
 const ManageSubscription = () => {
 	const user = useSelector((state: any) => state.userReducer.user);
-
 	return (
 		<div className="Profile max-w-7xl px-5 mx-auto  mt-16 mb-32">
 			<div className="mb-12">
@@ -45,7 +44,7 @@ const ManageSubscription = () => {
 									</span>
 								</div>
 							</div>
-							<ul className="space-y-5 pl-2 text-xl text-[#455154] mb-14">
+							{/* <ul className="space-y-5 pl-2 text-xl text-[#455154] mb-14">
 								<li className="flex items-center">
 									<Image className="mr-6" src={Tic} alt="#" width="30" height="30" />
 									See all videos & images
@@ -54,18 +53,24 @@ const ManageSubscription = () => {
 									<Image className="mr-6" src={Tic} alt="#" width="30" height="30" />
 									Participate in the experience section
 								</li>
-							</ul>
+							</ul> */}
 							{/* if plan is expiry than show this button  */}
-							{user?.subscription?.expiry_date &&
-								user?.subscription?.expiry_date < new Date().toISOString() && (
+							{user?.subscription?.expiry_date == null ||
+							user?.subscription?.expiry_date < new Date().toISOString() ? (
+								<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
+									<span>Renew Now</span>
+								</div>
+							) : (
+								<Link href="/influencer/manage-plan">
 									<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
 										<span>Renew Now</span>
 									</div>
-								)}
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>
-				<div>
+				{/* <div>
 					<span className="text-[#444] text-[20px] font-PoppinsSemiBold mb-8 block">
 						Inactive Subscription
 					</span>
@@ -86,7 +91,7 @@ const ManageSubscription = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

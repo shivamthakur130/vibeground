@@ -34,6 +34,8 @@ const ManagePlan = () => {
 	const messageTitle = 'Manage Plan';
 
 	useEffect(() => {
+		setSelectedPlan(user.planId);
+		setValue('plan', user.planId);
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getPlans(user.type);
@@ -42,6 +44,7 @@ const ManagePlan = () => {
 				handleError(error);
 				return;
 			}
+
 			setPlanList((data as { data: any[] })['data']);
 			setLoading(false);
 		})();
@@ -68,6 +71,12 @@ const ManagePlan = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
+		if (formField.plan == user.planId) {
+			ErrorMessage(messageTitle, 'You are already subscribed to this plan');
+			setLoading(false);
+			return;
+		}
+
 		const { data, error } = await makeSubscription({
 			planId: formField.plan,
 			userId: user.userId,
@@ -93,9 +102,9 @@ const ManagePlan = () => {
 
 				SuccessMessage(messageTitle, 'Plan saved successfully');
 				if (response.planDetails && response.planDetails.planType !== 'free') {
-					push('/experience/manage-billing');
+					push('/influencer/manage-billing');
 				} else {
-					push('/experience');
+					push('/influencer');
 					return;
 				}
 			} else {
@@ -137,7 +146,7 @@ const ManagePlan = () => {
 			<div className="mb-12">
 				<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
 					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-						<Link href="/experience/profile">
+						<Link href="/influencer/profile">
 							<Image src={ArrowLeft} height={32} width={32} alt="#" />
 						</Link>
 					</div>
@@ -314,7 +323,7 @@ const ManagePlan = () => {
 					</button>
 				</div>
 				<div className="w-full text-center">
-					<Link href="/experience">
+					<Link href="/influencer">
 						<button
 							className="btn btn-default px-2 hover:underline py-4 mt-8 text-xl text-151515 rounded-[8px] self-center transition-all duration-300  "
 							type="button"
