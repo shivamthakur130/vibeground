@@ -27,9 +27,9 @@ const ManageSubscription = () => {
 			</div>
 			<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
 				<div>
-					<span className="text-[#444] text-[20px] font-PoppinsSemiBold mb-8 block">
+					{/* <span className="text-[#444] text-[20px] font-PoppinsSemiBold mb-8 block">
 						Active Subscription
-					</span>
+					</span> */}
 					<div className="bg-white">
 						<div className="text-left bg-gradient-to-r from-[#FFE1A8]  to-[#FFE1A8]/50 px-5  pt-5 pb-5 rounded-3xl relative w-full  shadow-shado">
 							<div className="flex items-center mb-10">
@@ -48,23 +48,32 @@ const ManageSubscription = () => {
 									)}
 								</div>
 							</div>
-							<ul className="space-y-5 pl-2 text-xl text-[#455154] mb-14">
-								<li className="flex items-center">
-									<Image className="mr-6" src={Tic} alt="#" width="30" height="30" />
-									See all videos & images
-								</li>
-								<li className="flex items-center">
-									<Image className="mr-6" src={Tic} alt="#" width="30" height="30" />
-									Participate in the experience section
-								</li>
-							</ul>
+							{user?.subscription?.planId?.planType !== 'free' && (
+								<ul className="space-y-5 pl-2 text-xl text-[#455154] mb-14">
+									<li className="flex items-center">
+										<Image className="mr-6" src={Tic} alt="#" width="30" height="30" />
+										See all videos & images
+									</li>
+									<li className="flex items-center">
+										<Image className="mr-6" src={Tic} alt="#" width="30" height="30" />
+										Participate in the experience section
+									</li>
+								</ul>
+							)}
 							{/* if plan is expiry than show this button  */}
-							{(user?.subscription?.expiry_date == null ||
-								user?.subscription?.planId?.planType == 'free' ||
-								user?.subscription?.expiry_date < new Date().toISOString()) && (
+							{user?.subscription?.planId?.planType !== 'free' &&
+								(user?.subscription?.expiry_date == null ||
+									user?.subscription?.expiry_date < new Date().toISOString()) && (
+									<Link href="/experience/manage-plan">
+										<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
+											<span>Renew Now</span>
+										</div>
+									</Link>
+								)}
+							{user?.subscription?.planId?.planType == 'free' && (
 								<Link href="/experience/manage-plan">
 									<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
-										<span>Renew Now</span>
+										<span>Change Plan</span>
 									</div>
 								</Link>
 							)}

@@ -240,7 +240,7 @@ const Login = () => {
 							Login
 						</button>
 					</div>
-					<div>
+					{/* <div>
 						<button
 							type="button"
 							className="w-full px-8 flex justify-between mt-5 py-4 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030"
@@ -248,7 +248,7 @@ const Login = () => {
 							<div>Continue with Google </div>
 							<Image src={Google} alt="#" />
 						</button>
-					</div>
+					</div> */}
 					{/* <div className="pt-3 mt-4">
 						<button
 							type="button"

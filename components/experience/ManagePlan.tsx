@@ -34,6 +34,13 @@ const ManagePlan = () => {
 	const messageTitle = 'Manage Plan';
 
 	useEffect(() => {
+		if (user.planId == '') {
+			setSelectedPlan(user?.subscription?.planId?._id);
+			setValue('plan', user?.subscription?.planId?._id);
+		} else {
+			setSelectedPlan(user.planId);
+			setValue('plan', user.planId);
+		}
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getPlans(user.type);
@@ -67,6 +74,15 @@ const ManagePlan = () => {
 	const { errors } = formState;
 
 	async function onSubmit(formField: any) {
+		if (
+			formField.plan == user.planId &&
+			user.subscription.expiry_date !== null &&
+			user.subscription.expiry_date > new Date().toISOString()
+		) {
+			ErrorMessage(messageTitle, 'You are already subscribed to this plan');
+			setLoading(false);
+			return;
+		}
 		setLoading(true);
 		const { data, error } = await makeSubscription({
 			planId: formField.plan,
@@ -91,7 +107,7 @@ const ManagePlan = () => {
 					updateUser({ ...user, planId: planId, subscriptionId: subscriptionId })
 				);
 
-				SuccessMessage(messageTitle, 'Plan saved successfully');
+				// SuccessMessage(messageTitle, 'Plan saved successfully');
 				if (response.planDetails && response.planDetails.planType !== 'free') {
 					push('/experience/manage-billing');
 				} else {

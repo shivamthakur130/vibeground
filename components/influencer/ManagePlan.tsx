@@ -34,8 +34,13 @@ const ManagePlan = () => {
 	const messageTitle = 'Manage Plan';
 
 	useEffect(() => {
-		setSelectedPlan(user.planId);
-		setValue('plan', user.planId);
+		if (user.planId == '') {
+			setSelectedPlan(user?.subscription?.planId?._id);
+			setValue('plan', user?.subscription?.planId?._id);
+		} else {
+			setSelectedPlan(user.planId);
+			setValue('plan', user.planId);
+		}
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getPlans(user.type);
@@ -49,6 +54,8 @@ const ManagePlan = () => {
 			setLoading(false);
 		})();
 	}, []);
+
+	console.log(user, 'user');
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -71,7 +78,11 @@ const ManagePlan = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
-		if (formField.plan == user.planId) {
+		if (
+			formField.plan == user.planId &&
+			user.subscription.expiry_date !== null &&
+			user.subscription.expiry_date > new Date().toISOString()
+		) {
 			ErrorMessage(messageTitle, 'You are already subscribed to this plan');
 			setLoading(false);
 			return;
@@ -94,13 +105,11 @@ const ManagePlan = () => {
 			if (data.status) {
 				reset();
 				const planId = formField.plan;
-				const subscriptionId = response._id;
+				// const subscriptionId = response._id;
 
-				dispatch(
-					updateUser({ ...user, planId: planId, subscriptionId: subscriptionId })
-				);
+				dispatch(updateUser({ ...user, planId: planId }));
 
-				SuccessMessage(messageTitle, 'Plan saved successfully');
+				// SuccessMessage(messageTitle, 'Plan saved successfully');
 				if (response.planDetails && response.planDetails.planType !== 'free') {
 					push('/influencer/manage-billing');
 				} else {
@@ -322,16 +331,16 @@ const ManagePlan = () => {
 						Start Membership
 					</button>
 				</div>
-				<div className="w-full text-center">
+				{/* <div className="w-full text-center">
 					<Link href="/influencer">
 						<button
 							className="btn btn-default px-2 hover:underline py-4 mt-8 text-xl text-151515 rounded-[8px] self-center transition-all duration-300  "
 							type="button"
 							disabled={loading}>
-							Continue as Free User
+							Continue with same plan
 						</button>
 					</Link>
-				</div>
+				</div> */}
 			</form>
 		</div>
 	);

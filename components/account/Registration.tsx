@@ -98,11 +98,11 @@ const Registration = () => {
 				policy.
 			</p>
 			<ul className="max-w-[375px] mx-auto space-y-3">
-				<li
+				{/* <li
 					className="flex border border-black hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center"
 					onClick={() => login()}>
 					Continue with Google <Image src={Google} alt="#" />
-				</li>
+				</li> */}
 				{/* <li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
 					Continue with Facebook <Image src={FaceBook} alt="#" />
 				</li>

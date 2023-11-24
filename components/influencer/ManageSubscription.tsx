@@ -11,6 +11,7 @@ import moment from 'moment';
 
 const ManageSubscription = () => {
 	const user = useSelector((state: any) => state.userReducer.user);
+	console.log(user);
 	return (
 		<div className="Profile max-w-7xl px-5 mx-auto  mt-16 mb-32">
 			<div className="mb-12">
@@ -26,9 +27,9 @@ const ManageSubscription = () => {
 			</div>
 			<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
 				<div>
-					<span className="text-[#444] text-[20px] font-PoppinsSemiBold mb-8 block">
+					{/* <span className="text-[#444] text-[20px] font-PoppinsSemiBold mb-8 block">
 						Active Subscription
-					</span>
+					</span> */}
 					<div className="bg-white">
 						<div className="text-left bg-gradient-to-r from-[#FFE1A8]  to-[#FFE1A8]/50 px-5 cursor-pointer pt-5 pb-5 rounded-3xl relative w-full  shadow-shado">
 							<div className="flex items-center mb-10">
@@ -63,7 +64,7 @@ const ManageSubscription = () => {
 							) : (
 								<Link href="/influencer/manage-plan">
 									<div className="cursor-pointer mb-3 btn btn-default px-3 py-5 text-xl font-PoppinsSemiBold text-white bg-303030 rounded-3xl hover:bg-151515 transition-all duration-300 active:bg-303030 text-center">
-										<span>Renew Now</span>
+										<span>Change Plan</span>
 									</div>
 								</Link>
 							)}

@@ -28,9 +28,11 @@ const MeetAndGreetDetails = () => {
 	const validationSchema = Yup.object().shape({
 		phoneNumber: Yup.string()
 			.required('Phone Number is required')
-			.matches(/^[0-9]+$/, 'Must be only digits')
-			.min(10, 'Phone Number must be at least 10 digits')
-			.max(10, 'Phone Number must not exceed 10 digits'),
+			.matches(
+				/^\+\d{1,4} \(\d{1,4}\) \d{1,}-\d{1,}$|^\+\d{1,4} \d{1,3} \d{1,}-\d{1,}$|^\+\d{1,4} \d{1,}-\d{1,}$|^\+\d{1,4} \d{10,}$|^\+\d{1,11}$/,
+				'Invalid phone number'
+			),
+
 		emailId: Yup.string().required('Email Id is required').email('Invalid Email'),
 		instagramId: Yup.string().required('Instagram  is required'),
 	});
