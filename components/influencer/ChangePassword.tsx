@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,13 +13,12 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
-import { Country, City } from 'country-state-city';
 
-const ChangePassword = ({ user }: any) => {
+const ChangePassword = ({ user, showHide }: any) => {
 	const messageTitle = user.type === 'fan' ? 'User details' : 'Model details';
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
-	const [showHideSection, setShowHideSection] = useState(false);
+	const [showHideSection, setShowHideSection] = useState(showHide);
 	// form validation rules
 	const validationSchema = Yup.object().shape({
 		oldPassword: Yup.string().required('Old Password is required'),
@@ -136,72 +135,74 @@ const ChangePassword = ({ user }: any) => {
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 				/>
 			)}
-			<div
-				className={`max-w-2xl ${
-					showHideSection
-						? 'hidden transition-all duration-300'
-						: 'transition-all duration-300'
-				}`}>
-				<form
-					id="ChangePasswordForm"
-					name="ChangePasswordForm"
-					onSubmit={handleSubmit(onSubmit)}
-					className={`${loading ? 'opacity-25' : ''}`}>
-					<div className="w-full space-y-4 pt-4">
-						<div className="w-full">
-							<label>
-								Old Password <span className="text-red-500">*</span>
-							</label>
-							<input
-								type="password"
-								id="oldPassword"
-								className=" bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-2"
-								placeholder="Enter Your Old Password"
-								{...register('oldPassword')}
-							/>
-							{errors.oldPassword?.message && (
-								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-									{errors.oldPassword?.message}
-								</div>
-							)}
+			{showHideSection && (
+				<div
+					className={`max-w-2xl ${
+						!showHideSection
+							? 'hidden transition-all duration-300'
+							: 'transition-all duration-300'
+					}`}>
+					<form
+						id="ChangePasswordForm"
+						name="ChangePasswordForm"
+						onSubmit={handleSubmit(onSubmit)}
+						className={`${loading ? 'opacity-25' : ''}`}>
+						<div className="w-full space-y-4 pt-4">
+							<div className="w-full">
+								<label>
+									Old Password <span className="text-red-500">*</span>
+								</label>
+								<input
+									type="password"
+									id="oldPassword"
+									className=" bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-2"
+									placeholder="Enter Your Old Password"
+									{...register('oldPassword')}
+								/>
+								{errors.oldPassword?.message && (
+									<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+										{errors.oldPassword?.message}
+									</div>
+								)}
+							</div>
+							<div className="w-full">
+								<label>
+									New Password <span className="text-red-500">*</span>
+								</label>
+								<input
+									type="password"
+									id="password"
+									className=" bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-2"
+									placeholder="Enter Your New Password"
+									{...register('password')}
+								/>
+								{errors.password?.message && (
+									<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+										{errors.password?.message}
+									</div>
+								)}
+							</div>
+							<div className="w-full">
+								<label>
+									Confirm Password <span className="text-red-500">*</span>
+								</label>
+								<input
+									type="password"
+									id="confirmPassword"
+									className=" bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-2"
+									placeholder="Enter Your Confirm Password"
+									{...register('confirmPassword')}
+								/>
+								{errors.confirmPassword?.message && (
+									<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+										{errors.confirmPassword?.message}
+									</div>
+								)}
+							</div>
 						</div>
-						<div className="w-full">
-							<label>
-								New Password <span className="text-red-500">*</span>
-							</label>
-							<input
-								type="password"
-								id="password"
-								className=" bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-2"
-								placeholder="Enter Your New Password"
-								{...register('password')}
-							/>
-							{errors.password?.message && (
-								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-									{errors.password?.message}
-								</div>
-							)}
-						</div>
-						<div className="w-full">
-							<label>
-								Confirm Password <span className="text-red-500">*</span>
-							</label>
-							<input
-								type="password"
-								id="confirmPassword"
-								className=" bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-2"
-								placeholder="Enter Your Confirm Password"
-								{...register('confirmPassword')}
-							/>
-							{errors.confirmPassword?.message && (
-								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-									{errors.confirmPassword?.message}
-								</div>
-							)}
-						</div>
-					</div>
-				</form>
-			</div>
+					</form>
+				</div>
+			)}
 		</div>
 	);
 };

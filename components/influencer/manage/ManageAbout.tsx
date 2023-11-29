@@ -14,10 +14,10 @@ import {
 } from '@/components/layout/ToastifyMessages';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 
-const ManageAbout = ({ user }: any) => {
+const ManageAbout = ({ user, showHide }: any) => {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
-	const [showHideSection, setShowHideSection] = useState(false);
+	const [showHideSection, setShowHideSection] = useState(showHide);
 	// form validation rules
 	const validationSchema = Yup.object().shape({
 		about: Yup.string()
@@ -122,39 +122,42 @@ const ManageAbout = ({ user }: any) => {
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 				/>
 			)}
-			<div
-				className={`max-w-2xl ${
-					showHideSection
-						? 'hidden transition-all duration-300'
-						: 'transition-all duration-300'
-				}`}>
-				<form
-					id="AboutForm"
-					name="AboutForm"
-					onSubmit={handleSubmit(onSubmit)}
-					className={`${loading ? 'opacity-25' : ''}`}>
-					<div className="">
-						<textarea
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
-							placeholder="About"
-							rows={7}
-							cols={80}
-							{...register('about', {
-								value: user.about,
-								onChange: (e) => {
-									setValue('about', e.target.value);
-									clearErrors('about');
-								},
-							})}
-						/>
-						{errors.about?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.about?.message}
-							</div>
-						)}
-					</div>
-				</form>
-			</div>
+
+			{showHideSection && (
+				<div
+					className={`max-w-2xl ${
+						!showHideSection
+							? 'hidden transition-all duration-300'
+							: 'transition-all duration-300'
+					}`}>
+					<form
+						id="AboutForm"
+						name="AboutForm"
+						onSubmit={handleSubmit(onSubmit)}
+						className={`${loading ? 'opacity-25' : ''}`}>
+						<div className="">
+							<textarea
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
+								placeholder="About"
+								rows={7}
+								cols={80}
+								{...register('about', {
+									value: user.about,
+									onChange: (e) => {
+										setValue('about', e.target.value);
+										clearErrors('about');
+									},
+								})}
+							/>
+							{errors.about?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.about?.message}
+								</div>
+							)}
+						</div>
+					</form>
+				</div>
+			)}
 		</div>
 	);
 };

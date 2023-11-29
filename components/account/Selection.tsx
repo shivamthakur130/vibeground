@@ -1,7 +1,6 @@
 'use client';
 
-import React, { use } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import * as Yup from 'yup';
 import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,15 +15,17 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
-import { Country, City } from 'country-state-city';
 
-const Selection = () => {
+const Selection = ({ countries, cities }: any) => {
 	const [loading, setLoading] = useState(false);
 
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const [country, setCountry] = useState(user.country);
 	const [city, setCity] = useState(user.city);
+
+	const [cityList, setCityList] = useState([]);
+
 	const { push } = useRouter();
 	const messageTitle =
 		user.type === 'fan' ? 'User Registration' : 'Model Registration';
@@ -90,6 +91,17 @@ const Selection = () => {
 			);
 		}
 	};
+
+	const onChangeCountry = (e: any, city: string) => {
+		setCountry(e.target.value);
+		setValue('country', e.target.value);
+		const cityListSelected = cities.filter(
+			(item: any) => item['country_code'] == e.target.value
+		);
+		setCityList(cityListSelected);
+		setCity(city);
+		setValue('city', city);
+	};
 	return (
 		<div className="Email text-center max-w-2xl mx-auto mt-14 mb-24 relative px-4">
 			<p className="md:text-xl text-xs text-888 mb-5">
@@ -119,14 +131,13 @@ const Selection = () => {
 						{...register('country', {
 							value: country,
 							onChange: (e) => {
-								setCountry(e.target.value);
-								setValue('country', e.target.value);
+								onChangeCountry(e, user.city);
 							},
 						})}>
 						<option value="">Select Country</option>
-						{Country.getAllCountries().map((country, index) => (
-							<option value={country.isoCode} key={index}>
-								{country.name}
+						{countries?.map((item: any, index: number) => (
+							<option value={item['iso2'] ?? ''} key={index}>
+								{item['name']}
 							</option>
 						))}
 					</select>
@@ -152,9 +163,9 @@ const Selection = () => {
 							<option value="">Select City</option>
 						)}
 						{country != '' &&
-							City.getCitiesOfCountry(country)?.map((city, index) => (
-								<option value={city.name} key={index}>
-									{city.name}
+							cityList.map((item: any, index: number) => (
+								<option value={item['name']} key={index}>
+									{item['name']}
 								</option>
 							))}
 					</select>
