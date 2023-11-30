@@ -22,10 +22,8 @@ const categoryList = [
 	'Anal',
 	'Asian',
 	'ASMR',
-	'BBW',
 	'BDSM',
 	'Behind The Scences',
-	'Big tits',
 	'Big Booty',
 	'Bisexual',
 	'Black',
@@ -41,11 +39,11 @@ const categoryList = [
 	'Curvy',
 	'Deepthroat',
 	'Dickrating',
-	'Ebony',
 	'Facial',
 	'Fart',
 	'Feet',
 	'Fetish',
+	'Face Sitting',
 	'Gangbang',
 	'Gay',
 	'German',
@@ -53,15 +51,18 @@ const categoryList = [
 	'Hairy',
 	'Hardcore',
 	'Hentai',
+	'High Heels',
 	'Latex',
 	'Latina',
 	'Massage',
 	'Masturbating',
 	'Milf',
+	'Piercing',
 	'Pool',
 	'POV',
 	'Public',
 	'Redhead',
+	'Roleplay',
 	'Rough Sex',
 	'Russian',
 	'Sex',
@@ -195,7 +196,9 @@ const Categories = () => {
 
 	return (
 		<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20 px-4">
-			<p className="md:text-xl text-xs text-888 mb-5">Let`s complete your profile</p>
+			<p className="md:text-xl text-xs text-888 mb-5">
+				Let`s complete your profile
+			</p>
 			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
 				Choose what suits you
 			</h2>

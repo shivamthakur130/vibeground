@@ -40,12 +40,12 @@ const Footer = () => {
 				<div>
 					<h3 className="text-22px font-bold mb-2">Company</h3>
 					<ul className="space-y-1">
-						<li>
+						{/* <li>
 							<a href="/about-us">About Us</a>
 						</li>
 						<li>
 							<a href="/careers">Careers</a>
-						</li>
+						</li> */}
 						<li>
 							<a href="/imprint">Imprint</a>
 						</li>
@@ -55,10 +55,10 @@ const Footer = () => {
 					<h3 className="text-22px font-bold mb-2">Conditions</h3>
 					<ul className="space-y-1">
 						<li>
-							<a href="privacy">Privacy </a>
+							<a href="privacy">Privacy Policy </a>
 						</li>
 						<li>
-							<a href="terms">Terms</a>
+							<a href="terms">Terms of use</a>
 						</li>
 						<li>
 							<a href="/guidelines">Guidelines</a>
@@ -69,13 +69,10 @@ const Footer = () => {
 					<h3 className="text-22px font-bold mb-2">Contact</h3>
 					<ul className="space-y-1">
 						<li>
-							<a href="/support">Support</a>
+							<a href="/Support">Support</a>
 						</li>
 						<li>
-							<a href="/security">Security</a>
-						</li>
-						<li>
-							<a href="/safety-tips">Safety Tips</a>
+							<a href="/safety-tips">FAQ</a>
 						</li>
 					</ul>
 				</div>
