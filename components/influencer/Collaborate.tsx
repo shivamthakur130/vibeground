@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Post1 from '@/assets/images/p01.png';
+import Post3 from '@/assets/images/p03.png';
 import Image from 'next/image';
 import { getAvailable } from '@/services/collaborate.service';
 import { ErrorMessage } from '@/components/layout/ToastifyMessages';
@@ -68,7 +68,7 @@ const Collaborate = () => {
 				<div className="ml-10">Collaborate</div>
 			</h2>
 			<div className="bg-gray-950 mx-auto flex items-center justify-center rounded-md">
-				<Image src={Post1} width={500} height={500} alt="meet&greet" />
+				<Image src={Post3} width={500} height={500} alt="meet&greet" />
 			</div>
 			<div className="px-4">
 				<p className="text-xl py-4 font-PoppinsRegular text-gray-700">
