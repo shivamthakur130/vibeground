@@ -166,7 +166,7 @@ const ManageVideos = ({ user, showHide }: any) => {
 			!flag &&
 			user?.videos?.length == countMin
 		) {
-			SuccessMessage('Model Registration', 'Videos saved successfully');
+			SuccessMessage('Model Profile', 'Videos saved successfully');
 			return;
 		}
 
@@ -206,7 +206,7 @@ const ManageVideos = ({ user, showHide }: any) => {
 			}
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
-				SuccessMessage('Model Registration', 'Videos saved successfully');
+				SuccessMessage('Model Profile', 'Videos saved successfully');
 				dispatch(
 					updateUser({
 						...user,
@@ -215,7 +215,7 @@ const ManageVideos = ({ user, showHide }: any) => {
 				);
 				// push('/account/add-links');
 			} else {
-				ErrorMessage('Model Registration', 'Something went wrong');
+				ErrorMessage('Model Profile', 'Something went wrong');
 			}
 			setLoading(false);
 		} catch (error) {
@@ -227,15 +227,15 @@ const ManageVideos = ({ user, showHide }: any) => {
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;
-			ErrorMessage('Model Registration', message);
+			ErrorMessage('Model Profile', message);
 		} else if (error.request) {
 			ErrorMessage(
-				'Model Registration',
+				'Model Profile',
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
 			ErrorMessage(
-				'Model Registration',
+				'Model Profile',
 				'An unexpected error occurred. Please try again later.'
 			);
 		}

@@ -7,6 +7,7 @@ import Post3 from '@/assets/images/p03.png';
 import Croun from '@/assets/images/svg/croun2.svg';
 import Heart from '@/assets/images/heart.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
+
 const Dashboard = () => {
 	return (
 		<div className=" max-w-7xl px-5 mx-auto mt-24 mb-24">
@@ -45,9 +46,11 @@ const Dashboard = () => {
 					<div className="absolute bottom-0 left-0 right-0 p-8">
 						<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
 							Collaborate{' '}
-							<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-								<Image src={Arrow} alt="#" />
-							</span>
+							<Link href="/influencer/collaborate">
+								<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+									<Image src={Arrow} alt="#" />
+								</span>
+							</Link>
 						</h3>
 					</div>
 				</div>

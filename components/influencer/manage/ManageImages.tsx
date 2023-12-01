@@ -166,7 +166,7 @@ const ManageImages = ({ user }: any) => {
 			!flag &&
 			user?.photos?.length == countMin
 		) {
-			SuccessMessage('Model Registration', 'Pictures saved successfully');
+			SuccessMessage('Model Profile', 'Pictures saved successfully');
 			return;
 		}
 
@@ -210,7 +210,7 @@ const ManageImages = ({ user }: any) => {
 			}
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
-				SuccessMessage('Model Registration', 'Pictures saved successfully');
+				SuccessMessage('Model Profile', 'Pictures saved successfully');
 				dispatch(
 					updateUser({
 						...user,
@@ -219,7 +219,7 @@ const ManageImages = ({ user }: any) => {
 				);
 				// push('/account/videos');
 			} else {
-				ErrorMessage('Model Registration', 'Something went wrong');
+				ErrorMessage('Model Profile', 'Something went wrong');
 			}
 			setLoading(false);
 		} catch (error) {
@@ -231,16 +231,16 @@ const ManageImages = ({ user }: any) => {
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;
-			ErrorMessage('Model Registration', message);
+			ErrorMessage('Model Profile', message);
 		} else if (error.request) {
 			ErrorMessage(
-				'Model Registration',
+				'Model Profile',
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
 			// Something else happened while setting up the request
 			ErrorMessage(
-				'Model Registration',
+				'Model Profile',
 				'An unexpected error occurred. Please try again later.'
 			);
 		}
@@ -287,10 +287,11 @@ const ManageImages = ({ user }: any) => {
 				/>
 			)}
 			<div
-				className={`flex items-center space-x-7  ${showHideSection
+				className={`flex items-center space-x-7  ${
+					showHideSection
 						? 'hidden transition-all duration-300'
 						: 'transition-all duration-300'
-					}`}>
+				}`}>
 				<form
 					id="ImageForm"
 					name="ImageForm"

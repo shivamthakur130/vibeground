@@ -7,6 +7,7 @@ import ManageLinks from '@/components/influencer/manage/ManageLinks';
 import ManageAbout from '@/components/influencer/manage/ManageAbout';
 import { useRouter } from 'next/navigation';
 import { IoChevronBackOutline } from 'react-icons/io5';
+import ManageCategories from './ManageCategories';
 
 const ManageProfile = ({}: any) => {
 	const { replace } = useRouter();
@@ -28,8 +29,9 @@ const ManageProfile = ({}: any) => {
 			</div>
 			<ManageImages user={user} showHide={true} />
 			<ManageVideos user={user} showHide={true} />
-			<ManageLinks user={user} showHide={false} />
-			<ManageAbout user={user} showHide={false} />
+			<ManageLinks user={user} showHide={true} />
+			<ManageAbout user={user} showHide={true} />
+			<ManageCategories user={user} showHide={true} />
 		</div>
 	);
 };

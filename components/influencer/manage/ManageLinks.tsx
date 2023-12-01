@@ -96,7 +96,7 @@ const ManageLinks = ({ user, showHide }: any) => {
 			}
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				reset();
-				SuccessMessage('Model Registration', 'Links saved successfully');
+				SuccessMessage('Model Profile', 'Links saved successfully');
 				dispatch(
 					updateUser({
 						...user,
@@ -104,7 +104,7 @@ const ManageLinks = ({ user, showHide }: any) => {
 					})
 				);
 			} else {
-				ErrorMessage('Model Registration', 'Something went wrong');
+				ErrorMessage('Model Profile', 'Something went wrong');
 			}
 			setLoading(false);
 		} catch (error) {
@@ -123,16 +123,16 @@ const ManageLinks = ({ user, showHide }: any) => {
 	const handleError = (error: any) => {
 		if (error.response) {
 			let message = error.response.data.message;
-			ErrorMessage('Model Registration', message);
+			ErrorMessage('Model Profile', message);
 		} else if (error.request) {
 			ErrorMessage(
-				'Model Registration',
+				'Model Profile',
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
 			// Something else happened while setting up the request
 			ErrorMessage(
-				'Model Registration',
+				'Model Profile',
 				'An unexpected error occurred. Please try again later.'
 			);
 		}

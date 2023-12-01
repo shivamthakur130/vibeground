@@ -17,7 +17,7 @@ const ManageSubscription = () => {
 			<div className="mb-12">
 				<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
 					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-						<Link href="/influencer">
+						<Link href="/influencer/profile">
 							<Image src={ArrowLeft} height={32} width={32} alt="#" />
 						</Link>
 					</div>

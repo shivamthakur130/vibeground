@@ -30,7 +30,7 @@ const ManagePersonalInfo = ({ countries, cities }: any) => {
 				countries={countries}
 				cities={cities}
 			/>
-			<ChangePassword user={user} showHide={false} />
+			<ChangePassword user={user} showHide={true} />
 		</div>
 	);
 };

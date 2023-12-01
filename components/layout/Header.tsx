@@ -105,17 +105,28 @@ const Header = () => {
 		dispatch(removeUser());
 	};
 
+	const redirectLogoClick = () => {
+		const userToken = userDetails?.token;
+		if (userToken) {
+			push('/experience');
+		} else {
+			push('/');
+		}
+	};
+
 	return (
 		<div className=" bg-black">
 			<div className="max-w-7xl mx-auto py-10 px-10">
 				<div
 					className={`flex ${pathName == '/' ? 'justify-end' : 'justify-between'} `}>
 					{pathName !== '/' && (
-						<Link href="/">
-							<div className="flex items-center">
-								<Image src={CenterLogo} className="shrink-0" height={60} alt={''} />
-							</div>
-						</Link>
+						// <Link href="/">
+						<div
+							className="flex items-center cursor-pointer"
+							onClick={redirectLogoClick}>
+							<Image src={CenterLogo} className="shrink-0" height={60} alt={''} />
+						</div>
+						// </Link>
 					)}
 					{(userDetails?.token == '' || !userDetails) && pathName === '/' && (
 						<Link href="/login">
@@ -133,7 +144,7 @@ const Header = () => {
 								<div className="flex items-center">
 									<div className="flex items-center ">
 										<span
-											className="hidden sm:block mr-3 font-PoppinsRegular text-22px text-white cursor-pointer"
+											className="hidden sm:block mr-3 font-PoppinsRegular text-22px text-white cursor-pointer hover:underline"
 											onClick={redirectProfile}>
 											{userDetails?.firstName} {userDetails?.lastName}
 										</span>
