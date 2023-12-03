@@ -5,5 +5,5 @@ export default function DashboardLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	return <AuthVerification userType="fan">{children}</AuthVerification>;
+	return <AuthVerification userType="model">{children}</AuthVerification>;
 }

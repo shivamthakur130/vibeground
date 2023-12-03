@@ -19,11 +19,18 @@ export default function AuthVerification({
 }) {
 	const dispatch = useAppDispatch();
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 	const messageTitle = userType === 'fan' ? 'User operation' : 'Model operation';
 	const userData = useSelector((state: any) => state.userReducer.user);
-
+	console.log(userType, userData);
+	console.log(userData?.type);
 	useEffect(() => {
+		if (userType === 'fan' && userData?.type !== 'fan') {
+			replace('/influencer');
+		}
+		if (userType === 'model' && userData?.type !== 'model') {
+			replace('/experience');
+		}
 		(async () => {
 			const { data, error } = await getUser();
 			if (error) {
