@@ -22,8 +22,7 @@ export default function AuthVerification({
 	const { push, replace } = useRouter();
 	const messageTitle = userType === 'fan' ? 'User operation' : 'Model operation';
 	const userData = useSelector((state: any) => state.userReducer.user);
-	console.log(userType, userData);
-	console.log(userData?.type);
+
 	useEffect(() => {
 		if (userType === 'fan' && userData?.type !== 'fan') {
 			replace('/influencer');
