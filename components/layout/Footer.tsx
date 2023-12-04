@@ -47,7 +47,7 @@ const Footer = () => {
 							<a href="/careers">Careers</a>
 						</li> */}
 						<li>
-							<a href="/imprint">Imprint</a>
+							<Link href="/imprint">Imprint</Link>
 						</li>
 					</ul>
 				</div>
@@ -55,24 +55,24 @@ const Footer = () => {
 					<h3 className="text-22px font-bold mb-2">Conditions</h3>
 					<ul className="space-y-1">
 						<li>
-							<a href="privacy">Privacy Policy </a>
+							<Link href="privacy-policy">Privacy Policy </Link>
 						</li>
 						<li>
-							<a href="terms">Terms of use</a>
+							<Link href="terms-of-use">Terms of use</Link>
 						</li>
-						<li>
+						{/* <li>
 							<a href="/guidelines">Guidelines</a>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 				<div>
 					<h3 className="text-22px font-bold mb-2">Contact</h3>
 					<ul className="space-y-1">
 						<li>
-							<a href="/Support">Support</a>
+							<Link href="/support">Support</Link>
 						</li>
 						<li>
-							<a href="/safety-tips">FAQ</a>
+							<Link href="/faq">FAQ</Link>
 						</li>
 					</ul>
 				</div>

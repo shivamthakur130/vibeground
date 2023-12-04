@@ -74,7 +74,7 @@ const AgeVerificationDialog = ({
 						onClick={() => {
 							setShowFullDetails(!showFullDetails);
 						}}>
-						Terms & Conditions
+						Privacy policy and Terms of use
 					</span>
 					.
 				</div>

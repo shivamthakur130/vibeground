@@ -93,9 +93,9 @@ const Registration = () => {
 	return (
 		<div className="registration text-center mt-24 mb-40">
 			<h2 className="text-5xl font-PoppinsBold text-111">Create an account</h2>
-			<p className="text-xl text-888 mt-3 mb-16">
-				By clicking on Sign Up, you agree to our terms & conditions and privacy
-				policy.
+			<p className="text-xl text-888 mt-3 mb-10">
+				{/* By clicking on Sign Up, you agree to our terms & conditions and privacy
+				policy. */}
 			</p>
 			<ul className="max-w-[375px] mx-auto space-y-3">
 				{/* <li
