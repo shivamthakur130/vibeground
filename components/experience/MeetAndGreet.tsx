@@ -147,7 +147,27 @@ const MeetAndGreet = () => {
 				</div>
 				<div className="ml-10">Meet & Greet</div>
 			</h2>
-
+			<div className="px-4 pb-4">
+				{/* <div className="text-2xl font-PoppinsSemiBold text-111 py-2 pt-10">
+					Meet & Greet
+				</div> */}
+				<ul className="list space-y-2 font-PoppinsRegular text-gray-700">
+					<li>
+						Have you always dreamed of meeting your favourite creator in person?
+					</li>
+					<li>Vibeground Meet & Greet allows you to make your dream come true.</li>
+					<li>Meet your favourite creator in an exclusive setting.</li>
+					<li>
+						{
+							"We'll cover the cost of travel and accommodation and you'll have a unique experience that you'll never forget."
+						}
+					</li>
+					<li>
+						Immerse yourself in the world of Vibeground Meet&Greet and enjoy an
+						experience you will never forget.
+					</li>
+				</ul>
+			</div>
 			<div className="flex flex-col md:flex-row">
 				<div className="relative rounded-3xl  md:mr-16 w-[401px]">
 					<Slider {...settings}>

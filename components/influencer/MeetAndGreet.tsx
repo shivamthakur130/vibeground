@@ -75,16 +75,29 @@ const MeetAndGreet = () => {
 					Meet & Greet
 				</div> */}
 				<p className="text-xl py-4 font-PoppinsRegular text-gray-700">
-					Lorem ipsum dolor sit amet. Eos perspiciatis veniam et facere eaque quo
-					aliquid nihil. Et molestiae dolore et quam provident ad
+					{
+						"It's every fan's dream to meet their favorite creator in person once in a lifetime."
+					}
 				</p>
 				<ul className="list space-y-2 font-PoppinsRegular text-gray-700">
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
+					<li>
+						For you as a creator, however, this harbours some risks, which is why you
+						have refrained from doing so until now.
+					</li>
+					<li>
+						Vibeground Meet & Greet offers creators the opportunity to make their{' '}
+						{"fans'"} dreams come true.
+					</li>
+					<li>
+						You can show your fans that you are approachable and thus collect many
+						plus points with your fans to make them even more loyal followers.
+					</li>
+					<li>
+						We take care of everything! We organize an exclusive location and the
+						corresponding supporting programme, which enables you to have a nice and
+						safe meet & greet with your fans.
+					</li>
+					<li>Sign up to receive more information from us.</li>
 				</ul>
 				{!checkStatus && !loading && (
 					<div className="mx-auto flex items-center justify-center">
