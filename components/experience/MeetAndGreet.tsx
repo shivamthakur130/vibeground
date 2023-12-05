@@ -153,7 +153,7 @@ const MeetAndGreet = () => {
 				</div> */}
 				<ul className="list space-y-2 font-PoppinsRegular text-gray-700">
 					<li>
-						Have you always dreamed of meeting your favourite creator in person?
+						Have you always dreamed of meeting your favorite creator in person?
 					</li>
 					<li>Vibeground Meet & Greet allows you to make your dream come true.</li>
 					<li>Meet your favourite creator in an exclusive setting.</li>

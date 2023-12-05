@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React from 'react';
 import Modal from 'react-modal';
 
@@ -69,13 +70,25 @@ const AgeVerificationDialog = ({
 				<div className="py-4">
 					By clicking {'"Accept"'}, you confirm that you are 18 years or older and
 					agree to our{' '}
-					<span
-						className="text-blue-600 cursor-pointer underline"
-						onClick={() => {
-							setShowFullDetails(!showFullDetails);
-						}}>
-						Privacy policy and Terms of use
-					</span>
+					<a
+						target="_blank"
+						href="/privacy-policy"
+						className="text-blue-600 cursor-pointer underline">
+						{/* // onClick={() => {
+						// 	setShowFullDetails(!showFullDetails);
+						// }} */}
+						Privacy policy
+					</a>{' '}
+					and{' '}
+					<a
+						target="_blank"
+						href="/terms-of-use"
+						className="text-blue-600 cursor-pointer underline">
+						{/* // onClick={() => {
+						// 	setShowFullDetails(!showFullDetails);
+						// }} */}
+						Terms of use
+					</a>
 					.
 				</div>
 			)}
