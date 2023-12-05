@@ -143,7 +143,7 @@ const MeetAndGreetDetails = () => {
 								{...register('phoneNumber')}
 								defaultValue={user.phoneNumber}
 								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
-								placeholder="+42123456789"
+								placeholder="Enter your phone number including country code"
 							/>
 							{errors.phoneNumber?.message && (
 								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
@@ -160,7 +160,7 @@ const MeetAndGreetDetails = () => {
 								{...register('emailId')}
 								defaultValue={user.emailId}
 								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
-								placeholder="Ex. jonhdoe@gmail.com"
+								placeholder="Enter your email address"
 							/>
 							{errors.emailId?.message && (
 								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
@@ -177,7 +177,7 @@ const MeetAndGreetDetails = () => {
 								{...register('instagramId')}
 								defaultValue={user.instagramId}
 								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4"
-								placeholder="Ex. www.instafram.com/john_doe"
+								placeholder="Enter your Instagram link"
 							/>
 							{errors.instagramId?.message && (
 								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
