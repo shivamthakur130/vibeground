@@ -22,7 +22,7 @@ const Landing = () => {
 	return (
 		<div className="Landing text-center pb-28 bg-black">
 			<div className="max-w-full mx-auto ">
-				<div className=" bg-black h-fit py-36">
+				<div className=" bg-black h-fit md:py-36 py-0">
 					<div className="flex items-center justify-center py-16">
 						<div className="max-w-2xl mx-auto text-white my-20">
 							{/* <h1 className="text-75px font-PoppinsBlack leading-[78px]">

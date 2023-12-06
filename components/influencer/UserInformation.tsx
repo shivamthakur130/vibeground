@@ -137,7 +137,7 @@ const UserInformation = () => {
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${loading ? 'opacity-5' : ''}`}>
-				<div className="grid grid-cols-2 gap-6 my-6 ">
+				<div className="grid md:grid-cols-2 gap-6 my-6 ">
 					<div>
 						<input
 							type="text"
@@ -195,7 +195,7 @@ const UserInformation = () => {
 							</div>
 						)}
 					</div>
-					<div></div>
+					<div className='hidden md:block'></div>
 					<div>
 						<input
 							type="text"
@@ -241,7 +241,7 @@ const UserInformation = () => {
 						characters @,$,%,*,#
 					</p>
 				</div>
-				<div className="grid grid-cols-2 gap-6 my-6">
+				<div className="grid md:grid-cols-2 gap-6 my-6">
 					<div>
 						<input
 							type="password"

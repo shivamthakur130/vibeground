@@ -230,7 +230,7 @@ const Categories = () => {
 							/>
 							<label
 								htmlFor={`opt${index}`}
-								className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-4 px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
+								className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-2 md:py-4 px-6 md:px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
 								<div className="w-full text-15px  peer-checked:text-white">
 									{category}
 								</div>

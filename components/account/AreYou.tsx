@@ -59,7 +59,7 @@ const AreYou = () => {
 	}
 
 	return (
-		<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative">
+		<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative px-5">
 			<h2 className="text-5xl font-PoppinsBold text-111">Who are you?</h2>
 			{/* <p className="text-xl text-888 mt-3 mb-10">Choose who you are going to be</p> */}
 			<form
@@ -67,7 +67,7 @@ const AreYou = () => {
 				className="transition delay-150 duration-300 ease-in-out">
 				<div className="mx-auto grid grid-flow-col gap-4 mt-5">
 					<label
-						className="flex items-center cursor-pointer rounded-xl h-52 w-52 relative"
+						className="flex items-center cursor-pointer rounded-xl aspect-square relative"
 						htmlFor="fanRadio">
 						<Image src={Fan} alt="Fan" />
 						<input
@@ -90,7 +90,7 @@ const AreYou = () => {
 						</label>
 					</label>
 					<label
-						className="flex items-center cursor-pointer rounded-xl h-52 w-52 relative "
+						className="flex items-center cursor-pointer rounded-xl aspect-square relative "
 						htmlFor="modalRadio">
 						<Image src={Modal} alt="Modal" />
 						<input
