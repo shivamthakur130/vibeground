@@ -140,7 +140,7 @@ const DOB = () => {
 	};
 
 	return (
-		<div className="Email text-center max-w-2xl mx-auto sm:mt-28 sm:mb-24 relative px-4 mt-10">
+		<div className="Email text-center max-w-2xl mx-auto sm:mt-28 sm:mb-24 relative px-4 my-10">
 			<p className="md:text-xl text-xs text-888 mb-5">
 				Let`s complete your profile
 			</p>
@@ -166,7 +166,7 @@ const DOB = () => {
 						clearIcon={null}
 						value={selectedDate}
 						format="dd-MM-y"
-						className=" text-gray-900 text-tg rounded-lg focus:ring-black-500 focus:border-black-500 block py-4 px-4"
+						className=" text-gray-900 text-tg rounded-lg focus:ring-black-500 focus:border-black-500 block px-4"
 					/>
 				</div>
 				{/* <div className="grid   grid-cols-3 gap-6 my-6 ">

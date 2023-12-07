@@ -5,7 +5,7 @@ export default function SupportFormPage() {
 	return (
 		<div className="min-h-screen">
 			<Header />
-			<div className="max-w-7xl mx-auto">
+			<div className="max-w-7xl mx-auto px-5">
 				<div className="font-PoppinsRegular mt-10">
 					<ul className="space-y-2">
 						<li className="font-PoppinsBold">Vibeground Ltd.</li>

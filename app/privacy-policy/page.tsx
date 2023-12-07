@@ -3,7 +3,7 @@ import Layout from '@/components/common/layout';
 export default function SupportFormPage() {
 	return (
 		<Layout>
-			<div className="max-w-5xl mx-auto font-PoppinsRegular text-lg">
+			<div className="max-w-5xl mx-auto font-PoppinsRegular text-lg px-5">
 				<div className="my-5">
 					<>
 						<p
@@ -177,7 +177,7 @@ export default function SupportFormPage() {
 							</span>
 						</p>
 						<table
-							style={{ width: '375pt', marginBottom: '0pt', borderSpacing: '1.5pt' }}>
+							style={{ width: 'auto', marginBottom: '0pt', borderSpacing: '1.5pt' }}>
 							<tbody>
 								<tr>
 									<td
@@ -240,14 +240,10 @@ export default function SupportFormPage() {
 											borderBottom: '0.75pt solid #eeeeee',
 											padding: '0.75pt',
 											verticalAlign: 'middle',
-										}}>
+										}} className='text-right'>
 										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
-											<span style={{ fontFamily: '"Times New Roman"' }}>YES</span>
+										>
+											<span style={{ fontFamily: '"Times New Roman"' }} >YES</span>
 										</p>
 									</td>
 								</tr>
@@ -277,14 +273,10 @@ export default function SupportFormPage() {
 											borderBottom: '0.75pt solid #eeeeee',
 											padding: '0.75pt',
 											verticalAlign: 'middle',
-										}}>
+										}} className='text-right'>
 										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
-											<span style={{ fontFamily: '"Times New Roman"' }}>YES</span>
+										>
+											<span style={{ fontFamily: '"Times New Roman"' }} >YES</span>
 										</p>
 									</td>
 								</tr>
@@ -312,14 +304,10 @@ export default function SupportFormPage() {
 											borderBottom: '0.75pt solid #eeeeee',
 											padding: '0.75pt',
 											verticalAlign: 'middle',
-										}}>
+										}} className='text-right'>
 										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
-											<span style={{ fontFamily: '"Times New Roman"' }}>YES</span>
+										>
+											<span style={{ fontFamily: '"Times New Roman"' }} >YES</span>
 										</p>
 									</td>
 								</tr>
@@ -346,14 +334,10 @@ export default function SupportFormPage() {
 											borderBottom: '0.75pt solid #eeeeee',
 											padding: '0.75pt',
 											verticalAlign: 'middle',
-										}}>
+										}} className='text-right'>
 										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
-											<span style={{ fontFamily: '"Times New Roman"' }}>YES</span>
+										>
+											<span style={{ fontFamily: '"Times New Roman"' }} >YES</span>
 										</p>
 									</td>
 								</tr>
@@ -381,12 +365,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -415,12 +394,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -448,14 +422,10 @@ export default function SupportFormPage() {
 											borderBottom: '0.75pt solid #eeeeee',
 											padding: '0.75pt',
 											verticalAlign: 'middle',
-										}}>
+										}} className='text-right'>
 										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
-											<span style={{ fontFamily: '"Times New Roman"' }}>YES</span>
+										>
+											<span style={{ fontFamily: '"Times New Roman"' }} >YES</span>
 										</p>
 									</td>
 								</tr>
@@ -483,12 +453,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -517,12 +482,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -551,12 +511,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -585,12 +540,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -619,12 +569,7 @@ export default function SupportFormPage() {
 											padding: '0.75pt',
 											verticalAlign: 'middle',
 										}}>
-										<p
-											style={{
-												marginBottom: '0pt',
-												textAlign: 'justify',
-												lineHeight: 'normal',
-											}}>
+										<p className='text-right'>
 											<span style={{ fontFamily: '"Times New Roman"' }}>NO</span>
 										</p>
 									</td>
@@ -643,11 +588,11 @@ export default function SupportFormPage() {
 								following categories of sources:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-3 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -663,7 +608,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -732,11 +677,11 @@ export default function SupportFormPage() {
 								the information we collect or receive:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -761,7 +706,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -800,7 +745,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -824,7 +769,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -847,7 +792,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -874,7 +819,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -897,7 +842,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -920,7 +865,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -943,7 +888,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -966,7 +911,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -983,7 +928,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1006,7 +951,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1029,7 +974,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1051,7 +996,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1074,7 +1019,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1166,11 +1111,11 @@ export default function SupportFormPage() {
 								We may process or share data based on the following legal basis:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1193,7 +1138,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1216,7 +1161,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1239,7 +1184,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1265,7 +1210,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1303,11 +1248,11 @@ export default function SupportFormPage() {
 								personal information in the following situations:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1746,11 +1691,11 @@ export default function SupportFormPage() {
 								Access, Data Portability, and Deletion Rights), we will disclose to you:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1765,7 +1710,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1780,7 +1725,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1796,7 +1741,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1811,7 +1756,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1826,7 +1771,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1872,11 +1817,11 @@ export default function SupportFormPage() {
 								necessary for us or our service provider(s) to:
 							</span>
 						</p>
-						<ol style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ol className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1891,7 +1836,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1905,7 +1850,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1918,7 +1863,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1931,7 +1876,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1947,7 +1892,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1960,7 +1905,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -1972,7 +1917,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '31.62pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2016,11 +1961,11 @@ export default function SupportFormPage() {
 								either:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2062,11 +2007,11 @@ export default function SupportFormPage() {
 								data subject who the request relates, please:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2096,11 +2041,11 @@ export default function SupportFormPage() {
 								request, “sufficient detail” involves:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2123,7 +2068,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2147,7 +2092,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2174,7 +2119,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2375,11 +2320,11 @@ export default function SupportFormPage() {
 								exercising your privacy rights:
 							</span>
 						</p>
-						<ul style={{ margin: '0pt', paddingLeft: '0pt' }}>
+						<ul className='ml-4 md:ml-7'>
 							<li
 								style={{
 									marginTop: '14pt',
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2393,7 +2338,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2408,7 +2353,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '0pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',
@@ -2422,7 +2367,7 @@ export default function SupportFormPage() {
 							</li>
 							<li
 								style={{
-									marginLeft: '27.6pt',
+
 									marginBottom: '14pt',
 									textAlign: 'justify',
 									lineHeight: 'normal',

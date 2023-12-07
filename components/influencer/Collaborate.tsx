@@ -72,17 +72,10 @@ const Collaborate = () => {
 			</div>
 			<div className="px-4">
 				<p className="text-xl py-4 font-PoppinsRegular text-gray-700">
-					Lorem ipsum dolor sit amet. Eos perspiciatis veniam et facere eaque quo
-					aliquid nihil. Et molestiae dolore et quam provident ad
+					As a creator, we offer you the possibility of various cooperations with us.
+
 				</p>
-				<ul className="list space-y-2 font-PoppinsRegular text-gray-700">
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-					<li>Lorem ipsum dolor sit amet.</li>
-				</ul>
+				<p>Sign up to receive more information!</p>
 				{!checkStatus && !loading && (
 					<div className="mx-auto flex items-center justify-center">
 						<Link href="/influencer/collaborate-details">
