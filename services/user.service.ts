@@ -156,6 +156,24 @@ export const getMeetAndGreetModel = async (
 		};
 	}
 };
+//users/:id/profile
+export const getUserProfile = async (id: string): Promise<ReturnResponse> => {
+	try {
+		const { data } = await get(`/users/${id}/profile`, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+
+		return {
+			data: null,
+			error,
+		};
+	}
+};
+
 // meet-and-greet/buy-ticket
 export const buyTicket = async (dataReq: any): Promise<ReturnResponse> => {
 	try {

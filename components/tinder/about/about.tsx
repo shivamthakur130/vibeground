@@ -1,61 +1,189 @@
-import React from 'react';
+'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import Post1 from '@/assets/images/Sammy.png';
 import Back from '@/assets/images/svg/A-arrow.svg';
+import UpArrow from '@/assets/images/svg/upArrow.svg';
 import Close from '@/assets/images/svg/A-Close.svg';
 import Heart from '@/assets/images/svg/A-heart.svg';
+import Location from '@/assets/images/svg/location.svg';
+import React, { useState, useEffect } from 'react';
+import { removeUser } from '@/redux/slice/user';
+import { getUserProfile } from '@/services/user.service';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Link from 'next/link';
+import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
+import Instagram from '@/assets/images/instagram.png';
+import Fb from '@/assets/images/fbb.png';
 
-const TinderAbout = () => {
+const ModelProfile = () => {
+	const [loading, setLoading] = useState(false);
+	const [modelDetails, setModelDetails] = useState<any | null>(null);
+	const dispatch = useAppDispatch();
+	const { replace } = useRouter();
+	const user = useSelector((state: any) => state.userReducer.user);
+	const messageTitle = 'Profile View';
+	const settings = {
+		dots: true,
+		infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: false,
+		speed: 500,
+		swipeToSlide: true,
+	};
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		(async () => {
+			setLoading(true);
+			const id = user._id;
+			const { data, error } = await getUserProfile(id);
+			if (error) {
+				setLoading(false);
+				handleError(error);
+				return;
+			}
+			setModelDetails((data as { data: any })['data']);
+			setLoading(false);
+		})();
+	}, []);
+
+	const handleError = (error: any) => {
+		if (error.response?.status === 401) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+		if (error.response) {
+			let message = error.response.data.message;
+			ErrorMessage(messageTitle, message);
+		} else if (error.request) {
+			ErrorMessage(
+				messageTitle,
+				'Network Error. Please check your internet connection.'
+			);
+		} else {
+			ErrorMessage(
+				messageTitle,
+				'An unexpected error occurred. Please try again later.'
+			);
+		}
+	};
+
+	const getAge = (dateString: Date | null | undefined) => {
+		if (!dateString) return 0;
+		const today = new Date();
+		const birthDate = new Date(dateString);
+		let age = today.getFullYear() - birthDate.getFullYear();
+		const month = today.getMonth() - birthDate.getMonth();
+		if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+			age--;
+		}
+		return age;
+	};
+
+	if (loading) {
+		return (
+			<div className="flex justify-center items-center h-screen">
+				<Image src={Post1} className="" alt="#" />
+			</div>
+		);
+	}
 	return (
-		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
-
-			<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-20">
-
-				<div className="relative rounded-2xl overflow-hidden bg-white">
-					<Image src={Post1} className="w-full" alt="#" />
-					<div className="absolute flex bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/50 to-black/5 min-h-[50%]">
-						<div className="mt-auto self-end w-full">
-							<h3 className="text-4xl text-white font-PoppinsSemiBold">
-								Sammy, {' '}
-							</h3>
-							<div className="flex mt-3 text-white text-xl">
-								25,Califonria
+		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
+			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">
+				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
+					<Link href="/experience">
+						<Image src={ArrowLeft} height={32} width={32} alt="#" />
+					</Link>
+				</div>
+				<div className="flex item-center space-x-4 ">
+					<ul className="flex space-x-4">
+						<li className="p-2 rounded-2xl cursor-pointer border border-gray-50">
+							<Image src={UpArrow} className="" alt="#" height={18} width={20} />
+						</li>
+						<li>
+							<div className="bg-[#FF3900] p-2 rounded-2xl cursor-pointer border border-gray-50">
+								<Image src={Heart} className="" alt="#" height={24} width={24} />
 							</div>
-						</div>
-					</div>
-
-				</div>
-
-
-				<div className='col-span-2'>
-					<div className='text-2xl font-PoppinsSemiBold mb-10'>
-						About Me
-					</div>
-					<p>Beyond her stunning appearance, [Her Name] possesses a fiery spirit that sets her apart. Her vivacious personality shines through in everything she does, from her infectious laughter to her bold and adventurous nature. She embraces life with gusto, fearlessly exploring new horizons and embracing every opportunity that comes her way.</p>
-					<h3 className='font-PoppinsBold text-xl my-6'>Interests</h3>
-					<ul className='flex space-x-4'>
-						<li className='border border-[#a3a3a3] rounded-[20px] px-7 py-2'>Fun</li>
-						<li className='border border-[#a3a3a3] rounded-[20px] px-7 py-2'>Entertainment</li>
-						<li className='border border-[#a3a3a3] rounded-[20px] px-7 py-2'>Fun</li>
-						<li className='border border-[#a3a3a3] rounded-[20px] px-7 py-2'>Entertainment</li>
-						<li className='border border-[#a3a3a3] rounded-[20px] px-7 py-2'>Fun</li>
-						<li className='border border-[#a3a3a3] rounded-[20px] px-7 py-2'>Fun</li>
+						</li>
 					</ul>
-					<div className='flex item-center space-x-4 py-7 mt-10'>
-						<ul className='flex space-x-4'>
-							<li className='bg-d9d9d9 rounded-full shadow-xl cursor-pointer flex items-center justify-center h-20 w-20'><Image src={Back} className="" alt="#" /></li>
-							<li className='bg-d9d9d9 rounded-full shadow-xl cursor-pointer flex items-center justify-center h-20 w-20'><Image src={Close} className="" alt="#" /></li>
-							<li className='bg-[#FF3900] rounded-full shadow-xl cursor-pointer flex items-center justify-center h-20 w-20'><Image src={Heart} className="" alt="#" /></li>
-
-						</ul>
-
-					</div>
 				</div>
-
+			</h2>
+			<div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-20">
+				{modelDetails && (
+					<>
+						<div className="relative rounded-3xl  md:mr-16 w-[401px]">
+							<Slider {...settings}>
+								{modelDetails?.photos?.map((picture: any, index: number) => (
+									<Image
+										key={index}
+										src={picture}
+										className="h-[500px] w-[401px] rounded-3xl  shadow-md border"
+										alt="#"
+										width={401}
+										height={500}
+									/>
+								))}
+								{modelDetails?.videos?.map((video: any, index: number) => (
+									<video
+										key={index}
+										className="h-[500px] w-[401px] rounded-3xl  shadow-md border"
+										width={401}
+										height={500}
+										controls>
+										<source src={video} type="video/mp4" />
+									</video>
+								))}
+							</Slider>
+						</div>
+						<div className="sm:col-span-2 sm:mt-0 mt-10">
+							<div className="flex flex-col md:block md:flex-col md:space-y-2">
+								<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4">
+									{modelDetails?.firstName + ' ' + modelDetails?.lastName},{' '}
+									{getAge(modelDetails?.date_of_birth)}
+								</h3>
+								<button className="flex space-x-3 btn px-1  text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
+									<Image src={Location} className="" alt="#" />
+									<div>
+										{modelDetails?.country}, {modelDetails?.city}
+									</div>
+								</button>
+							</div>
+							<hr className="my-4"></hr>
+							{/* <div className="text-2xl font-PoppinsSemiBold my-5">About Me</div> */}
+							<div className=" flex flex-wrap content-evenly my-5 bg-[#f6f6f6] rounded-md p-3">
+								{modelDetails['about']}
+							</div>
+							<hr className="my-4"></hr>
+							<h3 className="font-PoppinsRegular text-md my-3">Attributes</h3>
+							<ul className="flex space-x-2">
+								{modelDetails['categories'].map((category: string) => (
+									<li key={category} className="">
+										{category},
+									</li>
+								))}
+							</ul>
+							<hr className="my-4"></hr>
+							<h3 className="font-PoppinsRegular text-md my-3">Links</h3>
+							<ul className="flex space-x-2">
+								<li>
+									<Image src={Fb} className="" alt="#" />
+								</li>
+								<li>
+									<Image src={Instagram} className="" alt="#" />
+								</li>
+							</ul>
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);
 };
 
-export default TinderAbout;
+export default ModelProfile;

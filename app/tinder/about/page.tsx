@@ -1,10 +1,12 @@
 import Layout from '@/components/common/layout';
 import TinderAbout from '@/components/tinder/about/about';
 
-export default function SupportFormPage() {
+const TinderPage = () => {
 	return (
 		<Layout>
 			<TinderAbout />
 		</Layout>
 	);
-}
+};
+
+export default TinderPage;
