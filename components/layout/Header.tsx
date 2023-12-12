@@ -139,7 +139,8 @@ const Header = () => {
 					)}
 					{userDetails &&
 						userDetails?.token !== '' &&
-						userDetails?.status !== '' && (
+						userDetails?.status !== '' &&
+						userDetails?.status !== 'inactive' && (
 							<div className="flex">
 								<div className="flex items-center">
 									<div className="flex items-center ">
@@ -152,7 +153,6 @@ const Header = () => {
 											className="cursor-pointer hover:bg-gray-700 p-2 rounded-md active:bg-gray-900 relative"
 											onClick={redirectDashboard}>
 											<AiOutlineDashboard className="text-3xl text-white" />
-											{/* <Image src={UserIcon} className="shrink-0" alt={'user icon'} /> */}
 										</div>
 										<span className="relative">
 											<Image
