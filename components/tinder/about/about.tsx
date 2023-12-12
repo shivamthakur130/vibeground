@@ -97,7 +97,7 @@ const ModelProfile = () => {
 		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
 			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">
 				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-					<Link href="/experience">
+					<Link href="/influencer/manage-profile">
 						<Image src={ArrowLeft} height={32} width={32} alt="#" />
 					</Link>
 				</div>
