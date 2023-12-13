@@ -93,6 +93,7 @@ const ModelProfile = () => {
 			</div>
 		);
 	}
+	console.log(modelDetails);
 	return (
 		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
 			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">
@@ -144,15 +145,15 @@ const ModelProfile = () => {
 						<div className="sm:col-span-2 sm:mt-0 mt-10">
 							<div className="flex flex-col md:block md:flex-col md:space-y-2">
 								<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4">
-									{modelDetails?.firstName + ' ' + modelDetails?.lastName},{' '}
-									{getAge(modelDetails?.date_of_birth)}
+									{modelDetails?.userName}
+									{/* , {getAge(modelDetails?.date_of_birth)} */}
 								</h3>
-								<button className="flex space-x-3 btn px-1  text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
+								{/* <button className="flex space-x-3 btn px-1  text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
 									<Image src={Location} className="" alt="#" />
 									<div>
 										{modelDetails?.country}, {modelDetails?.city}
 									</div>
-								</button>
+								</button> */}
 							</div>
 							<hr className="my-4"></hr>
 							{/* <div className="text-2xl font-PoppinsSemiBold my-5">About Me</div> */}
@@ -171,12 +172,17 @@ const ModelProfile = () => {
 							<hr className="my-4"></hr>
 							<h3 className="font-PoppinsRegular text-md my-3">Links</h3>
 							<ul className="flex space-x-2">
-								<li>
+								{modelDetails['links'].map((link: string) => (
+									<li key={link} className="">
+										{link},
+									</li>
+								))}
+								{/* <li>
 									<Image src={Fb} className="" alt="#" />
 								</li>
 								<li>
 									<Image src={Instagram} className="" alt="#" />
-								</li>
+								</li> */}
 							</ul>
 						</div>
 					</>
