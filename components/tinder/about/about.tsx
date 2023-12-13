@@ -89,7 +89,7 @@ const ModelProfile = () => {
 	if (loading) {
 		return (
 			<div className="flex justify-center items-center h-screen">
-				<Image src={Post1} className="" alt="#" />
+				{/* <Image src={Post1} className="" alt="#" /> */}
 			</div>
 		);
 	}
@@ -115,79 +115,80 @@ const ModelProfile = () => {
 					</ul>
 				</div>
 			</h2>
-			<div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-20">
-				{modelDetails && (
-					<>
-						<div className="relative rounded-3xl  md:mr-16 w-[401px]">
-							<Slider {...settings}>
-								{modelDetails?.photos?.map((picture: any, index: number) => (
-									<Image
-										key={index}
-										src={picture}
-										className="h-[500px] w-[401px] rounded-3xl  shadow-md border"
-										alt="#"
-										width={401}
-										height={500}
-									/>
-								))}
-								{modelDetails?.videos?.map((video: any, index: number) => (
-									<video
-										key={index}
-										className="h-[500px] w-[401px] rounded-3xl  shadow-md border"
-										width={401}
-										height={500}
-										controls>
-										<source src={video} type="video/mp4" />
-									</video>
-								))}
-							</Slider>
-						</div>
-						<div className="sm:col-span-2 sm:mt-0 mt-10">
-							<div className="flex flex-col md:block md:flex-col md:space-y-2">
-								<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4">
-									{modelDetails?.userName}
-									{/* , {getAge(modelDetails?.date_of_birth)} */}
-								</h3>
-								{/* <button className="flex space-x-3 btn px-1  text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
+			{modelDetails && (
+				<div className="flex md:flex-row flex-col">
+
+
+					<div className="relative rounded-3xl  md:mr-16 w-[325px]">
+						<Slider {...settings}>
+							{modelDetails?.photos?.map((picture: any, index: number) => (
+								<Image
+									key={index}
+									src={picture}
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border"
+									alt="#"
+									width={401}
+									height={450}
+								/>
+							))}
+							{modelDetails?.videos?.map((video: any, index: number) => (
+								<video
+									key={index}
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border"
+									width={401}
+									height={450}
+									controls>
+									<source src={video} type="video/mp4" />
+								</video>
+							))}
+						</Slider>
+					</div>
+					<div className="sm:mt-0 mt-10">
+						<div className="flex flex-col md:block md:flex-col md:space-y-2">
+							<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4">
+								{modelDetails?.userName}
+								{/* , {getAge(modelDetails?.date_of_birth)} */}
+							</h3>
+							{/* <button className="flex space-x-3 btn px-1  text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
 									<Image src={Location} className="" alt="#" />
 									<div>
 										{modelDetails?.country}, {modelDetails?.city}
 									</div>
 								</button> */}
-							</div>
-							<hr className="my-4"></hr>
-							{/* <div className="text-2xl font-PoppinsSemiBold my-5">About Me</div> */}
-							<div className=" flex flex-wrap content-evenly my-5 bg-[#f6f6f6] rounded-md p-3">
-								{modelDetails['about']}
-							</div>
-							<hr className="my-4"></hr>
-							<h3 className="font-PoppinsRegular text-md my-3">Attributes</h3>
-							<ul className="flex space-x-2">
-								{modelDetails['categories'].map((category: string) => (
-									<li key={category} className="">
-										{category},
-									</li>
-								))}
-							</ul>
-							<hr className="my-4"></hr>
-							<h3 className="font-PoppinsRegular text-md my-3">Links</h3>
-							<ul className="flex space-x-2">
-								{modelDetails['links'].map((link: string) => (
-									<li key={link} className="">
-										{link},
-									</li>
-								))}
-								{/* <li>
+						</div>
+						<hr className="my-4"></hr>
+						{/* <div className="text-2xl font-PoppinsSemiBold my-5">About Me</div> */}
+						<div className=" flex flex-wrap content-evenly my-5 bg-[#f6f6f6] rounded-md p-3">
+							{modelDetails['about']}
+						</div>
+						<hr className="my-4"></hr>
+						<h3 className="font-PoppinsRegular text-md my-3">Attributes</h3>
+						<ul className="flex gap-2 flex-wrap">
+							{modelDetails['categories'].map((category: string) => (
+								<li key={category} className="bg-gray-100 rounded-3xl px-4 py-1.5">
+									{category}
+								</li>
+							))}
+						</ul>
+						<hr className="my-4"></hr>
+						<h3 className="font-PoppinsRegular text-md my-3">Links</h3>
+						<ul className="flex flex-wrap space-x-2">
+							{modelDetails['links'].map((link: string) => (
+								<li key={link} className="cursor-pointer text-blue-500 hover:text-151515">
+									{link},
+								</li>
+							))}
+							{/* <li>
 									<Image src={Fb} className="" alt="#" />
 								</li>
 								<li>
 									<Image src={Instagram} className="" alt="#" />
 								</li> */}
-							</ul>
-						</div>
-					</>
-				)}
-			</div>
+						</ul>
+					</div>
+
+
+				</div>)}
 		</div>
 	);
 };

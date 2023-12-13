@@ -84,6 +84,20 @@ body {
   }
 }
 
+.slick-dots {
+  bottom: 15px !important;
+}
+
+.slick-dots li button::before,
+.slick-dots li.slick-active button::before {
+  color: white !important;
+  font-size: 12px !important;
+}
+
+.slick-dots li {
+  margin: 0 !important;
+}
+
 .react-date-picker__inputGroup__input {
   /* width: 100%; */
 }
