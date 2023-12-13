@@ -117,9 +117,7 @@ const ModelProfile = () => {
 			</h2>
 			{modelDetails && (
 				<div className="flex md:flex-row flex-col">
-
-
-					<div className="relative rounded-3xl  md:mr-16 w-[325px]">
+					<div className="relative rounded-3xl w-full md:mr-16 sm:w-[325px]">
 						<Slider {...settings}>
 							{modelDetails?.photos?.map((picture: any, index: number) => (
 								<Image
@@ -129,6 +127,8 @@ const ModelProfile = () => {
 									alt="#"
 									width={401}
 									height={450}
+									priority
+									quality={70}
 								/>
 							))}
 							{modelDetails?.videos?.map((video: any, index: number) => (
@@ -147,17 +147,10 @@ const ModelProfile = () => {
 						<div className="flex flex-col md:block md:flex-col md:space-y-2">
 							<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4">
 								{modelDetails?.userName}
-								{/* , {getAge(modelDetails?.date_of_birth)} */}
 							</h3>
-							{/* <button className="flex space-x-3 btn px-1  text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
-									<Image src={Location} className="" alt="#" />
-									<div>
-										{modelDetails?.country}, {modelDetails?.city}
-									</div>
-								</button> */}
 						</div>
 						<hr className="my-4"></hr>
-						{/* <div className="text-2xl font-PoppinsSemiBold my-5">About Me</div> */}
+						<div className="text-2xl font-PoppinsSemiBold my-5">About Me</div>
 						<div className=" flex flex-wrap content-evenly my-5 bg-[#f6f6f6] rounded-md p-3">
 							{modelDetails['about']}
 						</div>
@@ -172,23 +165,20 @@ const ModelProfile = () => {
 						</ul>
 						<hr className="my-4"></hr>
 						<h3 className="font-PoppinsRegular text-md my-3">Links</h3>
-						<ul className="flex flex-wrap space-x-2">
+						<ul className="flex flex-col overflow-hidden whitespace-pre-wrap space-y-2">
 							{modelDetails['links'].map((link: string) => (
-								<li key={link} className="cursor-pointer text-blue-500 hover:text-151515">
-									{link},
+								<li
+									key={link}
+									className="cursor-pointer text-blue-500 hover:text-151515">
+									<a href={link} target="_blank">
+										{link}
+									</a>
 								</li>
 							))}
-							{/* <li>
-									<Image src={Fb} className="" alt="#" />
-								</li>
-								<li>
-									<Image src={Instagram} className="" alt="#" />
-								</li> */}
 						</ul>
 					</div>
-
-
-				</div>)}
+				</div>
+			)}
 		</div>
 	);
 };
