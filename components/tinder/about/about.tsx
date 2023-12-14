@@ -1,11 +1,7 @@
 'use client';
 import Image from 'next/image';
-import Post1 from '@/assets/images/Sammy.png';
-import Back from '@/assets/images/svg/A-arrow.svg';
 import UpArrow from '@/assets/images/svg/upArrow.svg';
-import Close from '@/assets/images/svg/A-Close.svg';
 import Heart from '@/assets/images/svg/A-heart.svg';
-import Location from '@/assets/images/svg/location.svg';
 import React, { useState, useEffect } from 'react';
 import { removeUser } from '@/redux/slice/user';
 import { getUserProfile } from '@/services/user.service';
@@ -18,8 +14,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
-import Instagram from '@/assets/images/instagram.png';
-import Fb from '@/assets/images/fbb.png';
 
 const ModelProfile = () => {
 	const [loading, setLoading] = useState(false);
@@ -107,11 +101,11 @@ const ModelProfile = () => {
 						<li className="p-2 rounded-2xl cursor-pointer border border-gray-50">
 							<Image src={UpArrow} className="" alt="#" height={18} width={20} />
 						</li>
-						<li>
+						{/* <li>
 							<div className="bg-[#FF3900] p-2 rounded-2xl cursor-pointer border border-gray-50">
 								<Image src={Heart} className="" alt="#" height={24} width={24} />
 							</div>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</h2>
