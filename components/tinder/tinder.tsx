@@ -42,11 +42,11 @@ const Tinder = () => {
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100"
 						leaveTo="opacity-0">
-						<div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
+						<div className="fixed sm:bg-black/25 sm:backdrop-blur-sm" />
 					</Transition.Child>
 
 					<div className="fixed inset-0 overflow-y-auto">
-						<div className="flex min-h-full items-center justify-center p-4 text-center">
+						<div className="flex  min-h-full bg-black/50 backdrop-blur-sm sm:items-center items-end sm:justify-center  sm:p-4 text-center">
 							<Transition.Child
 								as={Fragment}
 								enter="ease-out duration-300"
@@ -55,49 +55,49 @@ const Tinder = () => {
 								leave="ease-in duration-200"
 								leaveFrom="opacity-100 scale-100"
 								leaveTo="opacity-0 scale-95">
-								<Dialog.Panel className="bg-black/50 backdrop-blur-md w-full max-w-4xl transform overflow-hidden rounded-2xl p-10 text-left align-middle shadow-xl transition-all">
-									<h2 className="text-white font-PoppinsBold text-3xl mb-7">Filter</h2>
+								<Dialog.Panel className="sm:bg-black/50 bg-white sm:backdrop-blur-md w-full max-w-4xl transform overflow-hidden rounded-2xl p-10 text-left align-middle shadow-xl transition-all">
+									<h2 className="sm:text-white text-2f2f2f font-PoppinsBold text-3xl mb-7">Filter</h2>
 									<ul className="flex flex-wrap gap-3">
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Busty
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Huge Boobs
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Beautiful
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Glasses
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Lipstick
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Big Ass
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Beautiful
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Busty
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Huge Boobs
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Beautiful
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Glasses
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Lipstick
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Big Ass
 										</li>
-										<li className="border border-white py-2.5 px-4 rounded-lg text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
+										<li className="border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f">
 											Beautiful
 										</li>
 									</ul>
