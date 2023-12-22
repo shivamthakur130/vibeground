@@ -2,11 +2,12 @@
 
 import React from 'react';
 import * as Yup from 'yup';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { updateUser } from '@/redux/slice/user';
+import { getCities } from '@/services/common.service';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { fanLocation } from '@/services/user.service';
@@ -16,7 +17,7 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 
-const Selection = ({ countries, cities }: any) => {
+const Selection = ({ countries }: any) => {
 	const [loading, setLoading] = useState(false);
 
 	const dispatch = useAppDispatch();
@@ -95,13 +96,39 @@ const Selection = ({ countries, cities }: any) => {
 	const onChangeCountry = (e: any, city: string) => {
 		setCountry(e.target.value);
 		setValue('country', e.target.value);
-		const cityListSelected = cities.filter(
-			(item: any) => item['country_code'] == e.target.value
-		);
-		setCityList(cityListSelected);
+		// const cityListSelected = cities.filter(
+		// 	(item: any) => item['country_code'] == e.target.value
+		// );
+		// setCityList(cityListSelected);
+
+		getCitiesList(e.target.value);
+
 		setCity(city);
 		setValue('city', city);
 	};
+
+	const getCitiesList = async (countryCode: string) => {
+		setLoading(true);
+		try {
+			const { data, error } = await getCities(countryCode);
+			if (error) {
+				setLoading(false);
+				handleError(error);
+				return;
+			}
+
+			if (typeof data === 'object' && data !== null && 'data' in data) {
+				setCityList(data.data);
+			} else {
+				setCityList([]);
+			}
+			setLoading(false);
+		} catch (error) {
+			handleError(error);
+			setLoading(false);
+		}
+	};
+
 	return (
 		<div className="Email text-center max-w-2xl mx-auto mt-14 mb-24 relative px-4">
 			<p className="md:text-xl text-xs text-888 mb-5">

@@ -44,6 +44,13 @@ const Billing = () => {
 	const [cardNumberCheck, setCardNumberCheck] = useState(false);
 	const [cardExpiryCheck, setCardExpiryCheck] = useState(false);
 	const [cardCvcCheck, setCardCvcCheck] = useState(false);
+	const [validationCheck, setValidationCheck] = useState({
+		cardNumber: '',
+		cardExpiry: '',
+		cardCvc: '',
+		cardName: '',
+		address: '',
+	});
 	const [cardNameCheck, setCardNameCheck] = useState(false);
 	const [addressCheck, setAddressCheck] = useState(false);
 	const [isFormValid, setIsFormValid] = useState(false);
@@ -82,6 +89,7 @@ const Billing = () => {
 			function (event) {
 				if (event.complete) {
 					setCardNumberCheck(true);
+					setValidationCheck({ ...validationCheck, cardNumber: '' });
 				} else if (event.error || event.empty) {
 					setCardNumberCheck(false);
 				}
@@ -92,6 +100,7 @@ const Billing = () => {
 			function (event) {
 				if (event.complete) {
 					setCardExpiryCheck(true);
+					setValidationCheck({ ...validationCheck, cardExpiry: '' });
 				} else if (event.error || event.empty) {
 					setCardExpiryCheck(false);
 				}
@@ -102,6 +111,7 @@ const Billing = () => {
 			function (event) {
 				if (event.complete) {
 					setCardCvcCheck(true);
+					setValidationCheck({ ...validationCheck, cardCvc: '' });
 				} else if (event.error || event.empty) {
 					setCardCvcCheck(false);
 				}
@@ -115,7 +125,14 @@ const Billing = () => {
 			(document.getElementById('address') as HTMLInputElement)?.value != ''
 				? true
 				: false;
+
+		if (cardName) {
+			setValidationCheck({ ...validationCheck, cardName: '' });
+		}
 		setCardNameCheck(cardName);
+		if (address) {
+			setValidationCheck({ ...validationCheck, address: '' });
+		}
 		setAddressCheck(address);
 
 		const flagCheck =
@@ -229,8 +246,73 @@ const Billing = () => {
 			});
 	};
 
+	useEffect(() => {}, [isFormValid]);
+
 	const handlePayment = async () => {
-		if (isFormValid && !isProcessingPayment) {
+		// check if form is valid
+		if (!cardNumberCheck) {
+			setValidationCheck({
+				...validationCheck,
+				cardNumber: 'Card number is required',
+			});
+			setIsFormValid(!isFormValid);
+			return;
+		} else {
+			setValidationCheck({
+				...validationCheck,
+				cardNumber: '',
+			});
+		}
+
+		if (!cardExpiryCheck) {
+			setValidationCheck({
+				...validationCheck,
+				cardExpiry: 'Card expiry is required',
+			});
+			setIsFormValid(!isFormValid);
+			return;
+		} else {
+			setValidationCheck({
+				...validationCheck,
+				cardExpiry: '',
+			});
+		}
+		if (!cardCvcCheck) {
+			setValidationCheck({ ...validationCheck, cardCvc: 'Card cvc is required' });
+			setIsFormValid(!isFormValid);
+			return;
+		} else {
+			setValidationCheck({
+				...validationCheck,
+				cardCvc: '',
+			});
+		}
+		if (!cardNameCheck) {
+			setValidationCheck({
+				...validationCheck,
+				cardName: 'Card name is required',
+			});
+			setIsFormValid(!isFormValid);
+			return;
+		} else {
+			setValidationCheck({
+				...validationCheck,
+				cardName: '',
+			});
+		}
+
+		if (!addressCheck) {
+			setValidationCheck({ ...validationCheck, address: 'Address is required' });
+			setIsFormValid(!isFormValid);
+			return;
+		} else {
+			setValidationCheck({
+				...validationCheck,
+				address: '',
+			});
+		}
+
+		if (!isProcessingPayment) {
 			setIsProcessingPayment(true);
 			try {
 				const { data, error } = await processPayment({
@@ -281,7 +363,7 @@ const Billing = () => {
 			);
 		}
 	};
-
+	console.log('validationCheck', validationCheck);
 	return (
 		<div className="Billing max-w-4xl mx-auto mt-24 mb-20 relative px-4">
 			<div className="mx-auto grid md:grid-cols-6 grid-flow-row md:grid-flow-col gap-4">
@@ -312,6 +394,12 @@ const Billing = () => {
 						id="cardNumber"
 						onChange={handleFormChange}
 					/>
+					{validationCheck.cardNumber && (
+						<div className="text-111 text-xs font-PoppinsMedium mt-2 ml-4">
+							<span className="text-red-500">Card number is required</span>
+						</div>
+					)}
+
 					<div className="grid grid-flow-col grid-cols-8 gap-6 my-6">
 						<div className="col-span-3">
 							<CardExpiryElement
@@ -319,6 +407,11 @@ const Billing = () => {
 								className="rounded-3xl bg-black/25 w-full px-5 py-4 text-xs text-[#3f3f3f] placeholder:text-[#3f3f3f]"
 								onChange={handleFormChange}
 							/>
+							{validationCheck.cardExpiry && (
+								<div className="text-111 text-xs font-PoppinsMedium mt-2 ml-4">
+									<span className="text-red-500">Expiry is required</span>
+								</div>
+							)}
 						</div>
 						<div className="col-span-5">
 							<CardCvcElement
@@ -326,6 +419,11 @@ const Billing = () => {
 								className="rounded-3xl bg-black/25 w-full px-5 py-4 text-xs text-[#3f3f3f] placeholder:text-[#3f3f3f]"
 								onChange={handleFormChange}
 							/>
+							{validationCheck.cardCvc && (
+								<div className="text-111 text-xs font-PoppinsMedium mt-2 ml-4">
+									<span className="text-red-500">CVC is required</span>
+								</div>
+							)}
 						</div>
 					</div>
 					<div className="py-2">
@@ -336,6 +434,11 @@ const Billing = () => {
 							placeholder="Name of Card"
 							onKeyUp={handleFormChange}
 						/>
+						{validationCheck.cardName && (
+							<div className="text-111 text-xs font-PoppinsMedium mt-2 ml-4">
+								<span className="text-red-500">Card name is required</span>
+							</div>
+						)}
 					</div>
 					<div className="py-2">
 						<input
@@ -345,7 +448,13 @@ const Billing = () => {
 							id="address"
 							placeholder="Address"
 							onKeyUp={handleFormChange}
+							onChange={handleFormChange}
 						/>
+						{validationCheck.address && (
+							<div className="text-111 text-xs font-PoppinsMedium mt-2 ml-4">
+								<span className="text-red-500">Address is required</span>
+							</div>
+						)}
 					</div>
 					<div className="mt-6">
 						{/* <div className="flex justify-between">
@@ -359,12 +468,12 @@ const Billing = () => {
 						<div className="flex justify-between mt-10">
 							<button
 								className={`btn btn-default px-7 py-3 bg-2f2f2f text-white rounded-lg self-center transition-all duration-300 active:bg-303030 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3f3f3f] ${
-									!isFormValid || isProcessingPayment || !selectedPlan
+									isProcessingPayment || !selectedPlan
 										? 'opacity-50 cursor-not-allowed'
 										: ''
 								}}`}
 								type="button"
-								disabled={!isFormValid || isProcessingPayment || !selectedPlan}
+								disabled={isProcessingPayment || !selectedPlan}
 								onClick={handlePayment}>
 								{isProcessingPayment ? 'Processing...' : 'Confirm Purchase'}
 							</button>
