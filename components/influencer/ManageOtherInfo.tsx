@@ -83,15 +83,10 @@ const ManageOtherInfo = ({ user, showHide, countries }: any) => {
 		setValue('firstName', user.firstName);
 		setValue('lastName', user.lastName);
 		setValue('email', user.email);
-
 		const dateOfBirth = new Date(user.date_of_birth);
 		setSelectedDate(dateOfBirth);
 		setValue('country', user.country);
-		// const cityListSelected = cities.filter(
-		// 	(item: any) => item['country_code'] == user.country
-		// );
 		getCitiesList(user.country);
-		// setCityList(cityListSelected);
 		setValue('city', user.city);
 		setValue('gender', user.gender);
 	}, []);
@@ -165,34 +160,17 @@ const ManageOtherInfo = ({ user, showHide, countries }: any) => {
 				'Network Error. Please check your internet connection.'
 			);
 		} else {
-			// Something else happened while setting up the request
 			ErrorMessage(
 				'Model Registration',
 				'An unexpected error occurred. Please try again later.'
 			);
 		}
 	};
-	// const onChangeCountry = (e: any, city: string) => {
-	// 	setCountry(e.target.value);
-	// 	setValue('country', e.target.value);
-	// 	const cityListSelected = cities.filter(
-	// 		(item: any) => item['country_code'] == e.target.value
-	// 	);
-	// 	setCityList(cityListSelected);
-	// 	setCity(city);
-	// 	setValue('city', city);
-	// };
 
 	const onChangeCountry = (e: any, city: string) => {
 		setCountry(e.target.value);
 		setValue('country', e.target.value);
-		// const cityListSelected = cities.filter(
-		// 	(item: any) => item['country_code'] == e.target.value
-		// );
-		// setCityList(cityListSelected);
-
 		getCitiesList(e.target.value);
-
 		setCity(city);
 		setValue('city', city);
 	};
