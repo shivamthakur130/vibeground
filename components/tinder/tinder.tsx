@@ -175,7 +175,7 @@ const Tinder = () => {
 				</div>
 
 			</div>
-			<div className='fixed bottom-0 w-full bg-white px-3 pt-3 pb-6 '>
+			<div className='fixed bottom-0 w-full bg-white px-3 pt-3 pb-6 block sm:hidden'>
 				<ul className='flex justify-around items-center'>
 					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer group'>
 						<span className='group-hover:opacity-100 opacity-100'>
