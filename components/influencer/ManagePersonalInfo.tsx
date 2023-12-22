@@ -6,7 +6,7 @@ import { IoChevronBackOutline } from 'react-icons/io5';
 import ManageOtherInfo from '@/components/influencer/ManageOtherInfo';
 import ChangePassword from '@/components/influencer/ChangePassword';
 
-const ManagePersonalInfo = ({ countries, cities }: any) => {
+const ManagePersonalInfo = ({ countries }: any) => {
 	const { replace } = useRouter();
 	const user = useSelector((state: any) => state.userReducer.user);
 
@@ -24,12 +24,7 @@ const ManagePersonalInfo = ({ countries, cities }: any) => {
 					<IoChevronBackOutline className="text-xl" /> <span>Back</span>
 				</div>
 			</div>
-			<ManageOtherInfo
-				user={user}
-				showHide={true}
-				countries={countries}
-				cities={cities}
-			/>
+			<ManageOtherInfo user={user} showHide={true} countries={countries} />
 			<ChangePassword user={user} showHide={true} />
 		</div>
 	);

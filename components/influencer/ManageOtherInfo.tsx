@@ -13,7 +13,7 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
-
+import { getCities } from '@/services/common.service';
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
@@ -24,7 +24,7 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const ManageOtherInfo = ({ user, showHide, countries, cities }: any) => {
+const ManageOtherInfo = ({ user, showHide, countries }: any) => {
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	// start date of birth more than 18 years ago
 	const startDate = new Date();
@@ -87,10 +87,11 @@ const ManageOtherInfo = ({ user, showHide, countries, cities }: any) => {
 		const dateOfBirth = new Date(user.date_of_birth);
 		setSelectedDate(dateOfBirth);
 		setValue('country', user.country);
-		const cityListSelected = cities.filter(
-			(item: any) => item['country_code'] == user.country
-		);
-		setCityList(cityListSelected);
+		// const cityListSelected = cities.filter(
+		// 	(item: any) => item['country_code'] == user.country
+		// );
+		getCitiesList(user.country);
+		// setCityList(cityListSelected);
 		setValue('city', user.city);
 		setValue('gender', user.gender);
 	}, []);
@@ -171,15 +172,51 @@ const ManageOtherInfo = ({ user, showHide, countries, cities }: any) => {
 			);
 		}
 	};
+	// const onChangeCountry = (e: any, city: string) => {
+	// 	setCountry(e.target.value);
+	// 	setValue('country', e.target.value);
+	// 	const cityListSelected = cities.filter(
+	// 		(item: any) => item['country_code'] == e.target.value
+	// 	);
+	// 	setCityList(cityListSelected);
+	// 	setCity(city);
+	// 	setValue('city', city);
+	// };
+
 	const onChangeCountry = (e: any, city: string) => {
 		setCountry(e.target.value);
 		setValue('country', e.target.value);
-		const cityListSelected = cities.filter(
-			(item: any) => item['country_code'] == e.target.value
-		);
-		setCityList(cityListSelected);
+		// const cityListSelected = cities.filter(
+		// 	(item: any) => item['country_code'] == e.target.value
+		// );
+		// setCityList(cityListSelected);
+
+		getCitiesList(e.target.value);
+
 		setCity(city);
 		setValue('city', city);
+	};
+
+	const getCitiesList = async (countryCode: string) => {
+		setLoading(true);
+		try {
+			const { data, error } = await getCities(countryCode);
+			if (error) {
+				setLoading(false);
+				handleError(error);
+				return;
+			}
+
+			if (typeof data === 'object' && data !== null && 'data' in data) {
+				setCityList(data.data);
+			} else {
+				setCityList([]);
+			}
+			setLoading(false);
+		} catch (error) {
+			handleError(error);
+			setLoading(false);
+		}
 	};
 
 	const onChangeDate = (date: Value) => {
