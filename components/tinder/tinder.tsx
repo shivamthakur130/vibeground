@@ -175,32 +175,44 @@ const Tinder = () => {
 				</div>
 
 			</div>
-			<div className='fixed bottom-0 w-full bg-white px-3 pt-3 pb-6 block sm:hidden'>
+			<div className='fixed bottom-0 w-full bg-white px-3 pt-3 pb-6 '>
 				<ul className='flex justify-around items-center'>
-					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer'>
-						<Image src={Footer_vb} className="opacity-100" alt="#" />
+					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer group'>
+						<span className='group-hover:opacity-100 opacity-100'>
+							<Image src={Footer_vb} alt="#" />
+						</span>
+
 						<div className="absolute w-full -bottom-3 left-0 right-0">
 							<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 						</div>
 
 					</li>
-					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer'>
-						<Image src={FooterSearch} className="opacity-50" alt="#" />
-						<div className="absolute w-full -bottom-3 left-0 right-0 hidden">
+					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer group'>
+						<span className='group-hover:opacity-100 opacity-50'>
+							<Image src={FooterSearch} alt="#" />
+						</span>
+
+						<div className="absolute w-full -bottom-3 left-0 right-0 hidden group-hover:block">
 							<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 						</div>
 
 					</li>
-					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer'>
-						<Image src={FooterHeart} className="opacity-50" alt="#" />
-						<div className="absolute w-full -bottom-3 left-0 right-0 hidden">
+					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer group'>
+						<span className='group-hover:opacity-100 opacity-50'>
+							<Image src={FooterHeart} alt="#" />
+						</span>
+
+						<div className="absolute w-full -bottom-3 left-0 right-0 hidden group-hover:block">
 							<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 						</div>
 
 					</li>
-					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer'>
-						<Image src={FooterUser} className="opacity-50" alt="#" />
-						<div className="absolute w-full -bottom-3 left-0 right-0 hidden">
+					<li className='text-center relative h-9 w-9 flex items-center cursor-pointer group'>
+						<span className='group-hover:opacity-100 opacity-50'>
+							<Image src={FooterUser} alt="#" />
+						</span>
+
+						<div className="absolute w-full -bottom-3 left-0 right-0 hidden group-hover:block">
 							<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 						</div>
 
