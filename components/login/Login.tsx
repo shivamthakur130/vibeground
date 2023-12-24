@@ -1,24 +1,17 @@
 'use client';
-import Google from '@/assets/images/google.png';
 import * as Yup from 'yup';
-import Image from 'next/image';
-import Hand from '@/assets/images/hand.png';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { setUser, updateUser } from '@/redux/slice/user';
+import { updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { loginUser, googleLogin } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import {
-	LoadingMgs,
-	SuccessMessage,
-	ErrorMessage,
-} from '@/components/layout/ToastifyMessages';
+import { ErrorMessage } from '@/components/layout/ToastifyMessages';
 import Link from 'next/link';
 import { getLoginType, setLoginType } from '@/lib/useLocalStorageUser';
 
@@ -79,7 +72,7 @@ const Login = () => {
 	}
 
 	const login = async (prepareRequest: any) => {
-		LoadingMgs('Login Operation', 'Login...');
+		// LoadingMgs('Login Operation', 'Login...');
 		setLoading(true);
 		const { data, error } = await loginUser({ ...prepareRequest });
 
@@ -92,7 +85,6 @@ const Login = () => {
 			const userId = data.data._id;
 			reset();
 			dispatch(updateUser({ ...user, userId: userId, ...data.data }));
-			SuccessMessage('Login Operation', 'Login success');
 			setLoginType(typeLogin);
 			if (data.data.type === 'fan') {
 				replace('/experience');
@@ -153,7 +145,6 @@ const Login = () => {
 			return;
 		}
 		if (typeof data === 'object' && data !== null && 'data' in data) {
-			SuccessMessage('Google Login', 'Login Successfully');
 			if (data.data.status) {
 				dispatch(
 					updateUser({

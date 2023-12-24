@@ -1,8 +1,7 @@
 'use client';
 import Image from 'next/image';
 import UpArrow from '@/assets/images/svg/upArrow.svg';
-import Heart from '@/assets/images/svg/A-heart.svg';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { removeUser } from '@/redux/slice/user';
 import { getUserProfile } from '@/services/user.service';
 import { useSelector } from 'react-redux';
@@ -15,11 +14,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
 
-const ModelProfile = () => {
+const About = ({ params }: any) => {
 	const [loading, setLoading] = useState(false);
 	const [modelDetails, setModelDetails] = useState<any | null>(null);
 	const dispatch = useAppDispatch();
 	const { replace } = useRouter();
+
 	const user = useSelector((state: any) => state.userReducer.user);
 	const messageTitle = 'Profile View';
 	const settings = {
@@ -35,8 +35,7 @@ const ModelProfile = () => {
 		window.scrollTo(0, 0);
 		(async () => {
 			setLoading(true);
-			const id = user._id;
-			const { data, error } = await getUserProfile(id);
+			const { data, error } = await getUserProfile(params?.id);
 			if (error) {
 				setLoading(false);
 				handleError(error);
@@ -80,6 +79,8 @@ const ModelProfile = () => {
 		return age;
 	};
 
+	console.log(params, 'params');
+
 	if (loading) {
 		return (
 			<div className="flex justify-center items-center h-screen">
@@ -90,8 +91,8 @@ const ModelProfile = () => {
 	return (
 		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
 			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">
-				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-					<Link href="/influencer/manage-profile">
+				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 hover:bg-gray-100 active:bg-gray-200">
+					<Link href="/experience/tinder">
 						<Image src={ArrowLeft} height={32} width={32} alt="#" />
 					</Link>
 				</div>
@@ -100,11 +101,6 @@ const ModelProfile = () => {
 						<li className="p-2 rounded-2xl cursor-pointer border border-gray-50">
 							<Image src={UpArrow} className="" alt="#" height={18} width={20} />
 						</li>
-						{/* <li>
-							<div className="bg-[#FF3900] p-2 rounded-2xl cursor-pointer border border-gray-50">
-								<Image src={Heart} className="" alt="#" height={24} width={24} />
-							</div>
-						</li> */}
 					</ul>
 				</div>
 			</h2>
@@ -176,4 +172,4 @@ const ModelProfile = () => {
 	);
 };
 
-export default ModelProfile;
+export default About;

@@ -9,7 +9,6 @@ import { usePathname } from 'next/navigation';
 
 const MobileBottomMenu = () => {
 	const pathname = usePathname();
-	console.log();
 	return (
 		<div className="fixed bottom-0 w-full bg-white px-3 pt-3 pb-6 block sm:hidden z-50">
 			<ul className="flex justify-around items-center">
@@ -19,7 +18,7 @@ const MobileBottomMenu = () => {
 							<Image src={Footer_vb} alt="#" />
 						</span>
 						{pathname === '/experience' && (
-							<div className="absolute w-full -bottom-3 left-0 right-0">
+							<div className="absolute w-full -bottom-3 left-0 right-0 group-hover:block">
 								<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 							</div>
 						)}
@@ -31,7 +30,7 @@ const MobileBottomMenu = () => {
 							<Image src={FooterSearch} alt="#" />
 						</span>
 						{pathname === '/experience/tinder' && (
-							<div className="absolute w-full -bottom-3 left-0 right-0 hidden group-hover:block">
+							<div className="absolute w-full -bottom-3 left-0 right-0  group-hover:block">
 								<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 							</div>
 						)}
@@ -43,7 +42,7 @@ const MobileBottomMenu = () => {
 							<Image src={FooterHeart} alt="#" />
 						</span>
 						{pathname === '/experience/favorites' && (
-							<div className="absolute w-full -bottom-3 left-0 right-0 hidden group-hover:block">
+							<div className="absolute w-full -bottom-3 left-0 right-0  group-hover:block">
 								<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 							</div>
 						)}
@@ -55,7 +54,7 @@ const MobileBottomMenu = () => {
 							<Image src={FooterUser} alt="#" />
 						</span>
 						{pathname === '/experience/profile' && (
-							<div className="absolute w-full -bottom-3 left-0 right-0 hidden group-hover:block">
+							<div className="absolute w-full -bottom-3 left-0 right-0  group-hover:block">
 								<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 							</div>
 						)}

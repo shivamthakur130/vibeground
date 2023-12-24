@@ -1,99 +1,120 @@
 'use client';
-import React from 'react';
-import Image from 'next/image';
-import Post1 from '@/assets/images/Jessica.png';
-import Back from '@/assets/images/svg/backa.svg';
-import Close from '@/assets/images/svg/close-x.svg';
-import Heart from '@/assets/images/svg/heart-wbg.svg';
-import { useState } from 'react';
-import MobileBottomMenu from '../common/mobileBottomMenu';
+import { useState, useEffect, Fragment } from 'react';
 import Filter from './filter';
+import { useRouter } from 'next/navigation';
+import ItemDetails from './itemDetails';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllModels } from '@/services/tinder.service';
+import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import { removeUser } from '@/redux/slice/user';
+import Loading from '../layout/Loading';
+import { Transition } from '@headlessui/react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+const settings = {
+	dots: false,
+	infinite: true,
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	autoplay: false,
+	speed: 500,
+	swipeToSlide: true,
+};
 
 const Tinder = () => {
+	const userDetails = useSelector((state: any) => state.userReducer.user);
 	const [isOpen, setIsOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const messageTitle = 'Profile View';
+	const [modelDetails, setModelDetails] = useState<any | null>(null);
+	const dispatch = useDispatch();
+	const user = useSelector((state: any) => state.userReducer.user);
+	const { replace } = useRouter();
+
+	const getAllModelsDetails = async () => {
+		setLoading(true);
+		const { data, error } = await getAllModels();
+		if (error) {
+			setLoading(false);
+			handleError(error);
+			return;
+		}
+		setModelDetails((data as { data: any })['data']);
+		setLoading(false);
+	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		getAllModelsDetails();
+	}, []);
 
 	function openModal() {
 		setIsOpen(true);
 	}
+	const handleError = (error: any) => {
+		if (error.response?.status === 401) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+		if (error.response) {
+			let message = error.response.data.message;
+			ErrorMessage(messageTitle, message);
+		} else if (error.request) {
+			ErrorMessage(
+				messageTitle,
+				'Network Error. Please check your internet connection.'
+			);
+		} else {
+			ErrorMessage(
+				messageTitle,
+				'An unexpected error occurred. Please try again later.'
+			);
+		}
+	};
 	return (
-		<>
-			<div className="Tinder max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
-				<div className="md:text-5xl  text-111 flex items-center mb-10 justify-between">
-					<p className="md:text-3xl text-base mb-5">
-						{' '}
-						Hello
-						<h2 className="text-2xl font-PoppinsSemiBold">Dominik</h2>
-					</p>
-
-					<button
-						type="button"
-						onClick={openModal}
-						className="bg-d9d9d9 px-9 py-4 text-22px text-2f2f2f font-PoppinsRegular rounded-md hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-						Apply Filters
-					</button>
+		<div className="Tinder max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
+			<div className="md:text-5xl  text-111 flex items-center mb-10 justify-between">
+				<div className="md:text-3xl text-base mb-5">
+					{' '}
+					Hello
+					{/* <h2 className="text-2xl font-PoppinsSemiBold">{userDetails?.firstName}</h2> */}
 				</div>
-
-				<Filter isOpen={isOpen} setIsOpen={setIsOpen} />
-				<div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-10">
-					<div className="shadow-xl rounded-2xl">
-						<div className="relative rounded-2xl overflow-hidden bg-white">
-							<Image src={Post1} className="w-full" alt="#" />
-							<div className="absolute flex bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]">
-								<div className="mt-auto self-end w-full">
-									<h3 className="text-2xl text-white font-PoppinsSemiBold">
-										Jessica, 24{' '}
-									</h3>
-									<div className="flex justify-between mt-3">
-										<button className="btn px-6 py-2 bg-white/20 text-white text-base rounded font-PoppinsRegular">
-											Asian
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="flex item-center space-x-4 justify-center py-7">
-							<a href="#">
-								<Image src={Back} className="" alt="#" />
-							</a>
-							<a href="#">
-								<Image src={Close} className="" alt="#" />
-							</a>
-							<a href="#">
-								<Image src={Heart} className="" alt="#" />
-							</a>
-						</div>
-					</div>
-					<div className="shadow-xl rounded-2xl">
-						<div className="relative rounded-2xl overflow-hidden bg-white">
-							<Image src={Post1} className="w-full" alt="#" />
-							<div className="absolute flex bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]">
-								<div className="mt-auto self-end w-full">
-									<h3 className="text-2xl text-white font-PoppinsSemiBold">
-										Jessica, 24{' '}
-									</h3>
-									<div className="flex justify-between mt-3">
-										<button className="btn px-6 py-2 bg-white/20 text-white text-base rounded font-PoppinsRegular">
-											Asian
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="flex item-center space-x-4 justify-center py-7">
-							<a href="#">
-								<Image src={Back} className="" alt="#" />
-							</a>
-							<a href="#">
-								<Image src={Close} className="" alt="#" />
-							</a>
-							<a href="#">
-								<Image src={Heart} className="" alt="#" />
-							</a>
-						</div>
-					</div>
-				</div>
+				<button
+					type="button"
+					onClick={openModal}
+					className="bg-d9d9d9 px-5 py-2 text-lg text-2f2f2f font-PoppinsRegular rounded-md hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+					Apply Filters
+				</button>
 			</div>
-		</>
+			<Transition
+				appear
+				show={loading}
+				as={Fragment}
+				enter="ease-out duration-300"
+				enterFrom="opacity-0 scale-99"
+				enterTo="opacity-100 scale-100"
+				leave="ease-in duration-200"
+				leaveFrom="opacity-100 scale-100"
+				leaveTo="opacity-0 scale-99">
+				<div className="fixed inset-0 bg-gray-100/50 z-50">
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
+					z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+					/>
+				</div>
+			</Transition>
+			<Filter isOpen={isOpen} setIsOpen={setIsOpen} />
+			<center>
+				<Slider {...settings} className=" max-w-md ">
+					{modelDetails?.map((model: any, index: number) => (
+						<ItemDetails model={model} key={index} />
+					))}
+				</Slider>
+			</center>
+		</div>
 	);
 };
 
