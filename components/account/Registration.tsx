@@ -16,6 +16,7 @@ import {
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import axios from 'axios';
+import PageWrapper from '../common/PageWrapper';
 
 const Registration = () => {
 	const [loading, setLoading] = useState(false);
@@ -91,39 +92,41 @@ const Registration = () => {
 		}
 	};
 	return (
-		<div className="registration text-center mt-24 mb-40 px-5">
-			<h2 className="text-5xl font-PoppinsBold text-111">Create an account</h2>
-			<p className="text-xl text-888 mt-3 mb-10">
-				{/* By clicking on Sign Up, you agree to our terms & conditions and privacy
+		<PageWrapper>
+			<div className="registration text-center mt-24 mb-40 px-5">
+				<h2 className="text-5xl font-PoppinsBold text-111">Create an account</h2>
+				<p className="text-xl text-888 mt-3 mb-10">
+					{/* By clicking on Sign Up, you agree to our terms & conditions and privacy
 				policy. */}
-			</p>
-			<ul className="max-w-[375px] mx-auto space-y-3">
-				{/* <li
+				</p>
+				<ul className="max-w-[375px] mx-auto space-y-3">
+					{/* <li
 					className="flex border border-black hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center"
 					onClick={() => login()}>
 					Continue with Google <Image src={Google} alt="#" />
 				</li> */}
-				{/* <li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
+					{/* <li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
 					Continue with Facebook <Image src={FaceBook} alt="#" />
 				</li>
 				<li className="flex border border-black  hover:bg-gray-100 cursor-pointer rounded-lg p-4 text-lg justify-between items-center">
 					Continue with Phone number <Image src={Phone} alt="#" />
 				</li> */}
-				<li>
-					<Link href="/account/are-you">
-						<span className="btn btn-default flex border justify-center mt-5 border-black  cursor-pointer p-4 text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
-							SIGN UP
-						</span>
-					</Link>
-				</li>
-			</ul>
+					<li>
+						<Link href="/account/are-you">
+							<span className="btn btn-default flex border justify-center mt-5 border-black  cursor-pointer p-4 text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
+								SIGN UP
+							</span>
+						</Link>
+					</li>
+				</ul>
 
-			{/* <Link href="/account/are-you">
+				{/* <Link href="/account/are-you">
 				<button className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
 					SignUp
 				</button>
 			</Link> */}
-		</div>
+			</div>
+		</PageWrapper>
 	);
 };
 

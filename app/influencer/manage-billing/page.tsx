@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useAppSelector } from '@/redux/hooks';
+import PageWrapper from '@/components/common/PageWrapper';
 
 export default function ManageBillingPage() {
 	const { push } = useRouter();
@@ -70,12 +71,14 @@ export default function ManageBillingPage() {
 		);
 	}
 	return (
-		<div className="max-w-7xl mx-auto min-h-96">
-			{stripeKey !== '' && (
-				<Elements stripe={loadStripe(stripeKey)}>
-					<ManageBilling />
-				</Elements>
-			)}
-		</div>
+		<PageWrapper>
+			<div className="max-w-7xl mx-auto min-h-96">
+				{stripeKey !== '' && (
+					<Elements stripe={loadStripe(stripeKey)}>
+						<ManageBilling />
+					</Elements>
+				)}
+			</div>
+		</PageWrapper>
 	);
 }

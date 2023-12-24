@@ -87,7 +87,6 @@ const ModelProfile = () => {
 			</div>
 		);
 	}
-	console.log(modelDetails);
 	return (
 		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
 			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">

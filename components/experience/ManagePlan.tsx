@@ -23,6 +23,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import PageWrapper from '../common/PageWrapper';
 
 const ManagePlan = () => {
 	const [loading, setLoading] = useState(false);
@@ -149,198 +150,200 @@ const ManagePlan = () => {
 	};
 
 	return (
-		<div className="Profile max-w-2xl px-5 mx-auto  mt-16 mb-32">
-			<div className="mb-12">
-				<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
-					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-						<Link href="/experience/profile">
-							<Image src={ArrowLeft} height={32} width={32} alt="#" />
-						</Link>
-					</div>
-					{/* <div className="ml-10">Manage Subscription</div> */}
-				</h2>
-				<h1 className="text-4xl font-PoppinsSemiBold text-111"></h1>
-			</div>
-			{loading && (
-				<Loading
-					width={50}
-					height={50}
-					className="flex absolute justify-center w-96
-					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-				/>
-			)}
-			{planList.length === 0 && (
-				<div className="text-red-600 text-center h-5 mt-5 text-lg font-PoppinsRegular ml-3  transition delay-150 transform duration-300 ease-in-out">
-					No plan found
+		<PageWrapper>
+			<div className="Profile max-w-2xl px-5 mx-auto  mt-16 mb-32">
+				<div className="mb-12">
+					<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
+						<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
+							<Link href="/experience/profile">
+								<Image src={ArrowLeft} height={32} width={32} alt="#" />
+							</Link>
+						</div>
+						{/* <div className="ml-10">Manage Subscription</div> */}
+					</h2>
+					<h1 className="text-4xl font-PoppinsSemiBold text-111"></h1>
 				</div>
-			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={` ${loading ? 'opacity-25' : ''}`}>
-				<div className="mx-auto flex justify-center space-x-8">
-					{planList.map((plan, index) => (
-						<div
-							className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${
-								selectedPlan == plan._id
-									? 'border-2 border-[#F4BE55]'
-									: 'border-2 border-[#DFE9DF]'
-							}`}
-							key={index}
-							onClick={() => updatePlan(plan._id)}>
-							{plan.recommended && (
-								<div className="absolute -top-4 left-0 right-0 flex items-center">
-									<span className="px-5 py-2 bg-[#F4BE55] rounded text-xs mx-auto text-center text-white">
-										Recommended
-									</span>{' '}
+				{loading && (
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
+					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+					/>
+				)}
+				{planList.length === 0 && (
+					<div className="text-red-600 text-center h-5 mt-5 text-lg font-PoppinsRegular ml-3  transition delay-150 transform duration-300 ease-in-out">
+						No plan found
+					</div>
+				)}
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className={` ${loading ? 'opacity-25' : ''}`}>
+					<div className="mx-auto flex justify-center space-x-8">
+						{planList.map((plan, index) => (
+							<div
+								className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${
+									selectedPlan == plan._id
+										? 'border-2 border-[#F4BE55]'
+										: 'border-2 border-[#DFE9DF]'
+								}`}
+								key={index}
+								onClick={() => updatePlan(plan._id)}>
+								{plan.recommended && (
+									<div className="absolute -top-4 left-0 right-0 flex items-center">
+										<span className="px-5 py-2 bg-[#F4BE55] rounded text-xs mx-auto text-center text-white">
+											Recommended
+										</span>{' '}
+									</div>
+								)}
+								<div className="h-9 w-9 rounded bg-[#DFE9DF] flex items-center justify-center">
+									{plan.recommended ? (
+										<Image src={Croun} alt="#" />
+									) : (
+										<Image src={Star} alt="#" />
+									)}
 								</div>
-							)}
-							<div className="h-9 w-9 rounded bg-[#DFE9DF] flex items-center justify-center">
-								{plan.recommended ? (
-									<Image src={Croun} alt="#" />
-								) : (
-									<Image src={Star} alt="#" />
-								)}
-							</div>
-							<h2 className="font-PoppinsBold text-15px mt-1.5">
-								{plan.name}
+								<h2 className="font-PoppinsBold text-15px mt-1.5">
+									{plan.name}
+									{plan.planType !== 'free' && (
+										<span className="text-[10px]"> ({plan.duration} Month)</span>
+									)}
+								</h2>
 								{plan.planType !== 'free' && (
-									<span className="text-[10px]"> ({plan.duration} Month)</span>
-								)}
-							</h2>
-							{plan.planType !== 'free' && (
-								<>
-									<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
-										{plan.price}
-										<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
-											€/{'  '}
-											{plan.duration} Month
-										</span>
-									</h2>
+									<>
+										<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
+											{plan.price}
+											<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
+												€/{'  '}
+												{plan.duration} Month
+											</span>
+										</h2>
 
-									{/* <div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
+										{/* <div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
 										({(parseInt(plan.price) / parseInt(plan.duration)).toFixed(2)}
 										{'  '}
 										€/month)
 									</div> */}
-								</>
-							)}
-							<ul className="space-y-4 text-sm">
-								{plan.type == 'model' && (
-									<>
-										<li className="flex justify-between items-start">
-											Maximum Picture Upload
-											<span className="border-2 border-green-700 rounded-full px-2  font-PoppinsSemiBold">
-												{plan.max_pics}
-											</span>
-										</li>
-										<li className="flex justify-between items-start">
-											Maximum Video Upload
-											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
-												{' '}
-												{plan.max_videos}{' '}
-											</span>
-										</li>
-										<li className="flex justify-between items-start">
-											Maximum Link Add
-											<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
-												{' '}
-												{plan.max_links}{' '}
-											</span>
-										</li>
 									</>
 								)}
-								<li className="flex justify-between">
-									Videos
-									{plan.features.video == 'full' ? (
-										<span>
-											<Image src={Tic} alt="#" />
-										</span>
-									) : (
-										<span>--</span>
+								<ul className="space-y-4 text-sm">
+									{plan.type == 'model' && (
+										<>
+											<li className="flex justify-between items-start">
+												Maximum Picture Upload
+												<span className="border-2 border-green-700 rounded-full px-2  font-PoppinsSemiBold">
+													{plan.max_pics}
+												</span>
+											</li>
+											<li className="flex justify-between items-start">
+												Maximum Video Upload
+												<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
+													{' '}
+													{plan.max_videos}{' '}
+												</span>
+											</li>
+											<li className="flex justify-between items-start">
+												Maximum Link Add
+												<span className="border-2 border-gray-700 rounded-full px-2  font-PoppinsSemiBold">
+													{' '}
+													{plan.max_links}{' '}
+												</span>
+											</li>
+										</>
 									)}
-								</li>
-								<li className="flex justify-between">
-									Images{' '}
-									{plan.features.image == 'full' ? (
-										<span>
-											<Image src={Tic} alt="#" />
-										</span>
-									) : (
-										<span>--</span>
-									)}
-								</li>
-								{plan.type == 'fan' && (
 									<li className="flex justify-between">
-										Swipe Models
-										{plan.features.swipeModel == 'full' ? (
+										Videos
+										{plan.features.video == 'full' ? (
 											<span>
 												<Image src={Tic} alt="#" />
-											</span>
-										) : plan.features.swipeModel !== '' ? (
-											<span className="text-[#558F71]">{plan.features.swipeModel}</span>
-										) : (
-											<span>--</span>
-										)}
-									</li>
-								)}
-								{plan.type == 'model' && (
-									<li className="flex justify-between">
-										Newcomer of the month
-										{plan.features.newComerOfWeek == 'full' ? (
-											<span>
-												<Image src={Tic} alt="#" />
-											</span>
-										) : plan.features.newComerOfWeek !== '' ? (
-											<span className="text-[#558F71]">
-												{plan.features.newComerOfWeek}
 											</span>
 										) : (
 											<span>--</span>
 										)}
 									</li>
-								)}
-							</ul>
+									<li className="flex justify-between">
+										Images{' '}
+										{plan.features.image == 'full' ? (
+											<span>
+												<Image src={Tic} alt="#" />
+											</span>
+										) : (
+											<span>--</span>
+										)}
+									</li>
+									{plan.type == 'fan' && (
+										<li className="flex justify-between">
+											Swipe Models
+											{plan.features.swipeModel == 'full' ? (
+												<span>
+													<Image src={Tic} alt="#" />
+												</span>
+											) : plan.features.swipeModel !== '' ? (
+												<span className="text-[#558F71]">{plan.features.swipeModel}</span>
+											) : (
+												<span>--</span>
+											)}
+										</li>
+									)}
+									{plan.type == 'model' && (
+										<li className="flex justify-between">
+											Newcomer of the month
+											{plan.features.newComerOfWeek == 'full' ? (
+												<span>
+													<Image src={Tic} alt="#" />
+												</span>
+											) : plan.features.newComerOfWeek !== '' ? (
+												<span className="text-[#558F71]">
+													{plan.features.newComerOfWeek}
+												</span>
+											) : (
+												<span>--</span>
+											)}
+										</li>
+									)}
+								</ul>
 
-							<input
-								type="radio"
-								id={`plan-${plan._id}`}
-								value={plan._id}
-								className="hidden"
-								{...register('plan', {
-									onChange: () => {
-										clearErrors('plan');
-										setSelectedPlan(plan._id);
-									},
-								})}
-							/>
-						</div>
-					))}
-				</div>
-				{errors.plan?.message && (
-					<div className="text-red-600 text-center h-5 mt-5 text-lg font-PoppinsRegular ml-3  transition delay-150 transform duration-300 ease-in-out">
-						{errors.plan?.message}
+								<input
+									type="radio"
+									id={`plan-${plan._id}`}
+									value={plan._id}
+									className="hidden"
+									{...register('plan', {
+										onChange: () => {
+											clearErrors('plan');
+											setSelectedPlan(plan._id);
+										},
+									})}
+								/>
+							</div>
+						))}
 					</div>
-				)}
-				<div className="w-full text-center">
-					<button
-						className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 self-center transition-all duration-300 active:bg-303030 "
-						type="submit"
-						disabled={loading}>
-						Start Membership
-					</button>
-				</div>
-				<div className="w-full text-center">
-					<Link href="/experience">
+					{errors.plan?.message && (
+						<div className="text-red-600 text-center h-5 mt-5 text-lg font-PoppinsRegular ml-3  transition delay-150 transform duration-300 ease-in-out">
+							{errors.plan?.message}
+						</div>
+					)}
+					<div className="w-full text-center">
 						<button
-							className="btn btn-default px-2 hover:underline py-4 mt-8 text-xl text-151515 rounded-[8px] self-center transition-all duration-300  "
-							type="button"
+							className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 self-center transition-all duration-300 active:bg-303030 "
+							type="submit"
 							disabled={loading}>
-							Continue as Free User
+							Start Membership
 						</button>
-					</Link>
-				</div>
-			</form>
-		</div>
+					</div>
+					<div className="w-full text-center">
+						<Link href="/experience">
+							<button
+								className="btn btn-default px-2 hover:underline py-4 mt-8 text-xl text-151515 rounded-[8px] self-center transition-all duration-300  "
+								type="button"
+								disabled={loading}>
+								Continue as Free User
+							</button>
+						</Link>
+					</div>
+				</form>
+			</div>
+		</PageWrapper>
 	);
 };
 

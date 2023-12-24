@@ -15,6 +15,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import PageWrapper from '../common/PageWrapper';
 
 const categoryList = [
 	'All natural',
@@ -190,54 +191,56 @@ const Categories = () => {
 	};
 
 	return (
-		<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20 px-4">
-			<p className="md:text-xl text-xs text-888 mb-5">
-				Let`s complete your profile
-			</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
-				Choose what suits you
-			</h2>
-			{loading && (
-				<Loading
-					width={50}
-					height={50}
-					className="flex absolute justify-center w-96
+		<PageWrapper>
+			<div className="Email text-center max-w-7xl mx-auto mt-20 mb-20 px-4">
+				<p className="md:text-xl text-xs text-888 mb-5">
+					Let`s complete your profile
+				</p>
+				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
+					Choose what suits you
+				</h2>
+				{loading && (
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-				/>
-			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-25' : ''}`}>
-				<ul className="flex gap-4 flex-wrap">
-					{categoryList.map((category, index) => (
-						<li key={index}>
-							<input
-								type="checkbox"
-								checked={selectedCategories.includes(category)}
-								id={`opt${index}`}
-								value={category}
-								className="hidden peer"
-								{...register(`categories.${index}`, {
-									onChange: (e) => {
-										handleCategory(e);
-									},
-								})}
-							/>
-							<label
-								htmlFor={`opt${index}`}
-								className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-2 md:py-4 px-6 md:px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-								<div className="w-full text-15px  peer-checked:text-white">
-									{category}
-								</div>
-							</label>
-						</li>
-					))}
-				</ul>
-				<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
-					Continue
-				</button>
-			</form>
-		</div>
+					/>
+				)}
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-25' : ''}`}>
+					<ul className="flex gap-4 flex-wrap">
+						{categoryList.map((category, index) => (
+							<li key={index}>
+								<input
+									type="checkbox"
+									checked={selectedCategories.includes(category)}
+									id={`opt${index}`}
+									value={category}
+									className="hidden peer"
+									{...register(`categories.${index}`, {
+										onChange: (e) => {
+											handleCategory(e);
+										},
+									})}
+								/>
+								<label
+									htmlFor={`opt${index}`}
+									className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-2 md:py-4 px-6 md:px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
+									<div className="w-full text-15px  peer-checked:text-white">
+										{category}
+									</div>
+								</label>
+							</li>
+						))}
+					</ul>
+					<button className="btn btn-default px-24 py-4 mt-20 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 ">
+						Continue
+					</button>
+				</form>
+			</div>
+		</PageWrapper>
 	);
 };
 

@@ -102,7 +102,6 @@ const ModelProfile = () => {
 			</div>
 		);
 	}
-	console.log(modelDetails);
 	return (
 		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
 			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">
@@ -155,23 +154,21 @@ const ModelProfile = () => {
 					<div className="sm:mt-0 mt-10">
 						<div className="flex flex-col md:block md:flex-col md:space-y-2">
 							<h3 className="text-2xl md:text-4xl font-PoppinsSemiBold mr-4 flex items-center">
-								{modelDetails?.userName} <button className="ml-3 btn px-6 py-2 bg-black/20 text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
+								{modelDetails?.userName}{' '}
+								<button className="ml-3 btn px-6 py-2 bg-black/20 text-2f2f2f text-base rounded-3xl font-PoppinsRegular">
 									Asian
 								</button>
 							</h3>
 						</div>
-						<div className='flex items-center'>
-							<Image src={Location} alt='#' />
-							<span className='ml-2 text-656565'>Germany</span>
+						<div className="flex items-center">
+							<Image src={Location} alt="#" />
+							<span className="ml-2 text-656565">Germany</span>
 						</div>
-
 
 						<div className=" flex flex-wrap content-evenly my-5 bg-[#f9f9f9] rounded-md p-3 text-[#656565] italic">
 							{modelDetails['about']}
 						</div>
-						<hr className="my-4">
-
-						</hr>
+						<hr className="my-4"></hr>
 						<h3 className="font-PoppinsRegular text-md my-3">Attributes</h3>
 						<ul className="flex gap-2 flex-wrap">
 							{modelDetails['categories'].map((category: string) => (
@@ -180,9 +177,7 @@ const ModelProfile = () => {
 								</li>
 							))}
 						</ul>
-						<hr className="my-4">
-
-						</hr>
+						<hr className="my-4"></hr>
 						<h3 className="font-PoppinsRegular text-md my-3">Links</h3>
 						<ul className="flex flex-col overflow-hidden whitespace-pre-wrap space-y-2">
 							{modelDetails['links'].map((link: string) => (
@@ -195,13 +190,9 @@ const ModelProfile = () => {
 								</li>
 							))}
 						</ul>
-						<button
-							type="button"
-							onClick={openModal}
-							className="text-black">
+						<button type="button" onClick={openModal} className="text-black">
 							Apply Filters
 						</button>
-
 					</div>
 				</div>
 			)}
@@ -221,7 +212,6 @@ const ModelProfile = () => {
 					<div className="fixed  bottom-0 overflow-y-auto mx-auto sm:w-96 w-full left-0 right-0">
 						<div className="flex min-h-full items-center justify-center  text-center ">
 							<Transition.Child
-
 								as={Fragment}
 								enter="ease-out duration-300"
 								enterFrom="opacity-0 scale-95"
@@ -233,84 +223,101 @@ const ModelProfile = () => {
 									<div className="grid grid-cols-2 gap-5">
 										<div className="text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] space-y-2 shadow-lg">
 											<div className="h-9 w-9 rounded bg-[#DFE9DF] flex items-center justify-center">
-												<Image src={Star} alt='#' />
+												<Image src={Star} alt="#" />
 											</div>
-											<h2 className="font-PoppinsBold text-15px mt-1.5">Premium<span className="text-[10px]"> (1 Month)</span>
+											<h2 className="font-PoppinsBold text-15px mt-1.5">
+												Premium<span className="text-[10px]"> (1 Month)</span>
 											</h2>
-											<h2 className="font-PoppinsBold text-2xl text-2f2f2f">7.99<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">€/  1 Month</span>
+											<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
+												7.99
+												<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
+													€/ 1 Month
+												</span>
 											</h2>
 
-											<input id="plan-653519dc4baa5669ea0aeff1" className="hidden" type="radio" value="653519dc4baa5669ea0aeff1" name="plan" />
+											<input
+												id="plan-653519dc4baa5669ea0aeff1"
+												className="hidden"
+												type="radio"
+												value="653519dc4baa5669ea0aeff1"
+												name="plan"
+											/>
 										</div>
 										<div className="text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] space-y-2 shadow-lg border-2 border-[#F4BE55]">
 											<div className="absolute -top-4 left-0 right-0 flex items-center">
-												<span className="px-5 py-2 bg-[#F4BE55] rounded text-xs mx-auto text-center text-white">Recommended</span> </div>
-											<div className="h-9 w-9 rounded bg-[#DFE9DF] flex items-center justify-center">
-												<Image src={Croun} alt='#' />
+												<span className="px-5 py-2 bg-[#F4BE55] rounded text-xs mx-auto text-center text-white">
+													Recommended
+												</span>{' '}
 											</div>
-											<h2 className="font-PoppinsBold text-15px mt-1.5">Exclusive<span className="text-[10px]"> (1 Month)</span>
+											<div className="h-9 w-9 rounded bg-[#DFE9DF] flex items-center justify-center">
+												<Image src={Croun} alt="#" />
+											</div>
+											<h2 className="font-PoppinsBold text-15px mt-1.5">
+												Exclusive<span className="text-[10px]"> (1 Month)</span>
 											</h2>
-											<h2 className="font-PoppinsBold text-2xl text-2f2f2f">10.99<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">€/  1 Month</span>
+											<h2 className="font-PoppinsBold text-2xl text-2f2f2f">
+												10.99
+												<span className="text-sm font-PoppinsMedium text-[#B5B5B5]">
+													€/ 1 Month
+												</span>
 											</h2>
 
-											<input id="plan-65351a124baa5669ea0aeff4" className="hidden" type="radio" value="65351a124baa5669ea0aeff4" name="plan" />
+											<input
+												id="plan-65351a124baa5669ea0aeff4"
+												className="hidden"
+												type="radio"
+												value="65351a124baa5669ea0aeff4"
+												name="plan"
+											/>
 										</div>
 									</div>
-									<div className='text-[15px]'>Choose your subscription</div>
+									<div className="text-[15px]">Choose your subscription</div>
 									<div>
-										<table className='w-full'>
+										<table className="w-full">
 											<thead>
-												<tr className='text-[15px]'>
-													<td className='font-semibold'>Features</td>
-													<td className='font-semibold text-center'>Pro</td>
-													<td className='font-semibold text-center'>Premium</td>
+												<tr className="text-[15px]">
+													<td className="font-semibold">Features</td>
+													<td className="font-semibold text-center">Pro</td>
+													<td className="font-semibold text-center">Premium</td>
 												</tr>
 											</thead>
-											<tbody className='text-sm'>
+											<tbody className="text-sm">
 												<tr>
-													<td className='py-3'>
-														Videos
+													<td className="py-3">Videos</td>
+													<td className="text-[#558F71] text-center">--</td>
+													<td className="text-center flex justify-center py-3">
+														<Image src={Tic} alt="#" />
 													</td>
-													<td className='text-[#558F71] text-center'>
-														--
-													</td>
-													<td className='text-center flex justify-center py-3'><Image src={Tic} alt='#' /></td>
 												</tr>
 												<tr>
-													<td className='py-3'>
-														Images
+													<td className="py-3">Images</td>
+													<td className="text-[#558F71] text-center">--</td>
+													<td className="text-center flex justify-center py-3">
+														<Image src={Tic} alt="#" />
 													</td>
-													<td className='text-[#558F71] text-center'>
-														--
-													</td>
-													<td className='text-center flex justify-center py-3'><Image src={Tic} alt='#' /></td>
 												</tr>
 												<tr>
-													<td className='py-3' >
-														Swipe Models
+													<td className="py-3">Swipe Models</td>
+													<td className="text-[#558F71]">Limited</td>
+													<td className="text-center flex justify-center py-3">
+														<Image src={Tic} alt="#" />
 													</td>
-													<td className='text-[#558F71]'>
-														Limited
-													</td>
-													<td className='text-center flex justify-center py-3'><Image src={Tic} alt='#' /></td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
-									<div className='flex items-center w-full'><button className="bg-2f2f2f text-base px-16 py-3 rounded-md mt-7 text-white hover:opacity-70 mx-auto flex">
-										Start Membership
-									</button>
-
+									<div className="flex items-center w-full">
+										<button className="bg-2f2f2f text-base px-16 py-3 rounded-md mt-7 text-white hover:opacity-70 mx-auto flex">
+											Start Membership
+										</button>
 									</div>
-
-
 								</Dialog.Panel>
 							</Transition.Child>
 						</div>
 					</div>
 				</Dialog>
 			</Transition>
-		</div >
+		</div>
 	);
 };
 

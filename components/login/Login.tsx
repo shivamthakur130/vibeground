@@ -240,23 +240,6 @@ const Login = () => {
 							Login
 						</button>
 					</div>
-					{/* <div>
-						<button
-							type="button"
-							className="w-full px-8 flex justify-between mt-5 py-4 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030"
-							onClick={() => loginGoogle()}>
-							<div>Continue with Google </div>
-							<Image src={Google} alt="#" />
-						</button>
-					</div> */}
-					{/* <div className="pt-3 mt-4">
-						<button
-							type="button"
-							onClick={changeLoginType}
-							className="btn btn-default px-10 hover:bg-151515 hover:text-white py-3 text-xl text-303030 border rounded-[8px] transition-all duration-300 active:bg-303030 border-black">
-							Are You {typeLogin == 'fan' ? 'model' : 'fan'}?
-						</button>
-					</div> */}
 				</div>
 			</form>
 		</div>

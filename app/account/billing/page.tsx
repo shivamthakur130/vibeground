@@ -11,6 +11,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { ErrorMessage } from '@/components/layout/ToastifyMessages';
 import Loading from '@/components/layout/Loading';
 import { useAppSelector } from '@/redux/hooks';
+import PageWrapper from '@/components/common/PageWrapper';
 
 export default function BillingPage() {
 	const { push } = useRouter();
@@ -70,12 +71,14 @@ export default function BillingPage() {
 		);
 	}
 	return (
-		<div className="max-w-7xl mx-auto">
-			{stripeKey !== '' && (
-				<Elements stripe={loadStripe(stripeKey)}>
-					<Billing />
-				</Elements>
-			)}
-		</div>
+		<PageWrapper>
+			<div className="max-w-7xl mx-auto">
+				{stripeKey !== '' && (
+					<Elements stripe={loadStripe(stripeKey)}>
+						<Billing />
+					</Elements>
+				)}
+			</div>
+		</PageWrapper>
 	);
 }

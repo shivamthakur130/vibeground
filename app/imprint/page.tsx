@@ -1,11 +1,11 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Layout from '@/components/common/layout';
 
 export default function SupportFormPage() {
 	return (
-		<div className="min-h-screen">
-			<Header />
-			<div className="max-w-7xl mx-auto px-5">
+		<Layout>
+			<div className="max-w-5xl mx-auto font-PoppinsRegular text-lg px-5">
 				<div className="font-PoppinsRegular mt-10">
 					<ul className="space-y-2">
 						<li className="font-PoppinsBold">Vibeground Ltd.</li>
@@ -25,11 +25,6 @@ export default function SupportFormPage() {
 					</ul>
 				</div>
 			</div>
-			<div className="w-full bg-[#151515]">
-				<div className="max-w-7xl mx-auto py-20">
-					<Footer />
-				</div>
-			</div>
-		</div>
+		</Layout>
 	);
 }

@@ -465,14 +465,14 @@ const ManageOtherInfo = ({ user, showHide, countries }: any) => {
 							</div>
 						</div>
 					</form>
-					{showAgeVerificationDialog && (
-						<AgeVerificationDialog
-							setValue={setValue}
-							onClickSubmit={onClickSubmit}
-							showAgeVerificationDialog={showAgeVerificationDialog}
-							setShowAgeVerificationDialog={setShowAgeVerificationDialog}
-						/>
-					)}
+					{/* {showAgeVerificationDialog && ( */}
+					<AgeVerificationDialog
+						setValue={setValue}
+						onClickSubmit={onClickSubmit}
+						showAgeVerificationDialog={showAgeVerificationDialog}
+						setShowAgeVerificationDialog={setShowAgeVerificationDialog}
+					/>
+					{/* )} */}
 				</div>
 			)}
 		</div>

@@ -130,12 +130,12 @@ const ForgotPassword = () => {
 							Submit
 						</button>
 					</div>
-					<div className="pt-3 mt-4 ">
+					<div className="pt-3 mt-4 text-right">
 						<Link href="/login">
 							<button
 								type="button"
-								className="btn btn-default px-10 hover:bg-151515 hover:text-white py-1 text-xl text-303030 border rounded-[8px] transition-all duration-300 active:bg-303030 border-black">
-								Login
+								className=" text-303030 text-sm font-PoppinsRegular ml-3 text-right transition delay-150 transform duration-300 ease-in-out hover:underline">
+								Back to login
 							</button>
 						</Link>
 					</div>

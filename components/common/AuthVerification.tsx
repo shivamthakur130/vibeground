@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/layout/Footer';
 import Loading from '@/components/layout/Loading';
@@ -9,6 +9,8 @@ import { getUser } from '@/services/user.service';
 import { removeUser, updateUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import PageWrapper from './PageWrapper';
+import { Transition } from '@headlessui/react';
 
 export default function AuthVerification({
 	children,
@@ -18,7 +20,7 @@ export default function AuthVerification({
 	userType: string;
 }) {
 	const dispatch = useAppDispatch();
-	const [isSuccess, setIsSuccess] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const { push, replace } = useRouter();
 	const messageTitle = userType === 'fan' ? 'User operation' : 'Model operation';
 	const userData = useSelector((state: any) => state.userReducer.user);
@@ -40,7 +42,7 @@ export default function AuthVerification({
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				const responseData = data?.data;
 				dispatch(updateUser({ ...userData, ...responseData }));
-				setIsSuccess(true);
+				setIsLoading(false);
 				return;
 			}
 			logout();
@@ -48,7 +50,7 @@ export default function AuthVerification({
 	}, []);
 
 	const logout = () => {
-		setIsSuccess(true);
+		setIsLoading(false);
 		dispatch(removeUser());
 		push('/login');
 	};
@@ -77,26 +79,48 @@ export default function AuthVerification({
 		}
 	};
 
-	if (!isSuccess) {
-		return (
-			<Loading
-				width={50}
-				height={50}
-				className="flex absolute justify-center w-96
-			z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
-			/>
-		);
-	}
+	// if (isLoading) {
+	// 	return (
+	// 		<Loading
+	// 			width={50}
+	// 			height={50}
+	// 			className="flex absolute justify-center w-96
+	// 		z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+	// 		/>
+	// 	);
+	// }
 
 	return (
-		<div className="min-h-screen">
-			<Header />
-			{children}
-			<div className="w-full bg-[#151515]">
-				<div className="max-w-7xl mx-auto py-20">
-					<Footer />
+		<PageWrapper>
+			<div className="min-h-screen">
+				<Header />
+				<Transition
+					appear
+					show={isLoading}
+					as={Fragment}
+					enter="ease-out duration-300"
+					enterFrom="opacity-0 scale-99"
+					enterTo="opacity-100 scale-100"
+					leave="ease-in duration-200"
+					leaveFrom="opacity-100 scale-100"
+					leaveTo="opacity-0 scale-99">
+					<div className="fixed inset-0 bg-gray-100/50 z-50">
+						<Loading
+							width={50}
+							height={50}
+							className="flex absolute justify-center w-96
+					z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+						/>
+					</div>
+				</Transition>
+
+				{children}
+				<div className="w-full bg-[#151515]">
+					<div className="max-w-7xl mx-auto py-20">
+						<Footer />
+					</div>
 				</div>
 			</div>
-		</div>
+		</PageWrapper>
 	);
 }

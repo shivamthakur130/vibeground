@@ -12,6 +12,7 @@ import Ico3 from '@/assets/images/ico3.png';
 import Ico4 from '@/assets/images/ico4.png';
 import CenterLogo from '@/assets/images/logo/l_white.png';
 import { useSelector } from 'react-redux';
+import PageWrapper from '../common/PageWrapper';
 
 const Landing = () => {
 	const userData = useSelector((state: any) => state.userReducer.user);
@@ -20,34 +21,35 @@ const Landing = () => {
 		setUserDetails(userData);
 	}, [userData]);
 	return (
-		<div className="Landing text-center pb-28 bg-black">
-			<div className="max-w-full mx-auto ">
-				<div className=" bg-black h-fit md:py-36 py-0">
-					<div className="flex items-center justify-center py-16">
-						<div className="max-w-2xl mx-auto text-white my-20">
-							{/* <h1 className="text-75px font-PoppinsBlack leading-[78px]">
+		<PageWrapper>
+			<div className="Landing text-center pb-28 bg-black">
+				<div className="max-w-full mx-auto ">
+					<div className=" bg-black h-fit md:py-36 py-0">
+						<div className="flex items-center justify-center py-16">
+							<div className="max-w-2xl mx-auto text-white my-20">
+								{/* <h1 className="text-75px font-PoppinsBlack leading-[78px]">
 								Spice your time with Best Creators
 							</h1>
 							<p className="text-21px max-w-2xl mx-auto py-4">
 								The Best app for content creators out there that provide single platform
 								to connect with your audience
 							</p> */}
-							<p className="mx-auto px-10 ">
-								<Image src={CenterLogo} alt="#" className="" />
-							</p>
-							{(userDetails?.token == '' || userDetails == null) && (
-								<Link href="account">
-									<button
-										className="mt-10 
+								<p className="mx-auto px-10 ">
+									<Image src={CenterLogo} alt="#" className="" />
+								</p>
+								{(userDetails?.token == '' || userDetails == null) && (
+									<Link href="account">
+										<button
+											className="mt-10 
 				rounded-[8px]  btn btn-default  py-4 px-16 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">
-										Join Today!
-									</button>
-								</Link>
-							)}
+											Join Today!
+										</button>
+									</Link>
+								)}
+							</div>
 						</div>
 					</div>
-				</div>
-				{/* <div className="flex items-center justify-center mt-20">
+					{/* <div className="flex items-center justify-center mt-20">
 					<div className="max-w-4xl mx-auto ">
 						<h2 className="text-[54px] font-PoppinsBold leading-[65px]">
 							Encounters are not always easy, but trust us, it{"'"}s worth it.
@@ -79,8 +81,8 @@ const Landing = () => {
 						</div>
 					</div>
 				</div> */}
-			</div>
-			{/* <div className="flex items-center justify-center bg-black p-20">
+				</div>
+				{/* <div className="flex items-center justify-center bg-black p-20">
 				<div className="max-w-4xl mx-auto text-white">
 					<h1 className="text-[54px] font-PoppinsBold leading-[65px]">
 						Find the Creators you{'’'}ve been looking for
@@ -246,7 +248,8 @@ const Landing = () => {
 					</div>
 				</div>
 			</div> */}
-		</div>
+			</div>
+		</PageWrapper>
 	);
 };
 

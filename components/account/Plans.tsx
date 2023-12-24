@@ -5,9 +5,10 @@ import Image from 'next/image';
 import Croun from '@/assets/images/croun.png';
 import Star from '@/assets/images/star.png';
 import Tic from '@/assets/images/tic.png';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getPlans } from '@/services/user.service';
+import { getPlans, logoutUser } from '@/services/user.service';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,31 +18,23 @@ import { useSelector } from 'react-redux';
 import { makeSubscription } from '@/services/user.service';
 import Loading from '@/components/layout/Loading';
 import { Plan } from '@/types/Plan';
-import Link from 'next/link';
-import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
 import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
 import PageWrapper from '../common/PageWrapper';
 
-const ManagePlan = () => {
+const Plans = () => {
 	const [loading, setLoading] = useState(false);
 	const [selectedPlan, setSelectedPlan] = useState('');
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { push } = useRouter();
 	const [planList, setPlanList] = useState<Plan[]>([]);
-	const messageTitle = 'Manage Plan';
+	const messageTitle =
+		user.type === 'fan' ? 'User Registration' : 'Model Registration';
 
 	useEffect(() => {
-		if (user.planId == '') {
-			setSelectedPlan(user?.subscription?.planId?._id);
-			setValue('plan', user?.subscription?.planId?._id);
-		} else {
-			setSelectedPlan(user.planId);
-			setValue('plan', user.planId);
-		}
 		(async () => {
 			setLoading(true);
 			const { data, error } = await getPlans(user.type);
@@ -50,7 +43,6 @@ const ManagePlan = () => {
 				handleError(error);
 				return;
 			}
-
 			setPlanList((data as { data: any[] })['data']);
 			setLoading(false);
 		})();
@@ -77,20 +69,9 @@ const ManagePlan = () => {
 
 	async function onSubmit(formField: any) {
 		setLoading(true);
-		if (
-			formField.plan == user.planId &&
-			user.subscription.expiry_date !== null &&
-			user.subscription.expiry_date > new Date().toISOString()
-		) {
-			ErrorMessage(messageTitle, 'You are already subscribed to this plan');
-			setLoading(false);
-			return;
-		}
-
 		const { data, error } = await makeSubscription({
 			planId: formField.plan,
 			userId: user.userId,
-			subscriptionId: user.subscriptionId,
 		});
 		if (error) {
 			setLoading(false);
@@ -100,20 +81,25 @@ const ManagePlan = () => {
 
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			const response = data.data;
-
-			if (data.status) {
+			if (response.status) {
 				reset();
-				const planId = formField.plan;
-				// const subscriptionId = response._id;
+				const planId = response.planId;
+				const subscriptionId = response._id;
 
-				dispatch(updateUser({ ...user, planId: planId }));
-
-				// SuccessMessage(messageTitle, 'Plan saved successfully');
+				dispatch(
+					updateUser({ ...user, planId: planId, subscriptionId: subscriptionId })
+				);
+				SuccessMessage(messageTitle, 'Plan saved successfully');
 				if (response.planDetails && response.planDetails.planType !== 'free') {
-					push('/influencer/manage-billing');
+					push('/account/billing');
 				} else {
-					push('/influencer');
-					return;
+					if (user.type === 'model') {
+						push('/account/pictures');
+						return;
+					} else if (user.type === 'fan') {
+						push('/experience');
+						return;
+					}
 				}
 			} else {
 				ErrorMessage(messageTitle, 'Something went wrong');
@@ -151,18 +137,13 @@ const ManagePlan = () => {
 
 	return (
 		<PageWrapper>
-			<div className="Profile max-w-2xl px-5 mx-auto  mt-16 mb-32">
-				<div className="mb-12">
-					<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
-						<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
-							<Link href="/influencer/profile">
-								<Image src={ArrowLeft} height={32} width={32} alt="#" />
-							</Link>
-						</div>
-						{/* <div className="ml-10">Manage Subscription</div> */}
-					</h2>
-					<h1 className="text-4xl font-PoppinsSemiBold text-111"></h1>
-				</div>
+			<div className="Plan max-w-[670px] mx-auto mt-14 mb-24 text-center relative px-4">
+				<p className="md:text-xl text-xs text-888 mb-5">
+					Let`s complete your profile
+				</p>
+				<h2 className="hidden md:block  md:text-5xl text-lg font-PoppinsBold text-111 mb-16 md:text-center">
+					Choose your plan
+				</h2>
 				{loading && (
 					<Loading
 						width={50}
@@ -179,7 +160,7 @@ const ManagePlan = () => {
 				<form
 					onSubmit={handleSubmit(onSubmit)}
 					className={` ${loading ? 'opacity-25' : ''}`}>
-					<div className="mx-auto flex justify-center space-x-8">
+					<div className="mx-auto grid md:grid-cols-2 justify-center space-y-7 md:space-y-0 ">
 						{planList.map((plan, index) => (
 							<div
 								className={`text-left  px-5 cursor-pointer pt-5 pb-5 rounded-xl relative hover:border-2 hover:border-[#F4BE55] shadow-shado w-[300px] space-y-2 ${
@@ -328,23 +309,13 @@ const ManagePlan = () => {
 							className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 self-center transition-all duration-300 active:bg-303030 "
 							type="submit"
 							disabled={loading}>
-							Start Membership
+							Continue
 						</button>
 					</div>
-					{/* <div className="w-full text-center">
-					<Link href="/influencer">
-						<button
-							className="btn btn-default px-2 hover:underline py-4 mt-8 text-xl text-151515 rounded-[8px] self-center transition-all duration-300  "
-							type="button"
-							disabled={loading}>
-							Continue with same plan
-						</button>
-					</Link>
-				</div> */}
 				</form>
 			</div>
 		</PageWrapper>
 	);
 };
 
-export default ManagePlan;
+export default Plans;

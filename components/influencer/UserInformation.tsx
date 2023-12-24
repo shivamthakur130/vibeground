@@ -14,6 +14,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import PageWrapper from '../common/PageWrapper';
 
 const UserInformation = () => {
 	const [loading, setLoading] = useState(false);
@@ -118,176 +119,178 @@ const UserInformation = () => {
 	};
 
 	return (
-		<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative">
-			<p className="md:text-xl text-xs text-888 mb-5">
-				Let`s complete your profile
-			</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-2">
-				Enter your personal details
-			</h2>
-			<div className="mb-16">(Only your username is visible to the fans)</div>
-			{loading && (
-				<Loading
-					width={50}
-					height={50}
-					className="flex absolute justify-center w-96
+		<PageWrapper>
+			<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative">
+				<p className="md:text-xl text-xs text-888 mb-5">
+					Let`s complete your profile
+				</p>
+				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-2">
+					Enter your personal details
+				</h2>
+				<div className="mb-16">(Only your username is visible to the fans)</div>
+				{loading && (
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-				/>
-			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-5' : ''}`}>
-				<div className="grid md:grid-cols-2 gap-6 my-6 ">
-					<div>
-						<input
-							type="text"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Enter Your First Name"
-							{...register('firstName', {
-								value: user.firstName,
-								onChange: (e) => {
-									setValue('firstName', e.target.value);
-									clearErrors('firstName');
-								},
-							})}
-						/>
-						{errors.firstName?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.firstName?.message}
-							</div>
-						)}
+					/>
+				)}
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-5' : ''}`}>
+					<div className="grid md:grid-cols-2 gap-6 my-6 ">
+						<div>
+							<input
+								type="text"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Enter Your First Name"
+								{...register('firstName', {
+									value: user.firstName,
+									onChange: (e) => {
+										setValue('firstName', e.target.value);
+										clearErrors('firstName');
+									},
+								})}
+							/>
+							{errors.firstName?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.firstName?.message}
+								</div>
+							)}
+						</div>
+						<div>
+							<input
+								type="text"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Enter Your Last Name"
+								{...register('lastName', {
+									value: user.lastName,
+									onChange: (e) => {
+										setValue('lastName', e.target.value);
+										clearErrors('lastName');
+									},
+								})}
+							/>
+							{errors.lastName?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.lastName?.message}
+								</div>
+							)}
+						</div>
+						<div>
+							<input
+								type="text"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Select Your Username "
+								{...register('userName', {
+									value: user.userName,
+									onChange: (e) => {
+										setValue('userName', e.target.value);
+										clearErrors('userName');
+									},
+								})}
+							/>
+							{errors.userName?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.userName?.message}
+								</div>
+							)}
+						</div>
+						<div className="hidden md:block"></div>
+						<div>
+							<input
+								type="text"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Enter Your Email"
+								{...register('email', {
+									value: user.email,
+									onChange: (e) => {
+										setValue('email', e.target.value);
+										clearErrors('email');
+									},
+								})}
+							/>
+							{errors.email?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.email?.message}
+								</div>
+							)}
+						</div>
+						<div>
+							<input
+								type="text"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Enter Confirm Email"
+								{...register('confirmEmail', {
+									value: user.email,
+									onChange: (e) => {
+										setValue('confirmEmail', e.target.value);
+										clearErrors('confirmEmail');
+									},
+								})}
+							/>
+							{errors.confirmEmail?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.confirmEmail?.message}
+								</div>
+							)}
+						</div>
 					</div>
-					<div>
-						<input
-							type="text"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Enter Your Last Name"
-							{...register('lastName', {
-								value: user.lastName,
-								onChange: (e) => {
-									setValue('lastName', e.target.value);
-									clearErrors('lastName');
-								},
-							})}
-						/>
-						{errors.lastName?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.lastName?.message}
-							</div>
-						)}
+					<div className="">
+						<p className="text-[17px] text-888 content-stretch">
+							Set your strong password, Upper case Letter, Digit numbers and special
+							characters @,$,%,*,#
+						</p>
 					</div>
-					<div>
-						<input
-							type="text"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Select Your Username "
-							{...register('userName', {
-								value: user.userName,
-								onChange: (e) => {
-									setValue('userName', e.target.value);
-									clearErrors('userName');
-								},
-							})}
-						/>
-						{errors.userName?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.userName?.message}
-							</div>
-						)}
+					<div className="grid md:grid-cols-2 gap-6 my-6">
+						<div>
+							<input
+								type="password"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Enter Your Password"
+								{...register('password', {
+									onChange: (e) => {
+										setValue('password', e.target.value);
+										clearErrors('password');
+									},
+								})}
+							/>
+							{errors.password?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.password?.message}
+								</div>
+							)}
+						</div>
+						<div>
+							<input
+								type="password"
+								className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
+								placeholder="Enter Your Confirm Password"
+								{...register('confirmPassword', {
+									onChange: (e) => {
+										setValue('confirmPassword', e.target.value);
+										clearErrors('confirmPassword');
+									},
+								})}
+							/>
+							{errors.confirmPassword?.message && (
+								<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+									{errors.confirmPassword?.message}
+								</div>
+							)}
+						</div>
 					</div>
-					<div className='hidden md:block'></div>
-					<div>
-						<input
-							type="text"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Enter Your Email"
-							{...register('email', {
-								value: user.email,
-								onChange: (e) => {
-									setValue('email', e.target.value);
-									clearErrors('email');
-								},
-							})}
-						/>
-						{errors.email?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.email?.message}
-							</div>
-						)}
-					</div>
-					<div>
-						<input
-							type="text"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Enter Confirm Email"
-							{...register('confirmEmail', {
-								value: user.email,
-								onChange: (e) => {
-									setValue('confirmEmail', e.target.value);
-									clearErrors('confirmEmail');
-								},
-							})}
-						/>
-						{errors.confirmEmail?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.confirmEmail?.message}
-							</div>
-						)}
-					</div>
-				</div>
-				<div className="">
-					<p className="text-[17px] text-888 content-stretch">
-						Set your strong password, Upper case Letter, Digit numbers and special
-						characters @,$,%,*,#
-					</p>
-				</div>
-				<div className="grid md:grid-cols-2 gap-6 my-6">
-					<div>
-						<input
-							type="password"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Enter Your Password"
-							{...register('password', {
-								onChange: (e) => {
-									setValue('password', e.target.value);
-									clearErrors('password');
-								},
-							})}
-						/>
-						{errors.password?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.password?.message}
-							</div>
-						)}
-					</div>
-					<div>
-						<input
-							type="password"
-							className="border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							placeholder="Enter Your Confirm Password"
-							{...register('confirmPassword', {
-								onChange: (e) => {
-									setValue('confirmPassword', e.target.value);
-									clearErrors('confirmPassword');
-								},
-							})}
-						/>
-						{errors.confirmPassword?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.confirmPassword?.message}
-							</div>
-						)}
-					</div>
-				</div>
-				{/* <Link href="/influencer/passport"></Link> */}
-				<button
-					className="btn btn-default px-24 py-4 mt-5 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
-					type="submit"
-					disabled={loading}>
-					Continue
-				</button>
-			</form>
-		</div>
+					{/* <Link href="/influencer/passport"></Link> */}
+					<button
+						className="btn btn-default px-24 py-4 mt-5 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+						type="submit"
+						disabled={loading}>
+						Continue
+					</button>
+				</form>
+			</div>
+		</PageWrapper>
 	);
 };
 

@@ -19,6 +19,7 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
+import PageWrapper from '../common/PageWrapper';
 
 type ValuePiece = Date | null;
 
@@ -134,138 +135,60 @@ const DOB = () => {
 
 	const onChangeDate = (date: Value) => {
 		const dateStr = `${date}`;
-		// const formattedDate = moment(dateStr).format('YYYY-MM-DD');
 		const formattedDate = moment(dateStr);
 		setSelectedDate(formattedDate.toDate());
 	};
 
 	return (
-		<div className="Email text-center max-w-2xl mx-auto sm:mt-28 sm:mb-24 relative px-4 my-10">
-			<p className="md:text-xl text-xs text-888 mb-5">
-				Let`s complete your profile
-			</p>
-			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-10">
-				Choose your date of birth
-			</h2>
-			{loading && (
-				<Loading
-					width={50}
-					height={50}
-					className="flex absolute justify-center w-96
+		<PageWrapper>
+			<div className="Email text-center max-w-2xl mx-auto sm:mt-28 sm:mb-24 relative px-4 my-10">
+				<p className="md:text-xl text-xs text-888 mb-5">
+					Let`s complete your profile
+				</p>
+				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-10">
+					Choose your date of birth
+				</h2>
+				{loading && (
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-				/>
-			)}
-			<form
-				id="DOBForm"
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-25' : ''}`}>
-				<input type="hidden" {...register('checkAgeVerified')} value={'false'} />
-				<div className=" flex justify-center">
-					<DatePicker
-						onChange={onChangeDate}
-						clearIcon={null}
-						value={selectedDate}
-						format="dd-MM-y"
-						className=" text-gray-900 text-tg rounded-lg focus:ring-black-500 focus:border-black-500 block px-4"
 					/>
-				</div>
-				{/* <div className="grid   grid-cols-3 gap-6 my-6 ">
-					<div>
-						<select
-							id="day"
-							{...register('dd', {
-								onChange: (e) => {
-									setSelectedDay(e.target.value);
-									setValue('dd', e.target.value);
-									clearErrors('dd');
-								},
-							})}
-							onKeyDown={(e) => {
-								// setSelectedDay(e.target.value);
-								// setValue('dd', e.target.value);
-								// clearErrors('dd');
-							}}
-							className="text-center border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 ">
-							<option value="">DD</option>
-							{days.map((day) => (
-								<option key={day} value={day}>
-									{day}
-								</option>
-							))}
-						</select>
-						{errors.dd?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.dd?.message}
-							</div>
-						)}
+				)}
+				<form
+					id="DOBForm"
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-25' : ''}`}>
+					<input type="hidden" {...register('checkAgeVerified')} value={'false'} />
+					<div className=" flex justify-center">
+						<DatePicker
+							onChange={onChangeDate}
+							clearIcon={null}
+							value={selectedDate}
+							format="dd-MM-y"
+							className=" text-gray-900 text-tg rounded-lg focus:ring-black-500 focus:border-black-500 block px-4"
+						/>
 					</div>
-					<div>
-						<select
-							id="month"
-							className="text-center border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							{...register('mm', {
-								onChange: (e) => {
-									setSelectedMonth(e.target.value);
-									setValue('mm', e.target.value);
-									clearErrors('mm');
-								},
-							})}>
-							<option value="">MM</option>
-							{months.map((month) => (
-								<option key={month} value={month}>
-									{month}
-								</option>
-							))}
-						</select>
-						{errors.mm?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.mm?.message}
-							</div>
-						)}
-					</div>
-					<div>
-						<select
-							id="year"
-							className="text-center border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 "
-							{...register('yyyy', {
-								onChange: (e) => {
-									setSelectedYear(e.target.value);
-									setValue('yyyy', e.target.value);
-									clearErrors('yyyy');
-								},
-							})}>
-							<option value="">YYYY</option>
-							{years.map((year) => (
-								<option key={year} value={year}>
-									{year}
-								</option>
-							))}
-						</select>
-						{errors.yyyy?.message && (
-							<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-								{errors.yyyy?.message}
-							</div>
-						)}
-					</div>
-				</div> */}
-				<button
-					ref={buttonRef}
-					className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
-					id="birthdayForm"
-					type="submit"
-					disabled={loading}>
-					Continue
-				</button>
-			</form>
-			{showAgeVerificationDialog && (
+					<button
+						ref={buttonRef}
+						className="btn btn-default px-24 py-4 mt-10 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+						id="birthdayForm"
+						type="submit"
+						disabled={loading}>
+						Continue
+					</button>
+				</form>
+				{/* {showAgeVerificationDialog && ( */}
 				<AgeVerificationDialog
 					setValue={setValue}
 					onClickSubmit={onClickSubmit}
 					showAgeVerificationDialog={showAgeVerificationDialog}
 					setShowAgeVerificationDialog={setShowAgeVerificationDialog}
 				/>
-			)}
-		</div>
+				{/* )} */}
+			</div>
+		</PageWrapper>
 	);
 };
 

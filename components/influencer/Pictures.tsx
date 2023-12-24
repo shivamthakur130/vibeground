@@ -16,6 +16,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import PageWrapper from '../common/PageWrapper';
 
 const Pictures = () => {
 	const [loading, setLoading] = useState(false);
@@ -318,93 +319,95 @@ const Pictures = () => {
 	};
 
 	return (
-		<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center px-4">
-			<p className="md:text-xl text-xs text-888 mb-5">
-				Let`s complete your profile
-			</p>
-			<div className="mb-16">
-				<div className="md:text-5xl text-lg font-PoppinsBold text-111 mb-3">
-					Upload your pictures
-				</div>
-				<span className="text-888">Each picture should be maximum size 25MB.</span>
-			</div>
-			{loading && (
-				<Loading
-					width={50}
-					height={50}
-					className="flex absolute justify-center w-96
-					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-				/>
-			)}
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className={`${loading ? 'opacity-25' : ''}`}
-				encType="multipart/form-data">
-				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 my-6 mx-auto">
-					{selectedPictures.map((_, index) => (
-						<div key={index}>
-							{!picturesPreviews[index] ? (
-								<div className="w-full min-w-full">
-									<label
-										htmlFor={`dropzone-file${index}`}
-										className="flex flex-col items-center justify-center w-full h-52 rounded-xl bg-[#f9f9f9] cursor-pointer hover:bg-[#eaeaea] active:bg-[#f9f9f9]">
-										<div className="flex flex-col items-center justify-center pt-5 pb-6">
-											<Image src={Upload} alt="#" />
-										</div>
-									</label>
-								</div>
-							) : (
-								picturesPreviews[index] && (
-									<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative">
-										<button
-											onClick={() => {
-												removeSelectedPicture(index);
-											}}
-											type="button"
-											className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-md absolute bg-[#f9f9f9] cursor-pointer hover:bg-[#e1e1e1] active:bg-[#f9f9f9]">
-											X
-										</button>
-										<img
-											className="rounded-md h-full w-full object-cover"
-											src={picturesPreviews[index]}
-											alt={`Preview ${index}`}
-											onError={(e) => {
-												e.currentTarget.src = '/upload.svg';
-												e.currentTarget.style.padding = '2rem';
-											}}
-										/>
-									</div>
-								)
-							)}
-							<input
-								id={`dropzone-file${index}`}
-								accept="image/*"
-								type="file"
-								className="hidden"
-								{...register(`photos.${index}`, {
-									onChange: (e) => {
-										handleFileChange(e, index);
-									},
-								})}
-							/>
-						</div>
-					))}
-				</div>
-
-				{errors.photos?.message && (
-					<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
-						{errors.photos?.message}
+		<PageWrapper>
+			<div className="Email max-w-5xl mx-auto mt-20 mb-20 relative text-center px-4">
+				<p className="md:text-xl text-xs text-888 mb-5">
+					Let`s complete your profile
+				</p>
+				<div className="mb-16">
+					<div className="md:text-5xl text-lg font-PoppinsBold text-111 mb-3">
+						Upload your pictures
 					</div>
+					<span className="text-888">Each picture should be maximum size 25MB.</span>
+				</div>
+				{loading && (
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
+					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+					/>
 				)}
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className={`${loading ? 'opacity-25' : ''}`}
+					encType="multipart/form-data">
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 my-6 mx-auto">
+						{selectedPictures.map((_, index) => (
+							<div key={index}>
+								{!picturesPreviews[index] ? (
+									<div className="w-full min-w-full">
+										<label
+											htmlFor={`dropzone-file${index}`}
+											className="flex flex-col items-center justify-center w-full h-52 rounded-xl bg-[#f9f9f9] cursor-pointer hover:bg-[#eaeaea] active:bg-[#f9f9f9]">
+											<div className="flex flex-col items-center justify-center pt-5 pb-6">
+												<Image src={Upload} alt="#" />
+											</div>
+										</label>
+									</div>
+								) : (
+									picturesPreviews[index] && (
+										<div className="flex flex-col items-end justify-center max-w-[283px] h-52 rounded-xl relative">
+											<button
+												onClick={() => {
+													removeSelectedPicture(index);
+												}}
+												type="button"
+												className="top-1 px-2 font-PoppinsBold text-red-500 mr-1 rounded-md absolute bg-[#f9f9f9] cursor-pointer hover:bg-[#e1e1e1] active:bg-[#f9f9f9]">
+												X
+											</button>
+											<img
+												className="rounded-md h-full w-full object-cover"
+												src={picturesPreviews[index]}
+												alt={`Preview ${index}`}
+												onError={(e) => {
+													e.currentTarget.src = '/upload.svg';
+													e.currentTarget.style.padding = '2rem';
+												}}
+											/>
+										</div>
+									)
+								)}
+								<input
+									id={`dropzone-file${index}`}
+									accept="image/*"
+									type="file"
+									className="hidden"
+									{...register(`photos.${index}`, {
+										onChange: (e) => {
+											handleFileChange(e, index);
+										},
+									})}
+								/>
+							</div>
+						))}
+					</div>
 
-				<button
-					className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
-					type="submit"
-					disabled={loading}>
-					Continue
-				</button>
-			</form>
-		</div>
+					{errors.photos?.message && (
+						<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+							{errors.photos?.message}
+						</div>
+					)}
+
+					<button
+						className="btn btn-default px-24 py-4 mt-14 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+						type="submit"
+						disabled={loading}>
+						Continue
+					</button>
+				</form>
+			</div>
+		</PageWrapper>
 	);
 };
 

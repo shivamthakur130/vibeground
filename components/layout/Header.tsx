@@ -5,14 +5,14 @@ import DownArrow from '@/assets/images/svg/down-arrow_.svg';
 import CenterLogo from '@/assets/images/center-logo.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useSelector } from 'react-redux';
-import UserIcon from '@/assets/images/svg/user.svg';
 import { memo } from 'react';
 import { getUser } from '@/services/user.service';
 import { useAppDispatch } from '@/redux/hooks';
 import { removeUser, updateUser } from '@/redux/slice/user';
 import { AiOutlineDashboard } from 'react-icons/ai';
+
 const Header = () => {
 	const [toggleUser, setToggleUser] = useState(false);
 	const [userDetails, setUserDetails] = useState<any>(null);
@@ -20,6 +20,7 @@ const Header = () => {
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { push } = useRouter();
 	const pathName = usePathname();
+	const searchParams = useSearchParams();
 	function _toggleUser() {
 		setToggleUser(!toggleUser);
 	}
@@ -70,7 +71,10 @@ const Header = () => {
 	};
 
 	useEffect(() => {
-		checkUser();
+		const checkParentPath = pathName.split('/')[1];
+		if (checkParentPath !== 'experience' && checkParentPath !== 'influencer') {
+			checkUser();
+		}
 	}, []);
 
 	useEffect(() => {
@@ -120,13 +124,11 @@ const Header = () => {
 				<div
 					className={`flex ${pathName == '/' ? 'justify-end' : 'justify-between'} `}>
 					{pathName !== '/' && (
-						// <Link href="/">
 						<div
 							className="flex items-center cursor-pointer"
 							onClick={redirectLogoClick}>
 							<Image src={CenterLogo} className="shrink-0" height={60} alt={''} />
 						</div>
-						// </Link>
 					)}
 					{(userDetails?.token == '' || !userDetails) && pathName === '/' && (
 						<Link href="/login">
@@ -169,6 +171,22 @@ const Header = () => {
 																className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
 																onClick={redirectProfile}>
 																Profile
+															</li>
+															<li
+																className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
+																onClick={() => {
+																	push('/experience/tinder');
+																	setToggleUser(false);
+																}}>
+																Tinder
+															</li>
+															<li
+																className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
+																onClick={() => {
+																	push('/experience/favorites');
+																	setToggleUser(false);
+																}}>
+																Favorites
 															</li>
 															<li
 																className="py-3 px-6 text-sm hover:rounded-lg cursor-pointer hover:bg-slate-100"
