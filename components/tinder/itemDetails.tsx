@@ -79,16 +79,16 @@ const ItemDetails = ({ model, setLoading }: any) => {
 	};
 
 	return (
-		<div className="shadow-2xl rounded-[20px] ">
+		<div className="rounded-[20px] ">
 			<div className="relative rounded-[20px] overflow-hidden bg-white">
 				{model?.photos?.length > 0 ? (
 					<img
 						src={model?.photos[0]}
-						className="w-full h-[398px] min-w-[200px] sm:h-auto"
+						className="w-full aspect-4/5 min-h-[250px] min-w-[200px] sm:h-auto"
 						alt="#"
 					/>
 				) : (
-					<Image src={Post1} className="w-full h-[398px]" alt="#" />
+					<Image src={Post1} className="w-full aspect-4/5 min-h-[250px]" alt="#" />
 				)}
 				<div className="absolute flex bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%] ">
 					<div className="mt-auto self-end w-full">

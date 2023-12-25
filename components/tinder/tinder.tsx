@@ -20,6 +20,7 @@ const settings = {
 	autoplay: false,
 	speed: 500,
 	swipeToSlide: true,
+	arrows: false,
 };
 
 const Tinder = () => {

@@ -11,6 +11,9 @@ import { removeUser } from '@/redux/slice/user';
 import { useDispatch } from 'react-redux';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
+import { IoChevronBackOutline } from 'react-icons/io5';
+import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
+
 
 const Favorites = () => {
 	const messageTitle = 'Profile View';
@@ -71,8 +74,14 @@ const Favorites = () => {
 	};
 	return (
 		<div className="Favorites max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
-			<h2 className="md:text-5xl text-2xl font-PoppinsSemiBold text-111 flex items-center mb-10 justify-between">
+			<h2 className="md:text-5xl text-2xl font-PoppinsSemiBold text-111 flex items-center mb-10 ">
+				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 mr-5">
+					<Link href="/experience">
+						<Image src={ArrowLeft} height={32} width={32} alt="#" />
+					</Link>
+				</div>
 				Favorites
+
 			</h2>
 			<Transition
 				appear
@@ -106,11 +115,11 @@ const Favorites = () => {
 							{model?.modelId?.photos?.length > 0 ? (
 								<img
 									src={model?.modelId?.photos[0]}
-									className="w-full h-[398px] min-w-[200px] sm:h-auto"
+									className="w-full min-w-[200px] aspect-4/5 min-h-[250px] sm:h-auto"
 									alt="#"
 								/>
 							) : (
-								<Image src={Post1} className="w-full h-[398px]" alt="#" />
+								<Image src={Post1} className="w-full aspect-4/5 min-h-[250px]" alt="#" />
 							)}
 							<div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]"></div>
 						</div>

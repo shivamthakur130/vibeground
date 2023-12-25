@@ -39,6 +39,7 @@ const MeetAndGreet = () => {
 		autoplay: false,
 		speed: 500,
 		swipeToSlide: true,
+		arrows: false,
 	};
 
 	useEffect(() => {
@@ -162,7 +163,7 @@ const MeetAndGreet = () => {
 					</div>
 				</Transition>
 				<div className="flex flex-col md:flex-row">
-					<div className="relative rounded-3xl  md:mr-16 w-[401px]">
+					<div className="relative rounded-3xl  md:mr-16 w-full sm:w-[401px]">
 						<Slider {...settings}>
 							{modelDetails?.photos?.map((picture: any, index: number) => (
 								<Image

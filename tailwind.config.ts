@@ -40,7 +40,10 @@ const config: Config = {
 			},
 			boxShadow: {
 				'shado': '0px 10px 23px 0px rgba(0, 0, 0, 0.20);'
-			}
+			},
+			aspectRatio: {
+				'4/5': '4 / 5',
+			},
 		},
 	},
 	plugins: [],

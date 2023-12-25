@@ -20,7 +20,7 @@ const Dashboard = () => {
 				<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 					<div className="relative">
 						<Image src={Post1} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-8">
+						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
 							<Image src={Heart} alt="#" />
 							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
 								Meet & Greet{' '}
@@ -34,7 +34,7 @@ const Dashboard = () => {
 					</div>
 					<div className="relative">
 						<Image src={Post2} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-8">
+						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
 							<Image src={Croun} alt="#" />
 							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
 								Newcomer of the month{' '}
@@ -46,7 +46,7 @@ const Dashboard = () => {
 					</div>
 					<div className="relative">
 						<Image src={Post3} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-8">
+						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
 							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
 								Collaborate{' '}
 								<Link href="/influencer/collaborate">

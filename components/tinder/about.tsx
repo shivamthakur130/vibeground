@@ -30,6 +30,7 @@ const About = ({ params }: any) => {
 		autoplay: false,
 		speed: 500,
 		swipeToSlide: true,
+		arrows: false,
 	};
 	useEffect(() => {
 		window.scrollTo(0, 0);
