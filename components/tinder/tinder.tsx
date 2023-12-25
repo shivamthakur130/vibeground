@@ -78,7 +78,7 @@ const Tinder = () => {
 				<div className="md:text-3xl text-base mb-5">
 					{' '}
 					Hello
-					{/* <h2 className="text-2xl font-PoppinsSemiBold">{userDetails?.firstName}</h2> */}
+					<h2 className="text-2xl font-PoppinsSemiBold">{userDetails?.firstName}</h2>
 				</div>
 				<button
 					type="button"
@@ -110,7 +110,12 @@ const Tinder = () => {
 			<center>
 				<Slider {...settings} className=" max-w-md ">
 					{modelDetails?.map((model: any, index: number) => (
-						<ItemDetails model={model} key={index} />
+						<ItemDetails
+							model={model}
+							key={index}
+							loading={loading}
+							setLoading={setLoading}
+						/>
 					))}
 				</Slider>
 			</center>
