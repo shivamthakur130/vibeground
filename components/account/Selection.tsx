@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,17 +20,29 @@ import PageWrapper from '../common/PageWrapper';
 
 const Selection = ({ countries }: any) => {
 	const [loading, setLoading] = useState(false);
+	const [userData, setUserData] = useState<any>(null);
 
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const [country, setCountry] = useState(user.country);
-	const [city, setCity] = useState(user.city);
+	const [country, setCountry] = useState('');
+	const [city, setCity] = useState('');
 
 	const [cityList, setCityList] = useState([]);
 
+	useEffect(() => {
+		setUserData(user);
+		setCountry(user.country);
+		if (user.country != '') {
+			getCitiesList(user.country);
+		}
+		setCity(user.city);
+		setValue('country', user.country);
+		setValue('city', user.city);
+	}, [user]);
+
 	const { push } = useRouter();
 	const messageTitle =
-		user.type === 'fan' ? 'User Registration' : 'Model Registration';
+		userData?.type === 'fan' ? 'User Registration' : 'Model Registration';
 	// form validation rules
 	const validationSchema = Yup.object().shape({
 		city: Yup.string().required('City is required'),
@@ -54,7 +66,7 @@ const Selection = ({ countries }: any) => {
 		setLoading(true);
 		try {
 			const response = await fanLocation({
-				userId: user.userId,
+				userId: userData?.userId,
 				country: formField.country,
 				city: formField.city,
 			});
@@ -64,7 +76,7 @@ const Selection = ({ countries }: any) => {
 					updateUser({ ...user, city: formField.city, country: formField.country })
 				);
 				SuccessMessage(messageTitle, 'Gender changes saved successfully');
-				if (user.type === 'fan') {
+				if (userData.type === 'fan') {
 					push('/account/choose-plan');
 				} else {
 					push('/account/passport');
@@ -140,7 +152,7 @@ const Selection = ({ countries }: any) => {
 					Where are you from?
 				</h2>
 				<div className="mb-14">
-					{user.type !== 'fan' && <>(This is not visible to the fans)</>}
+					{userData?.type !== 'fan' && <>(This is not visible to the fans)</>}
 				</div>
 				{loading && (
 					<Loading
@@ -157,10 +169,10 @@ const Selection = ({ countries }: any) => {
 						<select
 							id="countries"
 							className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4 mb-4"
+							value={country}
 							{...register('country', {
-								value: country,
 								onChange: (e) => {
-									onChangeCountry(e, user.city);
+									onChangeCountry(e, userData.city);
 								},
 							})}>
 							<option value="">Select Country</option>
@@ -179,8 +191,9 @@ const Selection = ({ countries }: any) => {
 						<select
 							id="city"
 							className="flex justify-between border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 w-full py-4 px-4 mb-4"
+							value={city}
 							{...register('city', {
-								value: city,
+								// value: city,
 								onChange: (e) => {
 									setCity(e.target.value);
 									setValue('city', e.target.value);

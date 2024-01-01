@@ -11,9 +11,7 @@ import { removeUser } from '@/redux/slice/user';
 import { useDispatch } from 'react-redux';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
-import { IoChevronBackOutline } from 'react-icons/io5';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
-
 
 const Favorites = () => {
 	const messageTitle = 'Profile View';
@@ -81,7 +79,6 @@ const Favorites = () => {
 					</Link>
 				</div>
 				Favorites
-
 			</h2>
 			<Transition
 				appear
@@ -119,7 +116,11 @@ const Favorites = () => {
 									alt="#"
 								/>
 							) : (
-								<Image src={Post1} className="w-full aspect-4/5 min-h-[250px]" alt="#" />
+								<Image
+									src={Post1}
+									className="w-full aspect-4/5 min-h-[250px]"
+									alt="#"
+								/>
 							)}
 							<div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]"></div>
 						</div>
@@ -135,6 +136,13 @@ const Favorites = () => {
 						</div>
 					</div>
 				))}
+				{modelDetails?.length === 0 && (
+					<div className="flex justify-center items-center col-span-full">
+						<h3 className="text-xl text-[#444] font-PoppinsSemiBold">
+							No Favorites Found
+						</h3>
+					</div>
+				)}
 			</div>
 		</div>
 	);

@@ -5,10 +5,9 @@ import Image from 'next/image';
 import Croun from '@/assets/images/croun.png';
 import Star from '@/assets/images/star.png';
 import Tic from '@/assets/images/tic.png';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getPlans, logoutUser } from '@/services/user.service';
+import { getPlans } from '@/services/user.service';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -199,12 +198,6 @@ const Plans = () => {
 												{plan.duration} Month
 											</span>
 										</h2>
-
-										{/* <div className="font-PoppinsMedium py-3 text-[#B5B5B5]">
-										({(parseInt(plan.price) / parseInt(plan.duration)).toFixed(2)}
-										{'  '}
-										€/month)
-									</div> */}
 									</>
 								)}
 								<ul className="space-y-4 text-sm">
