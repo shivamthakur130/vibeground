@@ -25,9 +25,14 @@ interface ReturnResponse {
 }
 
 //get-all-models
-export const getAllModels = async (): Promise<ReturnResponse> => {
+export const getAllModels = async (
+	filterCategory: any
+): Promise<ReturnResponse> => {
 	try {
-		const { data } = await get(`/users/get-all-models`, true);
+		const { data } = await get(
+			`/users/get-all-models?filterCategories=${filterCategory}`,
+			true
+		);
 		return {
 			data: data,
 			error: null,

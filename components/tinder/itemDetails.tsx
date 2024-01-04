@@ -11,11 +11,12 @@ import {
 	SuccessMessage,
 } from '@/components/layout/ToastifyMessages';
 import { removeUser } from '@/redux/slice/user';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ItemDetails = ({ model, setLoading }: any) => {
+const ItemDetails = ({ model, setLoading, getAllModelsDetails }: any) => {
 	const messageTitle = 'Favorite';
 	const dispatch = useDispatch();
+	const user = useSelector((state: any) => state.userReducer.user);
 
 	const { replace } = useRouter();
 
@@ -33,11 +34,12 @@ const ItemDetails = ({ model, setLoading }: any) => {
 		return age;
 	};
 
-	const addToFavorite = async (id: string) => {
+	const addToFavorite = async (id: string, status: string) => {
 		setLoading(true);
 		const request = {
-			userId: '655a554a09facc7a369559a0',
+			userId: user?._id,
 			modelId: id,
+			status: status,
 		};
 		const { data, error } = await addFavorite(request);
 
@@ -48,7 +50,12 @@ const ItemDetails = ({ model, setLoading }: any) => {
 		}
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			if (data.status) {
-				SuccessMessage(messageTitle, 'Model added to your favorite list');
+				if (status === 'accepted') {
+					SuccessMessage(messageTitle, 'Model added to your favorite list');
+				} else {
+					SuccessMessage(messageTitle, 'Model rejected');
+				}
+				getAllModelsDetails();
 			}
 		}
 		setLoading(false);
@@ -112,7 +119,14 @@ const ItemDetails = ({ model, setLoading }: any) => {
 					<Image src={Back} className="" alt="#" />
 				</a>
 				<a href="#">
-					<Image src={Close} className="" alt="#" />
+					<Image
+						src={Close}
+						className=""
+						alt="#"
+						onClick={() => {
+							addToFavorite(model?._id, 'rejected');
+						}}
+					/>
 				</a>
 				<a href="#">
 					<Image
@@ -120,7 +134,7 @@ const ItemDetails = ({ model, setLoading }: any) => {
 						className=""
 						alt="#"
 						onClick={() => {
-							addToFavorite(model?._id);
+							addToFavorite(model?._id, 'accepted');
 						}}
 					/>
 				</a>

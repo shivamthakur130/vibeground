@@ -172,22 +172,26 @@ const Header = () => {
 																onClick={redirectProfile}>
 																Profile
 															</li>
-															<li
-																className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
-																onClick={() => {
-																	push('/experience/tinder');
-																	setToggleUser(false);
-																}}>
-																Tinder
-															</li>
-															<li
-																className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
-																onClick={() => {
-																	push('/experience/favorites');
-																	setToggleUser(false);
-																}}>
-																Favorites
-															</li>
+															{userDetails?.type === 'fan' && (
+																<>
+																	<li
+																		className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
+																		onClick={() => {
+																			push('/experience/tinder');
+																			setToggleUser(false);
+																		}}>
+																		Tinder
+																	</li>
+																	<li
+																		className="py-3 px-6 text-sm hover:rounded-lg hover:bg-slate-100 cursor-pointer"
+																		onClick={() => {
+																			push('/experience/favorites');
+																			setToggleUser(false);
+																		}}>
+																		Favorites
+																	</li>
+																</>
+															)}
 															<li
 																className="py-3 px-6 text-sm hover:rounded-lg cursor-pointer hover:bg-slate-100"
 																onClick={logOut}>

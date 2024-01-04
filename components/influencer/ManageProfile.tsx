@@ -11,7 +11,7 @@ import ManageCategories from './ManageCategories';
 import Link from 'next/link';
 import PageWrapper from '../common/PageWrapper';
 
-const ManageProfile = ({}: any) => {
+const ManageProfile = ({ categoriesList }: any) => {
 	const { replace } = useRouter();
 	const user = useSelector((state: any) => state.userReducer.user);
 
@@ -43,7 +43,11 @@ const ManageProfile = ({}: any) => {
 				<ManageVideos user={user} showHide={true} />
 				<ManageLinks user={user} showHide={true} />
 				<ManageAbout user={user} showHide={true} />
-				<ManageCategories user={user} showHide={true} />
+				<ManageCategories
+					user={user}
+					showHide={true}
+					categoriesList={categoriesList}
+				/>
 			</div>
 		</PageWrapper>
 	);

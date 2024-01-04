@@ -32,10 +32,6 @@ export const addFavorite = async (dataReq: any): Promise<ReturnResponse> => {
 			data: data,
 			error: null,
 		};
-		return {
-			data: data,
-			error: null,
-		};
 	} catch (e) {
 		const error = e as AxiosError;
 		return {

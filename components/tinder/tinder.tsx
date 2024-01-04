@@ -10,6 +10,7 @@ import { removeUser } from '@/redux/slice/user';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
 import Slider from 'react-slick';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 const settings = {
@@ -23,8 +24,8 @@ const settings = {
 	arrows: false,
 };
 
-const Tinder = () => {
-	const userDetails = useSelector((state: any) => state.userReducer.user);
+const Tinder = ({ categoriesList }: any) => {
+	const [userData, setUserData] = useState<any | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const messageTitle = 'Profile View';
@@ -32,10 +33,11 @@ const Tinder = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { replace } = useRouter();
+	const [filterCategory, setFilterCategory] = useState<any | ''>('');
 
 	const getAllModelsDetails = async () => {
 		setLoading(true);
-		const { data, error } = await getAllModels();
+		const { data, error } = await getAllModels(filterCategory);
 		if (error) {
 			setLoading(false);
 			handleError(error);
@@ -48,6 +50,7 @@ const Tinder = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		getAllModelsDetails();
+		setUserData(user);
 	}, []);
 
 	function openModal() {
@@ -74,12 +77,11 @@ const Tinder = () => {
 		}
 	};
 	return (
-		<div className="Tinder max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
+		<div className="Tinder max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-10">
 			<div className="md:text-5xl  text-111 flex items-center mb-10 justify-between">
 				<div className="md:text-3xl text-base mb-5">
-					{' '}
 					Hello
-					<h2 className="text-2xl font-PoppinsSemiBold">{userDetails?.firstName}</h2>
+					<h2 className="text-2xl font-PoppinsSemiBold">{userData?.userName}</h2>
 				</div>
 				<button
 					type="button"
@@ -88,6 +90,14 @@ const Tinder = () => {
 					Apply Filters
 				</button>
 			</div>
+			<Filter
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+				categoriesList={categoriesList}
+				filterCategory={filterCategory}
+				setFilterCategory={setFilterCategory}
+				getAllModelsDetails={getAllModelsDetails}
+			/>
 			<Transition
 				appear
 				show={loading}
@@ -107,7 +117,6 @@ const Tinder = () => {
 					/>
 				</div>
 			</Transition>
-			<Filter isOpen={isOpen} setIsOpen={setIsOpen} />
 			<center>
 				<Slider {...settings} className=" max-w-md ">
 					{modelDetails?.map((model: any, index: number) => (
@@ -116,6 +125,7 @@ const Tinder = () => {
 							key={index}
 							loading={loading}
 							setLoading={setLoading}
+							getAllModelsDetails={getAllModelsDetails}
 						/>
 					))}
 				</Slider>
