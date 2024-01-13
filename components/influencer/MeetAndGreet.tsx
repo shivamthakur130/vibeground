@@ -78,27 +78,38 @@ const MeetAndGreet = () => {
 				</div> */}
           <p className="text-xl py-4 font-PoppinsRegular text-gray-700">
             {
-              "It's every fan's dream to meet their favorite creator in person once in a lifetime."
+              // "It's every fan's dream to meet their favorite creator in person once in a lifetime."
+              "Welcome to the world of Meet & Greet!"
             }
           </p>
+
           <ul className="list space-y-2 font-PoppinsRegular text-gray-700">
             <li>
-              For you as a creator, however, this harbours some risks, which is
-              why you have refrained from doing so until now.
+              Welcome to the exclusive world of Meet & Greet! A unique
+              opportunity awaits you here to register for unique encounters with
+              your loyal fans. Immerse yourself in a world where authenticity,
+              closeness and the experience of something special take center
+              stage.
             </li>
             <li>
-              Vibeground Meet & Greet offers creators the opportunity to make
-              their {"fans'"} dreams come true.
+              Our {"Meet & Greet "} events are much more than just encounters -
+              they are experiences that create memories that will last a
+              lifetime. We firmly believe that models should take the
+              opportunity to connect with their fans on a personal level, which
+              is precisely why we offer these exclusive Meet & Greets.
             </li>
             <li>
-              You can show your fans that you are approachable and thus collect
-              many plus points with your fans to make them even more loyal
-              followers.
+              By participating in Meet & Greet, you as a creator not only have
+              the opportunity to show your passion for your fans, but also to
+              earn money. These encounters are not only a chance to meet fans up
+              close, but also an opportunity to raise your profile and promote
+              your career through Vibeground TV{"'"}s media support.
             </li>
             <li>
-              We take care of everything! We organize an exclusive location and
-              the corresponding supporting programme, which enables you to have
-              a nice and safe meet & greet with your fans.
+              Apply now for Meet & Greet and experience unforgettable moments in
+              an inspiring community. Here you will find real closeness to your
+              fans and have the opportunity to build a special connection with
+              them.
             </li>
             <li>Sign up to receive more information from us.</li>
           </ul>

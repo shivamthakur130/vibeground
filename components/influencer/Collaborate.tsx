@@ -72,12 +72,50 @@ const Collaborate = () => {
         <div className="bg-gray-950 mx-auto flex items-center justify-center rounded-md">
           <Image src={Post3} width={500} height={500} alt="meet&greet" />
         </div>
-        <div className=" ">
-          <p className="text-xl py-4 font-PoppinsRegular text-gray-700">
-            As a creator, we offer you the possibility of various cooperations
-            with us.
+        <div className=" space-y-4 text-lg">
+          <p>
+            Welcome to the exciting world of collaborating with Vibeground! Here
+            you have the unique opportunity to choose different collaborations
+            that can take your career to a new level. This is the chance you
+            should not miss - be part of this exciting journey.
           </p>
-          <p>Sign up to receive more information!</p>
+          <p>
+            Our collaborations are more than just opportunities, they are
+            partnerships that open the door to endless possibilities. We firmly
+            believe that models should reach their full potential and that{"'"}s
+            why we offer them the platform to realize their dreams.
+          </p>
+
+          <p>
+            By choosing to work with Vibeground, you as a creative can not only
+            increase your reach, but also showcase your unique talents and
+            skills.
+          </p>
+
+          <p>
+            It{"'"}s an opportunity to collaborate with creative minds, develop
+            new ideas and build a network that will support your career in the
+            long term.
+          </p>
+
+          <p>
+            Our community of models and creatives is a vibrant and inspiring
+            environment where talent flourishes and success is achieved. It{"'"}
+            s all about turning visions into reality and impressing the world
+            with your unique style.
+          </p>
+
+          <p>
+            So don{"'"}t hesitate any longer and sign up for the exciting
+            collaborations with Vibeground. This opportunity could be the key to
+            international reach and we are here to embark on this exciting
+            journey with you. Become part of a community and experience
+            extraordinary collaborations with Vibeground.
+          </p>
+
+          <p className="text-base py-2  font-PoppinsRegular text-gray-700">
+            Sign up to receive more information!
+          </p>
           {!checkStatus && !loading && (
             <div className="mx-auto flex items-center justify-center">
               <Link href="/influencer/collaborate-details">
