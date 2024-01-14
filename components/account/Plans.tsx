@@ -28,7 +28,7 @@ const Plans = () => {
 	const [selectedPlan, setSelectedPlan] = useState('');
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 	const [planList, setPlanList] = useState<Plan[]>([]);
 	const messageTitle =
 		user.type === 'fan' ? 'User Registration' : 'Model Registration';
@@ -65,6 +65,14 @@ const Plans = () => {
 		formState,
 	} = useForm(formOptions);
 	const { errors } = formState;
+
+	useEffect(() => {
+		// redirect to home if already logged in
+		if (user.userId == '' || user.userId == null || user.userId == undefined) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+	}, [user]);
 
 	async function onSubmit(formField: any) {
 		setLoading(true);

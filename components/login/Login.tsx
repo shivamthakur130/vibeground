@@ -87,9 +87,21 @@ const Login = () => {
 			dispatch(updateUser({ ...user, userId: userId, ...data.data }));
 			setLoginType(typeLogin);
 			if (data.data.type === 'fan') {
-				replace('/experience');
+				//check if user is inactive then redirect to account page
+				if (data.data.status === 'inactive') {
+					replace('/account/dob');
+					return;
+				} else {
+					replace('/experience');
+				}
 			} else {
-				replace('/influencer');
+				//check if user is inactive then redirect to account page
+				if (data.data.status === 'inactive') {
+					replace('/account/about');
+					return;
+				} else {
+					replace('/influencer');
+				}
 			}
 		} else {
 			ErrorMessage('Login Operation', 'Something went wrong');

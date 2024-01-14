@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Upload from '@/assets/images/svg/upload.svg';
 import * as Yup from 'yup';
@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateUser } from '@/redux/slice/user';
+import { updateUser, removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { modelPassport } from '@/services/user.service';
@@ -25,7 +25,7 @@ const Passport = () => {
 	const [passportBack, setPassportBack] = useState(null);
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 	const MAX_FILE_SIZE = 51502400; //51500KB
 
 	// form validation rules
@@ -130,9 +130,18 @@ const Passport = () => {
 		}
 	};
 
+	useEffect(() => {
+		// redirect to home if already logged in
+		if (user.userId == '' || user.userId == null || user.userId == undefined) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+	}, [user]);
+
 	const removeSelectedImage = () => {
 		setPassportFront(null);
 	};
+
 	const removeSelectedImageBack = () => {
 		setPassportBack(null);
 	};

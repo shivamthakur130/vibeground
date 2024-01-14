@@ -1,11 +1,11 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateUser } from '@/redux/slice/user';
+import { updateUser, removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { fanDob } from '@/services/user.service';
@@ -38,7 +38,7 @@ const DOB = () => {
 	const dispatch = useAppDispatch();
 
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 	// form validation rules
 	const validationSchema = Yup.object().shape({
 		checkAgeVerified: Yup.string(),
@@ -76,6 +76,14 @@ const DOB = () => {
 			buttonRef.current.click();
 		}
 	};
+
+	useEffect(() => {
+		// redirect to home if already logged in
+		if (user.userId == '' || user.userId == null || user.userId == undefined) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+	}, [user]);
 
 	async function onSubmit(formField: any) {
 		setLoading(true);

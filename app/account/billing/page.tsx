@@ -14,7 +14,7 @@ import { useAppSelector } from '@/redux/hooks';
 import PageWrapper from '@/components/common/PageWrapper';
 
 export default function BillingPage() {
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 	const dispatch = useAppDispatch();
 	const [stripeKey, setStripeKey] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -36,6 +36,18 @@ export default function BillingPage() {
 			setLoading(false);
 		})();
 	}, []);
+
+	useEffect(() => {
+		if (
+			userData.userId == '' ||
+			userData.userId == null ||
+			userData.userId == undefined
+		) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+	}, [userData]);
+
 	const handleError = (error: any) => {
 		if (
 			error.response?.status === 401 ||

@@ -14,6 +14,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+
 import PageWrapper from '../common/PageWrapper';
 
 const UserInformation = () => {
@@ -27,8 +28,6 @@ const UserInformation = () => {
 		firstName: Yup.string().required('First Name is required'),
 		lastName: Yup.string().required('Last Name is required'),
 		userName: Yup.string().required('User Name is required'),
-		// about: Yup.string().required('About is required'),
-		// onlyFanAccount: Yup.string().required('Only Fan Account is required'),
 		email: Yup.string().email('Email is invalid').required('Email is required'),
 		confirmEmail: Yup.string()
 			.oneOf([Yup.ref('email'), undefined, ''], 'Email must match')

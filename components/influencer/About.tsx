@@ -1,11 +1,11 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateUser } from '@/redux/slice/user';
+import { updateUser, removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { modelAbout } from '@/services/user.service';
@@ -20,7 +20,7 @@ const AboutInfo = () => {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -29,6 +29,14 @@ const AboutInfo = () => {
 			.min(80, 'About must be at least 80 characters')
 			.max(1024, 'About must not exceed 1024 characters'),
 	});
+
+	useEffect(() => {
+		// redirect to home if already logged in
+		if (user.userId == '' || user.userId == null || user.userId == undefined) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+	}, [user]);
 
 	const formOptions = { resolver: yupResolver(validationSchema) };
 	// get functions to build form with useForm() hook
@@ -89,7 +97,7 @@ const AboutInfo = () => {
 			);
 		}
 	};
-
+	console.log(user, 'user');
 	return (
 		<PageWrapper>
 			<div className="Email  max-w-4xl mx-auto mt-16 mb-20 px-5 relative ">

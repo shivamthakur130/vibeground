@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateUser } from '@/redux/slice/user';
+import { updateUser, removeUser } from '@/redux/slice/user';
 import { getCities } from '@/services/common.service';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
@@ -26,7 +26,9 @@ const Selection = ({ countries }: any) => {
 	const user = useSelector((state: any) => state.userReducer.user);
 	const [country, setCountry] = useState('');
 	const [city, setCity] = useState('');
-
+	const { push, replace } = useRouter();
+	const messageTitle =
+		userData?.type === 'fan' ? 'User Registration' : 'Model Registration';
 	const [cityList, setCityList] = useState([]);
 
 	useEffect(() => {
@@ -38,11 +40,13 @@ const Selection = ({ countries }: any) => {
 		setCity(user.city);
 		setValue('country', user.country);
 		setValue('city', user.city);
+		// redirect to home if already logged in
+		if (user.userId == '' || user.userId == null || user.userId == undefined) {
+			dispatch(removeUser());
+			replace('/login');
+		}
 	}, [user]);
 
-	const { push } = useRouter();
-	const messageTitle =
-		userData?.type === 'fan' ? 'User Registration' : 'Model Registration';
 	// form validation rules
 	const validationSchema = Yup.object().shape({
 		city: Yup.string().required('City is required'),

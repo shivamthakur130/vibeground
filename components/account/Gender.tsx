@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateUser } from '@/redux/slice/user';
+import { updateUser, removeUser } from '@/redux/slice/user';
 import { useAppDispatch } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { fanGender } from '@/services/user.service';
@@ -22,7 +22,7 @@ const Gender = () => {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
-	const { push } = useRouter();
+	const { push, replace } = useRouter();
 	const messageTitle =
 		user.type === 'fan' ? 'User Registration' : 'Model Registration';
 	// form validation rules
@@ -63,6 +63,13 @@ const Gender = () => {
 		}
 		setLoading(false);
 	}
+	useEffect(() => {
+		// redirect to home if already logged in
+		if (user.userId == '' || user.userId == null || user.userId == undefined) {
+			dispatch(removeUser());
+			replace('/login');
+		}
+	}, [user]);
 
 	const handleError = (error: any) => {
 		if (error.response) {
@@ -80,6 +87,7 @@ const Gender = () => {
 			);
 		}
 	};
+
 	return (
 		<PageWrapper>
 			<div className="Email text-center max-w-xl mx-auto mt-14 mb-24 relative px-4">
