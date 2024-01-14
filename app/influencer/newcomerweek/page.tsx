@@ -1,4 +1,4 @@
-import NewComerWeek from '@/components/experience/NewComerOfTheWeek';
+import NewComerWeek from '@/components/experience/NewComerOfTheMonth';
 
 export default function MeetAndGreetPage() {
 	return (

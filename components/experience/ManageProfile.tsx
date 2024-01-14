@@ -8,7 +8,7 @@ import ManageOtherInfo from '../influencer/ManageOtherInfo';
 import ChangePassword from '../influencer/ChangePassword';
 import PageWrapper from '../common/PageWrapper';
 
-const ManageProfile = () => {
+const ManageProfile = ({ countries }: any) => {
 	const { replace } = useRouter();
 	const user = useSelector((state: any) => state.userReducer.user);
 
@@ -27,7 +27,7 @@ const ManageProfile = () => {
 						<IoChevronBackOutline className="text-xl" /> <span>Back</span>
 					</div>
 				</div>
-				<ManageOtherInfo user={user} showHide={true} />
+				<ManageOtherInfo user={user} showHide={true} countries={countries} />
 				<ChangePassword user={user} showHide={true} />
 			</div>
 		</PageWrapper>

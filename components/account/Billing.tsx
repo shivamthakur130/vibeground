@@ -363,7 +363,6 @@ const Billing = () => {
 			);
 		}
 	};
-	console.log('validationCheck', validationCheck);
 	return (
 		<div className="Billing max-w-4xl mx-auto mt-24 mb-20 relative px-4">
 			<div className="mx-auto grid md:grid-cols-6 grid-flow-row md:grid-flow-col gap-4">

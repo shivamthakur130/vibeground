@@ -7,6 +7,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 } from '@/components/layout/ToastifyMessages';
+import Loading from '@/components/layout/Loading';
 
 import { support } from '@/services/common.service';
 
@@ -46,6 +47,7 @@ const SupportForm = () => {
 			if (typeof data === 'object' && data !== null && 'data' in data) {
 				if (data.status) {
 					SuccessMessage(messageTitle, 'Support sent successfully');
+					reset();
 				} else {
 					ErrorMessage(messageTitle, 'Something went wrong');
 				}
@@ -82,7 +84,17 @@ const SupportForm = () => {
 			<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-10">
 				Support
 			</h2>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			{loading && (
+				<Loading
+					width={50}
+					height={50}
+					className="flex absolute justify-center w-96
+				z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+				/>
+			)}
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className={`${loading ? 'opacity-30' : ''}`}>
 				<div className="space-y-4 text-left">
 					<div>
 						<div className="text-xl font-PoppinsRegular py-2 text-111">Email</div>
