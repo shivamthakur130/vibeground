@@ -117,7 +117,7 @@ const Header = () => {
 			push('/');
 		}
 	};
-
+	console.log(userDetails?.status, 'userDetails');
 	return (
 		<div className=" bg-black">
 			<div className="max-w-7xl mx-auto py-10 px-10">
@@ -208,6 +208,20 @@ const Header = () => {
 								</div>
 							</div>
 						)}
+
+					{userDetails?.status === 'inactive' && (
+						<div className="flex">
+							<div className="flex items-center">
+								<div className="flex items-center ">
+									<span
+										onClick={logOut}
+										className="text-white cursor-pointer hover:underline">
+										Logout
+									</span>
+								</div>
+							</div>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
