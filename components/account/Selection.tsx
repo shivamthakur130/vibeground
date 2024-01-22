@@ -152,7 +152,7 @@ const Selection = ({ countries }: any) => {
 				<p className="md:text-xl text-xs text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-2">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-2">
 					Where are you from?
 				</h2>
 				<div className="mb-14">

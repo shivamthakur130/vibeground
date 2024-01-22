@@ -325,7 +325,7 @@ const Pictures = () => {
 					Let`s complete your profile
 				</p>
 				<div className="mb-16">
-					<div className="md:text-5xl text-lg font-PoppinsBold text-111 mb-3">
+					<div className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-3">
 						Upload your pictures
 					</div>
 					<span className="text-888">Each picture should be maximum size 25MB.</span>

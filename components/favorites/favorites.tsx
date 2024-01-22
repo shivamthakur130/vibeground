@@ -12,11 +12,16 @@ import { useDispatch } from 'react-redux';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
+import { RxCross2 } from 'react-icons/rx';
+import { useSelector } from 'react-redux';
+import { addFavorite } from '@/services/favorite.service';
+import { SuccessMessage } from '@/components/layout/ToastifyMessages';
 
 const Favorites = () => {
 	const messageTitle = 'Profile View';
 	const dispatch = useDispatch();
 	const { replace } = useRouter();
+	const user = useSelector((state: any) => state.userReducer.user);
 	const [modelDetails, setModelDetails] = useState<any | null>(null);
 	const [loading, setLoading] = useState(false);
 
@@ -57,6 +62,7 @@ const Favorites = () => {
 			);
 		}
 	};
+
 	const getAge = (date: string) => {
 		const today = new Date();
 		const birthDate = new Date(date);
@@ -67,8 +73,32 @@ const Favorites = () => {
 		}
 		return age;
 	};
+
 	const openDetails = (id: any) => {
 		replace('/experience/tinder/' + id);
+	};
+
+	const removeFavorite = async (id: string, status: string) => {
+		setLoading(true);
+		const request = {
+			userId: user?._id,
+			modelId: id,
+			status: status,
+		};
+		const { data, error } = await addFavorite(request);
+
+		if (error) {
+			setLoading(false);
+			handleError(error);
+			return;
+		}
+		if (typeof data === 'object' && data !== null && 'data' in data) {
+			if (data.status) {
+				SuccessMessage(messageTitle, 'Model removed from your favorite list');
+				getAllFavorites();
+			}
+		}
+		setLoading(false);
 	};
 	return (
 		<div className="Favorites max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
@@ -103,20 +133,31 @@ const Favorites = () => {
 			<div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
 				{modelDetails?.map((model: any, index: number) => (
 					<div className="rounded-2xl" key={index}>
-						<div
-							className="relative rounded-2xl overflow-hidden bg-white"
-							onClick={() => {
-								openDetails(model?.modelId?._id);
-							}}>
+						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-4/5">
 							{/* <Image src={Post1} className="w-full" alt="#" /> */}
+							<div>
+								<RxCross2
+									onClick={() => {
+										removeFavorite(model?.modelId?._id, 'rejected');
+									}}
+									className="absolute top-2 right-2 text-red-500 rounded-md bg-gray-100 text-xl"
+								/>
+							</div>
+
 							{model?.modelId?.photos?.length > 0 ? (
 								<img
+									onClick={() => {
+										openDetails(model?.modelId?._id);
+									}}
 									src={model?.modelId?.photos[0]}
-									className="w-full min-w-[200px] aspect-4/5 min-h-[250px] sm:h-auto"
+									className="w-full min-w-[200px] object-fill min-h-[250px] sm:h-auto"
 									alt="#"
 								/>
 							) : (
 								<Image
+									onClick={() => {
+										openDetails(model?.modelId?._id);
+									}}
 									src={Post1}
 									className="w-full aspect-4/5 min-h-[250px]"
 									alt="#"

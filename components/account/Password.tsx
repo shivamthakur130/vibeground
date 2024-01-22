@@ -96,8 +96,10 @@ const Password = () => {
 	};
 	return (
 		<PageWrapper>
-			<div className="Password text-center max-w-2xl mx-auto mt-14 mb-24 relative">
-				<h2 className="text-5xl font-PoppinsBold text-111">Enter your password</h2>
+			<div className="Password text-center max-w-2xl mx-auto mt-14 mb-24 relative px-5">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111">
+					Enter your password
+				</h2>
 				<p className="text-xl text-888 mt-3 mb-12 max-w-[460px] mx-auto content-stretch">
 					Set your strong password, Upper case Letter, Digit numbers and special
 					characters @,$,%,*,#

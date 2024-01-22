@@ -148,7 +148,7 @@ const Plans = () => {
 				<p className="md:text-xl text-xs text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="hidden md:block  md:text-5xl text-lg font-PoppinsBold text-111 mb-16 md:text-center">
+				<h2 className=" md:block  md:text-5xl text-3xl font-PoppinsBold text-111 sm:mb-16 mb-5 md:text-center">
 					Choose your plan
 				</h2>
 				{loading && (

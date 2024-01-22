@@ -1,6 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { useState } from 'react';
+import { GrPowerReset } from 'react-icons/gr';
+import { RxReset, RxCheck } from 'react-icons/rx';
 
 const Filter = ({
 	isOpen,
@@ -11,32 +13,41 @@ const Filter = ({
 	getAllModelsDetails,
 }: any) => {
 	const [loading, setLoading] = useState(false);
+	const [updateCategory, setUpdateCategory] = useState(false);
 	function closeModal() {
 		setIsOpen(false);
 	}
 	const handleFilter = (category: any) => {
-		setLoading(true);
 		if (filterCategory === '') {
-			setFilterCategory(category);
+			const newFilterCategory = [];
+			newFilterCategory.push(category);
+			setFilterCategory(newFilterCategory);
 		} else {
 			if (filterCategory.includes(category)) {
-				let newFilterCategory = filterCategory.replace(',' + category, '');
-				if (newFilterCategory === category) {
-					newFilterCategory = newFilterCategory.replace(category, '');
-				}
+				const newFilterCategory = removeItemOnce(filterCategory, category);
 				setFilterCategory(newFilterCategory);
 			} else {
-				setFilterCategory(`${filterCategory},${category}`);
+				const newFilterCategory = filterCategory;
+				filterCategory.push(category);
+				setFilterCategory(newFilterCategory);
 			}
 		}
-		setTimeout(() => {
-			setLoading(false);
-		}, 1);
+		setUpdateCategory(!updateCategory);
 	};
-	useEffect(() => {
-		console.log('filterCategory', filterCategory);
-	}, [loading]);
-	console.log(loading);
+	function removeItemOnce(arr: [], value: any) {
+		var index = arr.indexOf(value as never);
+		if (index > -1) {
+			arr.splice(index, 1);
+		}
+		return arr;
+	}
+	const checkValueExist = (value: any) => {
+		if (filterCategory.includes(value)) {
+			return true;
+		}
+		return false;
+	};
+
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
 			<Dialog as="div" className="relative z-50 " onClose={closeModal}>
@@ -65,30 +76,57 @@ const Filter = ({
 								<h2 className="sm:text-white text-2f2f2f font-PoppinsBold text-3xl mb-7">
 									Filter
 								</h2>
-								{!loading && (
-									<ul className="flex flex-wrap gap-3 duration-200">
-										{categoriesList.map((category: any, index: number) => (
-											<li
-												className={`border border-[#656565] sm:border-white py-2.5 px-4 rounded-lg text-151515 sm:text-white hover:text-white cursor-pointer hover:bg-2f2f2f hover:border-2f2f2f ${
-													filterCategory.includes(category)
+								<ul className="flex flex-wrap gap-3 duration-200">
+									{categoriesList.map((category: any, index: number) => (
+										<li
+											className={`
+											cursor-pointer py-2.5 px-4 rounded-lg
+												${
+													checkValueExist(category)
 														? 'bg-2f2f2f border-2f2f2f text-white'
-														: ''
-												}`}
-												key={index}
-												onClick={() => handleFilter(category)}>
-												{category}
-											</li>
-										))}
-									</ul>
-								)}
-								<button
-									className="bg-2f2f2f text-base px-16 py-3 rounded-md mt-7 text-white hover:opacity-70"
-									onClick={() => {
-										getAllModelsDetails();
-										closeModal();
-									}}>
-									Apply Filter
-								</button>
+														: 'text-gray-200  bg-[#656565] border-2f2f2f'
+												}
+												`}
+											key={index}
+											onClick={() => handleFilter(category)}>
+											{category}
+										</li>
+									))}
+								</ul>
+								<div className="flex flex-wrap space-x-3 duration-200">
+									<div>
+										<button
+											className="bg-2f2f2f text-base px-4 py-2 rounded-sm mt-7 text-white hover:opacity-70 shadow-sm transition-all duration-150"
+											onClick={() => {
+												getAllModelsDetails(filterCategory);
+												closeModal();
+											}}>
+											<RxCheck
+												className="inline-block mr-2 text-white"
+												style={{ color: 'white', fontSize: '1.4em' }}
+											/>
+											Apply Filter
+										</button>
+									</div>
+									{/* reset button */}
+									<div>
+										{filterCategory.length > 0 && (
+											<button
+												className="bg-2f2f2f text-base px-4 py-2 rounded-sm mt-7 text-white hover:opacity-70 shadow-sm transition-all duration-150"
+												onClick={() => {
+													setFilterCategory('');
+													getAllModelsDetails([]);
+													closeModal();
+												}}>
+												<RxReset
+													className="inline-block mr-2 text-white"
+													style={{ color: 'white', fontSize: '1.4em' }}
+												/>
+												Reset
+											</button>
+										)}
+									</div>
+								</div>
 							</Dialog.Panel>
 						</Transition.Child>
 					</div>

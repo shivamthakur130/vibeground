@@ -85,8 +85,10 @@ const Email = () => {
 
 	return (
 		<PageWrapper>
-			<div className="Email max-w-2xl mx-auto mt-24 mb-40 relative">
-				<h2 className="text-5xl font-PoppinsBold text-111">Enter your email</h2>
+			<div className="Email max-w-2xl mx-auto mt-24 mb-40 relative px-5">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111">
+					Enter your email
+				</h2>
 				<p className="text-xl text-888 mt-3 mb-12">
 					You will receive a verification code to confirm your email address.
 				</p>

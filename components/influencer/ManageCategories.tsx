@@ -17,62 +17,6 @@ import {
 } from '@/components/layout/ToastifyMessages';
 import PageWrapper from '../common/PageWrapper';
 
-// const categoryList = [
-// 	'All natural',
-// 	'An*l',
-// 	'Asian',
-// 	'ASMR',
-// 	'BDSM',
-// 	'Behind The Scenes',
-// 	'Big Bo*ty',
-// 	'Bis*xual',
-// 	'Black',
-// 	'Blonde',
-// 	'Blowj*b',
-// 	'Bond*ge',
-// 	'Boy/Girl',
-// 	'Brunette',
-// 	'Cosplay',
-// 	'Cre*mpie',
-// 	'C*mshot',
-// 	'Curvy',
-// 	'De*pthroath',
-// 	'D*ckrating',
-// 	'Face Sitt*ng',
-// 	'F*cial',
-// 	'Feet',
-// 	'Fetish',
-// 	'G*ngb*ng',
-// 	'Gay',
-// 	'German',
-// 	'Girl/Girl',
-// 	'H*rdcore',
-// 	'Hentai',
-// 	'High Heels',
-// 	'Latex',
-// 	'Latina',
-// 	'Massage',
-// 	'M*sturbating',
-// 	'M*lf',
-// 	'Piercing',
-// 	'Pool',
-// 	'POV',
-// 	'Public',
-// 	'Redhead',
-// 	'Roleplay',
-// 	'R*ugh S*x',
-// 	'Russian',
-// 	'S*x',
-// 	'Sq*irting',
-// 	'Student',
-// 	'Thai',
-// 	'Threes*me',
-// 	'Toy',
-// 	'TS',
-// 	'Twerking',
-// 	'Videocall',
-// ];
-
 const ManageCategories = ({ user, showHide, categoriesList }: any) => {
 	const [loading, setLoading] = useState(false);
 	const [showHideSection, setShowHideSection] = useState(showHide);
@@ -154,14 +98,18 @@ const ManageCategories = ({ user, showHide, categoriesList }: any) => {
 				handleError(error);
 				return;
 			}
+
 			if (typeof data === 'object' && data !== null && 'data' in data) {
-				SuccessMessage('Model Profile', 'Categories saved successfully');
-				dispatch(
-					updateUser({
-						...user,
-						categories: selectedCategories,
-					})
-				);
+				if (data.status) {
+					console.log(data, 'data ----------------->');
+					SuccessMessage('Model Profile', 'Categories saved successfully');
+					dispatch(
+						updateUser({
+							...user,
+							categories: selectedCategories,
+						})
+					);
+				}
 			} else {
 				ErrorMessage('Model Profile', 'Something went wrong');
 			}

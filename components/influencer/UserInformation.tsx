@@ -123,10 +123,10 @@ const UserInformation = () => {
 				<p className="md:text-xl text-xs text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-2">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-2">
 					Enter your personal details
 				</h2>
-				<div className="mb-16">(Only your username is visible to the fans)</div>
+				<div className="sm:mb-16">(Only your username is visible to the fans)</div>
 				{loading && (
 					<Loading
 						width={50}

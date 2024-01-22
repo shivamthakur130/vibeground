@@ -98,11 +98,11 @@ const About = ({ params }: any) => {
 					</Link>
 				</div>
 				<div className="flex item-center space-x-4 ">
-					<ul className="flex space-x-4">
+					{/* <ul className="flex space-x-4">
 						<li className="p-2 rounded-2xl cursor-pointer border border-gray-50">
 							<Image src={UpArrow} className="" alt="#" height={18} width={20} />
 						</li>
-					</ul>
+					</ul> */}
 				</div>
 			</h2>
 			{modelDetails && (
@@ -113,7 +113,7 @@ const About = ({ params }: any) => {
 								<Image
 									key={index}
 									src={picture}
-									className="h-[450px] w-[401px] rounded-3xl  shadow-md border"
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-fill"
 									alt="#"
 									width={401}
 									height={450}

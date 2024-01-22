@@ -104,7 +104,7 @@ const AboutInfo = () => {
 				<p className="md:text-xl text-xs text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-14">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-14">
 					{' '}
 					Tell your fans more about you!
 				</h2>

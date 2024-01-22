@@ -117,10 +117,10 @@ const Header = () => {
 			push('/');
 		}
 	};
-	console.log(userDetails?.status, 'userDetails');
+
 	return (
-		<div className=" bg-black">
-			<div className="max-w-7xl mx-auto py-10 px-10">
+		<div className=" bg-black hidden sm:flex w-full">
+			<div className="max-w-7xl mx-auto py-10 px-10 w-full">
 				<div
 					className={`flex ${pathName == '/' ? 'justify-end' : 'justify-between'} `}>
 					{pathName !== '/' && (
@@ -151,11 +151,11 @@ const Header = () => {
 											onClick={redirectProfile}>
 											{userDetails?.firstName} {userDetails?.lastName}
 										</span>
-										<div
+										{/* <div
 											className="cursor-pointer hover:bg-gray-700 p-2 rounded-md active:bg-gray-900 relative"
 											onClick={redirectDashboard}>
 											<AiOutlineDashboard className="text-3xl text-white" />
-										</div>
+										</div> */}
 										<span className="relative">
 											<Image
 												src={DownArrow}
