@@ -148,7 +148,7 @@ const AddLinks = () => {
 				</p>
 				{planDetails && (
 					<>
-						<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-7">
+						<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-7">
 							{planDetails?.name === 'Exclusive' ? 'Add your links' : 'Add your link'}
 						</h2>
 						{loading && (

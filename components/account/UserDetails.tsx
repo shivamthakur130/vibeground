@@ -89,11 +89,11 @@ const UserDetails = () => {
 	};
 	return (
 		<PageWrapper>
-			<div className="Email max-w-2xl text-center mx-auto mt-16 mb-40 relative">
+			<div className="Email max-w-2xl text-center mx-auto mt-16 mb-40 relative px-5">
 				<p className="md:text-xl text-xs text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-16">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-16">
 					Enter your details
 				</h2>
 

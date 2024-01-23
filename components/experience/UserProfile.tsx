@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Image from 'next/image';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
 import Link from 'next/link';
@@ -9,10 +9,17 @@ import { useRouter } from 'next/navigation';
 import { AiOutlineUser } from 'react-icons/ai';
 import PageWrapper from '../common/PageWrapper';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
+import { removeUser } from '@/redux/slice/user';
 
 const UserProfile = () => {
 	const { replace } = useRouter();
+	const dispatch = useDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
+
+	const logout = () => {
+		replace('/');
+		dispatch(removeUser());
+	};
 
 	return (
 		<PageWrapper>
@@ -83,6 +90,16 @@ const UserProfile = () => {
 							<Image src={Arrow} alt="#" width={10} />
 						</span>
 					</h2>
+					<div className="sm:hidden">
+						<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4 ">
+							<span className="cursor-pointer" onClick={logout}>
+								Logout
+							</span>
+							<span className="cursor-pointer">
+								<Image src={Arrow} alt="#" width={10} />
+							</span>
+						</h2>
+					</div>
 				</div>
 			</div>
 		</PageWrapper>

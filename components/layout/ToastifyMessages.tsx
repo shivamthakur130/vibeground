@@ -60,7 +60,7 @@ export const InfoMessage = (message: string) => {
 };
 
 export const SuccessMessage = (title: string, message: string) => {
-	toast.dismiss();
+	// toast.dismiss();
 	function Msg() {
 		return (
 			<div>

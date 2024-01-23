@@ -61,13 +61,17 @@ const AreYou = () => {
 
 	return (
 		<PageWrapper>
-			<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative px-5">
-				<h2 className="text-5xl font-PoppinsBold text-111">Who are you?</h2>
-				{/* <p className="text-xl text-888 mt-3 mb-10">Choose who you are going to be</p> */}
+			<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative px-5 h-full">
+				<h2 className=" md:text-5xl text-3xl font-PoppinsBold text-111">
+					Choose who you are ?
+				</h2>
+				<p className="text-xl text-888 mt-3 mb-10">
+					It will help us to give you a better journey further
+				</p>
 				<form
 					onSubmit={handleSubmit(onSubmit)}
-					className="transition delay-150 duration-300 ease-in-out">
-					<div className="mx-auto grid grid-flow-col gap-4 mt-5">
+					className="transition delay-150 duration-300 ease-in-out  h-full">
+					<div className="mx-auto grid grid-flow-col gap-4 mt-5  h-full">
 						<label
 							className="flex items-center cursor-pointer rounded-xl aspect-square relative"
 							htmlFor="fanRadio">
@@ -119,7 +123,7 @@ const AreYou = () => {
 						{errors.type?.message && errors.type?.message}
 					</div>
 					<button
-						className="btn w-full px-24 py-4 mt-12 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 "
+						className="btn w-full px-24 py-4 mt-12 text-xl text-white bg-303030 rounded-[8px] hover:bg-151515 transition-all duration-300 active:bg-303030 bottom-0"
 						type="submit">
 						Continue
 					</button>

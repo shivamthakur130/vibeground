@@ -151,7 +151,7 @@ const Passport = () => {
 				<p className="md:text-xl text-xs text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="md:text-5xl text-xl font-PoppinsBold text-111 mb-16">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-16">
 					Upload your Passport or ID to verify
 				</h2>
 				{loading && (

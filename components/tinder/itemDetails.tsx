@@ -13,7 +13,12 @@ import {
 import { removeUser } from '@/redux/slice/user';
 import { useDispatch, useSelector } from 'react-redux';
 
-const ItemDetails = ({ model, setLoading, getAllModelsDetails }: any) => {
+const ItemDetails = ({
+	model,
+	setLoading,
+	getAllModelsDetails,
+	filterCategory,
+}: any) => {
 	const messageTitle = 'Favorite';
 	const dispatch = useDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
@@ -55,7 +60,7 @@ const ItemDetails = ({ model, setLoading, getAllModelsDetails }: any) => {
 				} else {
 					SuccessMessage(messageTitle, 'Model rejected');
 				}
-				getAllModelsDetails();
+				getAllModelsDetails(filterCategory);
 			}
 		}
 		setLoading(false);
@@ -87,11 +92,11 @@ const ItemDetails = ({ model, setLoading, getAllModelsDetails }: any) => {
 
 	return (
 		<div className="rounded-[20px] ">
-			<div className="relative rounded-[20px] overflow-hidden bg-white">
+			<div className="relative rounded-[20px] overflow-hidden bg-white max-h-[500px]">
 				{model?.photos?.length > 0 ? (
 					<img
 						src={model?.photos[0]}
-						className="w-full aspect-4/5 min-h-[250px] min-w-[200px] sm:h-auto"
+						className="w-full  min-h-[200px] min-w-[200px] sm:h-auto object-fill"
 						alt="#"
 					/>
 				) : (
@@ -114,10 +119,10 @@ const ItemDetails = ({ model, setLoading, getAllModelsDetails }: any) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex item-center space-x-4 justify-center py-7">
-				<a href="#">
+			<div className="flex item-center space-x-5 justify-center py-7">
+				{/* <a href="#">
 					<Image src={Back} className="" alt="#" />
-				</a>
+				</a> */}
 				<a href="#">
 					<Image
 						src={Close}

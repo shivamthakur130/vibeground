@@ -261,7 +261,7 @@ const Videos = () => {
 					Let`s complete your profile
 				</p>
 				<div className="mb-16">
-					<div className="md:text-5xl text-lg font-PoppinsBold text-111 mb-3">
+					<div className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-3">
 						Upload your videos
 					</div>
 					<span className="text-888">Each videos should be maximum size 100MB.</span>

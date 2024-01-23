@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Image from 'next/image';
 import ProfileImg from '@/assets/images/profile_img.png';
 import Arrow from '@/assets/images/svg/arrow-right.svg';
@@ -9,10 +9,16 @@ import { IoChevronBackOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import { AiOutlineUser } from 'react-icons/ai';
 import PageWrapper from '../common/PageWrapper';
+import { removeUser } from '@/redux/slice/user';
 
 const UserProfile = () => {
 	const { replace } = useRouter();
+	const dispatch = useDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
+	const logout = () => {
+		replace('/');
+		dispatch(removeUser());
+	};
 	return (
 		<PageWrapper>
 			<div className="Profile max-w-7xl px-5 mx-auto  mt-16 mb-32">
@@ -83,6 +89,16 @@ const UserProfile = () => {
 							</span>
 						</Link>
 					</h2>
+					<div className="sm:hidden">
+						<h2 className="flex justify-between text-2xl border-b border-gray-200 pb-4 ">
+							<span className="cursor-pointer" onClick={logout}>
+								Logout
+							</span>
+							<span className="cursor-pointer">
+								<Image src={Arrow} alt="#" width={10} />
+							</span>
+						</h2>
+					</div>
 					{/* <h2 className="flex  justify-between text-2xl border-b border-gray-200 pb-4">
 					<span className="cursor-pointer">Terms & Conditions</span>
 					<span className="cursor-pointer">

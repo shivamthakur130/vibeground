@@ -38,7 +38,7 @@ const Landing = () => {
 									<Image src={CenterLogo} alt="#" className="" />
 								</p>
 								{(userDetails?.token == '' || userDetails == null) && (
-									<Link href="account">
+									<Link href="/account/are-you">
 										<button
 											className="mt-10 
 				rounded-[8px]  btn btn-default  py-4 px-16 bg-white hover:bg-gray-300   text-151515 cursor-pointer text-xl text-center transition-all duration-300 active:bg-gray-50 ">

@@ -150,10 +150,10 @@ const DOB = () => {
 	return (
 		<PageWrapper>
 			<div className="Email text-center max-w-2xl mx-auto sm:mt-28 sm:mb-24 relative px-4 my-10">
-				<p className="md:text-xl text-xs text-888 mb-5">
+				<p className="md:text-xl text-xl text-888 mb-5">
 					Let`s complete your profile
 				</p>
-				<h2 className="md:text-5xl text-lg font-PoppinsBold text-111 mb-10">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 mb-10">
 					Choose your date of birth
 				</h2>
 				{loading && (

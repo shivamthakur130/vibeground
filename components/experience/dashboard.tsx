@@ -15,7 +15,7 @@ const Experience = () => {
 	const { replace } = useRouter();
 	return (
 		<PageWrapper>
-			<div className="Experience max-w-7xl px-5 mx-auto mt-24 mb-24">
+			<div className="Experience max-w-7xl px-5 mx-auto sm:mt-24 sm:mb-24 py-5 sm:py-0 ">
 				<h2 className="text-3xl sm:text-5xl font-PoppinsBold text-111 flex items-center mb-10 justify-between">
 					Experience
 					{/* <div
