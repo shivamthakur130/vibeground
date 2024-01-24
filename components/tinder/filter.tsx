@@ -72,10 +72,17 @@ const Filter = ({
 							leave="ease-in duration-200"
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95">
-							<Dialog.Panel className="sm:bg-black/50 bg-white sm:backdrop-blur-md w-full max-w-4xl transform overflow-hidden rounded-2xl p-10 text-left align-middle shadow-xl transition-all">
-								<h2 className="sm:text-white text-2f2f2f font-PoppinsBold text-3xl mb-7">
-									Filter
-								</h2>
+							<Dialog.Panel className="sm:bg-black/50 bg-white sm:backdrop-blur-md w-full max-w-4xl transform overflow-hidden rounded-2xl p-4 sm:p-10 text-left align-middle shadow-xl transition-all">
+								<div className="flex justify-between border-b border-gray-200 mb-2 pb-2">
+									<h2 className="sm:text-white text-2f2f2f font-PoppinsBold text-3xl ">
+										Filter
+									</h2>
+									<div
+										className="rounded-md sm:text-gray-600 text-2f2f2f font-PoppinsRegular text-2xl hover:bg-gray-300 bg-gray-100 px-3 hover:text-gray-500 duration-300 transition-all cursor-pointer"
+										onClick={() => closeModal()}>
+										x
+									</div>
+								</div>
 								<ul className="flex flex-wrap gap-3 duration-200">
 									{categoriesList.map((category: any, index: number) => (
 										<li

@@ -77,7 +77,7 @@ const Tinder = ({ categoriesList }: any) => {
 	};
 	return (
 		<div className="Tinder max-w-7xl mx-auto mt-10 md:mt-10 mb-10">
-			<div className="md:text-5xl  text-111 flex items-center mb-10 justify-between px-5 ">
+			<div className="md:text-5xl  text-111 flex items-center mb-2 justify-between px-5 ">
 				<div className="md:text-3xl text-base mb-5">
 					Hello
 					<h2 className="text-2xl font-PoppinsSemiBold">{userData?.userName}</h2>
@@ -116,38 +116,48 @@ const Tinder = ({ categoriesList }: any) => {
 					/>
 				</div>
 			</Transition>
-			<center>
-				<Swiper
-					effect="tinder"
-					modules={[EffectTinder, Autoplay, Navigation, Pagination]}
-					className="rounded-[30px] min-h-[500px] max-h-[500px] min-w-[150px]  aspect-4/5 border-[10px] border-slate-800"
-					// onTinderSwipe={(swiper: any, direction: any) => {
-					// 	console.log(direction);
-					// 	if (direction === 'left') {
-					// 		swiper.slideNext();
-					// 	}
-					// 	if (direction === 'right') {
-					// 		swiper.slidePrev();
-					// 	}
-					// }}
-				>
-					{modelDetails?.map((model: any, index: number) => (
-						<SwiperSlide key={index} className="border-[10px] border-white">
-							<ItemDetails
-								model={model}
-								loading={loading}
-								setLoading={setLoading}
-								filterCategory={filterCategory}
-								getAllModelsDetails={getAllModelsDetails}
-							/>
-						</SwiperSlide>
-					))}
-					<SwiperSlide className="border-[10px] border-white">
-						<div className="flex justify-center items-center h-full">
-							<h1 className="text-5xl text-gray-700">No more models</h1>
-						</div>
+			{/* <center> */}
+			<Swiper
+				effect="tinder"
+				modules={[EffectTinder, Autoplay, Navigation, Pagination]}
+				className="rounded-xl  w-[382px] h-full  shadow-2xl border-gray-900"
+				onChange={(swiper: any) => {
+					console.log(swiper, 'swiper');
+				}}
+				grabCursor={true}
+				// onTinderSwipe={(swiper: any, direction: any) => {
+				// 	console.log(direction);
+				// 	if (direction === 'left') {
+				// 		swiper.slideNext();
+				// 	}
+				// 	if (direction === 'right') {
+				// 		swiper.slidePrev();
+				// 	}
+				// }}
+			>
+				{modelDetails?.map((model: any, index: number) => (
+					<SwiperSlide key={index} className="border-[10px] border-white">
+						<ItemDetails
+							model={model}
+							loading={loading}
+							setLoading={setLoading}
+							filterCategory={filterCategory}
+							getAllModelsDetails={getAllModelsDetails}
+						/>
 					</SwiperSlide>
-					<button className="swiper-tinder-button swiper-tinder-button-no">
+				))}
+				<SwiperSlide className="aspect-[5/9] flex justify-center items-center h-full w-full">
+					<h1 className="text-3xl text-gray-700 w-full text-center">
+						No more models
+					</h1>
+				</SwiperSlide>
+				<div className="bg-gradient-to-b from-transparent via-black/70 to-black  absolute flex bottom-5 left-2 right-2 h-28 z-50 rounded-r-xl rounded-l-xl">
+					<button
+						className="swiper-tinder-button swiper-tinder-button-no"
+						onClick={() => {
+							// swiper.slideNext();
+							console.log('left');
+						}}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							height="48"
@@ -157,7 +167,12 @@ const Tinder = ({ categoriesList }: any) => {
 						</svg>
 					</button>
 
-					<button className="swiper-tinder-button swiper-tinder-button-yes">
+					<button
+						className="swiper-tinder-button swiper-tinder-button-yes"
+						onClick={() => {
+							// swiper.slidePrev();
+							console.log('right');
+						}}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							height="48"
@@ -166,7 +181,8 @@ const Tinder = ({ categoriesList }: any) => {
 							<path d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
 						</svg>
 					</button>
-					{/* <button className="swiper-tinder-button-undo">
+				</div>
+				{/* <button className="swiper-tinder-button-undo">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							height="48"
@@ -175,10 +191,10 @@ const Tinder = ({ categoriesList }: any) => {
 							<path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
 						</svg>
 					</button> */}
-				</Swiper>
+			</Swiper>
 
-				{/* <swiper {...settings} className=" max-w-md "> */}
-				{/* {modelDetails?.map((model: any, index: number) => (
+			{/* <swiper {...settings} className=" max-w-md "> */}
+			{/* {modelDetails?.map((model: any, index: number) => (
 						<ItemDetails
 							model={model}
 							key={index}
@@ -188,9 +204,9 @@ const Tinder = ({ categoriesList }: any) => {
 							getAllModelsDetails={getAllModelsDetails}
 						/>
 					))} */}
-				{/* </Swiper> */}
+			{/* </Swiper> */}
 
-				{/* <div className="text-lg mb-10 space-y-4">
+			{/* <div className="text-lg mb-10 space-y-4">
         <p>
           Welcome to a world of limitless discovery and a unique search function
           like you{"'"}ve never experienced before! We offer you a search that
@@ -235,7 +251,7 @@ const Tinder = ({ categoriesList }: any) => {
           function to find and subscribe to your favorite creators!{" "}
         </p>
       </div> */}
-			</center>
+			{/* </center> */}
 		</div>
 	);
 };

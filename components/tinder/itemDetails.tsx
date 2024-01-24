@@ -90,27 +90,33 @@ const ItemDetails = ({
 
 	return (
 		<div className="">
-			<div className="relative rounded-[20px] overflow-hidden bg-slate-200 ">
+			<div
+				className="relative rounded-xl overflow-hidden bg-slate-200 aspect-[5/9] cursor-pointer"
+				onClick={() => {
+					openDetails(model?._id);
+				}}>
 				{model?.photos?.length > 0 ? (
 					<img
+						onClick={() => {
+							openDetails(model?._id);
+						}}
 						src={model?.photos[0]}
-						className="aspect-4/5 min-h-[250px] object-cover"
+						className="aspect-[5/9] object-cover cursor-pointer"
 						alt="#"
 					/>
 				) : (
 					<Image
+						onClick={() => {
+							openDetails(model?._id);
+						}}
 						src={Post1}
-						className="w-full aspect-4/5 min-h-[250px] object-cover"
+						className="w-full aspect-[5/9] min-h-[250px] object-cover cursor-pointer"
 						alt="#"
 					/>
 				)}
 				<div className="absolute flex bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%] ">
-					<div className="mt-auto self-end w-full">
-						<h3
-							className="text-2xl text-left  text-white font-PoppinsSemiBold cursor-pointer"
-							onClick={() => {
-								openDetails(model?._id);
-							}}>
+					<div className="mt-auto self-end w-full pb-16">
+						<h3 className="text-2xl text-left  text-white font-PoppinsSemiBold cursor-pointer">
 							{model?.userName}, {getAge(model?.date_of_birth)}{' '}
 						</h3>
 						<div className="flex justify-between mt-3">

@@ -18,6 +18,7 @@ export default function EffectTinder({ swiper, on }) {
 			slideEl.transformOrigin = 'bottom';
 			swiper.slideNext();
 			swiper.animating = false;
+			console.log('no');
 		},
 		yes() {
 			swiper.touches.currentX = swiper.size;
@@ -28,6 +29,7 @@ export default function EffectTinder({ swiper, on }) {
 			slideEl.transformOrigin = 'bottom';
 			swiper.slideNext();
 			swiper.animating = false;
+			console.log('yes');
 		},
 	};
 	const withElement = (el, cb) => {
@@ -75,6 +77,7 @@ export default function EffectTinder({ swiper, on }) {
 					withElement(document.querySelector('.swiper-tinder-button-no'), (el) =>
 						el.classList.remove('swiper-tinder-button-active')
 					);
+					// trigger click
 				} else {
 					withElement(document.querySelector('.swiper-tinder-button-yes'), (el) =>
 						el.classList.remove('swiper-tinder-button-active')
@@ -199,6 +202,13 @@ export default function EffectTinder({ swiper, on }) {
 		if (!isSlideChangeTouched) {
 			emitTransitionEnd = false;
 			swiper.emit('tinderSwipe', swipeDirection < 0 ? 'left' : 'right');
+
+			if (swipeDirection < 0) {
+				document.querySelector('.swiper-tinder-button-no').click();
+			} else {
+				document.querySelector('.swiper-tinder-button-yes').click();
+			}
+			console.log(swipeDirection < 0 ? 'left' : 'right');
 		}
 	});
 
