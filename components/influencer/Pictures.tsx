@@ -49,47 +49,6 @@ const Pictures = () => {
 	} = useForm(formOptions);
 	const { errors } = formState;
 
-	// const userPhotoAssign = async (user: any) => {
-	// 	setLoading(true);
-	// 	const { data, error } = await getUser();
-	// 	if (error) {
-	// 		setLoading(false);
-	// 		handleError(error);
-	// 		return;
-	// 	}
-	// 	if (typeof data === 'object' && data !== null && 'data' in data) {
-	// 	const photosList = user.photos;
-	// 	dispatch(
-	// 		updateUser({
-	// 			...user,
-	// 			...data?.data,
-	// 		})
-	// 	);
-	// 	if (photosList) {
-	// 		const previews = photosList.map((image: any) => (image ? image : null));
-	// 		setPicturesPreviews(previews);
-	// 	}
-	// 	}
-	// 	setLoading(false);
-	// };
-
-	// useEffect(() => {
-	// userPhotoAssign(user);
-	// const previews = selectedPictures.map((image, index) => {
-	// 	if (image) {
-	// 		return URL.createObjectURL(image);
-	// 	}
-	// 	if (user?.photos) {
-	// 		return user?.photos[index] ? user?.photos[index] : null;
-	// 	}
-	// 	return null;
-	// });
-	// if (!firstLoad) {
-	// 	setPicturesPreviews(previews);
-	// 	handleValidation();
-	// }
-	// }, []);
-
 	useEffect(() => {
 		if (user) {
 			setSubscription(user?.subscription);

@@ -150,7 +150,7 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={model?.modelId?.photos[0]}
-									className="w-full min-w-[200px] object-fill min-h-[250px] sm:h-auto"
+									className="w-full min-w-[200px] object-cover min-h-[250px] sm:h-auto"
 									alt="#"
 								/>
 							) : (

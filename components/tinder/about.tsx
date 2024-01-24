@@ -106,25 +106,26 @@ const About = ({ params }: any) => {
 				</div>
 			</h2>
 			{modelDetails && (
-				<div className="flex md:flex-row flex-col">
-					<div className="relative rounded-3xl w-full md:mr-16 sm:w-[325px]">
+				<div className="flex md:flex-row flex-col ">
+					<div className="relative rounded-3xl w-full md:mr-16 sm:w-[325px] ">
 						<Slider {...settings}>
 							{modelDetails?.photos?.map((picture: any, index: number) => (
-								<Image
+								<img
 									key={index}
 									src={picture}
-									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-fill"
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-cover"
 									alt="#"
-									width={401}
-									height={450}
-									priority
-									quality={70}
+									// width={401}
+									// height={450}
+									// priority
+									// quality={70}
+									// style={{ objectFit: 'cover !important' }}
 								/>
 							))}
 							{modelDetails?.videos?.map((video: any, index: number) => (
 								<video
 									key={index}
-									className="h-[450px] w-[401px] rounded-3xl  shadow-md border"
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-cover"
 									width={401}
 									height={450}
 									controls>

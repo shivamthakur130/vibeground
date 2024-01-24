@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Post1 from '@/assets/images/Jessica.png';
-import Back from '@/assets/images/svg/backa.svg';
 import Close from '@/assets/images/svg/close-x.svg';
 import Heart from '@/assets/images/svg/heart-wbg.svg';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { addFavorite } from '@/services/favorite.service';
 import {
@@ -91,16 +89,20 @@ const ItemDetails = ({
 	};
 
 	return (
-		<div className="rounded-[20px] ">
-			<div className="relative rounded-[20px] overflow-hidden bg-white max-h-[500px]">
+		<div className="">
+			<div className="relative rounded-[20px] overflow-hidden bg-slate-200 ">
 				{model?.photos?.length > 0 ? (
 					<img
 						src={model?.photos[0]}
-						className="w-full  min-h-[200px] min-w-[200px] sm:h-auto object-fill"
+						className="aspect-4/5 min-h-[250px] object-cover"
 						alt="#"
 					/>
 				) : (
-					<Image src={Post1} className="w-full aspect-4/5 min-h-[250px]" alt="#" />
+					<Image
+						src={Post1}
+						className="w-full aspect-4/5 min-h-[250px] object-cover"
+						alt="#"
+					/>
 				)}
 				<div className="absolute flex bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%] ">
 					<div className="mt-auto self-end w-full">
@@ -119,10 +121,7 @@ const ItemDetails = ({
 					</div>
 				</div>
 			</div>
-			<div className="flex item-center space-x-5 justify-center py-7">
-				{/* <a href="#">
-					<Image src={Back} className="" alt="#" />
-				</a> */}
+			{/* <div className="flex item-center space-x-5 justify-center py-7">
 				<a href="#">
 					<Image
 						src={Close}
@@ -143,7 +142,7 @@ const ItemDetails = ({
 						}}
 					/>
 				</a>
-			</div>
+			</div> */}
 		</div>
 	);
 };

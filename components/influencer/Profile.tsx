@@ -36,7 +36,7 @@ const UserProfile = () => {
 					<div className="flex-shrink-0 mr-5 md:mr-10 ">
 						{user?.photos?.length > 0 ? (
 							<img
-								className="w-20 h-20 md:w-40 md:h-40 shadow-sm rounded-md"
+								className="w-20 h-20 md:w-40 md:h-40 shadow-sm rounded-md object-cover"
 								src={user?.photos[0]}
 								alt="Neil image"
 							/>
