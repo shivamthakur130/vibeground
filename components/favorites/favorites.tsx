@@ -133,7 +133,7 @@ const Favorites = () => {
 			<div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
 				{modelDetails?.map((model: any, index: number) => (
 					<div className="rounded-2xl" key={index}>
-						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-4/5 bg-gradient-to-t from-black/50 to-white/5">
+						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-[3/4] bg-gradient-to-t from-black/50 to-white/5">
 							<div>
 								<RxCross2
 									onClick={() => {
@@ -149,7 +149,7 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={model?.modelId?.photos[0]}
-									className=" object-cover aspect-4/5"
+									className=" object-cover aspect-[3/4] min-h-[400px]"
 									alt="#"
 								/>
 							) : (
@@ -158,11 +158,11 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={Post1}
-									className="w-full aspect-4/5 min-h-[250px]"
+									className="w-full aspect-[3/4] min-h-[250px]"
 									alt="#"
 								/>
 							)}
-							{/* <div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]"></div> */}
+							<div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%]"></div>
 						</div>
 						<div className="mt-3 self-end w-full ">
 							<h3 className="text-xl text-[#444] font-PoppinsSemiBold">
