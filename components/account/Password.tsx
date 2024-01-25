@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import * as Yup from 'yup';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -123,7 +123,7 @@ const Password = () => {
 						{...register('password')}
 					/>
 					{errors.password?.message && (
-						<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+						<div className="text-red-600 flex justify-center  text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
 							{errors.password?.message}
 						</div>
 					)}
@@ -131,12 +131,12 @@ const Password = () => {
 					<input
 						type="password"
 						id="confirmPassword"
-						className="max-w-[460px] mx-auto bg-white border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-6"
+						className="max-w-[460px] mx-auto bg-white  border border-black text-656565 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full py-4 px-4 mt-6"
 						placeholder="Enter Your Confirm Password"
 						{...register('confirmPassword')}
 					/>
 					{errors.confirmPassword?.message && (
-						<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
+						<div className="text-red-600  flex justify-center text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
 							{errors.confirmPassword?.message}
 						</div>
 					)}

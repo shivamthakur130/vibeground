@@ -44,10 +44,10 @@ const Login = () => {
 		return () => {};
 	}, []);
 
-	const changeLoginType = () => {
-		const type = typeLogin == 'fan' ? 'model' : 'fan';
-		setTypeLogin(type);
-	};
+	// const changeLoginType = () => {
+	// 	const type = typeLogin == 'fan' ? 'model' : 'fan';
+	// 	setTypeLogin(type);
+	// };
 
 	const formOptions = { resolver: yupResolver(validationSchema) };
 	// get functions to build form with useForm() hook
@@ -127,61 +127,59 @@ const Login = () => {
 		}
 	};
 
-	const loginGoogle = useGoogleLogin({
-		onSuccess: async (tokenResponse) => {
-			const { data } = await axios.get(
-				'https://www.googleapis.com/oauth2/v1/userinfo',
-				{
-					headers: {
-						Authorization: `Bearer ${tokenResponse.access_token}`,
-					},
-				}
-			);
-			const prepareRequest = {
-				firstName: data.given_name,
-				lastName: data.family_name,
-				email: data.email,
-				picture: data.picture,
-				provider: 'google',
-				providerId: data.id,
-				access_token: tokenResponse.access_token,
-			};
-			loginGoogle_(prepareRequest);
-		},
-	});
-	const loginGoogle_ = async (formField: any) => {
-		const { data, error } = await googleLogin(formField);
-		if (error) {
-			// setLoading(false);
-			handleError(error);
-			return;
-		}
-		if (typeof data === 'object' && data !== null && 'data' in data) {
-			if (data.data.status) {
-				dispatch(
-					updateUser({
-						...user,
-						userId: data.data._id,
-						...data.data,
-					})
-				);
-			}
-			if (data.data.type === 'fan') {
-				replace('/experience');
-			} else {
-				replace('/influencer');
-			}
-		} else {
-			ErrorMessage('Google Login', 'Something went wrong');
-		}
-	};
+	// const loginGoogle = useGoogleLogin({
+	// 	onSuccess: async (tokenResponse) => {
+	// 		const { data } = await axios.get(
+	// 			'https://www.googleapis.com/oauth2/v1/userinfo',
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${tokenResponse.access_token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const prepareRequest = {
+	// 			firstName: data.given_name,
+	// 			lastName: data.family_name,
+	// 			email: data.email,
+	// 			picture: data.picture,
+	// 			provider: 'google',
+	// 			providerId: data.id,
+	// 			access_token: tokenResponse.access_token,
+	// 		};
+	// 		loginGoogle_(prepareRequest);
+	// 	},
+	// });
+	// const loginGoogle_ = async (formField: any) => {
+	// 	const { data, error } = await googleLogin(formField);
+	// 	if (error) {
+	// 		// setLoading(false);
+	// 		handleError(error);
+	// 		return;
+	// 	}
+	// 	if (typeof data === 'object' && data !== null && 'data' in data) {
+	// 		if (data.data.status) {
+	// 			dispatch(
+	// 				updateUser({
+	// 					...user,
+	// 					userId: data.data._id,
+	// 					...data.data,
+	// 				})
+	// 			);
+	// 		}
+	// 		if (data.data.type === 'fan') {
+	// 			replace('/experience');
+	// 		} else {
+	// 			replace('/influencer');
+	// 		}
+	// 	} else {
+	// 		ErrorMessage('Google Login', 'Something went wrong');
+	// 	}
+	// };
 
 	return (
 		<div className="Login max-w-3xl mx-auto mt-24 mb-40 px-10 relative">
 			<h2 className="text-5xl font-PoppinsBold text-111 flex items-center justify-center">
 				Login
-				{/*as {typeLogin === 'fan' ? 'fan' : 'model'}{' '} */}
-				{/* <Image className="ml-8" src={Hand} alt="#" /> */}
 			</h2>
 			{loading && (
 				<Loading

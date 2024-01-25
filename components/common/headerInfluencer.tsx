@@ -4,7 +4,7 @@ import Image from 'next/image';
 import NoticeImg from '@/assets/images/svg/notification.svg';
 import User from '@/assets/images/svg/user.svg';
 import Msg from '@/assets/images/svg/msg.svg';
-import Logo from 'assets/images/svg/logo.svg';
+import Logo from '@/assets/images/svg/logo.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import user from '@/redux/slice/user';

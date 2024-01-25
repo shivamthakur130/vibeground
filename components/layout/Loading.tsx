@@ -1,4 +1,4 @@
-import CircleLoader from '../../assets/images/svg/circle_loader.svg';
+import CircleLoader from '@/assets/images/svg/circle_loader.svg';
 import Image from 'next/image';
 
 interface LoadingProps {
