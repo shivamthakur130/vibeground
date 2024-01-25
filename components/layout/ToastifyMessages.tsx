@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
-import RippleLoader from '../../assets/images/svg/ripple_loader.svg';
+import RippleLoader from '@/assets/images/svg/ripple_loader.svg';
 import Image from 'next/image';
-import IconTrue from '../../assets/images/svg/true_new.svg';
-import IconError from '../../assets/images/svg/error_icon.svg';
+import IconTrue from '@/assets/images/svg/true_new.svg';
+import IconError from '@/assets/images/svg/error_icon.svg';
 
 export const ErrorMessage = (
 	title: string,

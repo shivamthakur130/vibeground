@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Fan from 'assets/images/fan.png';
-import Modal from 'assets/images/model.png';
+import Fan from '@/assets/images/fan.png';
+import Modal from '@/assets/images/model.png';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
