@@ -133,8 +133,7 @@ const Favorites = () => {
 			<div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
 				{modelDetails?.map((model: any, index: number) => (
 					<div className="rounded-2xl" key={index}>
-						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-4/5">
-							{/* <Image src={Post1} className="w-full" alt="#" /> */}
+						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-4/5 bg-gradient-to-t from-black/50 to-white/5">
 							<div>
 								<RxCross2
 									onClick={() => {
@@ -150,7 +149,7 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={model?.modelId?.photos[0]}
-									className="w-full min-w-[200px] object-fill min-h-[250px] sm:h-auto"
+									className=" object-cover aspect-4/5"
 									alt="#"
 								/>
 							) : (
@@ -163,7 +162,7 @@ const Favorites = () => {
 									alt="#"
 								/>
 							)}
-							<div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]"></div>
+							{/* <div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%]"></div> */}
 						</div>
 						<div className="mt-3 self-end w-full ">
 							<h3 className="text-xl text-[#444] font-PoppinsSemiBold">

@@ -1,4 +1,6 @@
-'use client';
+'use client'; // <===== REQUIRED
+
+import React from 'react';
 import { useState, useEffect, Fragment } from 'react';
 import Filter from './filter';
 import { useRouter } from 'next/navigation';
@@ -9,20 +11,16 @@ import { ErrorMessage } from '@/components/layout/ToastifyMessages';
 import { removeUser } from '@/redux/slice/user';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
-import Slider from 'react-slick';
+
+import EffectTinder from './effect-tinder.esm.js';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-const settings = {
-	dots: false,
-	infinite: true,
-	slidesToShow: 1,
-	slidesToScroll: 1,
-	autoplay: false,
-	speed: 500,
-	swipeToSlide: true,
-	arrows: false,
-};
 
 const Tinder = ({ categoriesList }: any) => {
 	const [userData, setUserData] = useState<any | null>(null);
@@ -78,7 +76,136 @@ const Tinder = ({ categoriesList }: any) => {
 		}
 	};
 	return (
-		<div className="Tinder max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-10">
+		<div className="Tinder max-w-7xl mx-auto mt-10 md:mt-10 mb-10">
+			<div className="md:text-5xl  text-111 flex items-center mb-2 justify-between px-5 ">
+				<div className="md:text-3xl text-base mb-5">
+					Hello
+					<h2 className="text-2xl font-PoppinsSemiBold">{userData?.userName}</h2>
+				</div>
+				<button
+					type="button"
+					onClick={openModal}
+					className="bg-d9d9d9 px-5 py-2 text-lg text-2f2f2f font-PoppinsRegular rounded-md hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+					Apply Filters
+				</button>
+			</div>
+			<Filter
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+				categoriesList={categoriesList}
+				filterCategory={filterCategory}
+				setFilterCategory={setFilterCategory}
+				getAllModelsDetails={getAllModelsDetails}
+			/>
+			<Transition
+				appear
+				show={loading}
+				as={Fragment}
+				enter="ease-out duration-300"
+				enterFrom="opacity-0 scale-99"
+				enterTo="opacity-100 scale-100"
+				leave="ease-in duration-200"
+				leaveFrom="opacity-100 scale-100"
+				leaveTo="opacity-0 scale-99">
+				<div className="fixed inset-0 bg-gray-100/50 z-50">
+					<Loading
+						width={50}
+						height={50}
+						className="flex absolute justify-center w-96
+					z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+					/>
+				</div>
+			</Transition>
+			{/* <center> */}
+			<Swiper
+				effect="tinder"
+				modules={[EffectTinder, Autoplay, Navigation, Pagination]}
+				className="rounded-xl  w-[382px] h-full  shadow-2xl border-gray-900"
+				onChange={(swiper: any) => {
+					console.log(swiper, 'swiper');
+				}}
+				grabCursor={true}
+				// onTinderSwipe={(swiper: any, direction: any) => {
+				// 	console.log(direction);
+				// 	if (direction === 'left') {
+				// 		swiper.slideNext();
+				// 	}
+				// 	if (direction === 'right') {
+				// 		swiper.slidePrev();
+				// 	}
+				// }}
+			>
+				{modelDetails?.map((model: any, index: number) => (
+					<SwiperSlide key={index} className="border-[10px] border-white">
+						<ItemDetails
+							model={model}
+							loading={loading}
+							setLoading={setLoading}
+							filterCategory={filterCategory}
+							getAllModelsDetails={getAllModelsDetails}
+						/>
+					</SwiperSlide>
+				))}
+				<SwiperSlide className="aspect-[5/9] flex justify-center items-center h-full w-full">
+					<h1 className="text-3xl text-gray-700 w-full text-center">
+						No more models
+					</h1>
+				</SwiperSlide>
+				<div className="bg-gradient-to-b from-transparent via-black/70 to-black  absolute flex bottom-5 left-2 right-2 h-28 z-50 rounded-r-xl rounded-l-xl">
+					<button
+						className="swiper-tinder-button swiper-tinder-button-no"
+						onClick={() => {
+							// swiper.slideNext();
+							console.log('left');
+						}}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							height="48"
+							viewBox="0 -960 960 960"
+							width="48">
+							<path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+						</svg>
+					</button>
+
+					<button
+						className="swiper-tinder-button swiper-tinder-button-yes"
+						onClick={() => {
+							// swiper.slidePrev();
+							console.log('right');
+						}}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							height="48"
+							viewBox="0 -960 960 960"
+							width="48">
+							<path d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
+						</svg>
+					</button>
+				</div>
+				{/* <button className="swiper-tinder-button-undo">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							height="48"
+							viewBox="0 -960 960 960"
+							width="48">
+							<path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+						</svg>
+					</button> */}
+			</Swiper>
+
+			{/* <swiper {...settings} className=" max-w-md "> */}
+			{/* {modelDetails?.map((model: any, index: number) => (
+						<ItemDetails
+							model={model}
+							key={index}
+							loading={loading}
+							setLoading={setLoading}
+							filterCategory={filterCategory}
+							getAllModelsDetails={getAllModelsDetails}
+						/>
+					))} */}
+			{/* </Swiper> */}
+
 			{/* <div className="text-lg mb-10 space-y-4">
         <p>
           Welcome to a world of limitless discovery and a unique search function
@@ -124,59 +251,7 @@ const Tinder = ({ categoriesList }: any) => {
           function to find and subscribe to your favorite creators!{" "}
         </p>
       </div> */}
-			<div className="md:text-5xl  text-111 flex items-center mb-10 justify-between">
-				<div className="md:text-3xl text-base mb-5">
-					Hello
-					<h2 className="text-2xl font-PoppinsSemiBold">{userData?.userName}</h2>
-				</div>
-				<button
-					type="button"
-					onClick={openModal}
-					className="bg-d9d9d9 px-5 py-2 text-lg text-2f2f2f font-PoppinsRegular rounded-md hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-					Apply Filters
-				</button>
-			</div>
-			<Filter
-				isOpen={isOpen}
-				setIsOpen={setIsOpen}
-				categoriesList={categoriesList}
-				filterCategory={filterCategory}
-				setFilterCategory={setFilterCategory}
-				getAllModelsDetails={getAllModelsDetails}
-			/>
-			<Transition
-				appear
-				show={loading}
-				as={Fragment}
-				enter="ease-out duration-300"
-				enterFrom="opacity-0 scale-99"
-				enterTo="opacity-100 scale-100"
-				leave="ease-in duration-200"
-				leaveFrom="opacity-100 scale-100"
-				leaveTo="opacity-0 scale-99">
-				<div className="fixed inset-0 bg-gray-100/50 z-50">
-					<Loading
-						width={50}
-						height={50}
-						className="flex absolute justify-center w-96
-					z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
-					/>
-				</div>
-			</Transition>
-			<center>
-				<Slider {...settings} className=" max-w-md ">
-					{modelDetails?.map((model: any, index: number) => (
-						<ItemDetails
-							model={model}
-							key={index}
-							loading={loading}
-							setLoading={setLoading}
-							filterCategory={filterCategory}
-							getAllModelsDetails={getAllModelsDetails}
-						/>
-					))}
-				</Slider>
-			</center>
+			{/* </center> */}
 		</div>
 	);
 };

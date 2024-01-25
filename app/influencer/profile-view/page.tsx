@@ -110,7 +110,7 @@ const ProfileView = () => {
 								<Image
 									key={index}
 									src={picture}
-									className="h-[450px] w-[401px] rounded-3xl  shadow-md border"
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-cover"
 									alt="#"
 									width={401}
 									height={450}
@@ -121,7 +121,7 @@ const ProfileView = () => {
 							{modelDetails?.videos?.map((video: any, index: number) => (
 								<video
 									key={index}
-									className="h-[450px] w-[401px] rounded-3xl  shadow-md border"
+									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-cover"
 									width={401}
 									height={450}
 									controls>

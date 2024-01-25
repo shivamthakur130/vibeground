@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Post1 from '@/assets/images/Jessica.png';
-import Back from '@/assets/images/svg/backa.svg';
 import Close from '@/assets/images/svg/close-x.svg';
 import Heart from '@/assets/images/svg/heart-wbg.svg';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { addFavorite } from '@/services/favorite.service';
 import {
@@ -91,24 +89,34 @@ const ItemDetails = ({
 	};
 
 	return (
-		<div className="rounded-[20px] ">
-			<div className="relative rounded-[20px] overflow-hidden bg-white max-h-[500px]">
+		<div className="">
+			<div
+				className="relative rounded-xl overflow-hidden bg-slate-200 aspect-[5/9] cursor-pointer"
+				onClick={() => {
+					openDetails(model?._id);
+				}}>
 				{model?.photos?.length > 0 ? (
 					<img
+						onClick={() => {
+							openDetails(model?._id);
+						}}
 						src={model?.photos[0]}
-						className="w-full  min-h-[200px] min-w-[200px] sm:h-auto object-fill"
+						className="aspect-[5/9] object-cover cursor-pointer"
 						alt="#"
 					/>
 				) : (
-					<Image src={Post1} className="w-full aspect-4/5 min-h-[250px]" alt="#" />
+					<Image
+						onClick={() => {
+							openDetails(model?._id);
+						}}
+						src={Post1}
+						className="w-full aspect-[5/9] min-h-[250px] object-cover cursor-pointer"
+						alt="#"
+					/>
 				)}
 				<div className="absolute flex bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[90%] ">
-					<div className="mt-auto self-end w-full">
-						<h3
-							className="text-2xl text-left  text-white font-PoppinsSemiBold cursor-pointer"
-							onClick={() => {
-								openDetails(model?._id);
-							}}>
+					<div className="mt-auto self-end w-full pb-16">
+						<h3 className="text-2xl text-left  text-white font-PoppinsSemiBold cursor-pointer">
 							{model?.userName}, {getAge(model?.date_of_birth)}{' '}
 						</h3>
 						<div className="flex justify-between mt-3">
@@ -116,33 +124,30 @@ const ItemDetails = ({
 								{model?.city}
 							</button>
 						</div>
+						<div className="flex item-center space-x-5 justify-center py-7 z-50">
+							<a href="#">
+								<Image
+									src={Close}
+									className=""
+									alt="#"
+									onClick={() => {
+										addToFavorite(model?._id, 'rejected');
+									}}
+								/>
+							</a>
+							<a href="#">
+								<Image
+									src={Heart}
+									className=""
+									alt="#"
+									onClick={() => {
+										addToFavorite(model?._id, 'accepted');
+									}}
+								/>
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className="flex item-center space-x-5 justify-center py-7">
-				{/* <a href="#">
-					<Image src={Back} className="" alt="#" />
-				</a> */}
-				<a href="#">
-					<Image
-						src={Close}
-						className=""
-						alt="#"
-						onClick={() => {
-							addToFavorite(model?._id, 'rejected');
-						}}
-					/>
-				</a>
-				<a href="#">
-					<Image
-						src={Heart}
-						className=""
-						alt="#"
-						onClick={() => {
-							addToFavorite(model?._id, 'accepted');
-						}}
-					/>
-				</a>
 			</div>
 		</div>
 	);
