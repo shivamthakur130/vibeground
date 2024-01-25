@@ -203,12 +203,12 @@ export default function EffectTinder({ swiper, on }) {
 			emitTransitionEnd = false;
 			swiper.emit('tinderSwipe', swipeDirection < 0 ? 'left' : 'right');
 
-			if (swipeDirection < 0) {
-				document.querySelector('.swiper-tinder-button-no').click();
-			} else {
-				document.querySelector('.swiper-tinder-button-yes').click();
-			}
-			console.log(swipeDirection < 0 ? 'left' : 'right');
+			// if (swipeDirection < 0) {
+			// 	document.querySelector('.swiper-tinder-button-no').click();
+			// } else {
+			// 	document.querySelector('.swiper-tinder-button-yes').click();
+			// }
+			// console.log(swipeDirection < 0 ? 'left' : 'right');
 		}
 	});
 

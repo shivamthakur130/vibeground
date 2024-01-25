@@ -124,31 +124,31 @@ const ItemDetails = ({
 								{model?.city}
 							</button>
 						</div>
+						<div className="flex item-center space-x-5 justify-center py-7 z-50">
+							<a href="#">
+								<Image
+									src={Close}
+									className=""
+									alt="#"
+									onClick={() => {
+										addToFavorite(model?._id, 'rejected');
+									}}
+								/>
+							</a>
+							<a href="#">
+								<Image
+									src={Heart}
+									className=""
+									alt="#"
+									onClick={() => {
+										addToFavorite(model?._id, 'accepted');
+									}}
+								/>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			{/* <div className="flex item-center space-x-5 justify-center py-7">
-				<a href="#">
-					<Image
-						src={Close}
-						className=""
-						alt="#"
-						onClick={() => {
-							addToFavorite(model?._id, 'rejected');
-						}}
-					/>
-				</a>
-				<a href="#">
-					<Image
-						src={Heart}
-						className=""
-						alt="#"
-						onClick={() => {
-							addToFavorite(model?._id, 'accepted');
-						}}
-					/>
-				</a>
-			</div> */}
 		</div>
 	);
 };
