@@ -37,33 +37,6 @@ const ItemDetails = ({
 		return age;
 	};
 
-	const addToFavorite = async (id: string, status: string) => {
-		setLoading(true);
-		const request = {
-			userId: user?._id,
-			modelId: id,
-			status: status,
-		};
-		const { data, error } = await addFavorite(request);
-
-		if (error) {
-			setLoading(false);
-			handleError(error);
-			return;
-		}
-		if (typeof data === 'object' && data !== null && 'data' in data) {
-			if (data.status) {
-				if (status === 'accepted') {
-					SuccessMessage(messageTitle, 'Model added to your favorite list');
-				} else {
-					SuccessMessage(messageTitle, 'Model rejected');
-				}
-				getAllModelsDetails(filterCategory);
-			}
-		}
-		setLoading(false);
-	};
-
 	const handleError = (error: any) => {
 		if (
 			error.response?.status === 401 ||
@@ -89,7 +62,7 @@ const ItemDetails = ({
 	};
 
 	return (
-		<div className="">
+		<div className="jaydip" id={model?._id}>
 			<div
 				className="relative rounded-xl overflow-hidden bg-slate-200 aspect-[5/9] cursor-pointer"
 				onClick={() => {
@@ -124,7 +97,7 @@ const ItemDetails = ({
 								{model?.city}
 							</button>
 						</div>
-						<div className="flex item-center space-x-5 justify-center py-7 z-50">
+						{/* <div className="flex item-center space-x-5 justify-center py-7 z-50">
 							<a href="#">
 								<Image
 									src={Close}
@@ -145,7 +118,7 @@ const ItemDetails = ({
 									}}
 								/>
 							</a>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>

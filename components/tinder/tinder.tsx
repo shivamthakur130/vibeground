@@ -1,13 +1,16 @@
 'use client'; // <===== REQUIRED
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState, useEffect, Fragment } from 'react';
 import Filter from './filter';
 import { useRouter } from 'next/navigation';
 import ItemDetails from './itemDetails';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllModels } from '@/services/tinder.service';
-import { ErrorMessage } from '@/components/layout/ToastifyMessages';
+import {
+	ErrorMessage,
+	SuccessMessage,
+} from '@/components/layout/ToastifyMessages';
 import { removeUser } from '@/redux/slice/user';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
@@ -15,14 +18,16 @@ import { Transition } from '@headlessui/react';
 import EffectTinder from './effect-tinder.esm.js';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { addFavorite } from '@/services/favorite.service';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Tinder = ({ categoriesList }: any) => {
+	const swiperRef = useRef<any>(null);
 	const [userData, setUserData] = useState<any | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -32,6 +37,11 @@ const Tinder = ({ categoriesList }: any) => {
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { replace } = useRouter();
 	const [filterCategory, setFilterCategory] = useState<any | []>([]);
+	const checkType_ = useRef<HTMLInputElement>(null);
+	const [currentSlide, setCurrentSlide] = useState(0);
+	const [previousSlide, setPreviousSlide] = useState(0);
+	const [modelId, setModelId] = useState('');
+	const [previousClicked, setPreviousClicked] = useState(false);
 
 	const getAllModelsDetails = async (filterCategory_: []) => {
 		setLoading(true);
@@ -75,6 +85,41 @@ const Tinder = ({ categoriesList }: any) => {
 			);
 		}
 	};
+
+	const addToFavorite = async (id: string, status: string) => {
+		setLoading(true);
+		const request = {
+			userId: user?._id,
+			modelId: id,
+			status: status,
+		};
+		const { data, error } = await addFavorite(request);
+
+		if (error) {
+			setLoading(false);
+			handleError(error);
+			return;
+		}
+		if (typeof data === 'object' && data !== null && 'data' in data) {
+			if (data.status) {
+				if (status === 'accepted') {
+					SuccessMessage(messageTitle, 'Model added to your favorite list');
+				} else {
+					SuccessMessage(messageTitle, 'Model rejected');
+				}
+				// getAllModelsDetails(filterCategory);
+			}
+		}
+		setLoading(false);
+	};
+	const goToSlide = (index: number) => {
+		// setPreviousClicked(true);
+		checkType_.current!.value = 'previous';
+		swiperRef.current?.slideTo(index);
+	};
+	console.log(previousSlide, 'previousSlide');
+	console.log(currentSlide, 'currentSlide');
+	console.log(modelId, 'modelId');
 	return (
 		<div className="Tinder max-w-7xl mx-auto mt-10 md:mt-10 mb-10">
 			<div className="md:text-5xl  text-111 flex items-center mb-2 justify-between px-5 ">
@@ -116,27 +161,45 @@ const Tinder = ({ categoriesList }: any) => {
 					/>
 				</div>
 			</Transition>
-			{/* <center> */}
+			<input
+				type="hidden"
+				id="checkType"
+				className="border border-black"
+				ref={checkType_}
+			/>
+			<button
+				className="bg-gray-500 text-white hidden"
+				onClick={() => {
+					goToSlide(previousSlide);
+				}}>
+				previousSlide
+			</button>
 			<Swiper
 				effect="tinder"
 				modules={[EffectTinder, Autoplay, Navigation, Pagination]}
 				className="rounded-xl  w-[382px] h-full  shadow-2xl border-gray-900"
-				onChange={(swiper: any) => {
-					console.log(swiper, 'swiper');
+				onSlideChange={(swiper) => {
+					setCurrentSlide(swiper.activeIndex);
+					setPreviousSlide(swiper.previousIndex);
+					const modelId_ = swiper.slides[swiper.previousIndex].id;
+					setModelId(modelId_);
+					// console.log(previousClicked, 'previousClicked');
+					// console.log(checkType_.current!.value, 'checkType_.current!.value');
+					if (checkType_.current!.value === 'yes') {
+						addToFavorite(modelId_, 'accepted');
+					} else if (checkType_.current!.value === 'no') {
+						addToFavorite(modelId_, 'rejected');
+					}
 				}}
-				grabCursor={true}
-				// onTinderSwipe={(swiper: any, direction: any) => {
-				// 	console.log(direction);
-				// 	if (direction === 'left') {
-				// 		swiper.slideNext();
-				// 	}
-				// 	if (direction === 'right') {
-				// 		swiper.slidePrev();
-				// 	}
-				// }}
-			>
+				onSwiper={(swiper) => {
+					swiperRef.current = swiper;
+				}}
+				grabCursor={true}>
 				{modelDetails?.map((model: any, index: number) => (
-					<SwiperSlide key={index} className="border-[10px] border-white">
+					<SwiperSlide
+						key={index}
+						className="border-[10px] border-white jaydip"
+						id={model?._id}>
 						<ItemDetails
 							model={model}
 							loading={loading}
@@ -155,8 +218,11 @@ const Tinder = ({ categoriesList }: any) => {
 					<button
 						className="swiper-tinder-button swiper-tinder-button-no"
 						onClick={() => {
-							// swiper.slideNext();
-							console.log('left');
+							if (checkType_) {
+								// set the value of the input field
+								checkType_.current!.value = 'no';
+								// addToFavorite(modelId, 'rejected');
+							}
 						}}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -170,8 +236,11 @@ const Tinder = ({ categoriesList }: any) => {
 					<button
 						className="swiper-tinder-button swiper-tinder-button-yes"
 						onClick={() => {
-							// swiper.slidePrev();
-							console.log('right');
+							if (checkType_) {
+								// set the value of the input field
+								checkType_.current!.value = 'yes';
+								// addToFavorite(modelId, 'accepted');
+							}
 						}}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +251,9 @@ const Tinder = ({ categoriesList }: any) => {
 						</svg>
 					</button>
 				</div>
-				{/* <button className="swiper-tinder-button-undo">
+			</Swiper>
+
+			{/* <button className="swiper-tinder-button-undo">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							height="48"
@@ -191,8 +262,6 @@ const Tinder = ({ categoriesList }: any) => {
 							<path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
 						</svg>
 					</button> */}
-			</Swiper>
-
 			{/* <swiper {...settings} className=" max-w-md "> */}
 			{/* {modelDetails?.map((model: any, index: number) => (
 						<ItemDetails
@@ -205,7 +274,6 @@ const Tinder = ({ categoriesList }: any) => {
 						/>
 					))} */}
 			{/* </Swiper> */}
-
 			{/* <div className="text-lg mb-10 space-y-4">
         <p>
           Welcome to a world of limitless discovery and a unique search function

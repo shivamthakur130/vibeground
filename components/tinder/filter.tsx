@@ -1,7 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useState } from 'react';
-import { GrPowerReset } from 'react-icons/gr';
 import { RxReset, RxCheck } from 'react-icons/rx';
 
 const Filter = ({

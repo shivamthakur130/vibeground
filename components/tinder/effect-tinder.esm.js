@@ -78,6 +78,7 @@ export default function EffectTinder({ swiper, on }) {
 						el.classList.remove('swiper-tinder-button-active')
 					);
 					// trigger click
+					document.querySelector('#checkType').value = 'yes';
 				} else {
 					withElement(document.querySelector('.swiper-tinder-button-yes'), (el) =>
 						el.classList.remove('swiper-tinder-button-active')
@@ -86,6 +87,7 @@ export default function EffectTinder({ swiper, on }) {
 					withElement(document.querySelector('.swiper-tinder-button-no'), (el) =>
 						el.classList.add('swiper-tinder-button-active')
 					);
+					document.querySelector('#checkType').value = 'no';
 				}
 			} else {
 				withElement(document.querySelector('.swiper-tinder-button-yes'), (el) =>
@@ -204,11 +206,10 @@ export default function EffectTinder({ swiper, on }) {
 			swiper.emit('tinderSwipe', swipeDirection < 0 ? 'left' : 'right');
 
 			// if (swipeDirection < 0) {
-			// 	document.querySelector('.swiper-tinder-button-no').click();
+			// 	document.querySelector('#checkType').value = 'no';
 			// } else {
-			// 	document.querySelector('.swiper-tinder-button-yes').click();
+			// 	document.querySelector('#checkType').value = 'yes';
 			// }
-			// console.log(swipeDirection < 0 ? 'left' : 'right');
 		}
 	});
 
