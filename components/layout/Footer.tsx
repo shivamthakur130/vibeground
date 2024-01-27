@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Fb from 'assets/images/facebook.png';
-import Ig from 'assets/images/insta.png';
-import Tw from 'assets/images/twitter.png';
+import Fb from '@/assets/images/facebook.png';
+import Ig from '@/assets/images/insta.png';
+import Tw from '@/assets/images/twitter.png';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 

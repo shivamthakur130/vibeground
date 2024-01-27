@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Fan from 'assets/images/fan.png';
-import Modal from 'assets/images/model.png';
+import Fan from '@/assets/images/fan.png';
+import Modal from '@/assets/images/model.png';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,6 +19,7 @@ const AreYou = () => {
 	const dispatch = useAppDispatch();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const { replace } = useRouter();
+	const [type, setType] = useState('');
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
@@ -61,11 +62,11 @@ const AreYou = () => {
 
 	return (
 		<PageWrapper>
-			<div className="AreYou text-center max-w-[430px] mx-auto mt-16 mb-40 relative px-5 h-full">
-				<h2 className=" md:text-5xl text-3xl font-PoppinsBold text-111">
+			<div className="AreYou text-center max-w-[450px] mx-auto mt-16 mb-40 relative px-5 h-full">
+				<h2 className=" md:text-4xl text-3xl font-PoppinsBold text-111">
 					Choose who you are ?
 				</h2>
-				<p className="text-xl text-888 mt-3 mb-10">
+				<p className="text-[16px] text-888 mt-3 mb-12 font-PoppinsRegular">
 					It will help us to give you a better journey further
 				</p>
 				<form
@@ -76,7 +77,7 @@ const AreYou = () => {
 							className="flex items-center cursor-pointer rounded-xl aspect-square relative"
 							htmlFor="fanRadio">
 							<Image src={Fan} alt="Fan" />
-							<input
+							{/* <input
 								id="fanRadio"
 								type="radio"
 								value="fan"
@@ -88,7 +89,26 @@ const AreYou = () => {
 								})}
 								name="type"
 								className="w-8 h-8 absolute top-5 left-5  bg-white border-0 ring-0 focus:ring-0  "
-							/>
+							/> */}
+							<div className="radio-btn w-8 h-8 absolute top-5 left-5  border-0 ring-0 focus:ring-0 ">
+								<label className="container">
+									<input
+										id="fanRadio"
+										type="radio"
+										value="fan"
+										checked={type === 'fan'}
+										{...register('type', {
+											onChange: (e) => {
+												setValue('type', e.target.value);
+												clearErrors('type');
+												setType(e.target.value);
+											},
+										})}
+										name="type"
+									/>
+									<span className="checkmark"></span>
+								</label>
+							</div>
 							<label
 								htmlFor="fanRadio"
 								className="absolute bottom-4 left-0 right-0 text-white text-2xl">
@@ -99,7 +119,26 @@ const AreYou = () => {
 							className="flex items-center cursor-pointer rounded-xl aspect-square relative "
 							htmlFor="modalRadio">
 							<Image src={Modal} alt="Modal" />
-							<input
+							<div className="radio-btn w-8 h-8 absolute top-5 left-5  border-0 ring-0 focus:ring-0 ">
+								<label className="container">
+									<input
+										id="modalRadio"
+										type="radio"
+										value="model"
+										checked={type === 'model'}
+										{...register('type', {
+											onChange: (e) => {
+												setValue('type', e.target.value);
+												clearErrors('type');
+												setType(e.target.value);
+											},
+										})}
+										name="type"
+									/>
+									<span className="checkmark"></span>
+								</label>
+							</div>
+							{/* <input
 								id="modalRadio"
 								type="radio"
 								value="model"
@@ -111,7 +150,7 @@ const AreYou = () => {
 								})}
 								name="type"
 								className="w-8 h-8 absolute top-5 left-5  bg-white border-0 ring-0 focus:ring-0  "
-							/>
+							/> */}
 							<label
 								htmlFor="modalRadio"
 								className="absolute bottom-4 left-0 right-0 text-white text-2xl">
@@ -119,6 +158,7 @@ const AreYou = () => {
 							</label>
 						</label>
 					</div>
+
 					<div className="text-red-600 h-5 mt-3 text-lg font-PoppinsRegular ml-3 text-left transition delay-150 transform duration-300 ease-in-out">
 						{errors.type?.message && errors.type?.message}
 					</div>
