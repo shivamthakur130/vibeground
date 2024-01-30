@@ -149,7 +149,7 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={model?.modelId?.photos[0]}
-									className=" object-cover aspect-[3/4] min-h-[400px]"
+									className=" object-cover  min-h-[400px]"
 									alt="#"
 								/>
 							) : (
@@ -158,7 +158,7 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={Post1}
-									className="w-full aspect-[3/4] min-h-[250px]"
+									className="w-full min-h-[250px]"
 									alt="#"
 								/>
 							)}
