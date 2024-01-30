@@ -178,36 +178,45 @@ const ManageCategories = ({ user, showHide, categoriesList }: any) => {
 					z-50 top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 					/>
 				)}
-				<form
-					id="CategoriesForm"
-					onSubmit={handleSubmit(onSubmit)}
-					className={`${loading ? 'opacity-25' : ''}`}>
-					<ul className="flex gap-4 flex-wrap">
-						{categoriesList.map((category: any, index: number) => (
-							<li key={index}>
-								<input
-									type="checkbox"
-									checked={selectedCategories.includes(category)}
-									id={`opt${index}`}
-									value={category}
-									className="hidden peer"
-									{...register(`categories.${index}`, {
-										onChange: (e) => {
-											handleCategory(e);
-										},
-									})}
-								/>
-								<label
-									htmlFor={`opt${index}`}
-									className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-4 px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
-									<div className="w-full text-15px  peer-checked:text-white">
-										{category}
-									</div>
-								</label>
-							</li>
-						))}
-					</ul>
-				</form>
+				{showHideSection && (
+					<div
+						className={`max-w-2xl ${
+							!showHideSection
+								? 'hidden transition-all duration-300'
+								: 'transition-all duration-300'
+						}`}>
+						<form
+							id="CategoriesForm"
+							onSubmit={handleSubmit(onSubmit)}
+							className={`${loading ? 'opacity-25' : ''}`}>
+							<ul className="flex gap-4 flex-wrap">
+								{categoriesList.map((category: any, index: number) => (
+									<li key={index}>
+										<input
+											type="checkbox"
+											checked={selectedCategories.includes(category)}
+											id={`opt${index}`}
+											value={category}
+											className="hidden peer"
+											{...register(`categories.${index}`, {
+												onChange: (e) => {
+													handleCategory(e);
+												},
+											})}
+										/>
+										<label
+											htmlFor={`opt${index}`}
+											className="rounded-[30px] cursor-pointer border border-[#a3a3a3] inline-flex py-4 px-12 peer-checked:bg-[#010101] peer-checked:text-white text-111">
+											<div className="w-full text-15px  peer-checked:text-white">
+												{category}
+											</div>
+										</label>
+									</li>
+								))}
+							</ul>
+						</form>
+					</div>
+				)}
 			</div>
 		</PageWrapper>
 	);
