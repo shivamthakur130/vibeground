@@ -62,7 +62,7 @@ const ItemDetails = ({
 	};
 
 	return (
-		<div className="jaydip" id={model?._id}>
+		<div className="" id={model?._id}>
 			<div
 				className="relative rounded-xl overflow-hidden bg-slate-200 aspect-[5/9] cursor-pointer"
 				onClick={() => {

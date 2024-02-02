@@ -18,7 +18,7 @@ import { Transition } from '@headlessui/react';
 import EffectTinder from './effect-tinder.esm.js';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { addFavorite } from '@/services/favorite.service';
+import { addFavorite, removeFavorite } from '@/services/favorite.service';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -38,10 +38,12 @@ const Tinder = ({ categoriesList }: any) => {
 	const { replace } = useRouter();
 	const [filterCategory, setFilterCategory] = useState<any | []>([]);
 	const checkType_ = useRef<HTMLInputElement>(null);
+	const [isPrevious, setIsPrevious] = useState(false);
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [previousSlide, setPreviousSlide] = useState(0);
 	const [modelId, setModelId] = useState('');
 	const [previousClicked, setPreviousClicked] = useState(false);
+	const [previousClickedFavoriteId, setPreviousClickedFavoriteId] = useState('');
 
 	const getAllModelsDetails = async (filterCategory_: []) => {
 		setLoading(true);
@@ -101,25 +103,53 @@ const Tinder = ({ categoriesList }: any) => {
 			return;
 		}
 		if (typeof data === 'object' && data !== null && 'data' in data) {
+			// console.log(data, 'data');
 			if (data.status) {
-				if (status === 'accepted') {
-					SuccessMessage(messageTitle, 'Model added to your favorite list');
-				} else {
-					SuccessMessage(messageTitle, 'Model rejected');
-				}
+				// if (status === 'accepted') {
+				// 	SuccessMessage(messageTitle, 'Model added to your favorite list');
+				// } else {
+				// 	SuccessMessage(messageTitle, 'Model rejected');
+				// }
+				const id_ = data.data._id;
+				setPreviousClickedFavoriteId(id_);
 				// getAllModelsDetails(filterCategory);
 			}
 		}
 		setLoading(false);
 	};
+
+	const resetPreviousClicked = async () => {
+		setLoading(true);
+
+		const { data, error } = await removeFavorite(previousClickedFavoriteId);
+
+		if (error) {
+			setLoading(false);
+			handleError(error);
+			return;
+		}
+
+		if (typeof data === 'object' && data !== null && 'data' in data) {
+			console.log(data, 'data');
+			if (data.status) {
+				// SuccessMessage(messageTitle, 'Model undo successfully');
+				// getAllModelsDetails(filterCategory);
+				setPreviousClickedFavoriteId('');
+				checkType_.current!.value = '';
+			}
+			setLoading(false);
+		}
+	};
+
 	const goToSlide = (index: number) => {
 		// setPreviousClicked(true);
 		checkType_.current!.value = 'previous';
 		swiperRef.current?.slideTo(index);
+		resetPreviousClicked();
 	};
-	console.log(previousSlide, 'previousSlide');
-	console.log(currentSlide, 'currentSlide');
-	console.log(modelId, 'modelId');
+	// console.log(previousSlide, 'previousSlide');
+	// console.log(currentSlide, 'currentSlide');
+	// console.log(modelId, 'modelId');
 	return (
 		<div className="Tinder max-w-7xl mx-auto mt-10 md:mt-10 mb-10">
 			<div className="md:text-5xl  text-111 flex items-center mb-2 justify-between px-5 ">
@@ -167,13 +197,7 @@ const Tinder = ({ categoriesList }: any) => {
 				className="border border-black"
 				ref={checkType_}
 			/>
-			<button
-				className="bg-gray-500 text-white hidden"
-				onClick={() => {
-					goToSlide(previousSlide);
-				}}>
-				previousSlide
-			</button>
+
 			<Swiper
 				effect="tinder"
 				modules={[EffectTinder, Autoplay, Navigation, Pagination]}
@@ -183,16 +207,30 @@ const Tinder = ({ categoriesList }: any) => {
 					setPreviousSlide(swiper.previousIndex);
 					const modelId_ = swiper.slides[swiper.previousIndex].id;
 					setModelId(modelId_);
+					console.log(modelId_, 'modelId_modelId_');
 					// console.log(previousClicked, 'previousClicked');
 					// console.log(checkType_.current!.value, 'checkType_.current!.value');
-					if (checkType_.current!.value === 'yes') {
-						addToFavorite(modelId_, 'accepted');
-					} else if (checkType_.current!.value === 'no') {
-						addToFavorite(modelId_, 'rejected');
-					}
 				}}
 				onSwiper={(swiper) => {
 					swiperRef.current = swiper;
+				}}
+				// @ts-ignore
+				onTinderSwipe={(s, direction) => {
+					console.log(checkType_.current!.value, 'checkType_.current!.value');
+					const modelId_ = s.slides[s.previousIndex].id;
+					console.log(direction + 'direction', modelId_); // -> will be "left" or "right"
+					if (checkType_.current!.value != 'previous') {
+						if (direction === 'right') {
+							addToFavorite(modelId_, 'accepted');
+							// setIsPrevious(true);
+						} else if (direction === 'left') {
+							addToFavorite(modelId_, 'rejected');
+							// setIsPrevious(true);
+						}
+					}
+					// else {
+					// 	setIsPrevious(false);
+					// }
 				}}
 				grabCursor={true}>
 				{modelDetails?.map((model: any, index: number) => (
@@ -215,41 +253,52 @@ const Tinder = ({ categoriesList }: any) => {
 					</h1>
 				</SwiperSlide>
 				<div className="bg-gradient-to-b from-transparent via-black/70 to-black  absolute flex bottom-5 left-2 right-2 h-28 z-50 rounded-r-xl rounded-l-xl">
-					<button
-						className="swiper-tinder-button swiper-tinder-button-no"
-						onClick={() => {
-							if (checkType_) {
-								// set the value of the input field
-								checkType_.current!.value = 'no';
-								// addToFavorite(modelId, 'rejected');
-							}
-						}}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							height="48"
-							viewBox="0 -960 960 960"
-							width="48">
-							<path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
-						</svg>
-					</button>
+					<div>
+						<button
+							className="swiper-tinder-button swiper-tinder-button-no"
+							onClick={() => {
+								if (checkType_) {
+									// set the value of the input field
+									checkType_.current!.value = 'no';
+									// addToFavorite(modelId, 'rejected');
+								}
+							}}>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="48"
+								viewBox="0 -960 960 960"
+								width="48">
+								<path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+							</svg>
+						</button>
 
-					<button
-						className="swiper-tinder-button swiper-tinder-button-yes"
-						onClick={() => {
-							if (checkType_) {
-								// set the value of the input field
-								checkType_.current!.value = 'yes';
-								// addToFavorite(modelId, 'accepted');
-							}
-						}}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							height="48"
-							viewBox="0 -960 960 960"
-							width="48">
-							<path d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
-						</svg>
-					</button>
+						<button
+							className="swiper-tinder-button swiper-tinder-button-yes"
+							onClick={() => {
+								if (checkType_) {
+									// set the value of the input field
+									checkType_.current!.value = 'yes';
+									// addToFavorite(modelId, 'accepted');
+								}
+							}}>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="48"
+								viewBox="0 -960 960 960"
+								width="48">
+								<path d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
+							</svg>
+						</button>
+					</div>
+					{previousClickedFavoriteId != '' && (
+						<button
+							className="text-gray-500  absolute bottom-2 left-0 right-0 mx-auto"
+							onClick={() => {
+								goToSlide(previousSlide);
+							}}>
+							Undo
+						</button>
+					)}
 				</div>
 			</Swiper>
 
@@ -274,52 +323,6 @@ const Tinder = ({ categoriesList }: any) => {
 						/>
 					))} */}
 			{/* </Swiper> */}
-			{/* <div className="text-lg mb-10 space-y-4">
-        <p>
-          Welcome to a world of limitless discovery and a unique search function
-          like you{"'"}ve never experienced before! We offer you a search that
-          is not only unique and exclusive, but also introduces you to creators
-          of all imaginable platforms. Immerse yourself in our search function
-          and find exactly what you{"'"}ve always been looking for!
-        </p>
-
-        <p>
-          Our search function is more than just a simple way to find creators.
-          It{"'"}s a gateway to a world of creativity and inspiration. Here you
-          can find creators from different platforms - be it OnlyFans, Fansly or
-          others. Our search is the perfect link between you and creators,
-          opening the doors to an infinite variety of content and ideas.
-        </p>
-
-        <p>
-          What makes our search function so unique is not only its ability to
-          unite creators from different platforms, but also the ability to
-          discover new favorite creators and save them as favorites. This means
-          that not only can you discover great content, but you can also build a
-          close connection with the creators that inspire you the most.
-        </p>
-
-        <p>
-          We strive to create a community where you are not just a passive
-          viewer, but can actively shape your interactive experience. Our unique
-          search function is the tool that puts you in control of your
-          discoveries and preferences.
-        </p>
-
-        <p>
-          Here you will be surprised by the sheer variety of creators. You will
-          have the opportunity to find creators who share your preferences and
-          inspire you. It{"'"}s a world where you can get lost, and at the same
-          time a world where you will find yourself.
-        </p>
-
-        <p>
-          So get ready for a journey into the world of unique searches. You will
-          experience something very special when you use our unique search
-          function to find and subscribe to your favorite creators!{" "}
-        </p>
-      </div> */}
-			{/* </center> */}
 		</div>
 	);
 };

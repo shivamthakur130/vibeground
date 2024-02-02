@@ -58,3 +58,20 @@ export const getFavorites = async (): Promise<ReturnResponse> => {
 		};
 	}
 };
+
+//favorite/remove/:id
+export const removeFavorite = async (id: string): Promise<ReturnResponse> => {
+	try {
+		const { data } = await delete_(`/favorite/remove/${id}`, true);
+		return {
+			data: data,
+			error: null,
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+		return {
+			data: null,
+			error,
+		};
+	}
+};

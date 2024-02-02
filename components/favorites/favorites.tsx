@@ -134,14 +134,14 @@ const Favorites = () => {
 				{modelDetails?.map((model: any, index: number) => (
 					<div className="rounded-2xl" key={index}>
 						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-[3/4] bg-gradient-to-t from-black/50 to-white/5">
-							<div>
+							{/* <div>
 								<RxCross2
 									onClick={() => {
 										removeFavorite(model?.modelId?._id, 'rejected');
 									}}
 									className="absolute top-2 right-2 text-red-500 rounded-md bg-gray-100 text-xl"
 								/>
-							</div>
+							</div> */}
 
 							{model?.modelId?.photos?.length > 0 ? (
 								<img
@@ -162,7 +162,11 @@ const Favorites = () => {
 									alt="#"
 								/>
 							)}
-							<div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%]"></div>
+							<div
+								className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%]"
+								onClick={() => {
+									openDetails(model?.modelId?._id);
+								}}></div>
 						</div>
 						<div className="mt-3 self-end w-full ">
 							<h3 className="text-xl text-[#444] font-PoppinsSemiBold">
