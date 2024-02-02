@@ -24,7 +24,7 @@ const ItemDetails = ({
 	const { replace } = useRouter();
 
 	const openDetails = (id: any) => {
-		replace('/experience/tinder/' + id);
+		replace('/experience/tinder/' + id + '?page=tinder');
 	};
 	const getAge = (date: string) => {
 		const today = new Date();

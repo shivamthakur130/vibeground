@@ -222,15 +222,10 @@ const Tinder = ({ categoriesList }: any) => {
 					if (checkType_.current!.value != 'previous') {
 						if (direction === 'right') {
 							addToFavorite(modelId_, 'accepted');
-							// setIsPrevious(true);
 						} else if (direction === 'left') {
 							addToFavorite(modelId_, 'rejected');
-							// setIsPrevious(true);
 						}
 					}
-					// else {
-					// 	setIsPrevious(false);
-					// }
 				}}
 				grabCursor={true}>
 				{modelDetails?.map((model: any, index: number) => (
