@@ -1,7 +1,13 @@
 {
-  "cSpell.words": [
-    "Schorndorf"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+	"cSpell.words": ["Schorndorf"],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"workbench.colorCustomizations": {
+		"statusBar.background": "#1857a4",
+		"statusBar.foreground": "#e7e7e7",
+		"statusBarItem.hoverBackground": "#1f6fd0",
+		"statusBarItem.remoteBackground": "#1857a4",
+		"statusBarItem.remoteForeground": "#e7e7e7"
+	},
+	"peacock.color": "#1857a4"
 }
