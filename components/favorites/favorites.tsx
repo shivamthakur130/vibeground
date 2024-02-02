@@ -162,7 +162,11 @@ const Favorites = () => {
 									alt="#"
 								/>
 							)}
-							<div className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%]"></div>
+							<div
+								className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%]"
+								onClick={() => {
+									openDetails(model?.modelId?._id);
+								}}></div>
 						</div>
 						<div className="mt-3 self-end w-full ">
 							<h3 className="text-xl text-[#444] font-PoppinsSemiBold">
