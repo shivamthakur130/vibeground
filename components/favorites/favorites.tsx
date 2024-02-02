@@ -12,7 +12,8 @@ import { useDispatch } from 'react-redux';
 import Loading from '../layout/Loading';
 import { Transition } from '@headlessui/react';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
-import { RxCross2 } from 'react-icons/rx';
+import { FaHeart } from 'react-icons/fa';
+import { FaRegHeart } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
 import { addFavorite } from '@/services/favorite.service';
 import { SuccessMessage } from '@/components/layout/ToastifyMessages';
@@ -23,6 +24,9 @@ const Favorites = () => {
 	const { replace } = useRouter();
 	const user = useSelector((state: any) => state.userReducer.user);
 	const [modelDetails, setModelDetails] = useState<any | null>(null);
+	const [removedFavoriteList, setRemovedFavoriteList] = useState<any | null>(
+		null
+	);
 	const [loading, setLoading] = useState(false);
 
 	const getAllFavorites = async () => {
@@ -75,11 +79,16 @@ const Favorites = () => {
 	};
 
 	const openDetails = (id: any) => {
-		replace('/experience/tinder/' + id);
+		replace('/experience/tinder/' + id + '?page=favorites');
 	};
 
 	const removeFavorite = async (id: string, status: string) => {
 		setLoading(true);
+
+		if (removedFavoriteList?.includes(id)) {
+			status = 'accepted';
+		}
+
 		const request = {
 			userId: user?._id,
 			modelId: id,
@@ -94,8 +103,20 @@ const Favorites = () => {
 		}
 		if (typeof data === 'object' && data !== null && 'data' in data) {
 			if (data.status) {
-				SuccessMessage(messageTitle, 'Model removed from your favorite list');
-				getAllFavorites();
+				let message = '';
+				if (status === 'accepted') {
+					setRemovedFavoriteList(
+						removedFavoriteList?.filter((item: any) => item !== id)
+					);
+					message = 'Model added to your favorite list';
+				} else {
+					setRemovedFavoriteList(
+						removedFavoriteList ? [...removedFavoriteList, id] : [id]
+					);
+					message = 'Model removed from your favorite list';
+				}
+				SuccessMessage(messageTitle, message);
+				// getAllFavorites();
 			}
 		}
 		setLoading(false);
@@ -134,14 +155,23 @@ const Favorites = () => {
 				{modelDetails?.map((model: any, index: number) => (
 					<div className="rounded-2xl" key={index}>
 						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-[3/4] bg-gradient-to-t from-black/50 to-white/5">
-							{/* <div>
-								<RxCross2
-									onClick={() => {
-										removeFavorite(model?.modelId?._id, 'rejected');
-									}}
-									className="absolute top-2 right-2 text-red-500 rounded-md bg-gray-100 text-xl"
-								/>
-							</div> */}
+							<div className="z-50 relative">
+								{removedFavoriteList?.includes(model?.modelId?._id) ? (
+									<FaRegHeart
+										onClick={() => {
+											removeFavorite(model?.modelId?._id, 'accepted');
+										}}
+										className="absolute top-2 right-2 text-red-500 rounded-md shadow-sm cursor-pointer text-xl z-50"
+									/>
+								) : (
+									<FaHeart
+										onClick={() => {
+											removeFavorite(model?.modelId?._id, 'rejected');
+										}}
+										className="absolute top-2 right-2 text-red-500 rounded-md shadow-sm cursor-pointer text-xl z-50"
+									/>
+								)}
+							</div>
 
 							{model?.modelId?.photos?.length > 0 ? (
 								<img
