@@ -6,7 +6,7 @@ export default function Home() {
 	return (
 		<div className="min-h-screen relative ">
 			<Header />
-			<div className="max-w-full mx-auto bg-[#151515]">{/* <Start /> */}d</div>
+			<div className="max-w-full mx-auto bg-[#151515]">{/* <Start /> */}</div>
 			<Landing />
 			<Footer />
 		</div>
