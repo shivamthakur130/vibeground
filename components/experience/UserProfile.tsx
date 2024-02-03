@@ -23,8 +23,8 @@ const UserProfile = () => {
 
 	return (
 		<PageWrapper>
-			<div className="Profile max-w-7xl px-5 mx-auto mt-16 mb-32">
-				<div className="flex items-center  border-b shadow-sm  border-gray-300 py-4 mb-12">
+			<div className="Profile max-w-7xl px-5 mx-auto   sm:mt-16  sm:mb-24 py-5 sm:py-0 mb-32">
+				<div className="flex items-center  border-b shadow-sm  border-gray-300 py-4 mb-12 mt-7">
 					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 mr-5">
 						<Link href="/experience">
 							<Image src={ArrowLeft} height={32} width={32} alt="#" />

@@ -8,11 +8,11 @@ import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
 const Newcomer = () => {
 	return (
 		<PageWrapper>
-			<div className="Email mx-auto sm:mt-24 sm:mb-24 mt-10 mb-8 px-5">
-				<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex  mb-10">
+			<div className="Email mx-auto sm:mt-10 sm:mb-24 mb-20 px-5">
+				<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex  mb-10 pt-20 sm:pt-0">
 					<div>
 						<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 hover:bg-gray-100 active:bg-gray-200">
-							<Link href="/experience">
+							<Link href="/influencer">
 								<Image src={ArrowLeft} height={32} width={32} alt="#" />
 							</Link>
 						</div>

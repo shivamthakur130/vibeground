@@ -4,14 +4,12 @@ import Image from 'next/image';
 import DownArrow from '@/assets/images/svg/down-arrow_.svg';
 import CenterLogo from '@/assets/images/center-logo.png';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { memo } from 'react';
 import { getUser } from '@/services/user.service';
 import { useAppDispatch } from '@/redux/hooks';
 import { removeUser, updateUser } from '@/redux/slice/user';
-import { AiOutlineDashboard } from 'react-icons/ai';
 
 const Header = () => {
 	const [toggleUser, setToggleUser] = useState(false);
@@ -91,17 +89,8 @@ const Header = () => {
 		}
 		if (error.response) {
 			const message = error.response.data.message;
-			// ErrorMessage(messageTitle, message);
 		} else if (error.request) {
-			// ErrorMessage(
-			// 	messageTitle,
-			// 	'Network Error. Please check your internet connection.'
-			// );
 		} else {
-			// ErrorMessage(
-			// 	messageTitle,
-			// 	'An unexpected error occurred. Please try again later.'
-			// );
 		}
 	};
 

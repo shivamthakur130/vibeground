@@ -14,7 +14,7 @@ const ThankYouMeetGreet = () => {
 	console.log(name, 'search');
 	return (
 		<PageWrapper>
-			<div className="Experience max-w-2xl px-5 mx-auto sm:mt-24 sm:mb-24 mt-10 mb-20">
+			<div className="Experience max-w-2xl px-5 mx-auto sm:mt-24 sm:mb-24 mb-20">
 				{/* <h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex items-center mb-10">
 				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
 					<Link href="/experience">
@@ -24,7 +24,7 @@ const ThankYouMeetGreet = () => {
 				<div className="ml-10">Meet & Greet</div>
 			</h2> */}
 				<div className="flex flex-col md:flex-row">
-					<div className="space-y-5 md:space-y-10 mt-10 justify-center text-center">
+					<div className="space-y-5 md:space-y-10 my-10 justify-center text-center mt-24">
 						<div className="flex md:block md:flex-col ">
 							<h3 className="text-2xl  font-PoppinsSemiBold mr-4">
 								{user.firstName} you have successfully made a move to meet{' '}

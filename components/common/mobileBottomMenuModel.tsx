@@ -12,25 +12,25 @@ const MobileBottomMenuModel = () => {
 	return (
 		<div className="fixed bottom-0 w-full bg-white px-3 pt-3 pb-6 block sm:hidden z-50">
 			<ul className="flex justify-around items-center">
-				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
-				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
-				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
-				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
-				{/* <Link href="/experience">
+				<Link href="/influencer">
 					<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group">
 						<span
 							className={`${
-								pathname === '/experience' ? 'opacity-100' : 'opacity-50'
+								pathname === '/influencer' ? 'opacity-100' : 'opacity-50'
 							}`}>
 							<Image src={Footer_vb} alt="#" />
 						</span>
-						{pathname === '/experience' && (
+						{pathname === '/influencer' && (
 							<div className="absolute w-full -bottom-3 left-0 right-0 group-hover:block">
 								<div className="h-2.5 w-2.5 bg-111 rounded-full mx-auto"></div>
 							</div>
 						)}
 					</li>
 				</Link>
+				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
+				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
+				<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group"></li>
+				{/* 
 				<Link href="/experience/tinder">
 					<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group">
 						<span

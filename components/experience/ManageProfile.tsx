@@ -14,9 +14,9 @@ const ManageProfile = ({ countries }: any) => {
 
 	return (
 		<PageWrapper>
-			<div className="max-w-7xl px-5 mx-auto mt-16 mb-32">
-				<div className="flex justify-between border-b shadow-sm  border-gray-300 p-4">
-					<h1 className="md:text-4xl text-lg font-PoppinsSemiBold text-111">
+			<div className="max-w-7xl px-5 mx-auto  sm:mt-24  sm:mb-24 py-5 sm:py-0 mb-32">
+				<div className="flex justify-between border-b shadow-sm  border-gray-300 p-4 mt-7">
+					<h1 className="md:text-4xl text-2xl font-PoppinsSemiBold text-111">
 						Manage Profile
 					</h1>
 					<div

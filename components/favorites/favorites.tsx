@@ -122,8 +122,8 @@ const Favorites = () => {
 		setLoading(false);
 	};
 	return (
-		<div className="Favorites max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
-			<h2 className="md:text-5xl text-2xl font-PoppinsSemiBold text-111 flex items-center mb-10 ">
+		<div className="Favorites max-w-7xl px-5 mx-auto   sm:mt-10 sm:mb-10 py-5 sm:py-0">
+			<h2 className="md:text-5xl text-2xl font-PoppinsSemiBold text-111 flex items-center mb-10 mt-7 ">
 				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 mr-5">
 					<Link href="/experience">
 						<Image src={ArrowLeft} height={32} width={32} alt="#" />
@@ -155,20 +155,20 @@ const Favorites = () => {
 				{modelDetails?.map((model: any, index: number) => (
 					<div className="rounded-2xl" key={index}>
 						<div className="relative rounded-2xl overflow-hidden bg-white  aspect-[3/4] bg-gradient-to-t from-black/50 to-white/5">
-							<div className="z-50 relative">
+							<div className="z-40 relative">
 								{removedFavoriteList?.includes(model?.modelId?._id) ? (
 									<FaRegHeart
 										onClick={() => {
 											removeFavorite(model?.modelId?._id, 'accepted');
 										}}
-										className="absolute top-2 right-2 text-red-500 rounded-md shadow-sm cursor-pointer text-xl z-50"
+										className="absolute top-2 right-2 text-red-500 rounded-md shadow-sm cursor-pointer text-xl z-40"
 									/>
 								) : (
 									<FaHeart
 										onClick={() => {
 											removeFavorite(model?.modelId?._id, 'rejected');
 										}}
-										className="absolute top-2 right-2 text-red-500 rounded-md shadow-sm cursor-pointer text-xl z-50"
+										className="absolute top-2 right-2 text-red-500 rounded-md shadow-sm cursor-pointer text-xl z-40"
 									/>
 								)}
 							</div>
@@ -199,7 +199,7 @@ const Favorites = () => {
 								}}></div>
 						</div>
 						<div className="mt-3 self-end w-full ">
-							<h3 className="text-xl text-[#444] font-PoppinsSemiBold">
+							<h3 className="text-xl text-[#444] font-PoppinsSemiBold overflow-hidden">
 								{model?.modelId?.userName}, {getAge(model?.modelId?.date_of_birth)}{' '}
 							</h3>
 							<div className="flex justify-between mt-3">

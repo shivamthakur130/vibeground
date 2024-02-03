@@ -151,8 +151,8 @@ const Tinder = ({ categoriesList }: any) => {
 	// console.log(currentSlide, 'currentSlide');
 	// console.log(modelId, 'modelId');
 	return (
-		<div className="Tinder max-w-7xl mx-auto mt-10 md:mt-10 mb-10">
-			<div className="md:text-5xl  text-111 flex items-center mb-2 justify-between px-5 ">
+		<div className="Tinder max-w-7xl mx-auto  sm:mt-10 sm:mb-10 py-5 sm:py-0">
+			<div className="md:text-5xl  text-111 flex items-center mt-9 justify-between px-5 ">
 				<div className="md:text-3xl text-base mb-5">
 					Hello
 					<h2 className="text-2xl font-PoppinsSemiBold">{userData?.userName}</h2>

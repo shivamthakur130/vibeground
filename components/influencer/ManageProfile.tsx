@@ -17,10 +17,10 @@ const ManageProfile = ({ categoriesList }: any) => {
 
 	return (
 		<PageWrapper>
-			<div className="max-w-7xl px-5 mx-auto mt-16 mb-32">
-				<div className="flex justify-between border-b shadow-sm  border-gray-300 p-4">
+			<div className="max-w-7xl px-5 mx-auto sm:mt-16 sm:mb-32 ">
+				<div className="flex justify-between border-b shadow-sm  border-gray-300 p-4 pt-20">
 					<div>
-						<h1 className="md:text-4xl text-lg font-PoppinsSemiBold text-111">
+						<h1 className="md:text-4xl text-2xl font-PoppinsSemiBold text-111">
 							Manage Profile
 						</h1>
 						<Link href="/influencer/profile-view">

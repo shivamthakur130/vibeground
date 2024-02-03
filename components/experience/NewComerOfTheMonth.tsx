@@ -8,8 +8,8 @@ import PageWrapper from '../common/PageWrapper';
 const NewComerWeek = () => {
 	return (
 		<PageWrapper>
-			<div className="Experience max-w-7xl px-5 mx-auto mt-10 md:mt-24 mb-24">
-				<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex items-center mb-10">
+			<div className="Experience max-w-7xl px-5 mx-auto sm:mt-24  sm:mb-24 py-5 sm:py-0 mb-24 ">
+				<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex items-center my-10 mb-10 mt-7">
 					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 hover:bg-gray-100 active:bg-gray-200">
 						<Link href="/experience">
 							<Image src={ArrowLeft} height={32} width={32} alt="#" />
