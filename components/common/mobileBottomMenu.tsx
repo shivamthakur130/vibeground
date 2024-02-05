@@ -14,7 +14,10 @@ const MobileBottomMenu = () => {
 			<ul className="flex justify-around items-center">
 				<Link href="/experience">
 					<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group">
-						<span className={`${pathname === '/experience' ? 'opacity-100' : 'opacity-50'}`}>
+						<span
+							className={`${
+								pathname === '/experience' ? 'opacity-100' : 'opacity-50'
+							}`}>
 							<Image src={Footer_vb} alt="#" />
 						</span>
 						{pathname === '/experience' && (
@@ -26,7 +29,10 @@ const MobileBottomMenu = () => {
 				</Link>
 				<Link href="/experience/tinder">
 					<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group">
-						<span className={`${pathname === '/experience/tinder' ? 'opacity-100' : 'opacity-50'}`}>
+						<span
+							className={`${
+								pathname === '/experience/tinder' ? 'opacity-100' : 'opacity-50'
+							}`}>
 							<Image src={FooterSearch} alt="#" />
 						</span>
 						{pathname === '/experience/tinder' && (
@@ -38,7 +44,10 @@ const MobileBottomMenu = () => {
 				</Link>
 				<Link href="/experience/favorites">
 					<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group">
-						<span className={`${pathname === '/experience/favorites' ? 'opacity-100' : 'opacity-50'}`}>
+						<span
+							className={`${
+								pathname === '/experience/favorites' ? 'opacity-100' : 'opacity-50'
+							}`}>
 							<Image src={FooterHeart} alt="#" />
 						</span>
 						{pathname === '/experience/favorites' && (
@@ -50,7 +59,10 @@ const MobileBottomMenu = () => {
 				</Link>
 				<Link href="/experience/profile">
 					<li className="text-center relative h-9 w-9 flex items-center cursor-pointer group">
-						<span className={`${pathname === '/experience/profile' ? 'opacity-100' : 'opacity-50'}`}>
+						<span
+							className={`${
+								pathname === '/experience/profile' ? 'opacity-100' : 'opacity-50'
+							}`}>
 							<Image src={FooterUser} alt="#" />
 						</span>
 						{pathname === '/experience/profile' && (
@@ -61,7 +73,7 @@ const MobileBottomMenu = () => {
 					</li>
 				</Link>
 			</ul>
-		</div >
+		</div>
 	);
 };
 

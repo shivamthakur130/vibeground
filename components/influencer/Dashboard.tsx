@@ -16,7 +16,7 @@ const Dashboard = () => {
 	return (
 		<PageWrapper>
 			<div className=" max-w-7xl px-5 mx-auto sm:mt-24 sm:mb-24 py-5 sm:py-0 pb-24 sm:pb-0">
-				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 flex items-center mb-10">
+				<h2 className="md:text-5xl text-3xl font-PoppinsBold text-111 flex items-center mb-10 mt-7">
 					Influencer
 				</h2>
 				<div className="grid md:grid-cols-2 gap-5 md:gap-10">

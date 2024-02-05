@@ -285,7 +285,7 @@ const ManageBilling = () => {
 	};
 
 	return (
-		<div className="Billing max-w-4xl mx-auto mt-24 mb-20 relative px-4">
+		<div className="Billing max-w-4xl mx-auto  sm:mt-24  sm:mb-24 py-5 sm:py-0 mb-20 relative px-4">
 			<div className="mb-12">
 				<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
 					<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">

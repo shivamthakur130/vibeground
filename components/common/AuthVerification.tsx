@@ -11,6 +11,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { ErrorMessage } from '@/components/layout/ToastifyMessages';
 import PageWrapper from './PageWrapper';
 import { Transition } from '@headlessui/react';
+import CollapseMenu from '@/components/common/CollapseMenu';
 
 export default function AuthVerification({
 	children,
@@ -93,6 +94,7 @@ export default function AuthVerification({
 	return (
 		<PageWrapper>
 			<div className="min-h-screen">
+				<CollapseMenu />
 				<Header />
 				<Transition
 					appear

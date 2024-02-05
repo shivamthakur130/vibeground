@@ -13,8 +13,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
 import ArrowLeft from '@/assets/images/svg/arrow-left.svg';
+import { useSearchParams } from 'next/navigation';
 
 const About = ({ params }: any) => {
+	const searchParams = useSearchParams();
+
+	const page = searchParams.get('page');
 	const [loading, setLoading] = useState(false);
 	const [modelDetails, setModelDetails] = useState<any | null>(null);
 	const dispatch = useAppDispatch();
@@ -80,7 +84,13 @@ const About = ({ params }: any) => {
 		return age;
 	};
 
-	console.log(params, 'params');
+	const previousPage = () => {
+		if (page === 'favorites') {
+			replace('/experience/favorites');
+		} else if (page === 'tinder') {
+			replace('/experience/tinder');
+		}
+	};
 
 	if (loading) {
 		return (
@@ -89,13 +99,16 @@ const About = ({ params }: any) => {
 			</div>
 		);
 	}
+
 	return (
-		<div className="TinderAbout max-w-7xl px-5 mx-auto mt-10 md:mt-10 mb-24">
-			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10">
-				<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 hover:bg-gray-100 active:bg-gray-200">
-					<Link href="/experience/tinder">
-						<Image src={ArrowLeft} height={32} width={32} alt="#" />
-					</Link>
+		<div className="TinderAbout max-w-7xl px-5 mx-auto sm:mt-10 sm:mb-24 py-5 sm:py-0 mb-24">
+			<h2 className="sm:text-5xl text-3xl font-PoppinsBold text-111 flex justify-between items-center mb-10 mt-7">
+				<div
+					className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50 hover:bg-gray-100 active:bg-gray-200"
+					onClick={previousPage}>
+					{/* <Link href="/experience/tinder"> */}
+					<Image src={ArrowLeft} height={32} width={32} alt="#" />
+					{/* </Link> */}
 				</div>
 				<div className="flex item-center space-x-4 ">
 					{/* <ul className="flex space-x-4">
@@ -115,11 +128,6 @@ const About = ({ params }: any) => {
 									src={picture}
 									className="h-[450px] w-[401px] rounded-3xl  shadow-md border object-cover"
 									alt="#"
-									// width={401}
-									// height={450}
-									// priority
-									// quality={70}
-									// style={{ objectFit: 'cover !important' }}
 								/>
 							))}
 							{modelDetails?.videos?.map((video: any, index: number) => (

@@ -16,7 +16,7 @@ const Experience = () => {
 	return (
 		<PageWrapper>
 			<div className="Experience max-w-7xl px-5 mx-auto sm:mt-24 sm:mb-24 py-5 sm:py-0 ">
-				<h2 className="text-3xl sm:text-5xl font-PoppinsBold text-111 flex items-center mb-10 justify-between">
+				<h2 className="text-3xl sm:text-5xl font-PoppinsBold text-111 flex items-center my-10 justify-between">
 					Experience
 					{/* <div
 						className="cursor-pointer pr-5 btn btn-default px-3 py-2 mt-0 text-lg text-white bg-303030 rounded-md hover:bg-151515 transition-all duration-300 active:bg-303030 flex items-center space-x-1"

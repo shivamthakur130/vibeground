@@ -114,7 +114,7 @@ const MeetAndGreetDetails = () => {
 	};
 	return (
 		<PageWrapper>
-			<div className="Email text-left px-5 max-w-xl mx-auto mt-0 mb-10 ">
+			<div className="Email text-left px-5 max-w-xl mx-auto sm:mt-24 sm:mb-24 py-5 sm:py-0 mb-20">
 				<div className="px-4">
 					{/* <div className="text-2xl font-PoppinsBold text-[#2F2F2F] py-2 pt-10"></div> */}
 					<h2 className="sm:text-3xl text-2xl font-PoppinsBold text-111 flex items-center mb-2 mt-10">

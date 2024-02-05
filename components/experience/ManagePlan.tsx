@@ -151,7 +151,7 @@ const ManagePlan = () => {
 
 	return (
 		<PageWrapper>
-			<div className="Profile max-w-2xl px-5 mx-auto  mt-16 mb-32">
+			<div className="Profile max-w-2xl px-5 mx-auto   sm:mt-24  sm:mb-32 py-5 sm:py-0 mb-32">
 				<div className="mb-12">
 					<h2 className="sm:text-5xl text-[24px] font-PoppinsBold text-111 flex items-center mb-8 mt-10">
 						<div className="bg-gray-50 p-2 rounded-2xl shadow-md cursor-pointer border border-gray-50">
