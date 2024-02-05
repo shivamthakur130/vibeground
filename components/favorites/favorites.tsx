@@ -179,7 +179,7 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={model?.modelId?.photos[0]}
-									className=" object-cover  min-h-[400px]"
+									className=" object-cover  min-h-[400px] cursor-pointer"
 									alt="#"
 								/>
 							) : (
@@ -188,12 +188,12 @@ const Favorites = () => {
 										openDetails(model?.modelId?._id);
 									}}
 									src={Post1}
-									className="w-full min-h-[250px]"
+									className="w-full min-h-[250px] cursor-pointer"
 									alt="#"
 								/>
 							)}
 							<div
-								className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%]"
+								className="flex absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/50 to-white/5 min-h-[100%] cursor-pointer"
 								onClick={() => {
 									openDetails(model?.modelId?._id);
 								}}></div>
