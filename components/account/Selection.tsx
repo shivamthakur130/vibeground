@@ -49,7 +49,7 @@ const Selection = ({ countries }: any) => {
 
 	// form validation rules
 	const validationSchema = Yup.object().shape({
-		city: Yup.string().required('City is required'),
+		city: Yup.string(),
 		country: Yup.string().required('Country is required'),
 	});
 
@@ -113,10 +113,6 @@ const Selection = ({ countries }: any) => {
 	const onChangeCountry = (e: any, city: string) => {
 		setCountry(e.target.value);
 		setValue('country', e.target.value);
-		// const cityListSelected = cities.filter(
-		// 	(item: any) => item['country_code'] == e.target.value
-		// );
-		// setCityList(cityListSelected);
 
 		getCitiesList(e.target.value);
 

@@ -9,10 +9,9 @@ export default function SupportFormPage() {
 				<div className="font-PoppinsRegular mt-10">
 					<ul className="space-y-2">
 						<li className="font-PoppinsBold">Vibeground Ltd.</li>
-						<li>Georgiou Karaiskaki, 11-13 </li>
-						<li>CARISA SALONICA COURT, Flat/Office 102</li>
-						<li>7560 Pervolia</li>
-						<li>Republic of Cyprus</li>
+						<li>Persefonis 8 </li>
+						<li>2102 Nicosia</li>
+						<li>Cyprus</li>
 					</ul>
 				</div>
 				<div className="font-PoppinsRegular mt-10 mb-10">

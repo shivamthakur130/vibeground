@@ -1,4 +1,4 @@
-import Layout from '@/components/common/layout';
+import Layout, { Address } from '@/components/common/layout';
 
 export default function SupportFormPage() {
 	return (
@@ -2716,34 +2716,7 @@ export default function SupportFormPage() {
 								info@vibeground.com or by post to:
 							</span>
 						</p>
-						<p
-							style={{
-								marginTop: '14pt',
-								marginBottom: '14pt',
-								lineHeight: 'normal',
-							}}>
-							<strong>
-								<span style={{ fontFamily: '"Times New Roman"' }}>Vibeground Ltd</span>
-							</strong>
-							<br />
-							<strong>
-								<span style={{ fontFamily: '"Times New Roman"' }}>
-									Georgiou Karaiskaki 11-13
-								</span>
-							</strong>
-							<br />
-							<strong>
-								<span style={{ fontFamily: '"Times New Roman"' }}>
-									Carisa Salonica Court, Apt. 102
-								</span>
-							</strong>
-							<br />
-							<strong>
-								<span style={{ fontFamily: '"Times New Roman"' }}>
-									7560 Pervolia, Larnaca, Cyprus
-								</span>
-							</strong>
-						</p>
+						<Address showEmail={false} />
 						<p
 							style={{ textAlign: 'justify', lineHeight: '108%', fontSize: '11.5pt' }}>
 							<span style={{ fontFamily: '"Times New Roman"' }}>&nbsp;</span>

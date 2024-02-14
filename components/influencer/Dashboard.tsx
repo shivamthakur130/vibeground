@@ -20,73 +20,83 @@ const Dashboard = () => {
 					Influencer
 				</h2>
 				<div className="grid md:grid-cols-2 gap-5 md:gap-10">
-					<div className="relative">
-						<Image src={Post1} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-							<Image src={Heart} alt="#" />
-							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-								Meet & Greet{' '}
-								<Link href="/influencer/meet-&-greet">
-									<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-										<Image src={Arrow} alt="#" />
-									</span>
-								</Link>
-							</h3>
+					<Link href="/influencer/meet-&-greet">
+						<div className="relative">
+							<Image src={Post1} className="w-full" alt="#" />
+							<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+								<Image src={Heart} alt="#" />
+								<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
+									Meet & Greet{' '}
+									<Link href="/influencer/meet-&-greet">
+										<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+											<Image src={Arrow} alt="#" />
+										</span>
+									</Link>
+								</h3>
+							</div>
 						</div>
-					</div>
-					<div className="relative">
-						<Image src={Post2} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-							<Image src={Croun} alt="#" />
-							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-								Newcomer of the month{' '}
-								<Link href="/influencer/newcomer">
-									<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-										<Image src={Arrow} alt="#" />
-									</span>
-								</Link>
-							</h3>
+					</Link>
+					<Link href="/influencer/newcomer">
+						<div className="relative">
+							<Image src={Post2} className="w-full" alt="#" />
+							<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+								<Image src={Croun} alt="#" />
+								<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
+									Newcomer of the month{' '}
+									<Link href="/influencer/newcomer">
+										<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+											<Image src={Arrow} alt="#" />
+										</span>
+									</Link>
+								</h3>
+							</div>
 						</div>
-					</div>
-					<div className="relative">
-						<Image src={Post3} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-								Collaborate{' '}
-								<Link href="/influencer/collaborate">
-									<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-										<Image src={Arrow} alt="#" />
-									</span>
-								</Link>
-							</h3>
+					</Link>
+					<Link href="/influencer/collaborate">
+						<div className="relative">
+							<Image src={Post3} className="w-full" alt="#" />
+							<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+								<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
+									Collaborate{' '}
+									<Link href="/influencer/collaborate">
+										<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+											<Image src={Arrow} alt="#" />
+										</span>
+									</Link>
+								</h3>
+							</div>
 						</div>
-					</div>
-					<div className="relative">
-						<Image src={Post4} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-								Advertising{' '}
-								<Link href="/influencer/advertising">
-									<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-										<Image src={Arrow} alt="#" />
-									</span>
-								</Link>
-							</h3>
+					</Link>
+					<Link href="/influencer/advertising">
+						<div className="relative">
+							<Image src={Post4} className="w-full" alt="#" />
+							<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+								<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
+									Advertising{' '}
+									<Link href="/influencer/advertising">
+										<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+											<Image src={Arrow} alt="#" />
+										</span>
+									</Link>
+								</h3>
+							</div>
 						</div>
-					</div>
-					<div className="relative">
-						<Image src={Post5} className="w-full" alt="#" />
-						<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-							<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
-								Vibeground TV{' '}
-								<Link href="/influencer/vibeground-tv">
-									<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
-										<Image src={Arrow} alt="#" />
-									</span>
-								</Link>
-							</h3>
+					</Link>
+					<Link href="/influencer/vibeground-tv">
+						<div className="relative">
+							<Image src={Post5} className="w-full" alt="#" />
+							<div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+								<h3 className=" mt-6 text-xl flex items-center justify-between text-[32px] text-white font-PoppinsSemiBold">
+									Vibeground TV{' '}
+									<Link href="/influencer/vibeground-tv">
+										<span className="flex items-center justify-center h-11 w-11 bg-white hover:bg-white/60 cursor-pointer rounded-full">
+											<Image src={Arrow} alt="#" />
+										</span>
+									</Link>
+								</h3>
+							</div>
 						</div>
-					</div>
+					</Link>
 				</div>
 			</div>
 		</PageWrapper>
